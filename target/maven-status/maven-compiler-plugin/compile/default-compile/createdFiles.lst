@@ -1,0 +1,5 @@
+com\example\servlet\formServlet.class
+com\example\servlet\dto\Persona.class
+com\example\servlet\indexServlet.class
+com\example\servlet\redirServlet.class
+com\example\servlet\loginServlet.class
