@@ -13,5 +13,7 @@
         <param-name>userpassword</param-name>
         <param-value>admin</param-value>
     </context-param>
-
+    <session-config>
+        <session-timeout>-1</session-timeout>
+    </session-config>
 </web-app>
