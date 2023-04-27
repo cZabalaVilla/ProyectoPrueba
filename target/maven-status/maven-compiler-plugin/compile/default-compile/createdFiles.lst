@@ -1,5 +1,6 @@
-com\example\servlet\formServlet.class
-com\example\servlet\dto\Persona.class
-com\example\servlet\indexServlet.class
-com\example\servlet\redirServlet.class
-com\example\servlet\loginServlet.class
+com\example\web\servlet\redirServlet.class
+com\example\web\servlet\dto\Usuario$UsuarioBuilder.class
+com\example\web\servlet\indexServlet.class
+com\example\web\servlet\loginServlet.class
+com\example\web\servlet\formServlet.class
+com\example\web\servlet\dto\Usuario.class
