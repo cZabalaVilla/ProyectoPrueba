@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form method="post" action="/ProyectoWeb/login">
+    <form method="post" action="/ProyectoPrueba/loginServlet">
         <label for="usuario">Usuario:</label>
         <input type="text" id="usuario" name="usuario"><br><br>
         <label for="userpassword">Password:</label>
