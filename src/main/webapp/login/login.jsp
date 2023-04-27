@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>Login</h1>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+        <p style="color:red"><%= request.getAttribute("errorMessage") %></p>
+    <% } %>
     <form method="post" action="/ProyectoPrueba/loginServlet">
         <label for="usuario">Usuario:</label>
         <input type="text" id="usuario" name="usuario"><br><br>

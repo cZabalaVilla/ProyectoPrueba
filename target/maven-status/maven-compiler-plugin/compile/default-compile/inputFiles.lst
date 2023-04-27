@@ -1,5 +1,12 @@
-C:\Users\c.zabala.villanueva\IdeaProjects\ProyectoPrueba\src\main\java\com\example\web\servlet\loginServlet.java
-C:\Users\c.zabala.villanueva\IdeaProjects\ProyectoPrueba\src\main\java\com\example\web\servlet\dto\Usuario.java
-C:\Users\c.zabala.villanueva\IdeaProjects\ProyectoPrueba\src\main\java\com\example\web\servlet\indexServlet.java
-C:\Users\c.zabala.villanueva\IdeaProjects\ProyectoPrueba\src\main\java\com\example\web\servlet\formServlet.java
-C:\Users\c.zabala.villanueva\IdeaProjects\ProyectoPrueba\src\main\java\com\example\web\servlet\redirServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\persistence\dao\Usuario.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\servlet\loginServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\persistence\connector\MySQLConstants.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\servlet\formServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\servlet\redirServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\servlet\UsuarioServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\persistence\connector\MySQLConnector.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\servlet\indexServlet.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\persistence\dao\Database.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\persistence\manager\UsuarioManager.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\service\UsuarioService.java
+C:\Users\Trabajo\IdeaProjects\ProyectoPrueba\src\main\java\edu\fpdual\web\filter\loginFilter.java
