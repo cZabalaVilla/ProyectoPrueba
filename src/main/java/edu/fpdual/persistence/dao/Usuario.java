@@ -9,17 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Usuario {
-    String usuario;
+    int userId;
+    String userName;
     String userPassword;
 
     public Usuario(ResultSet result) {
         try {
-            this.usuario = result.getString("usuario");
-            this.userPassword = result.getString("useropassword");
+            this.userId = Integer.parseInt(result.getString("usuario"));
+            this.userPassword = result.getString("userPassword");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -26,7 +26,7 @@ public class MySQLConnector {
     public Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
         try {
             Class.forName(prop.getProperty(MySQLConstants.DRIVER));
-            return  DriverManager.getConnection(getURL());
+            return DriverManager.getConnection(getURL());
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             throw e;
@@ -34,7 +34,7 @@ public class MySQLConnector {
     }
 
     private String getURL() {
-        //jdbc:mysql://localhost:3306/world?user=sa&password=S#o^xlK1kdz5ND^A&useSSL=false;
+        //jdbc:mysql://localhost:1521/world?user=sa&password=admin&useSSL=false;
         return new StringBuilder().append(prop.getProperty(MySQLConstants.URL_PREFIX))
                 .append(prop.getProperty(MySQLConstants.URL_HOST)).append(":")
                 .append(prop.getProperty(MySQLConstants.URL_PORT)).append("/")
@@ -52,9 +52,11 @@ public class MySQLConnector {
         MySQLConnector connector = new MySQLConnector();
         Connection connection = connector.getMySQLConnection();
         System.out.println(connection.getCatalog());
+        connection.close();
     }
-
+/*
     public Connection getConnection() {
         return null;
     }
+*/
 }
