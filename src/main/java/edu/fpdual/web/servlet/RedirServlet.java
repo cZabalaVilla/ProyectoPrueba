@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/redirServlet")
-public class redirServlet extends HttpServlet {
+public class RedirServlet extends HttpServlet {
 
-    private static final String OTRA_PAGINA_URL = "/ProyectoPrueba/login/login.jsp";
+    private static final String LOGIN_URL = "/ProyectoPrueba/login/login.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,9 +21,7 @@ public class redirServlet extends HttpServlet {
         // Verificar si el botón de tipo submit tiene el valor "Ir a"
         if ("Ir a".equals(submitValue)) {
             // Redirigir a la página "otraPagina.jsp"
-            response.sendRedirect(OTRA_PAGINA_URL);
+            response.sendRedirect(LOGIN_URL);
         }
     }
-
-
 }
