@@ -13,7 +13,9 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     private final String URL_PROYECTO = "/ProyectoPrueba/";
-
+    private final String URL_REDIR = URL_PROYECTO + "comun/home.jsp";
+    private final String URL_LOGIN = "/login/login.jsp";
+    private final String sessionAtributte = "sesion";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws
@@ -27,30 +29,28 @@ public class LoginServlet extends HttpServlet {
             ServletException,
             IOException {
 
-        Sesion sesion = (Sesion) req.getSession().getAttribute("usuarioSesion");
+        Sesion sesion = (Sesion) req.getSession().getAttribute(sessionAtributte);
 
         if (sesion != null) {
-            resp.sendRedirect(URL_PROYECTO + "comun/home.jsp");
+            resp.sendRedirect(URL_REDIR);
         } else {
-
             String usuarioConfigurado=getServletContext().getInitParameter("usuario");
             String passwordConfigurado=getServletContext().getInitParameter("userpassword");
-
             String usuarioIntroducido = req.getParameter("usuario");
             String passwordIntroducido = req.getParameter("userpassword");
 
             if ((usuarioIntroducido != null && usuarioIntroducido.equals(usuarioConfigurado))
                     && (passwordIntroducido != null && passwordIntroducido.equals(passwordConfigurado))) {
 
-                sesion = Sesion.builder().usuario(usuarioIntroducido).userpassword(passwordIntroducido).build();
+                sesion = Sesion.builder().userName(usuarioIntroducido).userPassword(passwordIntroducido).build();
 
                 req.getSession().setMaxInactiveInterval(5);
-                req.getSession().setAttribute("usuarioSesion", sesion);
+                req.getSession().setAttribute(sessionAtributte, sesion);
 
-                resp.sendRedirect(URL_PROYECTO + "comun/home.jsp");
+                resp.sendRedirect(URL_REDIR);
             } else {
                 req.setAttribute("error", "Error al insertar usuario o contraseña");
-                req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+                req.getRequestDispatcher(URL_LOGIN).forward(req, resp);
             }
         }
     }

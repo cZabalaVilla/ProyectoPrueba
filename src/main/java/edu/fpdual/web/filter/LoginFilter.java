@@ -1,7 +1,6 @@
 package edu.fpdual.web.filter;
 
 
-import edu.fpdual.persistence.dao.Usuario;
 import edu.fpdual.web.servlet.dto.Sesion;
 
 import javax.servlet.DispatcherType;
@@ -16,9 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName="loginFilter", urlPatterns={"/comun/*"}, dispatcherTypes= {DispatcherType.REQUEST,DispatcherType.FORWARD})
-public class LoginFilter implements  Filter {
-
+@WebFilter(filterName = "loginFilter", urlPatterns = {"/comun/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
+public class LoginFilter implements Filter {
+    String URL_LOGIN = "/ProyectoPrueba/login/login.jsp";
+    private final String sessionAtributte = "sesion";
     @Override
     public void init(FilterConfig filterConfig)
             throws
@@ -30,22 +30,18 @@ public class LoginFilter implements  Filter {
             throws
             IOException,
             ServletException {
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        Sesion sesion = (Sesion) req.getSession().getAttribute(sessionAtributte);
 
-        HttpServletRequest req = (HttpServletRequest)servletRequest;
+        if (sesion == null) {
 
-        Sesion sesion = (Sesion)req.getSession().getAttribute("usuarioSesion");
-
-        if(sesion == null){
-            ((HttpServletResponse)servletResponse).sendRedirect("/ProyectoPrueba/login/login.jsp");
+            ((HttpServletResponse) servletResponse).sendRedirect(URL_LOGIN);
         } else {
-            System.out.println("Antes de pasar filtro");
             filterChain.doFilter(servletRequest, servletResponse);
-            System.out.println("Despues de pasar filtro");
         }
     }
 
     @Override
     public void destroy() {
-
     }
 }

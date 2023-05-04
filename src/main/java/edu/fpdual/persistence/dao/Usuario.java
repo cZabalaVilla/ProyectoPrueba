@@ -10,13 +10,14 @@ import java.sql.SQLException;
 
 @Data
 public class Usuario {
-    int userId;
+    int userID;
     String userName;
     String userPassword;
 
     public Usuario(ResultSet result) {
         try {
-            this.userId = Integer.parseInt(result.getString("usuario"));
+            this.userID = Integer.parseInt(result.getString("userID"));
+            this.userName = result.getString("userName");
             this.userPassword = result.getString("userPassword");
         } catch (SQLException e) {
             e.printStackTrace();
