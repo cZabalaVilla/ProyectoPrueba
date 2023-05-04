@@ -3,53 +3,42 @@ package edu.fpdual.persistence.manager;
 
 import edu.fpdual.persistence.dao.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioManager {
+public class UsuarioManager implements Manager<Usuario> {
     List<Usuario> usuarios = new ArrayList<>();
+    Usuario usuario;
 
     public List<Usuario> findAll(Connection con) {
-        try (PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario")) {
-            ResultSet result = stm.executeQuery();
-
+        try (Statement stm = con.createStatement()) {
+            ResultSet result = stm.executeQuery("SELECT * FROM USUARIO");
             result.beforeFirst();
-
             while (result.next()) {
-                usuarios.add(new Usuario(result.getString("usuario"), result.getString("userpassword")));
+                usuarios.add(new Usuario(result));
             }
-
-            return usuarios;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
-
+            usuarios = null;
         }
+        return usuarios;
     }
 
-    public List<Usuario> findByUser(Connection con, String user) {
-
-        try (PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario WHERE usuario = ?")) {
-
-            stm.setString(1, user);
-
+    @Override
+    public Usuario findBy(Connection con, String fieldName, Object value) {
+        String sentence = "SELECT * FROM USUARIO WHERE " + fieldName + " =?";
+        try (PreparedStatement stm = con.prepareStatement(sentence)) {
+            stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
-
             result.beforeFirst();
-
             while (result.next()) {
-                usuarios.add(new Usuario(result.getString("usuario"), result.getString("userpassword")));
+                usuario = new Usuario(result);
             }
-
-            return usuarios;
-
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            usuario = null;
         }
+        return usuario;
     }
 }

@@ -9,25 +9,38 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UsuarioService {
-    private MySQLConnector connector;
-    private UsuarioManager manager;
+    private final MySQLConnector connector;
+    private final UsuarioManager manager;
 
-    public UsuarioService(MySQLConnector connector,UsuarioManager manager) {
+    public UsuarioService(MySQLConnector connector, UsuarioManager manager) {
         this.connector = connector;
         this.manager = manager;
     }
 
-    public List<Usuario> findAll() throws SQLException {
-
-        Connection con = null;
-
-        try {
-            con = connector.getConnection();
+    public List<Usuario> findAllUsers()
+            throws
+            SQLException,
+            ClassNotFoundException {
+        try (Connection con = connector.getMySQLConnection()) {
             return manager.findAll(con);
-        }finally {
-            if (con != null) {
-                con.close();
-            }
+        }
+    }
+
+    public Usuario findByUserId(Integer userId)
+            throws
+            SQLException,
+            ClassNotFoundException {
+        try (Connection con = connector.getMySQLConnection()) {
+            return manager.findBy(con, "userId", userId);
+        }
+    }
+
+    public Usuario findByUserName(String userName)
+            throws
+            SQLException,
+            ClassNotFoundException {
+        try (Connection con = connector.getMySQLConnection()) {
+            return manager.findBy(con, "userName", userName);
         }
     }
 }

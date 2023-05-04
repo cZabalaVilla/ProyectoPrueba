@@ -1,5 +1,5 @@
 package edu.fpdual.web.servlet;
 
-public class indexServlet {
+public class IndexServlet {
 
 }

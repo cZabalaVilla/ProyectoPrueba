@@ -7,7 +7,7 @@
 <body>
 <h2>Página de inicio</h2>
 <form method="post" action="/ProyectoPrueba/redirServlet">
-    <input type="submit" name="submitBtn" value="Ir a"></a>
+    <input type="submit" name="submitBtn" value="Login"></a>
 </form>
 </body>
 </html>
