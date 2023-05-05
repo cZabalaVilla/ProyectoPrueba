@@ -15,8 +15,8 @@ import java.security.NoSuchAlgorithmException;
 @Builder
 public class Sesion {
 
-    private String usuario;
-    private String userpassword;
+    private String userName;
+    private String userPassword;
 
     public String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
