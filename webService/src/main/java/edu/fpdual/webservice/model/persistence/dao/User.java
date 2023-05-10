@@ -1,7 +1,6 @@
 package edu.fpdual.webservice.model.persistence.dao;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
