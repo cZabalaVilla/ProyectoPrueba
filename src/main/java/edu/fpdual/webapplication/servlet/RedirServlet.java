@@ -1,4 +1,4 @@
-package edu.fpdual.webApplication.servlet;
+package edu.fpdual.webapplication.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package edu.fpdual.webApplication.servlet.dto;
+package edu.fpdual.webapplication.servlet.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

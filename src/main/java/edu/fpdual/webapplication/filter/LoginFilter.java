@@ -1,7 +1,7 @@
-package edu.fpdual.webApplication.filter;
+package edu.fpdual.webapplication.filter;
 
 
-import edu.fpdual.webApplication.servlet.dto.Session;
+import edu.fpdual.webapplication.servlet.dto.Session;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;

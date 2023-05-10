@@ -1,16 +1,11 @@
-package edu.fpdual.webApplication.servlet;
+package edu.fpdual.webapplication.servlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/usuarioServlet")
 public class UserServlet extends HttpServlet {
-
+/*
     private UsuarioService service;
     private final String URL_PROYECTO = "/ProyectoPrueba/";
 
@@ -28,18 +23,19 @@ public class UserServlet extends HttpServlet {
             IOException {
 
         try {
-
             if (req.getParameter("usuario") != null && !req.getParameter("usuario").trim().isEmpty()) {
                 String usuario = req.getParameter("usuario");
                 req.getSession().setAttribute("usuario", service.findUserByUsuario(usuario));
             } else {
                 req.getSession().setAttribute("usuarios", service.findAllUsers());
             }
-
+    req.
             resp.sendRedirect(URL_PROYECTO + "bbdd/userList.jsp");
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+
+ */
 }
