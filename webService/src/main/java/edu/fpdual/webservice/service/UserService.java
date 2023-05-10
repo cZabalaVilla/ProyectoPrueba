@@ -20,7 +20,9 @@ public class UserService {
         this.userManager = userManager;
         this.logService = new LogService();
     }
-
+    public List<User> findAll(Connection con) {
+        return null;
+    }
 /*
     public List<User> findAll() throws SQLException, ClassNotFoundException, JsonProcessingException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
@@ -37,15 +39,15 @@ public class UserService {
         }
     }
 */
-    public User findByUserName(Integer id) throws SQLException, ClassNotFoundException {
+    public User findByUserName(String userName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.findBy(con,"userId", id);
+            return userManager.findBy(con,"userName", userName);
         }
     }
 
     public boolean deleteUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.delete(con, "UserId",user.getUserId());
+            return userManager.delete(con, "userName",user.getUserId());
         }
     }
 
