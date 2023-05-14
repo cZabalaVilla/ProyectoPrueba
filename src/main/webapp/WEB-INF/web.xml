@@ -4,7 +4,11 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
-
+    <!--
+    <welcome-file-list>
+        <welcome-file>[pagina].jsp</welcome-file>
+    </welcome-file-list>
+    -->
     <context-param>
         <param-name>usuario</param-name>
         <param-value>admin</param-value>
@@ -16,4 +20,14 @@
     <session-config>
         <session-timeout>-1</session-timeout>
     </session-config>
+    <!--
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>com.example.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </servlet-mapping>
+    -->
 </web-app>

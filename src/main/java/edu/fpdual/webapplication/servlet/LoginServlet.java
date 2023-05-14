@@ -1,37 +1,21 @@
 package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.servlet.dto.Session;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/loginServlet")
-public class LoginServlet extends HttpServlet {
-
-    private final String URL_PROYECTO = "/ProyectoPrueba/";
-    private final String URL_HOME = URL_PROYECTO + "comun/home.jsp";
-    private final String URL_LOGIN = "/login/login.jsp";
-    private final String URL_USERCONTROLLER = URL_PROYECTO+"/user/";
-    private final String sessionAtributte = "session";
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws
-            ServletException,
-            IOException {
-        doPost(req, resp);
-    }
+@WebServlet(name = "LoginServlet", urlPatterns = { "/login-servlet" })
+public class LoginServlet extends TemplateServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
-            ServletException,
-            IOException {
+            IOException, ServletException {
 
-        Session session = (Session) req.getSession().getAttribute(sessionAtributte);
+        Session session = (Session) req.getSession().getAttribute(super.session);
 
         if (session != null) {
             resp.sendRedirect(URL_HOME);
@@ -40,7 +24,8 @@ public class LoginServlet extends HttpServlet {
             //String passwordConfigurado=getServletContext().getInitParameter("userpassword");
             String userNameReceived = req.getParameter("userName");
             String userPasswordReceived = req.getParameter("userPassword");
-            resp.sendRedirect(URL_USERCONTROLLER + "userName");
+            //Mandara una redireccion al webservice para obtener el usuario
+            resp.sendRedirect("userName");
             /*
             * añadir comprobacion de si el username existe en la base de datos
             * */
@@ -51,8 +36,7 @@ public class LoginServlet extends HttpServlet {
 
                 //Cambiar el intervalo de sesión y añadir tiempo de la sesion
                 req.getSession().setMaxInactiveInterval(5);
-                req.getSession().setAttribute(sessionAtributte, session);
-
+                req.getSession().setAttribute(super.session, session);
                 resp.sendRedirect(URL_HOME);
             } else {
                 req.setAttribute("error", "Error al insertar usuario o contraseña");

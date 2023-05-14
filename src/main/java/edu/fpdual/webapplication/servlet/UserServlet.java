@@ -1,9 +1,9 @@
 package edu.fpdual.webapplication.servlet;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 
-@WebServlet("/usuarioServlet")
+@WebServlet(name = "UserServlet", urlPatterns = { "/user-servlet" })
 public class UserServlet extends HttpServlet {
 /*
     private UsuarioService service;

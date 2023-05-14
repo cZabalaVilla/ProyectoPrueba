@@ -11,7 +11,7 @@
     <% if (request.getAttribute("errorMessage") != null) { %>
         <p style="color:red"><%= request.getAttribute("errorMessage") %></p>
     <% } %>
-    <form method="post" action="/ProyectoPrueba/loginServlet">
+    <form method="post" action="/ProyectoPrueba/login-servlet">
         <label for="usuario">Usuario:</label>
         <input type="text" id="usuario" name="usuario"><br><br>
         <label for="userpassword">Password:</label>
