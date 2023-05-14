@@ -13,5 +13,4 @@ public class Main {
         System.out.println(new NotificationClient().postNotification(
                 Notification.builder().id(9).body("Prueba de consumo de servicio").title("Prueba").build()));
     }
-
 }

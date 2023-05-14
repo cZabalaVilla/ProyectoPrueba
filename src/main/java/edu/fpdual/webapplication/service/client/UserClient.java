@@ -9,24 +9,26 @@ import jakarta.ws.rs.core.MediaType;
 public class UserClient extends Client<User> {
     private final WebTarget webTarget;
 
-    private final String URL_DIRECCION = "http://localhost:8080";
-    private final String URL_PROYECTO = "/ProyectoPrueba/";
-
     public UserClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
-        this.webTarget = client.target(URL_DIRECCION + URL_PROYECTO + "model/persistence");
+        this.webTarget = client.target("http://localhost:8081/webService/webapi/");
     }
 
     @Override
     public String ping() {
-        return webTarget.path("users/ping")
+        return webTarget.path("user/ping")
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
+    }
+    public User findByUserName(String userName) {
+        return webTarget.path("user/find/" + userName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
     }
 
     @Override
     public User get(String str) {
-        return webTarget.path("users/get/" + str)
+        return webTarget.path("user/get/" + str)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }

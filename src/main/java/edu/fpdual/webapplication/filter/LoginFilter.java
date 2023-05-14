@@ -18,11 +18,9 @@ import java.io.IOException;
 @WebFilter(filterName = "loginFilter", urlPatterns = {"/comun/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class LoginFilter implements Filter {
     String URL_LOGIN = "/ProyectoPrueba/login/login.jsp";
-    private final String sessionAtributte = "sesion";
+    private final String sessionAtributte = "session";
     @Override
-    public void init(FilterConfig filterConfig)
-            throws
-            ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
