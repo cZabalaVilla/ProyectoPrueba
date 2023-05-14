@@ -15,7 +15,7 @@ public class Category {
 
     public Category(ResultSet result) {
         try {
-            this.categoryId = Integer.parseInt(result.getString("categoryId"));
+            this.categoryId = result.getInt("categoryId");
             this.categoryName = result.getString("categoryName");
         } catch (SQLException e) {
             e.printStackTrace();

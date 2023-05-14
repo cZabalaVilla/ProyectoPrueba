@@ -12,16 +12,19 @@ public class User implements Comparable<User> {
     int userId;
     String userName;
     String userPassword;
+    boolean admn;
 
     public User(ResultSet result) {
         try {
-            this.userId = Integer.parseInt(result.getString("userId"));
+            this.userId = result.getInt("userId");
             this.userName = result.getString("userName");
             this.userPassword = result.getString("userPassword");
+            this.admn = result.getBoolean("admn");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public int compareTo(User o) {
         return userId - o.userId;

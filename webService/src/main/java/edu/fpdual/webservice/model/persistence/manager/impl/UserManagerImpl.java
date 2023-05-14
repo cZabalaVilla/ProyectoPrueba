@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 public class UserManagerImpl implements UserManager {
-    String tableName = "USUARIO";
+    String tableName = "USER";
 
+    //@TODO AÑADIR JAVADOC
     public List<User> findAll(Connection con) {
         List<User> usuarios = new ArrayList<>();
         String query = "SELECT * FROM " + tableName;
@@ -29,13 +30,22 @@ public class UserManagerImpl implements UserManager {
         return usuarios;
     }
 
-    //NO FUNCIONA DE MOMENTO
+    /*
+    * Sin uso de momento
+    * */
+
     @Override
     public List<User> findAllBy(Connection con, String fieldName, Set<Object> values) {
-        List<User> usuarios = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " =?";
+        return null;
+    }
 
-        try (Statement stm = con.createStatement()) {
+    @Override
+    public List<User> findAllAdmins(Connection con) {
+        List<User> usuarios = new ArrayList<>();
+        String fieldName = "admn";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " =?";
+        try (PreparedStatement stm = con.prepareStatement(query)) {
+            stm.setObject(1, 1);
             ResultSet result = stm.executeQuery(query);
             result.beforeFirst();
             while (result.next()) {
@@ -52,7 +62,7 @@ public class UserManagerImpl implements UserManager {
     @Override
     public User findBy(Connection con, String fieldName, Object value) {
         User usuario = new User();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -85,17 +95,21 @@ public class UserManagerImpl implements UserManager {
     }
 
     /**
-     * Cuando creas un usuario, el return del método debe de ser 3.
+     * Cuando creas un usuario, el return del método debe de ser 4.
      * */
     @Override
     public int create(Connection con, User entity) {
         int affectedRows;
-        String query = "INSERT INTO " + tableName + " (userId, userName, userPassword) values(?,?,?)";
+        int boolAdmn = 0;
+        String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setInt(1, entity.getUserId());
-            stm.setString(2, entity.getUserName());
-            stm.setString(3, entity.getUserPassword());
+            if( entity.isAdmn()) {
+                boolAdmn = 1;
+            }
+            stm.setString(1, entity.getUserName());
+            stm.setString(2, entity.getUserPassword());
+            stm.setInt(3, boolAdmn);
 
             affectedRows = stm.executeUpdate();
 

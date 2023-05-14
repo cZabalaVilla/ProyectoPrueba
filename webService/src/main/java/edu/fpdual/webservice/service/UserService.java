@@ -10,32 +10,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
-
     private final UserManager userManager;
 
+    //@TODO Añadir javadoc
     public UserService(UserManagerImpl userManager){
 
         this.userManager = userManager;
     }
-    public List<User> findAll(Connection con) {
-        return null;
-    }
-/*
-    public List<User> findAll() throws SQLException, ClassNotFoundException, JsonProcessingException {
+    public List<User> findAllUsers() throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            logService.registerLog(
-                    Log.builder().fecha(LocalDateTime.now())
-                            .logStatus(LogStatus.OK).titulo("Buscando Todos las ciudades.")
-                            .mensaje("Buscando todas las ciudades sin filtro.").build());
-            List<User> users = userManager.findAll(con);
-            logService.registerLog(
-                    Log.builder().fecha(LocalDateTime.now())
-                            .logStatus(LogStatus.OK).titulo("Busqueda de ciudades exitosa.")
-                            .mensaje("Busqueda de ciudades sin filtro  exitosa. Encontradas "+users.size()+" ciudades.").build());
-            return users;
+            return userManager.findAll(con);
         }
     }
-*/
     public User findByUserName(String userName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.findBy(con,"userName", userName);

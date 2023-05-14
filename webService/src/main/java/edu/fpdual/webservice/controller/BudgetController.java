@@ -4,15 +4,16 @@ import edu.fpdual.webservice.model.persistence.dao.Budget;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.BudgetManagerImpl;
 import edu.fpdual.webservice.service.BudgetService;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@Path("/budget")
+//@Path("/budget")
 public class BudgetController {
+    /*
     //Inicializado a null, CAMBIAR.
     private final Connection con = null;
     private final BudgetService budgetService;
@@ -72,7 +73,9 @@ public class BudgetController {
             if (budgetToUpdate != null) {
                 int createdId = budgetService.createBudget(budget);
                 //?????????? Tiene que igualar al número de atributos??
-                if (createdId == 3/* >0 en un principio pero como son tres campos == 3*/) {
+                if (createdId == 3// >0 en un principio pero como son tres campos == 3
+                ) {
+
                     return Response.status(201).entity(budgetService.findByBudgetName(budget.getBudgetName())).build();
                 } else {
                     return Response.status(500).entity("Internal Error During Creating The Budget").build();
@@ -104,4 +107,5 @@ public class BudgetController {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
+    */
 }

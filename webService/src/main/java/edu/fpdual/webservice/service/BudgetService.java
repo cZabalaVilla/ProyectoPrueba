@@ -7,9 +7,9 @@ import edu.fpdual.webservice.model.persistence.manager.BudgetManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-/*
+
 public class BudgetService {
-    private final BudgetManager budgetManager;
+  /*  private final BudgetManager budgetManager;
     private final LogService logService;
 
 
@@ -45,7 +45,7 @@ public class BudgetService {
         }
     }
 
-
+ */
 }
 
- */
+
