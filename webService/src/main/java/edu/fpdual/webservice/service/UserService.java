@@ -7,18 +7,15 @@ import edu.fpdual.webservice.model.persistence.manager.impl.UserManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserService {
 
     private final UserManager userManager;
-    private final LogService logService;
 
     public UserService(UserManagerImpl userManager){
 
         this.userManager = userManager;
-        this.logService = new LogService();
     }
     public List<User> findAll(Connection con) {
         return null;
