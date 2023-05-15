@@ -7,7 +7,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @Path("/user")
@@ -41,6 +40,9 @@ public class UserController {
             if (userName == null) {
                 return Response.status(400).entity("Incorrect Parameters").build();
             } else {
+                if (userService.findByUserName(userName).getUserId() == 0) {
+                    return Response.status(404).entity("User Not Found").build();
+                }
                 return Response.ok().entity(userService.findByUserName(userName)).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -91,7 +93,7 @@ public class UserController {
         }
     }
 
-    @POST
+    @PUT
     @Path("/update/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
