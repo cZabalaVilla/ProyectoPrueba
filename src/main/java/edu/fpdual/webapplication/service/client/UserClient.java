@@ -4,7 +4,11 @@ import edu.fpdual.webapplication.service.client.dto.User;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.Collections;
+import java.util.List;
 
 public class UserClient extends Client<User> {
     private final WebTarget webTarget;
@@ -46,5 +50,11 @@ public class UserClient extends Client<User> {
         return webTarget.path("user/find/" + userName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
+    }
+
+    public List<User> findAll() {
+        return webTarget.path("user/findAll")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<User>>() {});
     }
 }

@@ -34,4 +34,14 @@ public class User {
         return hexString.toString();
     }
 
+    @Override
+    public String toString() {
+        String esAdmin = "NO";
+        if (admn) esAdmin = "SI";
+        return "Usuario: " + userName
+                + " | Id de usuario: " + userId
+                + " | Password: " + userPassword
+                + " | Administrador?: " + esAdmin;
+    }
+
 }

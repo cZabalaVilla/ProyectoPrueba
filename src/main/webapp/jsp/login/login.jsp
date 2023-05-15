@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import= "edu.fpdual.webapplication.GlobalInfo" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +12,7 @@
     <% if (request.getAttribute("error") != null) { %>
         <p style="color:red"><%= request.getAttribute("error") %></p>
     <% } %>
-    <form method="post" action="/ProyectoPrueba/login-servlet">
+    <form method="post" action=<%= GlobalInfo.URL_SERVLET_LOGIN %>>
         <label for="userName">Usuario:</label>
         <input type="text" id="userName" name="userName"><br><br>
         <label for="userPassword">Password:</label>

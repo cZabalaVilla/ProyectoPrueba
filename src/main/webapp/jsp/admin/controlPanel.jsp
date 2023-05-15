@@ -20,7 +20,7 @@
             <input type="submit" name="submitBtn" value="Form"></a>
         </form>
         </br>
-        <form method="post" action="/ProyectoPrueba/jsp/database/lists">
+        <form method="post" action="/ProyectoPrueba/jsp/admin/database/lists.jsp">
             <input type="submit" name="submitBtn" value="Database"></a>
         </form>
         </br>
