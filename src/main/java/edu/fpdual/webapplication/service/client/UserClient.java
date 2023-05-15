@@ -20,11 +20,6 @@ public class UserClient extends Client<User> {
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
     }
-    public User findByUserName(String userName) {
-        return webTarget.path("user/find/" + userName)
-                .request(MediaType.APPLICATION_JSON)
-                .get(User.class);
-    }
 
     @Override
     public User get(String str) {
@@ -45,5 +40,11 @@ public class UserClient extends Client<User> {
         return webTarget.path("users/post")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), User.class);
+    }
+
+    public User findByUserName(String userName) {
+        return webTarget.path("user/find/" + userName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
     }
 }

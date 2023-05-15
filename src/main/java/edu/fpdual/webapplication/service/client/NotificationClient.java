@@ -17,21 +17,18 @@ public class NotificationClient {
     }
 
     public Notification getNotification(String id) {
-
         return webTarget.path("notifications/get/" + id)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Notification.class);
     }
 
     public String ping() {
-
         return webTarget.path("notifications/ping")
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
     }
 
     public Notification getNotification(String id, String name) {
-
         return webTarget.path("notifications/get/" + id + "/name")
                 .queryParam("name", name)
                 .request(MediaType.APPLICATION_JSON)
@@ -39,14 +36,12 @@ public class NotificationClient {
     }
 
     public Notification putNotification(String id, String name) {
-
         return webTarget.path("notifications/get/" + id + "/" + name)
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity("", MediaType.APPLICATION_JSON), Notification.class);
     }
 
     public Notification postNotification(Notification notification) {
-
         return webTarget.path("notifications/post")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(notification, MediaType.APPLICATION_JSON), Notification.class);

@@ -15,8 +15,8 @@ public class TemplateServlet extends HttpServlet {
     /*
      * URL de los .jsp
      */
-    protected final String URL_HOME = URL_PROYECTO + "/jsp/common/home.jsp";
-    protected final String URL_LOGIN = URL_PROYECTO + "/jsp/login/login.jsp";
+    protected final String URL_HOME = "/jsp/common/home.jsp";
+    protected final String URL_LOGIN = "/jsp/login/login.jsp";
     protected final String session = "session";
 
     @Override

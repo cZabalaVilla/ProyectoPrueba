@@ -15,7 +15,7 @@ public class NotificationServlet extends TemplateServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         PrintWriter writer = response.getWriter();
         writer.println("<html>");
         writer.println("<body>");
@@ -28,7 +28,8 @@ public class NotificationServlet extends TemplateServlet {
         writer.println(new NotificationClient().putNotification("82", ":D"));
         writer.println("</br>");
         writer.println(new NotificationClient().postNotification(
-                Notification.builder().id(9).body("Prueba de consumo de servicio").title("Prueba").build()));
+                Notification.builder().id(9).body("Prueba de consumo de servicio").title("Prueba").build())
+        );
         writer.println("</br>");
         writer.println("<button onclick=\"location.href='\\index.jsp'\">Volver al inicio</button>");
         writer.println("</body>");
