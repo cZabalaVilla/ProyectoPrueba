@@ -2,13 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-
-<html>
     <head>
-        <meta charset="UTF-8" http-equiv="refresh" content="3; url=./../common/home.jsp" />
-        <title>Redireccionando</title>
+        <meta content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h5>Redireccionando...</h5>
+        <h1>Acceso denegado</h1>
     </body>
 </html>

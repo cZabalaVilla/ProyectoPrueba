@@ -1,10 +1,7 @@
 package edu.fpdual.webapplication.servlet;
 
-import edu.fpdual.webapplication.service.client.NotificationClient;
 import edu.fpdual.webapplication.service.client.UserClient;
-import edu.fpdual.webapplication.service.client.dto.Notification;
 import edu.fpdual.webapplication.service.client.dto.User;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,10 +15,10 @@ import java.util.List;
 public class ListsServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
         List<User> users = new UserClient().findAll();
-        PrintWriter writer = resp.getWriter();
+        PrintWriter writer = response.getWriter();
 
         writer.println("<html>");
         writer.println("<body>");

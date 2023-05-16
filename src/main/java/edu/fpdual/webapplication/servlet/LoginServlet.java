@@ -17,41 +17,47 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        User user = null;
-        String errorInexistente = "Usuario o contraseña incorrectos";
+        String incorrectError = "Usuario o contraseña incorrectos";
+        String emptyError = "El campo usuario está vacío";
 
         try {
-            user = new UserClient().findByUserName(req.getParameter("userName"));
-            Session session = (Session) req.getSession().getAttribute(GlobalInfo.session);
+            String userNameReceived = request.getParameter("userName");
+            String userPasswordReceived = request.getParameter("userPassword");
 
-            String userNameGot = user.getUserName();
-            String userPasswordGot = user.getUserPassword();
-            boolean adminGot = user.isAdmn();
-            String userNameReceived = req.getParameter("userName");
-            String userPasswordReceived = req.getParameter("userPassword");
-            String errorIncompleto = "El campo usuario está vacío";
-            String errorIncorrecto = "Usuario o contraseña incorrectos";
+            User user = new UserClient().findByUserName(userNameReceived);
+            Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 
             if (session != null) {
-                resp.sendRedirect(GlobalInfo.URL_JSP_HOME);
-            } else if (userNameReceived == null) {
-                req.setAttribute("error", errorIncompleto);
-                req.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(req, resp);
-            } else if (!userNameReceived.equals(userNameGot) || !userPasswordReceived.equals(userPasswordGot)) {
-                req.setAttribute("error", errorIncorrecto);
-                req.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(req, resp);
-            } else {
-                session = Session.builder().userName(userNameReceived).userPassword(userPasswordReceived).admin(adminGot).build();
-                //Cambiar el intervalo de sesión y añadir tiempo de la sesion
-                req.getSession().setMaxInactiveInterval(5);
-                req.getSession().setAttribute(GlobalInfo.session, session);
-                resp.sendRedirect(GlobalInfo.URL_JSP_HOME);
+                response.sendRedirect(GlobalInfo.URL_JSP_HOME);
+                return;
             }
+
+            if (userNameReceived == null || userNameReceived.isEmpty()) {
+                request.setAttribute("error", emptyError);
+                request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
+                return;
+            }
+
+            if (!user.getUserPassword().equals(userPasswordReceived)) {
+                request.setAttribute("error", incorrectError);
+                request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
+                return;
+            }
+
+            session = Session.builder()
+                    .userName(userNameReceived)
+                    .userPassword(userPasswordReceived)
+                    .admin(user.isAdmn())
+                    .build();
+            request.getSession().setMaxInactiveInterval(5);
+            request.getSession().setAttribute(GlobalInfo.session, session);
+            response.sendRedirect(GlobalInfo.URL_JSP_HOME);
         } catch (NotFoundException e) {
-            req.setAttribute("error", errorInexistente);
-            req.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(req, resp);
+            request.setAttribute("error", incorrectError);
+            request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
         }
     }
+
 }

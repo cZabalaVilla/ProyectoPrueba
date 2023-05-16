@@ -7,7 +7,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
-import java.util.Collections;
 import java.util.List;
 
 public class UserClient extends Client<User> {
@@ -34,16 +33,22 @@ public class UserClient extends Client<User> {
 
     @Override
     public User put(String str) {
-        return webTarget.path("notifications/get/" + str)
+        return webTarget.path("user/get/" + str)
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity("", MediaType.APPLICATION_JSON), User.class);
     }
 
     @Override
     public User post(User user) {
-        return webTarget.path("users/post")
+        return webTarget.path("user/post")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), User.class);
+    }
+
+    public int create(User user) {
+        return webTarget.path("user/create/" + user.getUserName() + "/" + user.getUserPassword())
+                .request(MediaType.APPLICATION_JSON)
+                .get(Integer.class);
     }
 
     public User findByUserName(String userName) {
@@ -55,6 +60,7 @@ public class UserClient extends Client<User> {
     public List<User> findAll() {
         return webTarget.path("user/findAll")
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<List<User>>() {});
+                .get(new GenericType<>() {
+                });
     }
 }

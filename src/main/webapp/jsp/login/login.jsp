@@ -12,6 +12,9 @@
     <% if (request.getAttribute("error") != null) { %>
         <p style="color:red"><%= request.getAttribute("error") %></p>
     <% } %>
+    <% if (session.getAttribute(GlobalInfo.session) != null) {
+     response.sendRedirect("/ProyectoPrueba/jsp/redir/redireccion.jsp");
+     } %>
     <form method="post" action=<%= GlobalInfo.URL_SERVLET_LOGIN %>>
         <label for="userName">Usuario:</label>
         <input type="text" id="userName" name="userName"><br><br>
@@ -19,5 +22,7 @@
         <input type="password" id="userPassword" name="userPassword"><br><br>
         <input type="submit" value="Login">
     </form>
+    <a href="/ProyectoPrueba/jsp/form/formNewUser.jsp">Crear una nueva cuenta.</a>
+
 </body>
 </html>

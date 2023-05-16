@@ -17,19 +17,20 @@
         <param-name>userpassword</param-name>
         <param-value>admin</param-value>
     </context-param>
-<!--
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
     <error-page>
         <error-code>500</error-code>
-        <location>/error500.jsp</location>
+        <location>/jsp/error/error500.jsp</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/error404.jsp</location>
+        <location>/jsp/error/error404.jsp</location>
     </error-page>
--->
-    <session-config>
-        <session-timeout>-1</session-timeout>
-    </session-config>
+
     <!--
     <servlet>
         <servlet-name>loginServlet</servlet-name>

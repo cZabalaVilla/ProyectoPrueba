@@ -2,7 +2,6 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.service.client.NotificationClient;
 import edu.fpdual.webapplication.service.client.dto.Notification;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "NotificationServlet", urlPatterns = { "/notification-servlet" })
+@WebServlet(name = "NotificationServlet", urlPatterns = {"/notification-servlet"})
 public class NotificationServlet extends HttpServlet {
 
     @Override
