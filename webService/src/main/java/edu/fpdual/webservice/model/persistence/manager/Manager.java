@@ -51,6 +51,7 @@ public interface Manager<T> {
      * @param entity The entity to create
      * @return a {@link Boolean}
      */
+
     int create(Connection con, T entity);
 
     /**

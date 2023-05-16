@@ -31,8 +31,8 @@ public class UserManagerImpl implements UserManager {
     }
 
     /*
-    * Sin uso de momento
-    * */
+     * Sin uso de momento
+     * */
 
     @Override
     public List<User> findAllBy(Connection con, String fieldName, Set<Object> values) {
@@ -55,7 +55,7 @@ public class UserManagerImpl implements UserManager {
             e.printStackTrace();
             usuarios = null;
         }
-        return null;
+        return usuarios;
     }
 
 
@@ -94,33 +94,37 @@ public class UserManagerImpl implements UserManager {
         return result;
     }
 
-    /**
-     * Cuando creas un usuario, el return del método debe de ser 4.
-     * */
     @Override
     public int create(Connection con, User entity) {
+        return 0;
+    }
+
+    /**
+     * Cuando creas un usuario, el return del método debe de ser 4.
+     */
+    @Override
+    public int create(Connection con, String username, String userPassword) {
         int affectedRows;
-        int boolAdmn = 0;
         String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            if( entity.isAdmn()) {
-                boolAdmn = 1;
-            }
-            stm.setString(1, entity.getUserName());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, boolAdmn);
 
+            stm.setString(1, username);
+            stm.setString(2, userPassword);
+            stm.setInt(3, 0);
+
+            /*
+            if(isAdmn()) {
+                stm.setInt(3, 1);
+            } else {
+                stm.setInt(3, 0);
+            }
+            */
             affectedRows = stm.executeUpdate();
 
-            if (affectedRows <= 0) {
-                //Maneja error
-            } else {
+            if (affectedRows > 0) {
                 ResultSet resultSet = stm.getGeneratedKeys();
                 resultSet.beforeFirst();
-                resultSet.next();
-
-                affectedRows = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,7 +135,7 @@ public class UserManagerImpl implements UserManager {
 
     /**
      *
-     * */
+     */
     @Override
     public boolean update(Connection con, User entity) {
         boolean result;

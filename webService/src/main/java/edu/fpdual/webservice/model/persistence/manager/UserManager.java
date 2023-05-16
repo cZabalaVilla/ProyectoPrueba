@@ -7,5 +7,15 @@ import java.util.List;
 
 public interface UserManager extends Manager<User>{
     //@TODO Añadir javadoc
-    public List<User> findAllAdmins(Connection con);
+    List<User> findAllAdmins(Connection con);
+
+    /**
+     * Creates an entity.
+     *
+     * @param con DB connection
+     * @param userName User name, userPassword User Password
+     * @return a {@link Boolean}
+     */
+
+    int create(Connection con, String userName, String userPassword);
 }

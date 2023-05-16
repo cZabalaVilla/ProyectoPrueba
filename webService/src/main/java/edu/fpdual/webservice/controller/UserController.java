@@ -71,17 +71,16 @@ public class UserController {
     }
 
     @POST
-    @Path("/create/{userName}")
+    @Path("/create/{userName}/{userPassword}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(/*@PathParam("userName")*/ User user) {
+    public Response createUser(@PathParam("userName") String userName,@PathParam("userPassword") String userPassword) {
         try {
-            User userToUpdate = userService.findByUserName(user.getUserName());
+            User userToUpdate = userService.findByUserName(userName);
             int nCampos = 4;
             if (userToUpdate != null) {
-                int createdId = userService.createUser(user);
+                int createdId = userService.createUser(userName.toLowerCase(),userPassword);
                 if (createdId == 4/* >0 en un principio pero como son cuatro campos == 4*/) {
-                    return Response.status(201).entity(userService.findByUserName(user.getUserName())).build();
+                    return Response.status(201).entity(userService.findByUserName(userName)).build();
                 } else {
                     return Response.status(500).entity("Internal Error During Creating The User").build();
                 }

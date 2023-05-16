@@ -34,9 +34,9 @@ public class UserService {
         }
     }
 
-    public int createUser(User user) throws SQLException, ClassNotFoundException {
+    public int createUser(String userName, String userPassword) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.create(con, user);
+            return userManager.create(con, userName, userPassword);
         }
     }
 
