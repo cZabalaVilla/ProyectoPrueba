@@ -4,15 +4,23 @@ import edu.fpdual.webservice.model.persistence.dao.Budget;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.BudgetManagerImpl;
 import edu.fpdual.webservice.service.BudgetService;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-//@Path("/budget")
+@Path("/budget")
 public class BudgetController {
+
+
+
+    @GET
+    @Path("/ping")
+    public Response ping() {
+        return Response.ok().entity("Service online").build();
+    }
     /*
     //Inicializado a null, CAMBIAR.
     private final Connection con = null;

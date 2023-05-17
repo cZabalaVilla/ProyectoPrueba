@@ -1,28 +1,37 @@
 package edu.fpdual.webservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.fpdual.webservice.model.persistence.connector.MySQLConnector;
 import edu.fpdual.webservice.model.persistence.dao.Budget;
 import edu.fpdual.webservice.model.persistence.manager.BudgetManager;
+import edu.fpdual.webservice.model.persistence.manager.impl.BudgetManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public class BudgetService {
-  /*  private final BudgetManager budgetManager;
-    private final LogService logService;
+    private final BudgetManager budgetManager;
 
 
-    public BudgetService() {
-        this.budgetManager = budgetManager;
-        this.logService = new LogService();
+    public BudgetService(BudgetManagerImpl budgetManagerImpl) {
+        this.budgetManager = budgetManagerImpl;
     }
 
     public List<Budget> findAll(Connection con) {
         return null;
     }
 
-    //public List<Budget> findAll() throws SQLException, ClassNotFoundException, JsonProcessingException {}
+    public List<Budget> findAll() throws SQLException, ClassNotFoundException, JsonProcessingException {
+        return null;
+    }
+
+    public Budget findByBudgetDate(Date budgetDate) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return budgetManager.findBy(con, "budgetDate", budgetDate);
+        }
+    }
 
     public Budget findByBudgetName(String budgetName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
@@ -45,7 +54,7 @@ public class BudgetService {
         }
     }
 
- */
+
 }
 
 
