@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static edu.fpdual.webapplication.GlobalInfo.USERCREATED;
-
 @WebServlet(name = "NewUserServlet", urlPatterns = {"/new-user-servlet"})
 public class NewUserServlet extends HttpServlet {
 
