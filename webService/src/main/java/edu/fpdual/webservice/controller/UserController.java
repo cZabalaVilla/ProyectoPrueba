@@ -28,8 +28,7 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/get/all")
-    public Response findAll() throws SQLException, ClassNotFoundException //JsonProcessingException
-    {
+    public Response findAll() throws SQLException, ClassNotFoundException {
         return Response.ok().entity(userService.findAllUsers()).build();
     }
 
@@ -74,12 +73,12 @@ public class UserController {
     @POST
     @Path("/create/{userName}/{userPassword}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createUser(@PathParam("userName") String userName,@PathParam("userPassword") String userPassword) {
+    public Response createUser(@PathParam("userName") String userName, @PathParam("userPassword") String userPassword) {
         try {
             User userToUpdate = userService.findByUserName(userName);
             int nCampos = 4;
             if (userToUpdate != null) {
-                boolean createdId = userService.createUser(userName.toLowerCase(),userPassword);
+                boolean createdId = userService.createUser(userName.toLowerCase(), userPassword);
                 if (createdId) {
                     return Response.status(201).entity(userService.findByUserName(userName)).build();
                 } else {
