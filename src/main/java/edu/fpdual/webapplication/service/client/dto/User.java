@@ -41,7 +41,7 @@ public class User {
     public String toString() {
         String esAdmin = "NO";
         if (admn) esAdmin = "SI";
-        return "Usuario: " + userName.toUpperCase()
+        return "Usuario: " + userName
                 + " | Id de usuario: " + userId
                 + " | Password: " + userPassword
                 + " | Administrador?: " + esAdmin;

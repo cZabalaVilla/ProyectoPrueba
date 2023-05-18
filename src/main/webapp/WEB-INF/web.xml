@@ -3,25 +3,20 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+    <icon>
+        <small-icon>/ProyectoPrueba/img/favicon.ico</small-icon>
+        <large-icon>/ProyectoPrueba/img/icon32.jpg</large-icon>
+    </icon>
     <display-name>Archetype Created Web Application</display-name>
     <!--
     <welcome-file-list>
         <welcome-file>[pagina].jsp</welcome-file>
     </welcome-file-list>
     -->
-    <context-param>
-        <param-name>usuario</param-name>
-        <param-value>admin</param-value>
-    </context-param>
-    <context-param>
-        <param-name>userpassword</param-name>
-        <param-value>admin</param-value>
-    </context-param>
-
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-
+    <!--
     <error-page>
         <error-code>500</error-code>
         <location>/jsp/error/error500.jsp</location>
@@ -30,7 +25,7 @@
         <error-code>404</error-code>
         <location>/jsp/error/error404.jsp</location>
     </error-page>
-
+    -->
     <!--
     <servlet>
         <servlet-name>loginServlet</servlet-name>

@@ -25,7 +25,7 @@ public class AdminFilter implements Filter {
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 
         if (session == null) {
-            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_LOGIN);
+            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_HOME);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

@@ -20,43 +20,38 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String incorrectError = "Usuario o contraseña incorrectos";
-        String emptyError = "El campo usuario está vacío";
+        String emptyError = "Rellene todos los campos";
 
         try {
             String userNameReceived = request.getParameter("userName");
             String userPasswordReceived = request.getParameter("userPassword");
-
             User user = new UserClient().get(userNameReceived);
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
-                return;
-            }
-
-            if (userNameReceived == null || userNameReceived.isEmpty()) {
+            } else if (userNameReceived == null || userNameReceived.isEmpty() || userPasswordReceived == null
+                    || userPasswordReceived.isEmpty() || user.getUserName() == null || user.getUserPassword() == null) {
                 request.setAttribute("error", emptyError);
-                request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
-                return;
-            }
-
-            if (!user.getUserPassword().equals(userPasswordReceived)) {
+                //Cuidado con poner un '/' al principio, toma la ruta como relativa.
+                request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
+            } else if (!user.getUserPassword().equals(userPasswordReceived)) {
                 request.setAttribute("error", incorrectError);
-                request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
-                return;
+                //Cuidado con poner un '/' al principio, toma la ruta como relativa.
+                request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
+            } else {
+                session = Session.builder()
+                        .userName(userNameReceived)
+                        .userPassword(userPasswordReceived)
+                        .admin(user.isAdmn())
+                        .build();
+                request.getSession().setMaxInactiveInterval(0);
+                request.getSession().setAttribute(GlobalInfo.session, session);
+                response.sendRedirect(GlobalInfo.URL_JSP_HOME);
             }
-
-            session = Session.builder()
-                    .userName(userNameReceived)
-                    .userPassword(userPasswordReceived)
-                    .admin(user.isAdmn())
-                    .build();
-            request.getSession().setMaxInactiveInterval(10);
-            request.getSession().setAttribute(GlobalInfo.session, session);
-            response.sendRedirect(GlobalInfo.URL_JSP_HOME);
         } catch (NotFoundException e) {
             request.setAttribute("error", incorrectError);
-            request.getRequestDispatcher(GlobalInfo.URL_JSP_LOGIN).forward(request, response);
+            request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
         }
     }
 
