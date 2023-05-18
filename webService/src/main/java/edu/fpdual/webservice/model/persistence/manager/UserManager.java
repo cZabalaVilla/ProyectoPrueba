@@ -6,16 +6,12 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface UserManager extends Manager<User>{
-    //@TODO Añadir javadoc
-    List<User> findAllAdmins(Connection con);
-
     /**
-     * Creates an entity.
+     * Find all admins.
      *
      * @param con DB connection
-     * @param userName User name, userPassword User Password
-     * @return a {@link Boolean}
+     * @return a {@link List} of {@link User} objects
      */
+    List<User> findAllAdmins(Connection con);
 
-    int create(Connection con, String userName, String userPassword);
 }

@@ -17,26 +17,34 @@ public class UserService {
 
         this.userManager = userManager;
     }
+
     public List<User> findAllUsers() throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.findAll(con);
         }
     }
+
     public User findByUserName(String userName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.findBy(con,"userName", userName);
         }
     }
 
-    public boolean deleteUser(User user) throws SQLException, ClassNotFoundException {
+    public List<User> findAllAdmins() throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.delete(con, "userName",user.getUserId());
+            return userManager.findAllAdmins(con);
         }
     }
 
-    public int createUser(String userName, String userPassword) throws SQLException, ClassNotFoundException {
+    public boolean deleteUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.create(con, userName, userPassword);
+            return userManager.delete(con, user);
+        }
+    }
+
+    public boolean createUser(String userName, String userPassword) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return userManager.create(con, new User(userName, userPassword,false));
         }
     }
 

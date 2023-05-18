@@ -40,10 +40,10 @@ public class BudgetService {
     }
     public boolean deleteBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return budgetManager.delete(con, "budgetName", budget.getBudgetId());
+            return budgetManager.delete(con, budget);
         }
     }
-    public int createBudget(Budget budget) throws SQLException, ClassNotFoundException {
+    public boolean createBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.create(con, budget);
         }

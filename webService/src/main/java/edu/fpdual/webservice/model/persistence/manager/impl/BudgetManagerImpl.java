@@ -1,12 +1,13 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
 import edu.fpdual.webservice.model.persistence.dao.Budget;
+import edu.fpdual.webservice.model.persistence.dao.Category;
 import edu.fpdual.webservice.model.persistence.manager.BudgetManager;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class BudgetManagerImpl implements BudgetManager {
     String tableName = "BUDGET";
@@ -30,7 +31,7 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public List<Budget> findAllBy(Connection con, String fieldName, Set<Object> values) {
+    public List<Budget> findAllBy(Connection con, String fieldName, Object value) {
         return null;
     }
 
@@ -57,12 +58,13 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public boolean delete(Connection con, String fieldName, Object value) {
+    public boolean delete(Connection con, Budget budget) {
         boolean result = false;
-        String query = "DELETE FROM " +tableName +" WHERE " +fieldName.toUpperCase() +" = ?";
+
+        String query = "DELETE FROM " +tableName +" WHERE budgetName = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, value);
+            stm.setObject(1, budget.getBudgetName());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,8 +74,11 @@ public class BudgetManagerImpl implements BudgetManager {
         return result;
     }
 
+
+
+
     @Override
-    public int create(Connection con, Budget entity) {
+    public boolean create(Connection con, Budget entity) {
         //Hay que ver los atributos de Budget
         String query = "INSERT INTO " +tableName +"(userID, budgetId, budgetName, creationDate) values (?, ?, ?, ?)";
         int affectedRows;
@@ -99,7 +104,7 @@ public class BudgetManagerImpl implements BudgetManager {
             e.printStackTrace();
             affectedRows = 0;
         }
-        return affectedRows;
+        return false;
     }
 
     @Override

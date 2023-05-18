@@ -19,10 +19,10 @@ public interface Manager<T> {
      *
      * @param con DB connection
      * @param fieldName String fieldName to search for.
-     * @param values A value set to search.
+     * @param value A value to search.
      * @return a {@link List} of {@link T}
      */
-    List<T> findAllBy(Connection con,String fieldName,Set<Object> values);
+    List<T> findAllBy(Connection con,String fieldName,Object value);
 
     /**
      * Find an entity using a fieldName and its value.
@@ -38,11 +38,10 @@ public interface Manager<T> {
      * Deletes an entity.
      *
      * @param con DB connection
-     * @param fieldName String fieldName to search for.
-     * @param value A value to search.
+     * @param entity T entity to search for.
      * @return a {@link Boolean}
      */
-    boolean delete(Connection con,String fieldName, Object value);
+    boolean delete(Connection con,T entity);
 
     /**
      * Creates an entity.
@@ -52,7 +51,7 @@ public interface Manager<T> {
      * @return a {@link Boolean}
      */
 
-    int create(Connection con, T entity);
+    boolean create(Connection con, T entity);
 
     /**
      * Updates an entity.

@@ -7,6 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+
 import java.sql.SQLException;
 
 @Path("/user")
@@ -26,7 +27,7 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/findAll")
+    @Path("/get/all")
     public Response findAll() throws SQLException, ClassNotFoundException //JsonProcessingException
     {
         return Response.ok().entity(userService.findAllUsers()).build();
@@ -34,13 +35,13 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/find/{userName}")
+    @Path("/get/{userName}")
     public Response findByUserName(@PathParam("userName") String userName) {
         try {
             if (userName == null) {
                 return Response.status(400).entity("Incorrect Parameters").build();
             } else {
-                if (userService.findByUserName(userName).getUserId() == 0) {
+                if (userService.findByUserName(userName).getUserId() < 0) {
                     return Response.status(404).entity("User Not Found").build();
                 }
                 return Response.ok().entity(userService.findByUserName(userName)).build();
@@ -78,8 +79,8 @@ public class UserController {
             User userToUpdate = userService.findByUserName(userName);
             int nCampos = 4;
             if (userToUpdate != null) {
-                int createdId = userService.createUser(userName.toLowerCase(),userPassword);
-                if (createdId == 4/* >0 en un principio pero como son cuatro campos == 4*/) {
+                boolean createdId = userService.createUser(userName.toLowerCase(),userPassword);
+                if (createdId) {
                     return Response.status(201).entity(userService.findByUserName(userName)).build();
                 } else {
                     return Response.status(500).entity("Internal Error During Creating The User").build();

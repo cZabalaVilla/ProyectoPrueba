@@ -9,10 +9,17 @@ import java.sql.SQLException;
 @Data
 @NoArgsConstructor
 public class User implements Comparable<User> {
-    int userId;
-    String userName;
-    String userPassword;
+    private int userId;
+    private String userName;
+    private String userPassword;
     boolean admn;
+
+
+    public User(String userName, String userPassword, boolean admn) {
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.admn = admn;
+    }
 
     public User(ResultSet result) {
         try {

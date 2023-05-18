@@ -1,6 +1,6 @@
 package edu.fpdual.webservice.controller;
 
-import edu.fpdual.webservice.api.dto.Notification;
+import edu.fpdual.webservice.model.persistence.dao.Notification;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -8,7 +8,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/notifications")
+@Path("/notification")
 public class NotificationController {
 
     @GET

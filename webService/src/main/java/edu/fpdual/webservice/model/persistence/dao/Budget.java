@@ -9,11 +9,11 @@ import java.util.Date;
 @NoArgsConstructor
 
 public class Budget {
-    int userId;
-    int budgetId;
-    String budgetName;
+    private int userId;
+    private int budgetId;
+    private String budgetName;
     //Tenemos que decidir el tipo de dato para las fechas
-    Date creationDate;
+    private Date creationDate;
 
     //Atributo de datos
 

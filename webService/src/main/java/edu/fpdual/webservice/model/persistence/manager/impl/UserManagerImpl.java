@@ -30,20 +30,28 @@ public class UserManagerImpl implements UserManager {
         return usuarios;
     }
 
-    /*
-     * Sin uso de momento
-     * */
-
     @Override
-    public List<User> findAllBy(Connection con, String fieldName, Set<Object> values) {
-        return null;
+    public List<User> findAllBy(Connection con, String fieldName, Object value) {
+        List<User> usuarios = new ArrayList<>();
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
+        try (PreparedStatement stm = con.prepareStatement(query)) {
+            stm.setObject(1, value);
+            ResultSet result = stm.executeQuery(query);
+            result.beforeFirst();
+            while (result.next()) {
+                usuarios.add(new User(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            usuarios = null;
+        }
+        return usuarios;
     }
 
     @Override
     public List<User> findAllAdmins(Connection con) {
         List<User> usuarios = new ArrayList<>();
-        String fieldName = "admn";
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " =?";
+        String query = "SELECT * FROM " + tableName + " WHERE ADMN" + " = ?";
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, 1);
             ResultSet result = stm.executeQuery(query);
@@ -65,6 +73,9 @@ public class UserManagerImpl implements UserManager {
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
+            if (value.getClass().equals(String.class)) {
+                value = ((String) value).toLowerCase();
+            }
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
             result.beforeFirst();
@@ -79,12 +90,12 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
-    public boolean delete(Connection con, String fieldName, Object value) {
+    public boolean delete(Connection con, User user) {
         boolean result;
-        String query = "DELETE FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, value);
+            stm.setObject(1, user.getUserName().toLowerCase());
             result = stm.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -94,57 +105,40 @@ public class UserManagerImpl implements UserManager {
         return result;
     }
 
-    @Override
-    public int create(Connection con, User entity) {
-        return 0;
-    }
-
     /**
      * Cuando creas un usuario, el return del método debe de ser 4.
      */
     @Override
-    public int create(Connection con, String username, String userPassword) {
-        int affectedRows;
+    public boolean create(Connection con, User user) {
+        boolean result;
         String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setString(1, username);
-            stm.setString(2, userPassword);
-            stm.setInt(3, 0);
+            stm.setString(1, user.getUserName().toLowerCase());
+            stm.setString(2, user.getUserPassword());
+            stm.setInt(3, user.isAdmn() ? 1 : 0);
 
-            /*
-            if(isAdmn()) {
-                stm.setInt(3, 1);
-            } else {
-                stm.setInt(3, 0);
-            }
-            */
-            affectedRows = stm.executeUpdate();
-
-            if (affectedRows > 0) {
-                ResultSet resultSet = stm.getGeneratedKeys();
-                resultSet.beforeFirst();
-            }
+            result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            affectedRows = 0;
+            result = false;
         }
-        return affectedRows;
+        return result;
     }
 
     /**
      *
      */
     @Override
-    public boolean update(Connection con, User entity) {
+    public boolean update(Connection con, User user) {
         boolean result;
         String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setString(1, entity.getUserName());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.getUserId());
+            stm.setString(1, user.getUserName());
+            stm.setString(2, user.getUserPassword());
+            stm.setInt(3, user.getUserId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

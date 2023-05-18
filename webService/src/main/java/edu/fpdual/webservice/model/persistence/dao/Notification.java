@@ -1,4 +1,4 @@
-package edu.fpdual.webservice.api.dto;
+package edu.fpdual.webservice.model.persistence.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
