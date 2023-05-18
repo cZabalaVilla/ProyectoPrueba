@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
             String userNameReceived = request.getParameter("userName");
             String userPasswordReceived = request.getParameter("userPassword");
 
-            User user = new UserClient().findByUserName(userNameReceived);
+            User user = new UserClient().get(userNameReceived);
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 
             if (session != null) {
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                     .userPassword(userPasswordReceived)
                     .admin(user.isAdmn())
                     .build();
-            request.getSession().setMaxInactiveInterval(5);
+            request.getSession().setMaxInactiveInterval(10);
             request.getSession().setAttribute(GlobalInfo.session, session);
             response.sendRedirect(GlobalInfo.URL_JSP_HOME);
         } catch (NotFoundException e) {

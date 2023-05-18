@@ -32,7 +32,7 @@ public class NewUserServlet extends HttpServlet {
         }
 
         UserClient userClient = new UserClient();
-        if (userClient.findByUserName(userNameReceived) != null) {
+        if (userClient.get(userNameReceived) != null) {
             request.setAttribute("error", errorExiste);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_FORMNEWUSER).forward(request, response);
             return;
@@ -40,13 +40,11 @@ public class NewUserServlet extends HttpServlet {
 
         if (userNameReceived.length() < 5) {
             User user = new User(userNameReceived, userPasswordReceived, false);
-            int ok = userClient.create(user);
-            if (ok == USERCREATED) {
+            if (userClient.create(user)) {
                 response.setContentType("text/html");
                 PrintWriter writer = response.getWriter();
                 writer.println("<p>Usuario creado correctamente</p>");
                 writer.flush();
-
                 try {
                     Thread.sleep(5000);
                     response.sendRedirect(GlobalInfo.URL_JSP_LOGIN);
