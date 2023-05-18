@@ -1,7 +1,6 @@
 package edu.fpdual.webservice.controller;
 
 import edu.fpdual.webservice.model.persistence.dao.Budget;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.BudgetManagerImpl;
 import edu.fpdual.webservice.service.BudgetService;
 import jakarta.ws.rs.*;
@@ -13,38 +12,37 @@ import java.sql.SQLException;
 
 @Path("/budget")
 public class BudgetController {
+    private final Connection con = null;
+    private final BudgetService budgetService;
 
-
-
+    public BudgetController() {
+        this.budgetService = new BudgetService(new BudgetManagerImpl());
+    }
     @GET
     @Path("/ping")
     public Response ping() {
         return Response.ok().entity("Service online").build();
     }
-    /*
-    //Inicializado a null, CAMBIAR.
-    private final Connection con = null;
-    private final BudgetService budgetService;
-
-    public BudgetController() {
-        this.budgetService = new BudgetService();
-    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/get/all")
     public Response findAll() throws SQLException, ClassNotFoundException //JsonProcessingException
     {
-        return Response.ok().entity(budgetService.findAll(con)).build();
+        return Response.ok().entity(budgetService.findAll()).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{findBudgetName}")
+    @Path("/get/{findBudgetName}")
     public Response findByBudgetName(@PathParam("findBudgetName") String budgetName) {
         try {
             if (budgetName == null) {
                 return Response.status(400).entity("Incorrect Parameters").build();
             } else {
+                if (budgetService.findByBudgetName(budgetName).getBudgetId() < 0) {
+                    return Response.status(404).entity("Budget Not Found").build();
+                }
                 return Response.ok().entity(budgetService.findByBudgetName(budgetName)).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -53,7 +51,7 @@ public class BudgetController {
     }
 
     @DELETE
-    @Path("/{delBudgetName}")
+    @Path("/delete/{delBudgetName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteBudget(@PathParam("delBudgetName") String budgetName) {
         try {
@@ -73,18 +71,16 @@ public class BudgetController {
     }
 
     @POST
+    @Path("/create/{budgetName}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createBudget(Budget budget) {
+    public Response createBudget(@PathParam("budgetNeme") String budgetName) {
         try {
-            Budget budgetToUpdate = budgetService.findByBudgetName(budget.getBudgetName());
+            Budget budgetToUpdate = budgetService.findByBudgetName(budgetName);
+            //int nCampos = ;
             if (budgetToUpdate != null) {
-                int createdId = budgetService.createBudget(budget);
-                //?????????? Tiene que igualar al número de atributos??
-                if (createdId == 3// >0 en un principio pero como son tres campos == 3
-                ) {
-
-                    return Response.status(201).entity(budgetService.findByBudgetName(budget.getBudgetName())).build();
+                boolean createdId = true; //budgetService.createBudget(budgetName.toLowerCase());
+                if (createdId) {
+                    return Response.status(201).entity(budgetService.findByBudgetName(budgetName)).build();
                 } else {
                     return Response.status(500).entity("Internal Error During Creating The Budget").build();
                 }
@@ -97,6 +93,7 @@ public class BudgetController {
     }
 
     @PUT
+    @Path("/update/{budgetName}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBudget(Budget budget) {
@@ -115,5 +112,5 @@ public class BudgetController {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
-    */
+
 }
