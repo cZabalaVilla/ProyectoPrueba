@@ -28,8 +28,12 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/get/all")
-    public Response findAll() throws SQLException, ClassNotFoundException {
-        return Response.ok().entity(userService.findAllUsers()).build();
+    public Response findAll()  {
+        try{
+            return Response.ok().entity(userService.findAllUsers()).build();
+        } catch (SQLException | ClassNotFoundException e){
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
     }
 
     @GET

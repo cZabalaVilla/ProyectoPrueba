@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryManagerImpl implements CategoryManager {
-    String tableName = "CATEGORY";
+    final String tableName = "CATEGORY";
 
     @Override
     public List<Category> findAll(Connection con) {

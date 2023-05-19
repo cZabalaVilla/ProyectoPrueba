@@ -7,12 +7,13 @@ import edu.fpdual.webservice.model.persistence.manager.UserManager;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class UserManagerImpl implements UserManager {
-    String tableName = "USER";
+    final String tableName = "USER";
 
     //@TODO AÑADIR JAVADOC
+
+
     public List<User> findAll(Connection con) {
         List<User> usuarios = new ArrayList<>();
         String query = "SELECT * FROM " + tableName;

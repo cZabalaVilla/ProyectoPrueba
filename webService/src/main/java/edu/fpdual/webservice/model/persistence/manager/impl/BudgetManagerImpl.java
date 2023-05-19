@@ -1,16 +1,14 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
 import edu.fpdual.webservice.model.persistence.dao.Budget;
-import edu.fpdual.webservice.model.persistence.dao.Category;
 import edu.fpdual.webservice.model.persistence.manager.BudgetManager;
 
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetManagerImpl implements BudgetManager {
-    String tableName = "BUDGET";
+    final String tableName = "BUDGET";
     @Override
     public List<Budget> findAll(Connection con) {
         List<Budget> presupuestos = new ArrayList<>();
