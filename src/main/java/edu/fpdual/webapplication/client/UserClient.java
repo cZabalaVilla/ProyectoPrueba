@@ -1,9 +1,8 @@
-package edu.fpdual.webapplication.service.client;
+package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.service.client.dto.User;
+import edu.fpdual.webapplication.client.dto.User;
 import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;

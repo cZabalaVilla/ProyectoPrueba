@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.servlet;
 
-import edu.fpdual.webapplication.service.client.NotificationClient;
-import edu.fpdual.webapplication.service.client.dto.Notification;
+import edu.fpdual.webapplication.client.NotificationClient;
+import edu.fpdual.webapplication.client.dto.Notification;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

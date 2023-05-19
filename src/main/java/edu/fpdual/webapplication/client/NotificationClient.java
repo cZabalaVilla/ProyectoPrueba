@@ -1,13 +1,13 @@
-package edu.fpdual.webapplication.service.client;
+package edu.fpdual.webapplication.client;
 
-import edu.fpdual.webapplication.service.client.dto.Notification;
+import edu.fpdual.webapplication.client.dto.Notification;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 
-public class NotificationClient {
+public class NotificationClient extends Client<Notification> {
 
     private final WebTarget webTarget;
 
@@ -16,17 +16,19 @@ public class NotificationClient {
         this.webTarget = client.target("http://localhost:8081/webService/webapi/");
     }
 
+    public String ping() {
+        return webTarget.path("notification/ping")
+                .request(MediaType.APPLICATION_JSON)
+                .get(String.class);
+    }
+
     public Notification getNotification(String id) {
         return webTarget.path("notification/get/" + id)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Notification.class);
     }
 
-    public String ping() {
-        return webTarget.path("notification/ping")
-                .request(MediaType.APPLICATION_JSON)
-                .get(String.class);
-    }
+
 
     public Notification getNotification(String id, String name) {
         return webTarget.path("notification/get/" + id + "/name")

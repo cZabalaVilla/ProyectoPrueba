@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.service.client.dto;
+package edu.fpdual.webapplication.client.dto;
 
 public class Category {
     private int categoryId;

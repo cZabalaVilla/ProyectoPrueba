@@ -1,15 +1,5 @@
-package edu.fpdual.webapplication.service.client;
+package edu.fpdual.webapplication.client;
 
-import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.service.client.Client;
-import edu.fpdual.webapplication.service.client.dto.Budget;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.GenericType;
-import jakarta.ws.rs.core.MediaType;
-
-import java.util.List;
 /*
 public class BudgetClient extends Client<Budget> {
     private final WebTarget webTarget;

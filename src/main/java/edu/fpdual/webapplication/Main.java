@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication;
 
-import edu.fpdual.webapplication.service.client.NotificationClient;
-import edu.fpdual.webapplication.service.client.dto.Notification;
+import edu.fpdual.webapplication.client.NotificationClient;
+import edu.fpdual.webapplication.client.dto.Notification;
 
 public class Main {
 

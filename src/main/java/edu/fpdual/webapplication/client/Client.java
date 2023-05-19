@@ -1,6 +1,6 @@
-package edu.fpdual.webapplication.service.client;
+package edu.fpdual.webapplication.client;
 
-public abstract class Client<T> {
+public abstract class Client<T>  {
     //para comprobar la conexion
     public abstract String ping();
     //Para obtener datos
