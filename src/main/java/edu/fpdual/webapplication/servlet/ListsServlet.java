@@ -17,7 +17,7 @@ public class ListsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        List<User> users = new UserClient().getAll();
+        List<User> users = new UserClient().get();
         PrintWriter writer = response.getWriter();
 
         writer.println("<html>");

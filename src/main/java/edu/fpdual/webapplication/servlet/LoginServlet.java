@@ -21,9 +21,14 @@ public class LoginServlet extends HttpServlet {
             throws IOException, ServletException {
         String incorrectError = "Usuario o contraseña incorrectos";
         String emptyError = "Rellene todos los campos";
+        /*
+         * Esta variable se añade porque no sirve la del globalInfo, ya que el caracter '/'
+         * crea una ruta relativa en el dispatcher.
+         * */
+        String dispatcherURLLogin = "jsp/login/login.jsp";
 
         try {
-            String userNameReceived = request.getParameter("userName").toLowerCase();
+            String userNameReceived = request.getParameter("userName");
             String userPasswordReceived = request.getParameter("userPassword");
             User user = new UserClient().get(userNameReceived);
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
@@ -34,11 +39,11 @@ public class LoginServlet extends HttpServlet {
                     || userPasswordReceived.isEmpty() || user.getUserName() == null || user.getUserPassword() == null) {
                 request.setAttribute("error", emptyError);
                 //Cuidado con poner un '/' al principio, toma la ruta como relativa.
-                request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
-            } else if (!user.getUserPassword().equals(userPasswordReceived)) {
+                request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
+            } else if (!user.getUserPassword().equalsIgnoreCase(userPasswordReceived)) {
                 request.setAttribute("error", incorrectError);
                 //Cuidado con poner un '/' al principio, toma la ruta como relativa.
-                request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
+                request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {
                 session = Session.builder()
                         .userName(userNameReceived)
@@ -51,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (NotFoundException e) {
             request.setAttribute("error", incorrectError);
-            request.getRequestDispatcher("jsp/login/login.jsp").forward(request, response);
+            request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
         }
     }
 

@@ -29,4 +29,5 @@ public class GlobalInfo {
      */
     public static final String URL_WEBTARGET = "http://localhost:8081/webService/webapi/";
     public static final String session = "session";
+    public static final String webPath = "http://localhost:8081/webService/webapi/";
 }

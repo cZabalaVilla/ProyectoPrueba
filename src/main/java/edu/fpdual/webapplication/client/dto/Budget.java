@@ -18,7 +18,7 @@ public class Budget {
     //private Currency currency;
     //private ArrayList<Expense> expenses;
 
-    public Budget(String budgetName, String descripcion, LocalDateTime creationDate) {
+    public Budget(String budgetName, String description, LocalDateTime creationDate) {
         this.budgetName = budgetName;
         this.description = description;
         this.creationDate = LocalDateTime.now();

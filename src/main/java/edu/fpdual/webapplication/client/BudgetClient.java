@@ -1,6 +1,16 @@
 package edu.fpdual.webapplication.client;
 
-/*
+
+import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.client.dto.Budget;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
+
 public class BudgetClient extends Client<Budget> {
     private final WebTarget webTarget;
     private final String clientPath = "budget/";
@@ -19,28 +29,37 @@ public class BudgetClient extends Client<Budget> {
 
     @Override
     public Budget get(String budgetName) {
-        return webTarget.path(clientPath + "get" +budgetName)
+        return webTarget.path(clientPath + "get" + budgetName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Budget.class);
     }
-    public List<Budget> getAll() {
-        return webTarget.path(clientPath +"get/all")
+
+    public List<Budget> get() {
+        return webTarget.path(clientPath + "get/all")
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>(){});
+                .get(new GenericType<>() {
+                });
     }
 
     @Override
-    public Budget put(String str) {
-        return webTarget.path(clientPath +"put/" +str)
+    public boolean put(Budget budget) {
+        return webTarget.path(clientPath + "put")
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity("", MediaType.APPLICATION_JSON), Budget.class);
+                .put(Entity.entity(budget, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
-    public Budget post(Budget budget) {
-        return webTarget.path(clientPath +"post")
+    public boolean post(Budget budget) {
+        return webTarget.path(clientPath + "post")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(budget, MediaType.APPLICATION_JSON), Budget.class);
+                .post(Entity.entity(budget, MediaType.APPLICATION_JSON), boolean.class);
+    }
+
+    @Override
+    public boolean delete(Budget budget) {
+        return webTarget.path(clientPath + "delete")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(budget, MediaType.APPLICATION_JSON), boolean.class);
     }
 }
-*/
+

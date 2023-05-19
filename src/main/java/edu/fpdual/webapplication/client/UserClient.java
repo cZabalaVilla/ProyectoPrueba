@@ -3,6 +3,7 @@ package edu.fpdual.webapplication.client;
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.dto.User;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
@@ -25,42 +26,37 @@ public class UserClient extends Client<User> {
                 .get(String.class);
     }
 
+    public List<User> get() {
+        return webTarget.path(clientPath + "get/all")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<>() {
+                });
+    }
+
     public User get(String userName) {
         return webTarget.path(clientPath + "get/" + userName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
 
-    public List<User> getAll() {
-        return webTarget.path(clientPath + "get/all")
-                .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {
-                });
-    }
     @Override
     public boolean put(User user) {
-        return false; /*webTarget.path(clientPath + "put/" + user)
+        return webTarget.path(clientPath + "put")
                 .request(MediaType.APPLICATION_JSON)
-                .put(boolean(MediaType.APPLICATION_JSON), boolean.class);
-    */}
+                .put(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
+    }
 
     @Override
     public boolean post(User user) {
-        return false;/*webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "post")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(user, MediaType.APPLICATION_JSON), User.class);
-    */}
+                .post(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
+    }
 
     @Override
-    public boolean delete(User entity) {
-        return false;
-    }
-
-    public boolean create(User user) {
-        return webTarget.path(clientPath + "create/" + user.getUserName() + "/" + user.getUserPassword())
+    public boolean delete(User user) {
+        return webTarget.path(clientPath + "delete")
                 .request(MediaType.APPLICATION_JSON)
-                .get(Boolean.class);
+                .post(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }
-
-
 }
