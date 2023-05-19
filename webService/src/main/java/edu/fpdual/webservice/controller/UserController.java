@@ -76,19 +76,17 @@ public class UserController {
     public Response createUser(@PathParam("userName") String userName, @PathParam("userPassword") String userPassword) {
         try {
             User userToUpdate = userService.findByUserName(userName);
-            int nCampos = 4;
             if (userToUpdate != null) {
-                boolean createdId = userService.createUser(userName.toLowerCase(), userPassword);
-                if (createdId) {
-                    return Response.status(201).entity(userService.findByUserName(userName)).build();
+                if (userService.createUser(userName.toLowerCase(), userPassword)) {
+                    return Response.status(201).entity("User created.").build();
                 } else {
-                    return Response.status(500).entity("Internal Error During Creating The User").build();
+                    return Response.status(409).entity("User not created.").build();
                 }
             } else {
-                return Response.status(500).entity("Internal Error During Creating The User. User already exists.").build();
+                return Response.status(409).entity("User already exists.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            return Response.status(500).entity("Internal Error During DB Interaction").build();
+            return Response.status(500).entity("Internal Error During DB Interaction.").build();
         }
     }
 
@@ -100,11 +98,7 @@ public class UserController {
         try {
             User userToUpdate = userService.findByUserName(user.getUserName());
             if (userToUpdate != null) {
-                if (userService.updateUser(user)) {
-                    return Response.status(200).entity(userService.findByUserName(user.getUserName())).build();
-                } else {
-                    return Response.status(500).entity("Internal Error During User Update").build();
-                }
+                    return Response.status(201).entity(userService.findByUserName(user.getUserName())).build();
             } else {
                 return Response.status(404).entity("User Not Found").build();
             }
