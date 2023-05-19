@@ -7,7 +7,7 @@ public class Perfil {
     private String userPassword;
     private String description;
     //Hacer clase email ?
-    private String email;
+    private Email email;
     private String link;
     private String location;
 }

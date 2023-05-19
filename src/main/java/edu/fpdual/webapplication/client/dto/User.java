@@ -24,19 +24,6 @@ public class User {
         this.admn = admn;
     }
 
-    public String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hashedBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
-
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashedBytes) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        return hexString.toString();
-    }
-
     @Override
     public String toString() {
         String esAdmin = "NO";
