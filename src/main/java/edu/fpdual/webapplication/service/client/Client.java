@@ -1,12 +1,14 @@
 package edu.fpdual.webapplication.service.client;
 
-public abstract class Client<T> {
-
+public abstract class Client<T> extends Http{
+    //para comprobar la conexion
     public abstract String ping();
-
+    //Para obtener datos
     public abstract T get(String str);
-
-    public abstract T put(String str);
-
-    public abstract T post(T t);
+    //Para actualizar datos
+    public abstract boolean put(T entity);
+    //Para crear datos
+    public abstract boolean post(T entity);
+    //Para borrar datos
+    public abstract boolean delete(T entity)
 }

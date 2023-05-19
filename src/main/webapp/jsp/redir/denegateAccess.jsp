@@ -4,7 +4,8 @@
 <html lang="es">
 
 <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="refresh" content="3; url=./../common/home.jsp"/>
+    <meta charset="UTF-8" http-equiv="refresh" content="3; url=./common/home.jsp"/>
+    <title>Acceso denegado</title>
 </head>
 
 <body>

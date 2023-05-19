@@ -11,9 +11,10 @@ public class GlobalInfo {
     public static final String URL_JSP = URL_PROYECTO + "/jsp";
     public static final String URL_JSP_HOME = URL_JSP + "/common/home.jsp";
     public static final String URL_JSP_LOGIN = URL_JSP + "/login/login.jsp";
-    public static final String URL_JSP_FORMNEWUSER = URL_JSP + "/form/formNewUser.jsp";
+    public static final String URL_JSP_FORMNEWUSER = URL_JSP + "/login/formNewUser.jsp";
     public static final String URL_JSP_NOTIFICATION = URL_JSP + "/notificationTest.jsp";
     public static final String URL_JSP_CONTROLPANEL = URL_JSP + "/admin/controlPanel.jsp";
+    public static final String URL_JSP_DENEGATEACCES = URL_JSP + "/redir/denegateAccess.jsp";
 
     /*
      * URL de los servlets

@@ -23,7 +23,6 @@ public class LoginFilter implements Filter {
             ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-
         if (session == null) {
             ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_LOGIN);
         } else {

@@ -18,8 +18,8 @@
         <input type="submit" name="submitBtn" value="Login"></a>
     </form>
     <br/>
-    <form method="post" action="/ProyectoPrueba/jsp/form/formNewUser.jsp">
-        <input type="submit" name="submitBtn" value="Form"></a>
+    <form method="post" action="/ProyectoPrueba/jsp/newAdmin.jsp">
+        <input type="submit" name="submitBtn" value="Create admin"></a>
     </form>
     <br/>
     <form method="post" action="/ProyectoPrueba/jsp/admin/database/lists.jsp">
@@ -30,7 +30,7 @@
         <input type="submit" name="submitBtn" value="Redirection"></a>
     </form>
     <br/>
-    <form method="post" action="">
+    <form method="" action="">
         <input type="submit" name="submitBtn" value="empty"></a>
     </form>
     <br/>

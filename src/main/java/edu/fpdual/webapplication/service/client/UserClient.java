@@ -39,10 +39,10 @@ public class UserClient extends Client<User> {
                 });
     }
     @Override
-    public User put(String str) {
-        return webTarget.path(clientPath + "put/" + str)
+    public boolean put(User user) {
+        return webTarget.path(clientPath + "put/" + user)
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity("", MediaType.APPLICATION_JSON), User.class);
+                .put(boolean(MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override

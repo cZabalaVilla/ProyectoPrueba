@@ -36,7 +36,7 @@ public class NewUserServlet extends HttpServlet {
             return;
         }
 
-        if (userNameReceived.length() < 5) {
+        if (userNameReceived.length() > 5 && userNameReceived.length() < 20) {
             User user = new User(userNameReceived, userPasswordReceived, false);
             if (userClient.create(user)) {
                 response.setContentType("text/html");
