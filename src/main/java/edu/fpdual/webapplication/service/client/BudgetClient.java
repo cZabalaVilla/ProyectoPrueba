@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
-
+/*
 public class BudgetClient extends Client<Budget> {
     private final WebTarget webTarget;
     private final String clientPath = "budget/";
@@ -53,3 +53,4 @@ public class BudgetClient extends Client<Budget> {
                 .post(Entity.entity(budget, MediaType.APPLICATION_JSON), Budget.class);
     }
 }
+*/

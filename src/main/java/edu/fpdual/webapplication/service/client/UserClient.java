@@ -40,16 +40,21 @@ public class UserClient extends Client<User> {
     }
     @Override
     public boolean put(User user) {
-        return webTarget.path(clientPath + "put/" + user)
+        return false; /*webTarget.path(clientPath + "put/" + user)
                 .request(MediaType.APPLICATION_JSON)
                 .put(boolean(MediaType.APPLICATION_JSON), boolean.class);
-    }
+    */}
 
     @Override
-    public User post(User user) {
-        return webTarget.path(clientPath + "post")
+    public boolean post(User user) {
+        return false;/*webTarget.path(clientPath + "post")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), User.class);
+    */}
+
+    @Override
+    public boolean delete(User entity) {
+        return false;
     }
 
     public boolean create(User user) {

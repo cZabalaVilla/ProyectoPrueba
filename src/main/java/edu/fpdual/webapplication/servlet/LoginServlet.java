@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         String emptyError = "Rellene todos los campos";
 
         try {
-            String userNameReceived = request.getParameter("userName");
+            String userNameReceived = request.getParameter("userName").toLowerCase();
             String userPasswordReceived = request.getParameter("userPassword");
             User user = new UserClient().get(userNameReceived);
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
