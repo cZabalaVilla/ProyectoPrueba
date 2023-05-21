@@ -7,7 +7,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-
 import java.sql.SQLException;
 
 @Path("/user")
@@ -28,10 +27,10 @@ public class UserController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/get/all")
-    public Response findAll()  {
-        try{
+    public Response findAll() {
+        try {
             return Response.ok().entity(userService.findAllUsers()).build();
-        } catch (SQLException | ClassNotFoundException e){
+        } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
@@ -54,18 +53,15 @@ public class UserController {
         }
     }
 
-    @DELETE
-    @Path("/delete/{userName}")
+    @PUT
+    @Path("/put")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteUser(@PathParam("userName") String userName) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(User user) {
         try {
-            User userToDelete = userService.findByUserName(userName);
-            if (userToDelete != null) {
-                if (userService.deleteUser(userToDelete)) {
-                    return Response.status(200).entity(userToDelete).build();
-                } else {
-                    return Response.status(304).entity("User Was Not Deleted").build();
-                }
+            User userToUpdate = userService.findByUserName(user.getUserName());
+            if (userToUpdate != null) {
+                return Response.status(201).entity(userService.findByUserName(user.getUserName())).build();
             } else {
                 return Response.status(404).entity("User Not Found").build();
             }
@@ -75,13 +71,13 @@ public class UserController {
     }
 
     @POST
-    @Path("/create/{userName}/{userPassword}")
+    @Path("/post")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createUser(@PathParam("userName") String userName, @PathParam("userPassword") String userPassword) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(User user) {
         try {
-            User userToUpdate = userService.findByUserName(userName);
-            if (userToUpdate != null) {
-                if (userService.createUser(userName.toLowerCase(), userPassword)) {
+            if (findByUserName(user.getUserName()) != null) {
+                if (userService.createUser(user.getUserName().toLowerCase(), user.getUserPassword())) {
                     return Response.status(201).entity("User created.").build();
                 } else {
                     return Response.status(409).entity("User not created.").build();
@@ -94,15 +90,18 @@ public class UserController {
         }
     }
 
-    @PUT
-    @Path("/update/{userName}")
+    @DELETE
+    @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(/*@PathParam("userName")*/ User user) {
+    public Response deleteUser(User user) {
         try {
-            User userToUpdate = userService.findByUserName(user.getUserName());
-            if (userToUpdate != null) {
-                    return Response.status(201).entity(userService.findByUserName(user.getUserName())).build();
+            if (findByUserName(user.getUserName()) != null) {
+                if (userService.deleteUser(user)) {
+                    return Response.status(200).entity(user).build();
+                } else {
+                    return Response.status(304).entity("User Was Not Deleted").build();
+                }
             } else {
                 return Response.status(404).entity("User Not Found").build();
             }

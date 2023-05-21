@@ -20,7 +20,6 @@ public class UserManagerImpl implements UserManager {
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
             while (result.next()) {
                 usuarios.add(new User(result));
             }
@@ -79,7 +78,6 @@ public class UserManagerImpl implements UserManager {
             }
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
-            result.beforeFirst();
             while (result.next()) {
                 usuario = new User(result);
             }

@@ -16,16 +16,6 @@ public class NotificationController {
     public Response ping() {
         return Response.ok().entity("Service online").build();
     }
-
-    @GET
-    @Path("/get/")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getNotifications() {
-        List<Notification> notifications = new ArrayList<>();
-        notifications.add(new Notification(5, "john", "test notification"));
-        return Response.ok().entity(notifications).build();
-    }
-
     @GET
     @Path("/get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,10 +24,11 @@ public class NotificationController {
     }
 
     @PUT
-    @Path("/get/{id}/{name}")
+    @Path("/put")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getNotification(@PathParam("id") int id, @PathParam("name") String name) {
-        return Response.ok().entity(new Notification(id, name, "test notification")).build();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putNotification() {
+        return Response.ok().entity(true).build();
     }
 
     @GET
@@ -59,10 +50,10 @@ public class NotificationController {
     }
 
     @POST
-    @Path("/post/")
+    @Path("/post")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response postNotification(Notification notification) {
-        return Response.status(201).entity(notification).build();
+        return Response.status(201).entity(true).build();
     }
 }

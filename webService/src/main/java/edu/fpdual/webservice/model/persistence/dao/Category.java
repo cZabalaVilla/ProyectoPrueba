@@ -15,8 +15,7 @@ public class Category {
     private String categoryName;
     private static HashSet<Category> categories;
 
-    public Category(int categoryId, String categoryName) {
-        this.categoryId = categoryId;
+    public Category(String categoryName) {
         this.categoryName = categoryName;
         initCategories();
     }
@@ -33,8 +32,8 @@ public class Category {
     public static void initCategories() {
         if (categories == null) {
             categories = new HashSet<>();
-            categories.add(new Category(0, "CASA"));
-            categories.add(new Category(0, "VIAJE"));
+            categories.add(new Category("CASA"));
+            categories.add(new Category("VIAJE"));
         }
     }
 }
