@@ -2,6 +2,7 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.UserClient;
+import edu.fpdual.webapplication.dto.Password;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String incorrectError = "Usuario o contraseña incorrectos";
-        String emptyError = "Rellene todos los campos";
         String notFoundError = "El usuario no existe";
 
         /*
@@ -31,30 +31,25 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String userNameReceived = request.getParameter("userName");
-            String userPasswordReceived = request.getParameter("userPassword");
-            User user = new UserClient().get(userNameReceived);
+            Password userPasswordReceived = new Password(request.getParameter("userPassword"));
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
+            User user = new UserClient().get(userNameReceived);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
-            } else if (userNameReceived == null || userNameReceived.isEmpty() || userPasswordReceived == null
-                    || userPasswordReceived.isEmpty() || user.getUserName() == null || user.getUserPassword() == null) {
-                request.setAttribute("error", emptyError);
-                request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
-            } else if (!user.getUserPassword().toString().equalsIgnoreCase(userPasswordReceived)) {
+            } else if (userPasswordReceived.checkPassword(user.getUserPassword())) {
                 request.setAttribute("error", incorrectError);
                 request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {
                 session = Session.builder()
                         .userName(userNameReceived)
-                        .userPassword(userPasswordReceived)
                         .admin(user.isAdmn())
                         .build();
-                request.getSession().setMaxInactiveInterval(0);
+                request.getSession().setMaxInactiveInterval(500);
                 request.getSession().setAttribute(GlobalInfo.session, session);
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
             }
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | NullPointerException e) {
             request.setAttribute("error", notFoundError);
             request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
         }

@@ -7,7 +7,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.NotFoundException;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "NotificationServlet", urlPatterns = {"/notification-servlet"})
@@ -35,8 +37,7 @@ public class NotificationServlet extends HttpServlet {
             writer.println("<button onclick=\"location.href='\\index.jsp'\">Volver al inicio</button>");
             writer.println("</body>");
             writer.println("</html>");
-        } catch (Exception e) {
-            //Mirar que excepcion produce
+        } catch (NotFoundException | IOException e) {
             e.printStackTrace();
         }
     }

@@ -22,6 +22,12 @@ public class NotificationClient extends Client<Notification> {
                 .get(String.class);
     }
 
+    public Notification get() {
+        return webTarget.path(clientPath + "get")
+                .request(MediaType.APPLICATION_JSON)
+                .get(Notification.class);
+    }
+
     public Notification get(String id) {
         return webTarget.path(clientPath + "get/" + id)
                 .request(MediaType.APPLICATION_JSON)

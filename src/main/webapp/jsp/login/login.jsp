@@ -10,7 +10,7 @@
 
     <title>Login</title>
 
-   <link rel="stylesheet" href="./../../css/style.css" />
+   <link rel="stylesheet" href="/ProyectoPrueba/css/style.css" />
    <link rel="icon" href="http://localhost:8080/ProyectoPrueba/favicon.ico" type="image/x-icon">
 </head>
 
@@ -30,20 +30,19 @@
             <label for="userName">Nombre de usuario</label>
             <br/>
             <br/>
-            <input type="text" id="userName" name="userName" placeholder="Juanalberto21" />
+            <input type="text" id="userName" name="userName" placeholder="Juanalberto21" required/>
             <br/>
             <br/>
             <label for="userPassword">Contraseña</label>
             <br/>
             <br/>
-            <input type="password" id="userPassword" name="userPassword" placeholder="Password" />
+            <input type="password" id="userPassword" name="userPassword" placeholder="Password" required/>
             <br/>
-            <!-- Mensaje de error en caso de que haya algo incorrecto
             <% if (request.getAttribute("error") != null){
             %>
                 <p style="color:red"><%= request.getAttribute("error") %></p><br/>
             <% }
-             %>-->
+             %>
             <p class="centerTxt"> <a href="/ProyectoPrueba/jsp/redir/redireccion.jsp">¿Olvidó la contraseña?</a></p>
             <br/>
             <input type="submit" value="Entrar" class="buttonA"/>

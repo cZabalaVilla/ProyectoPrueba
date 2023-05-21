@@ -15,6 +15,7 @@ public class Password {
     }
 
     private String hashPassword(String password) {
+        String hashedPassword;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -25,35 +26,16 @@ public class Password {
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
-
-            return hexString.toString();
+            hashedPassword = hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            hashedPassword = null;
         }
-
-        return null;
+        return hashedPassword;
     }
-
-
-    //Hasher
-    /*
-    public static void main2(String[] args) {
-        // Supongamos que "hashFromDatabase" contiene el hash almacenado en la base de datos
-        String hashFromDatabase = "e8e156..."; // Ejemplo de hash almacenado
-
-        String passwordToCheck = "miContrasena123";
-        boolean passwordMatches = checkPassword(passwordToCheck, hashFromDatabase);
-
-        if (passwordMatches) {
-            System.out.println("Contraseña correcta");
-        } else {
-            System.out.println("Contraseña incorrecta");
-        }
-    }
-     */
 
     public boolean checkPassword(String storedHash) {
-        boolean passwordMatches ;
+        boolean passwordMatches;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -72,6 +54,10 @@ public class Password {
             passwordMatches = false;
         }
         return passwordMatches;
+    }
+    @Override
+    public String toString() {
+        return password;
     }
 }
 

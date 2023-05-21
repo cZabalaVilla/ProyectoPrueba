@@ -22,6 +22,7 @@ public class NewUserServlet extends HttpServlet {
         String userNameReceived = request.getParameter("userName");
         String userPasswordReceived = request.getParameter("userPassword");
         String incompleteError = "El campo usuario está vacío";
+        String espaceFoundError = "El nombre de usuaio no puede tener espacios";
         String errorExiste = "El nombre de usuario ya está registrado";
         UserService userService = new UserService(new UserClient());
 
@@ -31,6 +32,9 @@ public class NewUserServlet extends HttpServlet {
         } else if (userService.getUser(userNameReceived) != null) {
             request.setAttribute("error", errorExiste);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_FORMNEWUSER).forward(request, response);
+        } else if(userNameReceived.contains(" ")){
+            request.setAttribute("error", espaceFoundError);
+            request.getRequestDispatcher(request.getContextPath()).forward(request, response);
         } else if (userNameReceived.length() > 5 && userNameReceived.length() < 20) {
             User user = new User(userNameReceived, userPasswordReceived, false);
             if (userService.createUser(user)) {
@@ -47,5 +51,4 @@ public class NewUserServlet extends HttpServlet {
             }
         }
     }
-
 }

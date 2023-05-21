@@ -1,22 +1,20 @@
 package edu.fpdual.webapplication.dto;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@XmlRootElement
 public class User {
     private int userId;
     private String userName;
-    private Password userPassword;
+    private String userPassword;
     private boolean admn;
 
 
     public User(String userName, String userPassword, boolean admn) {
         this.userName = userName;
-        this.userPassword = new Password(userPassword);
+        this.userPassword = new Password(userPassword).toString();
         this.admn = admn;
     }
 

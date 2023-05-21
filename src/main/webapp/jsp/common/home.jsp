@@ -11,7 +11,7 @@
 
 <body>
    <% Session sesionActual = (Session)session.getAttribute("session"); %>
-   <h2>Bienvenido <%=sesionActual.getUserName()%></h2>
+   <h2>Bienvenido <%=sesionActual.getUserName().toLowerCase()%></h2>
    <% if(sesionActual.isAdmin()){
       %>
    <form method="GET" action=<%= GlobalInfo.URL_JSP_CONTROLPANEL %>>
@@ -22,7 +22,7 @@
       %>
    <br/>
    <br/>
-   <form method="GET" action=<%= GlobalInfo.URL_JSP_LOGIN %>>
+   <form method="POST" action=<%= GlobalInfo.URL_SERVLET_LOGOUT %>>
       <input type="submit" value="Logout">
    </form>
 </body>

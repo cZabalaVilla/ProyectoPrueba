@@ -14,6 +14,10 @@ public class NotificationService {
         return notificationClient.ping();
     }
 
+    public Notification getNotification() {
+        return notificationClient.get();
+    }
+
     public Notification getNotification(String id) {
         return notificationClient.get(id);
     }
