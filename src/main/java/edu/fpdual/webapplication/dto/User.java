@@ -1,12 +1,8 @@
-package edu.fpdual.webapplication.client.dto;
+package edu.fpdual.webapplication.dto;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Data
 @NoArgsConstructor
@@ -14,13 +10,13 @@ import java.security.NoSuchAlgorithmException;
 public class User {
     private int userId;
     private String userName;
-    private String userPassword;
+    private Password userPassword;
     private boolean admn;
 
 
     public User(String userName, String userPassword, boolean admn) {
         this.userName = userName;
-        this.userPassword = userPassword;
+        this.userPassword = new Password(userPassword);
         this.admn = admn;
     }
 

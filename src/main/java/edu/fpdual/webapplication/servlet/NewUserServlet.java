@@ -2,7 +2,7 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.client.dto.User;
+import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

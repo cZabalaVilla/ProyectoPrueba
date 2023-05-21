@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.client.dto;
+package edu.fpdual.webapplication.dto;
 
 import java.util.Date;
 

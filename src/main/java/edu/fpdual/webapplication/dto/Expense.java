@@ -1,15 +1,14 @@
-package edu.fpdual.webapplication.client.dto;
+package edu.fpdual.webapplication.dto;
 
 import java.util.Date;
 
-public class Income {
+public class Expense {
     private int userId;
-    private int incomeId;
-    private String incomeName;
+    private int expenseId;
+    private String expenseName;
     private double amount;
     private String description;
     private Date fecha;
     private boolean isRecurring;
     private Category category;
-
 }

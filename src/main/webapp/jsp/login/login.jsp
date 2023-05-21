@@ -30,7 +30,7 @@
             <label for="userName">Nombre de usuario</label>
             <br/>
             <br/>
-            <input type="text" id="userName" name="userName" placeholder="Username" />
+            <input type="text" id="userName" name="userName" placeholder="Juanalberto21" />
             <br/>
             <br/>
             <label for="userPassword">Contraseña</label>

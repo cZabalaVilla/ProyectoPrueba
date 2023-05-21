@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.service;
 
 import edu.fpdual.webapplication.client.NotificationClient;
-import edu.fpdual.webapplication.client.dto.Notification;
+import edu.fpdual.webapplication.dto.Notification;
 
 public class NotificationService {
     private final NotificationClient notificationClient;

@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.service;
 
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.client.dto.User;
+import edu.fpdual.webapplication.dto.User;
 
 import java.util.List;
 

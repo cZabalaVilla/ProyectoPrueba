@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.client;
 
-import edu.fpdual.webapplication.client.dto.Category;
+import edu.fpdual.webapplication.dto.Category;
 
 public class CategoryClient extends Client<Category> {
     @Override

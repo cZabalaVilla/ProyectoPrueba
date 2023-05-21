@@ -30,4 +30,35 @@ public class GlobalInfo {
     public static final String URL_WEBTARGET = "http://localhost:8081/webService/webapi/";
     public static final String session = "session";
     public static final String webPath = "http://localhost:8081/webService/webapi/";
+    /*
+    * import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class URLHashExample {
+    public static void main(String[] args) {
+        String url = "https://www.example.com/page?id=123";
+        String hash = calcularHash(url);
+
+        System.out.println("URL original: " + url);
+        System.out.println("Hash: " + hash);
+    }
+
+    public static String calcularHash(String url) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(url.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+}*/
 }

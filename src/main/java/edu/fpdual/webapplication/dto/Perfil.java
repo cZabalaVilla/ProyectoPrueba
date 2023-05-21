@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.client.dto;
+package edu.fpdual.webapplication.dto;
 
 public class Perfil {
     //que se pueda cambiar todo aqui

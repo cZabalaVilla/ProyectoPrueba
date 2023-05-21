@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.client.dto;
+package edu.fpdual.webapplication.dto;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
