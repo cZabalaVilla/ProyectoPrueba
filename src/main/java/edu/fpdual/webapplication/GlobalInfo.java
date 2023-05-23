@@ -16,7 +16,7 @@ public class GlobalInfo {
     public static final String URL_JSP_NOTIFICATION = URL_JSP + "/notificationTest.jsp";
     public static final String URL_JSP_CONTROLPANEL = URL_JSP + "/admin/controlPanel.jsp";
     public static final String URL_JSP_DENEGATEACCES = URL_JSP + "/redir/denegateAccess.jsp";
-    public static final String URL_JSP_NEWADMIN = URL_JSP + "/login/newAdmin.jsp";
+    public static final String URL_JSP_NEWADMIN = URL_JSP + "/admin/adminManager.jsp";
 
 
     /*

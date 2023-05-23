@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
-public class Perfil {
+public class Profile {
     //que se pueda cambiar todo aqui
     private int userId;
     private String userName;

@@ -29,7 +29,7 @@ public class NewAdminServlet extends HttpServlet {
             userService.updateUser(user);
         } catch (NotFoundException e) {
             request.setAttribute("error", notFoundError);
-            request.getRequestDispatcher("jsp/admin/newAdmin.jsp").forward(request, response);
+            request.getRequestDispatcher("jsp/admin/adminManager.jsp").forward(request, response);
         }
     }
 }

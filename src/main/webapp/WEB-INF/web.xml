@@ -3,11 +3,16 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
     <icon>
         <small-icon>/ProyectoPrueba/img/favicon.ico</small-icon>
         <large-icon>/ProyectoPrueba/img/icon32.jpg</large-icon>
     </icon>
     <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>adminHashedPswd</param-name>
+        <param-value>8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</param-value>
+    </context-param>
     <!--
     <welcome-file-list>
         <welcome-file>[pagina].jsp</welcome-file>

@@ -18,7 +18,7 @@
         <input type="submit" name="submitBtn" value="Login"></a>
     </form>
     <br/>
-    <form method="post" action="/ProyectoPrueba/jsp/newAdmin.jsp">
+    <form method="post" action="/ProyectoPrueba/jsp/admin/adminManager.jsp">
         <input type="submit" name="submitBtn" value="Create admin"></a>
     </form>
     <br/>

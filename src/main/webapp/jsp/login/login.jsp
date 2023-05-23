@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login</title>
-
+    <!-- El css hay que ponerlo como ruta absoluta. -->
    <link rel="stylesheet" href="/ProyectoPrueba/css/style.css" />
    <link rel="icon" href="http://localhost:8080/ProyectoPrueba/favicon.ico" type="image/x-icon">
 </head>
