@@ -13,63 +13,43 @@ public class UserManagerImpl implements UserManager {
 
     //@TODO AÑADIR JAVADOC
 
-
     public List<User> findAll(Connection con) {
-        List<User> usuarios = new ArrayList<>();
+        List<User> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
-                usuarios.add(new User(result));
+                entities.add(new User(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            usuarios = null;
+            entities = null;
         }
-        return usuarios;
+        return entities;
     }
 
     @Override
     public List<User> findAllBy(Connection con, String fieldName, Object value) {
-        List<User> usuarios = new ArrayList<>();
+        List<User> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery(query);
             result.beforeFirst();
             while (result.next()) {
-                usuarios.add(new User(result));
+                entities.add(new User(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            usuarios = null;
+            entities = null;
         }
-        return usuarios;
+        return entities;
     }
-
-    @Override
-    public List<User> findAllAdmins(Connection con) {
-        List<User> usuarios = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE ADMN" + " = ?";
-        try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, 1);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
-            while (result.next()) {
-                usuarios.add(new User(result));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            usuarios = null;
-        }
-        return usuarios;
-    }
-
 
     @Override
     public User findBy(Connection con, String fieldName, Object value) {
-        User usuario = new User();
+        User entity = new User();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
@@ -79,22 +59,22 @@ public class UserManagerImpl implements UserManager {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
             while (result.next()) {
-                usuario = new User(result);
+                entity = new User(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            usuario = null;
+            entity = null;
         }
-        return usuario;
+        return entity;
     }
 
     @Override
-    public boolean delete(Connection con, User user) {
+    public boolean delete(Connection con, User entity) {
         boolean result;
         String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, user.getUserName().toLowerCase());
+            stm.setObject(1, entity.getUserName().toLowerCase());
             result = stm.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -108,15 +88,15 @@ public class UserManagerImpl implements UserManager {
      * Cuando creas un usuario, el return del método debe de ser 4.
      */
     @Override
-    public boolean create(Connection con, User user) {
+    public boolean create(Connection con, User entity) {
         boolean result;
         String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setString(1, user.getUserName().toLowerCase());
-            stm.setString(2, user.getUserPassword());
-            stm.setInt(3, user.isAdmn() ? 1 : 0);
+            stm.setString(1, entity.getUserName().toLowerCase());
+            stm.setString(2, entity.getUserPassword());
+            stm.setInt(3, entity.isAdmn() ? 1 : 0);
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -130,14 +110,14 @@ public class UserManagerImpl implements UserManager {
      *
      */
     @Override
-    public boolean update(Connection con, User user) {
+    public boolean update(Connection con, User entity) {
         boolean result;
         String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setString(1, user.getUserName());
-            stm.setString(2, user.getUserPassword());
-            stm.setInt(3, user.getUserId());
+            stm.setString(1, entity.getUserName());
+            stm.setString(2, entity.getUserPassword());
+            stm.setInt(3, entity.getUserId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -145,5 +125,23 @@ public class UserManagerImpl implements UserManager {
             result = false;
         }
         return result;
+    }
+
+    @Override
+    public List<User> findAllAdmins(Connection con) {
+        List<User> entities = new ArrayList<>();
+        String query = "SELECT * FROM " + tableName + " WHERE ADMN" + " = ?";
+        try (PreparedStatement stm = con.prepareStatement(query)) {
+            stm.setObject(1, 1);
+            ResultSet result = stm.executeQuery(query);
+            result.beforeFirst();
+            while (result.next()) {
+                entities.add(new User(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            entities = null;
+        }
+        return entities;
     }
 }

@@ -9,23 +9,24 @@ import java.util.List;
 
 public class BudgetManagerImpl implements BudgetManager {
     final String tableName = "BUDGET";
+
     @Override
     public List<Budget> findAll(Connection con) {
-        List<Budget> presupuestos = new ArrayList<>();
-        String query = "SELECT * FROM " +tableName;
+        List<Budget> entities = new ArrayList<>();
+        String query = "SELECT * FROM " + tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
             result.beforeFirst();
 
             while (result.next()) {
-               presupuestos.add(new Budget(result));
+                entities.add(new Budget(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            presupuestos = null;
+            entities = null;
         }
-        return presupuestos;
+        return entities;
     }
 
     @Override
@@ -35,8 +36,8 @@ public class BudgetManagerImpl implements BudgetManager {
 
     @Override
     public Budget findBy(Connection con, String fieldName, Object value) {
-        Budget presupuesto = new Budget();
-        String query = "SELECT * FROM " +tableName +" WHERE " + fieldName.toUpperCase() + " = ?";
+        Budget entity = new Budget();
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -44,22 +45,22 @@ public class BudgetManagerImpl implements BudgetManager {
             result.beforeFirst();
 
             while (result.next()) {
-                presupuesto = new Budget(result);
+                entity = new Budget(result);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            presupuesto = null;
+            entity = null;
         }
 
-        return presupuesto;
+        return entity;
     }
 
     @Override
     public boolean delete(Connection con, Budget budget) {
         boolean result = false;
 
-        String query = "DELETE FROM " +tableName +" WHERE budgetName = ?";
+        String query = "DELETE FROM " + tableName + " WHERE budgetName = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, budget.getBudgetName());
@@ -68,7 +69,6 @@ public class BudgetManagerImpl implements BudgetManager {
             e.printStackTrace();
             result = false;
         }
-
         return result;
     }
 
@@ -76,9 +76,9 @@ public class BudgetManagerImpl implements BudgetManager {
     public boolean create(Connection con, Budget budget) {
         boolean result;
         //Hay que ver los atributos de Budget
-        String query = "INSERT INTO " +tableName +"(userID, budgetName, description, creationDate) values (?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(userID, budgetName, description, creationDate) values (?, ?, ?, ?)";
 
-        try(PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, budget.getUserId());
             //stm.setInt(2, budget.getBudgetName());
@@ -97,7 +97,7 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean update(Connection con, Budget budget) {
         boolean result;
-        String query = "UPDATE " +tableName +" SET budgetName = ?, description=?, creationDate = ? WHERE budgetId = ?";
+        String query = "UPDATE " + tableName + " SET budgetName = ?, description=?, creationDate = ? WHERE budgetId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 //            stm.setInt(1, entity.getUserId());

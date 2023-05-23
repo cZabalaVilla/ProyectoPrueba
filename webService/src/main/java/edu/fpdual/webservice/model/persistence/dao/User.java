@@ -16,17 +16,17 @@ public class User implements Comparable<User> {
 
 
     public User(String userName, String userPassword, boolean admn) {
-        this.userName = userName;
+        this.userName = userName.toLowerCase();
         this.userPassword = userPassword;
         this.admn = admn;
     }
 
-    public User(ResultSet result) {
+    public User(ResultSet resultSet) {
         try {
-            this.userId = result.getInt("userId");
-            this.userName = result.getString("userName");
-            this.userPassword = result.getString("userPassword");
-            this.admn = result.getBoolean("admn");
+            this.userId = resultSet.getInt("userId");
+            this.userName = resultSet.getString("userName");
+            this.userPassword = resultSet.getString("userPassword");
+            this.admn = resultSet.getBoolean("admn");
         } catch (SQLException e) {
             e.printStackTrace();
         }

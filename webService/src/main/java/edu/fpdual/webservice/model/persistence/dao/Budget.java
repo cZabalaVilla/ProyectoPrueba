@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-
 public class Budget implements Comparable<Budget>{
     private int userId;
     private int budgetId;

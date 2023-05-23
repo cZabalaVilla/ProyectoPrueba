@@ -1,25 +1,24 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
-import edu.fpdual.webservice.model.persistence.dao.Category;
-import edu.fpdual.webservice.model.persistence.dao.User;
-import edu.fpdual.webservice.model.persistence.manager.CategoryManager;
+import edu.fpdual.webservice.model.persistence.dao.Fund;
+import edu.fpdual.webservice.model.persistence.manager.FundManager;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryManagerImpl implements CategoryManager {
-    final String tableName = "CATEGORY";
+public class FundManagerImpl implements FundManager {
+    final String tableName = "FUND";
 
     @Override
-    public List<Category> findAll(Connection con) {
-        List<Category> entities = new ArrayList<>();
+    public List<Fund> findAll(Connection con) {
+        List<Fund> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
-                entities.add(new Category(result));
+                entities.add(new Fund(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,15 +28,15 @@ public class CategoryManagerImpl implements CategoryManager {
     }
 
     @Override
-    public List<Category> findAllBy(Connection con, String fieldName, Object value) {
-        List<Category> entities = new ArrayList<>();
+    public List<Fund> findAllBy(Connection con, String fieldName, Object value) {
+        List<Fund> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery(query);
             result.beforeFirst();
             while (result.next()) {
-                entities.add(new Category(result));
+                entities.add(new Fund(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,8 +46,8 @@ public class CategoryManagerImpl implements CategoryManager {
     }
 
     @Override
-    public Category findBy(Connection con, String fieldName, Object value) {
-        Category entity = new Category();
+    public Fund findBy(Connection con, String fieldName, Object value) {
+        Fund fund = new Fund();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
@@ -58,17 +57,17 @@ public class CategoryManagerImpl implements CategoryManager {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
             while (result.next()) {
-                entity = new Category(result);
+                fund = new Fund(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            entity = null;
+            fund = null;
         }
-        return entity;
+        return fund;
     }
 
     @Override
-    public boolean delete(Connection con, Category entity) {
+    public boolean delete(Connection con, Fund entity) {
         boolean result;
         String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
 
@@ -83,11 +82,8 @@ public class CategoryManagerImpl implements CategoryManager {
         return result;
     }
 
-    /**
-     * Cuando creas un usuario, el return del método debe de ser 4.
-     */
     @Override
-    public boolean create(Connection con, Category entity) {
+    public boolean create(Connection con, Fund entity) {
         boolean result;
         String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
 
@@ -105,11 +101,8 @@ public class CategoryManagerImpl implements CategoryManager {
         return result;
     }
 
-    /**
-     *
-     */
     @Override
-    public boolean update(Connection con, Category entity) {
+    public boolean update(Connection con, Fund entity) {
         boolean result;
         String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
 
@@ -125,5 +118,4 @@ public class CategoryManagerImpl implements CategoryManager {
         }
         return result;
     }
-
 }

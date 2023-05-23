@@ -43,7 +43,7 @@ public class UserController {
             if (userName == null) {
                 return Response.status(400).entity("Incorrect Parameters").build();
             } else {
-                if (userService.findByUserName(userName).getUserId() < 0) {
+                if (userService.findByUserName(userName).getUserId() <= 0) {
                     return Response.status(404).entity("User Not Found").build();
                 }
                 return Response.ok().entity(userService.findByUserName(userName)).build();

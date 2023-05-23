@@ -13,11 +13,9 @@ public class Category {
 
     private int categoryId;
     private String categoryName;
-    private static HashSet<Category> categories;
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
-        initCategories();
     }
 
     public Category(ResultSet result) {
@@ -28,12 +26,14 @@ public class Category {
             e.printStackTrace();
         }
     }
+}
 
-    public static void initCategories() {
-        if (categories == null) {
-            categories = new HashSet<>();
-            categories.add(new Category("CASA"));
-            categories.add(new Category("VIAJE"));
-        }
-    }
+enum Categories {
+    VIAJE,
+    OCIO,
+    RESTAURANTE,
+    SUPERMERCADO,
+    GASOLINA,
+    COCHE,
+    HOGAR
 }
