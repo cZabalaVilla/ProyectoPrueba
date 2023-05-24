@@ -7,6 +7,7 @@ import edu.fpdual.webservice.model.persistence.manager.impl.BudgetManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class BudgetService {
         }
     }
 
-    public Budget findByBudgetDate(LocalDateTime budgetDate) throws SQLException, ClassNotFoundException {
+    public Budget findByBudgetDate(LocalDate budgetDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.findBy(con, "budgetDate", budgetDate);
         }

@@ -1,0 +1,54 @@
+package edu.fpdual.webservice.service;
+
+import edu.fpdual.webservice.model.persistence.connector.MySQLConnector;
+import edu.fpdual.webservice.model.persistence.dao.Expense;
+import edu.fpdual.webservice.model.persistence.manager.ExpenseManager;
+import edu.fpdual.webservice.model.persistence.manager.impl.ExpenseManagerImpl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+
+public class ExpenseService {
+    private final ExpenseManager expenseManager;
+
+    public ExpenseService(ExpenseManagerImpl expenseManager) {
+
+        this.expenseManager = expenseManager;
+    }
+
+    public List<Expense> findAll() throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findAll(con);
+        }
+    }
+
+    public Expense findByExpenseDate(LocalDate expenseDate) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findBy(con, "incomeDate", expenseDate);
+        }
+    }
+
+    public Expense findByExpenseName(String expenseName) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findBy(con, "expenseName", expenseName);
+        }
+    }
+    public boolean deleteExpense(Expense expense) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.delete(con, expense);
+        }
+    }
+    public boolean createExpense(String expenseName, String description, double amount, boolean isRecurrent, LocalDate creationDate) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.create(con, new Expense(expenseName, description, isRecurrent, amount, creationDate));
+        }
+    }
+    public boolean updateExpense(Expense expense) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.update(con, expense);
+        }
+    }
+
+}

@@ -5,7 +5,13 @@ import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +20,10 @@ public class Budget implements Comparable<Budget>{
     private int budgetId;
     private String budgetName;
     private String description;
-    private LocalDateTime creationDate;
+    private List<Income> incomeList;
+    private List<Expense> expenseList;
+    private LocalDate creationDate;
+    //private LocalTime creationTime;
 
     //Atributo de datos
 
@@ -25,7 +34,10 @@ public class Budget implements Comparable<Budget>{
     public Budget(String budgetName, String description) {
         this.budgetName = budgetName;
         this.description = description;
-        this.creationDate = LocalDateTime.now();
+        this.incomeList = new ArrayList<>();
+        this.expenseList = new ArrayList<>();
+        this.creationDate = LocalDate.now();
+        //this.creationTime = LocalTime.now();
     }
 
     public Budget (ResultSet result) {
@@ -34,7 +46,15 @@ public class Budget implements Comparable<Budget>{
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
-            //this.creationDate = result.getDate("creationDate");
+            List inList = Arrays.asList(result.getArray("incomeList"));
+            this.incomeList = inList;
+            List exList = Arrays.asList(result.getArray("expenseList"));
+            this.expenseList = exList;
+            this.creationDate = result.getDate("creationDate")
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            //this.creationTime = result.getTime("creationTime");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,6 +62,6 @@ public class Budget implements Comparable<Budget>{
 
     @Override
     public int compareTo(Budget o) {
-        return 0;
+        return this.budgetId - o.budgetId;
     }
 }

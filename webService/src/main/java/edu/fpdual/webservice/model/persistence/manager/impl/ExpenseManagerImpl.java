@@ -1,28 +1,25 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
-import edu.fpdual.webservice.model.persistence.dao.Budget;
-import edu.fpdual.webservice.model.persistence.dao.Expense;
-import edu.fpdual.webservice.model.persistence.manager.BudgetManager;
 
+import edu.fpdual.webservice.model.persistence.dao.Expense;
+import edu.fpdual.webservice.model.persistence.manager.ExpenseManager;
 import java.sql.*;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetManagerImpl implements BudgetManager {
-    final String tableName = "BUDGET";
-
+public class ExpenseManagerImpl implements ExpenseManager {
+    final String tableName = "EXPENSE";
     @Override
-    public List<Budget> findAll(Connection con) {
-        List<Budget> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName;
+    public List<Expense> findAll(Connection con) {
+        List<Expense> entities = new ArrayList<>();
+        String query = "SELECT * FROM " +tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
             result.beforeFirst();
 
-            while (result.next()) {
-                entities.add(new Budget(result));
+            while(result.next()) {
+                entities.add(new Expense(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,8 +29,8 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public List<Budget> findAllBy(Connection con, String fieldName, Object value) {
-        List<Budget> entities = new ArrayList<>();
+    public List<Expense> findAllBy(Connection con, String fieldName, Object value) {
+        List<Expense> entities = new ArrayList<>();
         String query = "SELECT * FROM " +tableName +" WHERE " +fieldName +" = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
@@ -42,7 +39,7 @@ public class BudgetManagerImpl implements BudgetManager {
             result.beforeFirst();
 
             while (result.next()) {
-                entities.add(new Budget(result));
+                entities.add(new Expense(result));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,8 +50,8 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public Budget findBy(Connection con, String fieldName, Object value) {
-        Budget entity = new Budget();
+    public Expense findBy(Connection con, String fieldName, Object value) {
+        Expense entity = new Expense();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
@@ -63,7 +60,7 @@ public class BudgetManagerImpl implements BudgetManager {
             result.beforeFirst();
 
             while (result.next()) {
-                entity = new Budget(result);
+                entity = new Expense(result);
             }
 
         } catch (SQLException e) {
@@ -75,13 +72,13 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public boolean delete(Connection con, Budget budget) {
+    public boolean delete(Connection con, Expense expense) {
         boolean result = false;
 
-        String query = "DELETE FROM " + tableName + " WHERE budgetName = ?";
+        String query = "DELETE FROM " + tableName + " WHERE expenseName = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, budget.getBudgetName());
+            stm.setObject(1, expense.getExpenseName());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,19 +88,19 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public boolean create(Connection con, Budget budget) {
+    public boolean create(Connection con, Expense expense) {
         boolean result;
 
-        String query = "INSERT INTO " + tableName + "(userId, budgetName, description, incomeList, expenseList, creationDate) values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(budgetId, expenseName, description, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setInt(1, budget.getUserId());
-            stm.setString(2, budget.getBudgetName().toLowerCase());
-            stm.setString(3, budget.getDescription());
-//            stm.setArray(4, budget.getIncomeList().toArray());
-//            stm.setArray(5, budget.getExpenseList().toArray());
-//            stm.setDate(6, budget.getCreationDate());
+            stm.setInt(1, expense.getBudgetId());
+            stm.setString(2, expense.getExpenseName());
+            stm.setString(3, expense.getDescription());
+            stm.setDouble(4, expense.getAmount());
+            stm.setBoolean(5, expense.isRecurrent());
+            //stm.setDate(6, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
 
@@ -115,24 +112,23 @@ public class BudgetManagerImpl implements BudgetManager {
     }
 
     @Override
-    public boolean update(Connection con, Budget budget) {
-        boolean result;
-        String query = "UPDATE " + tableName + " SET budgetName = ?, description=?, incomeList = ?, expensesList = ?, creationDate = ? WHERE budgetId = ?";
+    public boolean update(Connection con, Expense expense) {
+        boolean  result;
+        String query = "UPDATE " +tableName + " SET expenseName = ?, description = ?, amount = ?, isRecurrent = ?, creationDate = ? WHERE expenseId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setString(1, budget.getBudgetName());
-            stm.setString(2, budget.getDescription());
-            //stm.setArray(3, budget.getIncomeList().toArray());
-//            stm.setArray(4, budget.getExpenseList().toArray());
-//            stm.setDate(5, budget.getCreationDate());
+            stm.setString(1, expense.getExpenseName());
+            stm.setString(2, expense.getDescription());
+            stm.setDouble(3, expense.getAmount());
+            stm.setBoolean(4, expense.isRecurrent());
+            //stm.setDate(5, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             result = false;
         }
-
-        return result;
+        return false;
     }
 }
