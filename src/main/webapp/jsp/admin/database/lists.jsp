@@ -19,6 +19,9 @@
         <input type="radio" name="classType" id="category" value="category">Categorías
         <br/>
         <br/>
+        <input type="radio" name="classType" id="profile" value="profile">Perfiles
+        <br/>
+        <br/>
         <input type="radio" name="classType" id="empty" value="empty">Empty
         <br/>
         <br/>

@@ -41,8 +41,8 @@
             <% if (request.getAttribute("error") != null){
             %>
                 <p style="color:red"><%= request.getAttribute("error") %></p><br/>
-            <% }
-            <p class="centerTxt"> <a href="/ProyectoPrueba/jsp/redir/redireccion.jsp">¿Olvidó la contraseña?</a></p>
+            <% } %>
+            <p class="centerTxt"><a href= <%=GlobalInfo.URL_JSP_RESTOREPASSWORD%> >¿Olvidó la contraseña?</a></p>
             <br/>
             <input type="submit" value="Entrar" class="buttonA"/>
             <br/>

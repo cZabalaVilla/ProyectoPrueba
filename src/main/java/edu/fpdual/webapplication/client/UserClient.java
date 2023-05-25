@@ -2,6 +2,7 @@ package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.dto.User;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -34,14 +35,21 @@ public class UserClient extends Client<User> {
     }
 
     public User get(int userId) {
-        return webTarget.path(clientPath + "get/" + userId)
+        return webTarget.path(clientPath + "get/byId/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
+
     public User get(String userName) {
-        return webTarget.path(clientPath + "get/" + userName)
-                .request(MediaType.APPLICATION_JSON)
-                .get(User.class);
+        try {
+            return webTarget
+                    .path(clientPath + "get/byName/" + userName)
+                    .request(MediaType.APPLICATION_JSON)
+                    .get(User.class);
+        } catch (BadRequestException e) {
+            // Controlar el caso cuando se recibe un status 400
+            return null;
+        }
     }
 
     @Override

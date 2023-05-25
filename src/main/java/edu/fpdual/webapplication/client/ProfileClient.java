@@ -34,13 +34,13 @@ public class ProfileClient extends Client<Profile> {
     }
 
     public Profile get(int userId) {
-        return webTarget.path(clientPath + "get/" + userId)
+        return webTarget.path(clientPath + "get/byId/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Profile.class);
     }
 
     public Profile get(String email) {
-        return webTarget.path(clientPath + "get/" + email)
+        return webTarget.path(clientPath + "get/byEmail/" + email)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Profile.class);
     }

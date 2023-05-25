@@ -1,10 +1,13 @@
 package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.client.CategoryClient;
+import edu.fpdual.webapplication.client.ProfileClient;
 import edu.fpdual.webapplication.client.UserClient;
 import edu.fpdual.webapplication.dto.Category;
+import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.CategoryService;
+import edu.fpdual.webapplication.service.ProfileService;
 import edu.fpdual.webapplication.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +27,7 @@ public class ListsServlet extends HttpServlet {
         List<String> objectList = switch (request.getParameter("classType")) {
             case "user" -> getUserList();
             case "category" -> getCategoryList();
+            case "profile" -> getProfileList();
             default -> null;
         };
         request.setAttribute("error", "No hay nada en esta lista.");
@@ -44,13 +48,22 @@ public class ListsServlet extends HttpServlet {
     private List<String> getCategoryList() {
         CategoryService categoryService = new CategoryService(new CategoryClient());
         List<Category> categories = categoryService.getAllCategories();
-        List<String> categoryList = new ArrayList<String>();
+        List<String> categoryList = new ArrayList<>();
         for (Category category : categories) {
             categoryList.add(category.toString());
         }
         return categoryList;
     }
 
+    private List<String> getProfileList() {
+        ProfileService profileService = new ProfileService(new ProfileClient());
+        List<Profile> profiles = profileService.getAllProfiles();
+        List<String> profileList = new ArrayList<>();
+        for (Profile profile : profiles) {
+            profileList.add(profile.toString());
+        }
+        return profileList;
+    }
 
 /*
     @Override

@@ -70,20 +70,20 @@
 
       <% if (sesionActual.isAdmin()) { %>
          <div class="admin-panel-btn">
-            <form method="GET" action=<%= GlobalInfo.URL_JSP_CONTROLPANEL %>>
+            <form method="GET" action="<%= GlobalInfo.URL_JSP_CONTROLPANEL %>">
                <input type="submit" value="Panel de administrador">
             </form>
          </div>
       <% } %>
 
       <div class="logout-btn">
-         <form method="POST" action=<%= GlobalInfo.URL_SERVLET_LOGOUT %>>
+         <form method="POST" action="<%= GlobalInfo.URL_SERVLET_LOGOUT %>">
             <input type="submit" value="Logout">
          </form>
       </div>
 
     <div class="profile-btn">
-       <form method="POST" action=<%= GlobalInfo.URL_JSP_PROFILE %>>
+       <form method="POST" action="<%= GlobalInfo.URL_JSP_PROFILE %>">
           <input type="submit" value="Profile">
        </form>
     </div>

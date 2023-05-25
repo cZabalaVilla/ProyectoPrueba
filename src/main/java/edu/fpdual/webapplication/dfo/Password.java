@@ -13,6 +13,10 @@ import java.security.SecureRandom;
 public class Password {
     private String password;
 
+    public Password(String password) {
+        this.password = hashPassword(password);
+    }
+
     public Password(String password, String userName) {
         try {
             checkPassword(password, userName);
@@ -44,8 +48,8 @@ public class Password {
     }
 
     public void checkPassword(String password, String userName) throws InvalidPasswordException {
-        if (password.length() < 6) {
-            throw new InvalidPasswordException("La contraseña debe tener al menos 6 caracteres.");
+        if (password.length() < 5) {
+            throw new InvalidPasswordException("La contraseña debe tener al menos 5 caracteres.");
         }
 
         if (password.contains(userName)) {
