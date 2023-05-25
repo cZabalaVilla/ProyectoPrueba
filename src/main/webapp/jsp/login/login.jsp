@@ -42,7 +42,6 @@
             %>
                 <p style="color:red"><%= request.getAttribute("error") %></p><br/>
             <% }
-             %>
             <p class="centerTxt"> <a href="/ProyectoPrueba/jsp/redir/redireccion.jsp">¿Olvidó la contraseña?</a></p>
             <br/>
             <input type="submit" value="Entrar" class="buttonA"/>

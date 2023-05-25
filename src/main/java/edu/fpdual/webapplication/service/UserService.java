@@ -20,6 +20,10 @@ public class UserService {
         return userClient.get();
     }
 
+    public User getUser(int userId) {
+        return userClient.get(userId);
+    }
+
     public User getUser(String userName) {
         return userClient.get(userName);
     }

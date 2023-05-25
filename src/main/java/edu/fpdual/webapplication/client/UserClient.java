@@ -33,6 +33,11 @@ public class UserClient extends Client<User> {
                 });
     }
 
+    public User get(int userId) {
+        return webTarget.path(clientPath + "get/" + userId)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
+    }
     public User get(String userName) {
         return webTarget.path(clientPath + "get/" + userName)
                 .request(MediaType.APPLICATION_JSON)

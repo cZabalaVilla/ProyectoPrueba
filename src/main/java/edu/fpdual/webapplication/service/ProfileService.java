@@ -1,9 +1,7 @@
 package edu.fpdual.webapplication.service;
 
 import edu.fpdual.webapplication.client.ProfileClient;
-import edu.fpdual.webapplication.client.UserClient;
 import edu.fpdual.webapplication.dto.Profile;
-import edu.fpdual.webapplication.dto.User;
 
 import java.util.List;
 
@@ -22,8 +20,12 @@ public class ProfileService {
         return profileClient.get();
     }
 
-    public Profile getProfile(String userId) {
+    public Profile getProfile(int userId) {
         return profileClient.get(userId);
+    }
+
+    public Profile getProfile(String email) {
+        return profileClient.get(email);
     }
 
     public boolean updateProfile(Profile profile) {

@@ -23,6 +23,8 @@ public class Sender {
     @Getter
     Properties credentialProp = new Properties();
 
+    private final String emailApp = "fitpocketapp@gmail.com";
+
     /**
      * Build the sender class loading the properties from mail and credentials files.
      */
@@ -38,13 +40,12 @@ public class Sender {
 
     /**
      * Send a simple email with from and recipient address, subject and a simple HTML format content.
-     * @param from from email address
      * @param to recipient email address
      * @param subject email subject
      * @param content email content in html format
      * @return a {@link boolean} indicating if the email was sent or not.
      */
-    public boolean send(String from, String to, String subject, String content) {
+    public boolean send(String to, String subject, String content) {
         // Get the Session object.// and pass username and password
         Session session = createSession();
 
@@ -53,7 +54,7 @@ public class Sender {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
+            message.setFrom(new InternetAddress(emailApp));
 
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
@@ -78,14 +79,13 @@ public class Sender {
 
     /**
      * Send an email with from and recipient address, subject, d a simple HTML format content and an attached file.
-     * @param from from email address
      * @param to recipient email address
      * @param subject email subject
      * @param text email content in html format
      * @param content path where the temp file is located
      * @return a {@link boolean} indicating if the email was sent or not.
      */
-    public boolean send(String from, String to, String subject, String text, String content) throws FileNotFoundException, IOException {
+    public boolean send(String to, String subject, String text, String content) throws FileNotFoundException, IOException {
         // Get the Session object.// and pass username and password
         Session session = createSession();
         try {
@@ -93,7 +93,7 @@ public class Sender {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
+            message.setFrom(new InternetAddress(emailApp));
 
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
@@ -157,7 +157,7 @@ public class Sender {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        new Sender().send("fitpocketapp@gmail.com", "carloszabalavilla@gmail.com", "Hola =D",
+        new Sender().send("carloszabalavilla@gmail.com", "Hola =D",
                 "<b>Asi se envian correos con Java...<b>");
 //        new Sender().send("twlster.mk@gmail.com", "twlster.mk@gmail.com", "Hola =D",
 //                "<b>Asi se envian correos con Java...<b>");

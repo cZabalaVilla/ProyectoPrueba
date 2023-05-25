@@ -41,6 +41,12 @@
          margin-top: 20px;
       }
 
+        .profile-btn {
+           display: flex;
+           justify-content: center;
+           margin-top: 20px;
+            }
+
       input[type="submit"] {
          padding: 10px 20px;
          background-color: #007bff;
@@ -75,6 +81,13 @@
             <input type="submit" value="Logout">
          </form>
       </div>
+
+    <div class="profile-btn">
+       <form method="POST" action=<%= GlobalInfo.URL_JSP_PROFILE %>>
+          <input type="submit" value="Profile">
+       </form>
+    </div>
+
    </div>
 </body>
 

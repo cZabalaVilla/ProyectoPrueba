@@ -17,6 +17,9 @@ public class GlobalInfo {
     public static final String URL_JSP_CONTROLPANEL = URL_JSP + "/admin/controlPanel.jsp";
     public static final String URL_JSP_DENEGATEACCES = URL_JSP + "/redir/denegateAccess.jsp";
     public static final String URL_JSP_NEWADMIN = URL_JSP + "/admin/adminManager.jsp";
+    public static final String URL_JSP_PROFILE = URL_JSP + "/common/profile.jsp";
+    public static final String URL_JSP_PASSWORDCHANGED = URL_JSP + "/redir/passwordChanged.jsp";
+
 
 
     /*
@@ -26,6 +29,7 @@ public class GlobalInfo {
     public static final String URL_SERVLET_LOGIN = URL_SERVLET_ + "/login-servlet";
     public static final String URL_SERVLET_NEWUSER = URL_SERVLET_ + "/new-user-servlet";
     public static final String URL_SERVLET_TEST = URL_SERVLET_ + "/notification-servlet";
+    public static final String URL_SERVLET_PROFILE = URL_SERVLET_ + "/profile-servlet";
     public static final String URL_SERVLET_LOGOUT = URL_SERVLET_ + "/logout-servlet";
 
     /*

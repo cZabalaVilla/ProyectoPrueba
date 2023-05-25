@@ -91,7 +91,7 @@ public class Password {
         return passwordMatches;
     }
 
-    public String resetPassword(String userName) {
+    public static String resetPassword() {
         final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         final int LENGTH = 8;
         SecureRandom random = new SecureRandom();

@@ -33,8 +33,14 @@ public class ProfileClient extends Client<Profile> {
                 });
     }
 
-    public Profile get(String userId) {
+    public Profile get(int userId) {
         return webTarget.path(clientPath + "get/" + userId)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Profile.class);
+    }
+
+    public Profile get(String email) {
+        return webTarget.path(clientPath + "get/" + email)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Profile.class);
     }
