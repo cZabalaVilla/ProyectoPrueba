@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Formulario de prueba</title>
+    <title>Formulario de usuario</title>
 </head>
 
 <body>

@@ -1,6 +1,5 @@
 package edu.fpdual.webapplication.dto;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@XmlRootElement
 public class Notification {
 
     private int id;

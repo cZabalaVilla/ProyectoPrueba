@@ -2,7 +2,6 @@ package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.dto.Category;
-import edu.fpdual.webapplication.dto.User;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;

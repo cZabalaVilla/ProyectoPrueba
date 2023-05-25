@@ -1,5 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
+import edu.fpdual.webapplication.dfo.Password;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ public class User {
 
     public User(String userName, String userPassword, boolean admn) {
         this.userName = userName;
-        this.userPassword = new Password(userPassword).toString();
+        this.userPassword = new Password(userPassword,userName).toString();
         this.admn = admn;
     }
 
@@ -27,5 +28,4 @@ public class User {
                 + " | Password: " + userPassword
                 + " | Administrador?: " + esAdmin;
     }
-
 }

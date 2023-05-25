@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class ListsServlet extends HttpServlet {
             case "category" -> getCategoryList();
             default -> null;
         };
-        request.setAttribute("error","No hay nada en esta lista.");
+        request.setAttribute("error", "No hay nada en esta lista.");
         request.setAttribute("objectList", objectList);
         request.getRequestDispatcher("jsp/admin/database/lists.jsp").forward(request, response);
     }

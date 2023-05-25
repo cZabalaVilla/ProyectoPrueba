@@ -2,7 +2,7 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dto.Password;
+import edu.fpdual.webapplication.dfo.Password;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletException;
@@ -31,13 +31,13 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String userNameReceived = request.getParameter("userName");
-            Password userPasswordReceived = new Password(request.getParameter("userPassword"));
+            Password userPasswordReceived = new Password(request.getParameter("userPassword"),userNameReceived);
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
             User user = new UserClient().get(userNameReceived);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
-            } else if (userPasswordReceived.checkPassword(user.getUserPassword())) {
+            } else if (userPasswordReceived.comparePassword(user.getUserPassword())) {
                 request.setAttribute("error", incorrectError);
                 request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {

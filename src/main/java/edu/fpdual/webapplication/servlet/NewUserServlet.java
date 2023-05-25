@@ -32,7 +32,7 @@ public class NewUserServlet extends HttpServlet {
         } else if (userService.getUser(userNameReceived) != null) {
             request.setAttribute("error", errorExiste);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_FORMNEWUSER).forward(request, response);
-        } else if(userNameReceived.contains(" ")){
+        } else if (userNameReceived.contains(" ")) {
             request.setAttribute("error", espaceFoundError);
             request.getRequestDispatcher(request.getContextPath()).forward(request, response);
         } else if (userNameReceived.length() > 5 && userNameReceived.length() < 20) {

@@ -1,8 +1,6 @@
 package edu.fpdual.webapplication.servlet;
 
-import com.mysql.cj.protocol.x.Notice;
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-    request.getSession().invalidate();
-    response.sendRedirect(GlobalInfo.URL_INDEX);
+        request.getSession().invalidate();
+        response.sendRedirect(GlobalInfo.URL_INDEX);
     }
 }
