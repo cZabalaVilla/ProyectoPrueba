@@ -91,7 +91,7 @@ public class Password {
         return passwordMatches;
     }
 
-    public boolean resetPassword(String userName) {
+    public String resetPassword(String userName) {
         final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         final int LENGTH = 8;
         SecureRandom random = new SecureRandom();
@@ -102,8 +102,7 @@ public class Password {
             char randomChar = CHARACTERS.charAt(randomIndex);
             newCodePassword.append(randomChar);
         }
-
-        return false;
+        return newCodePassword.toString();
     }
 
     @Override

@@ -1,8 +1,7 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.dfo.Email;
-import edu.fpdual.webapplication.dto.User;
+import edu.fpdual.webapplication.dto.Profile;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -11,11 +10,11 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-public class EmailClient extends Client<Email> {
+public class ProfileClient extends Client<Profile> {
     private final WebTarget webTarget;
-    private final String clientPath = "email/";
+    private final String clientPath = "profile/";
 
-    public EmailClient() {
+    public ProfileClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
         this.webTarget = client.target(GlobalInfo.URL_WEBTARGET);
     }
@@ -27,36 +26,37 @@ public class EmailClient extends Client<Email> {
                 .get(String.class);
     }
 
-    public List<Email> get() {
+    public List<Profile> get() {
         return webTarget.path(clientPath + "get/all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
-    public Email get(String email) {
-        return webTarget.path(clientPath + "get/" + email)
+    public Profile get(String userId) {
+        return webTarget.path(clientPath + "get/" + userId)
                 .request(MediaType.APPLICATION_JSON)
-                .get(Email.class);
+                .get(Profile.class);
     }
 
     @Override
-    public boolean put(Email email) {
+    public boolean put(Profile profile) {
         return webTarget.path(clientPath + "put")
                 .request(MediaType.APPLICATION_JSON)
-                .put(Entity.entity(email, MediaType.APPLICATION_JSON), boolean.class);
+                .put(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
-    public boolean post(Email email) {
+    public boolean post(Profile profile) {
         return webTarget.path(clientPath + "post")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(email, MediaType.APPLICATION_JSON), boolean.class);
+                .post(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
-    public boolean delete(Email email) {
+    public boolean delete(Profile profile) {
         return webTarget.path(clientPath + "delete")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(email, MediaType.APPLICATION_JSON), boolean.class);}
+                .post(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
+    }
 }

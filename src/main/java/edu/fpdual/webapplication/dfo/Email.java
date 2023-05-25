@@ -23,7 +23,7 @@ public class Email {
             checkEmail(email);
             this.email = email;
         }catch (InvalidEmailException e){
-            e.getMessage();
+            email = e.getMessage();
             e.printStackTrace();
         }
     }
