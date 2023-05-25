@@ -38,7 +38,25 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{userName}")
+    @Path("/get/byId/{userId}")
+    public Response findByUserId(@PathParam("userId") int userId) {
+        try {
+            if (userId != 0) {
+                return Response.status(400).entity("Incorrect Parameters").build();
+            } else {
+                if (userService.findByUserId(userId).getUserId() <= 0) {
+                    return Response.status(400).entity("User Not Found").build();
+                }
+                return Response.ok().entity(userService.findByUserId(userId)).build();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/get/byName/{userName}")
     public Response findByUserName(@PathParam("userName") String userName) {
         try {
             if (userName == null) {
@@ -53,7 +71,6 @@ public class UserController {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
-
     @PUT
     @Path("/put")
     @Produces(MediaType.APPLICATION_JSON)

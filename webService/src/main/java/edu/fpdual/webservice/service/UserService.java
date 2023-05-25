@@ -30,6 +30,12 @@ public class UserService {
         }
     }
 
+    public User findByUserId(int userId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return userManager.findBy(con, "userId", userId);
+        }
+    }
+
     public boolean deleteUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.delete(con, user);

@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
-
+@Path("/profile")
 public class ProfileController {
     private final ProfileService profileService;
 
@@ -37,7 +37,7 @@ public class ProfileController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{userId}")
+    @Path("/get/byId/{userId}")
     public Response findByUserId(@PathParam("userId") int userId) {
         try {
             if (profileService.findByUserId(userId).getUserId() <= 0) {
@@ -52,7 +52,7 @@ public class ProfileController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{email}")
+    @Path("/get/byEmail/{email}")
     public Response findByEmail(@PathParam("email") String email) {
         try {
             if (profileService.findByEmail(email).getUserId() <= 0) {
@@ -71,8 +71,8 @@ public class ProfileController {
     public Response updateProfile(Profile profile) {
         try {
             Profile profileToUpdate = profileService.findByUserId(profile.getUserId());
-            if (profileToUpdate != null) {
-                return Response.status(200).entity(profileService.updateProfile(profile)).build();
+            if (profileToUpdate != null && profileToUpdate.getUserId() > 0) {
+                return Response.status(201).entity(profileService.updateProfile(profile)).build();
             } else {
                 return Response.status(400).entity("Profile Not Found").build();
             }
