@@ -50,6 +50,20 @@ public class ProfileController {
         }
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/get/{email}")
+    public Response findByEmail(@PathParam("email") String email) {
+        try {
+            if (profileService.findByEmail(email).getUserId() <= 0) {
+                return Response.status(400).entity("Profile Not Found").build();
+            } else {
+                return Response.ok().entity(profileService.findByEmail(email)).build();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
     @PUT
     @Path("/put")
     @Produces(MediaType.APPLICATION_JSON)

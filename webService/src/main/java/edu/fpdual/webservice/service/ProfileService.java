@@ -33,6 +33,12 @@ public class ProfileService {
         }
     }
 
+    public Profile findByEmail(String email) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return profileManager.findBy(con, "email", email);
+        }
+    }
+
     public boolean deleteProfile(Profile profile) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return profileManager.delete(con,profile );

@@ -42,7 +42,7 @@ public class ExpenseService {
     }
     public boolean createExpense(String expenseName, String description, double amount, boolean isRecurrent, LocalDate creationDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return expenseManager.create(con, new Expense(expenseName, description, isRecurrent, amount, creationDate));
+            return expenseManager.create(con, new Expense());
         }
     }
     public boolean updateExpense(Expense expense) throws SQLException, ClassNotFoundException {

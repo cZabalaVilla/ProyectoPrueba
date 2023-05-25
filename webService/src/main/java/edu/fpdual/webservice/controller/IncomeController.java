@@ -79,7 +79,7 @@ public class IncomeController {
         try {
             if (findByIncomeName(income.getIncomeName()) != null) {
                 //FALTARÍA PONER LA HORA SI LA AÑADIMOS
-                if (incomeService.createIncome(income.getIncomeName().toLowerCase(), income.getDescription(),  income.getAmount(), income.isRecurrent(), income.getCreationDate())) {
+                if (incomeService.createIncome(income)) {
                     return Response.status(200).entity("Income created.").build();
                 } else {
                     return Response.status(400).entity("Income not created.").build();

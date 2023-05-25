@@ -26,7 +26,7 @@ public class IncomeService {
         }
     }
 
-    public Budget findByIncomeDate(LocalDate incomeDate) throws SQLException, ClassNotFoundException {
+    public Income findByIncomeDate(LocalDate incomeDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return incomeManager.findBy(con, "incomeDate", incomeDate);
         }
@@ -42,9 +42,9 @@ public class IncomeService {
             return incomeManager.delete(con, income);
         }
     }
-    public boolean createIncome(String incomeName, String description, double amount, boolean isRecurrent, LocalDate creationDate) throws SQLException, ClassNotFoundException {
+    public boolean createIncome(Income income) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return incomeManager.create(con, new Income(incomeName, description, isRecurrent, amount, creationDate));
+            return incomeManager.create(con,income);
         }
     }
     public boolean updateIncome(Income income) throws SQLException, ClassNotFoundException {
