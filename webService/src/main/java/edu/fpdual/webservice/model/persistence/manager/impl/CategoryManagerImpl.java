@@ -32,6 +32,7 @@ public class CategoryManagerImpl implements CategoryManager {
     public List<Category> findAllBy(Connection con, String fieldName, Object value) {
         List<Category> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
+
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery(query);
@@ -70,10 +71,10 @@ public class CategoryManagerImpl implements CategoryManager {
     @Override
     public boolean delete(Connection con, Category entity) {
         boolean result;
-        String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
+        String query = "DELETE FROM " + tableName + " WHERE categoryId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, entity.getUserName().toLowerCase());
+            stm.setObject(1, entity.getCategoryId());
             result = stm.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -89,14 +90,10 @@ public class CategoryManagerImpl implements CategoryManager {
     @Override
     public boolean create(Connection con, Category entity) {
         boolean result;
-        String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
+        String query = "INSERT INTO " + tableName + " (categoryName) values (?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-
-            stm.setString(1, entity.getUserName().toLowerCase());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
-
+            stm.setString(1, entity.getCategoryName());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,13 +108,10 @@ public class CategoryManagerImpl implements CategoryManager {
     @Override
     public boolean update(Connection con, Category entity) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
+        String query = "UPDATE " + tableName + " SET categoryName = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setString(1, entity.getUserName());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.getUserId());
-
+            stm.setString(1, entity.getCategoryName());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

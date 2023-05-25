@@ -84,9 +84,6 @@ public class UserManagerImpl implements UserManager {
         return result;
     }
 
-    /**
-     * Cuando creas un usuario, el return del método debe de ser 4.
-     */
     @Override
     public boolean create(Connection con, User entity) {
         boolean result;
@@ -125,23 +122,5 @@ public class UserManagerImpl implements UserManager {
             result = false;
         }
         return result;
-    }
-
-    @Override
-    public List<User> findAllAdmins(Connection con) {
-        List<User> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE ADMN" + " = ?";
-        try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, 1);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
-            while (result.next()) {
-                entities.add(new User(result));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            entities = null;
-        }
-        return entities;
     }
 }

@@ -72,7 +72,7 @@ public class FundManagerImpl implements FundManager {
         String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, entity.getUserName().toLowerCase());
+            stm.setObject(1, entity.getFundId());
             result = stm.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -89,9 +89,8 @@ public class FundManagerImpl implements FundManager {
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setString(1, entity.getUserName().toLowerCase());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
+            stm.setInt(1, entity.getFundId());
+
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -107,10 +106,7 @@ public class FundManagerImpl implements FundManager {
         String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setString(1, entity.getUserName());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.getUserId());
-
+            stm.setInt(1, entity.getFundId());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

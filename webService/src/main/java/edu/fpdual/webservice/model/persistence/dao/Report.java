@@ -4,12 +4,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Data
 @NoArgsConstructor
 public class Report {
 
-    public Report(ResultSet resultSet){
+    private int reportId;
 
+    public Report (ResultSet result) {
+        try {
+            this.reportId = result.getInt("reportId");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package edu.fpdual.webservice.controller;
 
+import edu.fpdual.webservice.model.persistence.dao.Profile;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.UserManagerImpl;
 import edu.fpdual.webservice.service.UserService;
@@ -44,7 +45,7 @@ public class UserController {
                 return Response.status(400).entity("Incorrect Parameters").build();
             } else {
                 if (userService.findByUserName(userName).getUserId() <= 0) {
-                    return Response.status(404).entity("User Not Found").build();
+                    return Response.status(400).entity("User Not Found").build();
                 }
                 return Response.ok().entity(userService.findByUserName(userName)).build();
             }
@@ -61,9 +62,9 @@ public class UserController {
         try {
             User userToUpdate = userService.findByUserName(user.getUserName());
             if (userToUpdate != null) {
-                return Response.status(201).entity(userService.findByUserName(user.getUserName())).build();
+                return Response.status(200).entity(userService.updateUser(user)).build();
             } else {
-                return Response.status(404).entity("User Not Found").build();
+                return Response.status(400).entity("User Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
@@ -78,12 +79,12 @@ public class UserController {
         try {
             if (findByUserName(user.getUserName()) != null) {
                 if (userService.createUser(user.getUserName().toLowerCase(), user.getUserPassword())) {
-                    return Response.status(201).entity("User created.").build();
+                    return Response.status(200).entity("User created.").build();
                 } else {
-                    return Response.status(409).entity("User not created.").build();
+                    return Response.status(400).entity("User not created.").build();
                 }
             } else {
-                return Response.status(409).entity("User already exists.").build();
+                return Response.status(400).entity("User already exists.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();
@@ -100,10 +101,10 @@ public class UserController {
                 if (userService.deleteUser(user)) {
                     return Response.status(200).entity(user).build();
                 } else {
-                    return Response.status(304).entity("User Was Not Deleted").build();
+                    return Response.status(400).entity("User Was Not Deleted.").build();
                 }
             } else {
-                return Response.status(404).entity("User Not Found").build();
+                return Response.status(404).entity("User Not Found.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();

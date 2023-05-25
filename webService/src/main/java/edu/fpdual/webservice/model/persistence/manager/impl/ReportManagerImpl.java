@@ -33,6 +33,7 @@ public class ReportManagerImpl implements ReportManager {
     public List<Report> findAllBy(Connection con, String fieldName, Object value) {
         List<Report> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
+
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery(query);
@@ -74,7 +75,7 @@ public class ReportManagerImpl implements ReportManager {
         String query = "DELETE FROM " + tableName + " WHERE userName" + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, entity.getUserName().toLowerCase());
+            stm.setObject(1, entity.getReportId());
             result = stm.executeUpdate() > 0;
 
         } catch (SQLException e) {
@@ -94,9 +95,7 @@ public class ReportManagerImpl implements ReportManager {
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stm.setString(1, entity.getUserName().toLowerCase());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
+            stm.setInt(1, entity.getReportId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -115,9 +114,8 @@ public class ReportManagerImpl implements ReportManager {
         String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            stm.setString(1, entity.getUserName());
-            stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.getUserId());
+            stm.setInt(1, entity.getReportId());
+
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

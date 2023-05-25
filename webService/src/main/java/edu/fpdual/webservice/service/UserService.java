@@ -26,13 +26,7 @@ public class UserService {
 
     public User findByUserName(String userName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.findBy(con,"userName", userName);
-        }
-    }
-
-    public List<User> findAllAdmins() throws SQLException, ClassNotFoundException {
-        try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.findAllAdmins(con);
+            return userManager.findBy(con, "userName", userName);
         }
     }
 
@@ -53,5 +47,10 @@ public class UserService {
             return userManager.update(con, user);
         }
     }
-}
 
+    public List<User> findAllAdmins() throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return userManager.findAllBy(con,"ADMN",1);
+        }
+    }
+}

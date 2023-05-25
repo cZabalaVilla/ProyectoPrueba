@@ -95,7 +95,6 @@ public class ProfileManagerImpl implements ProfileManager {
 
             stm.setString(1, entity.getUserName().toLowerCase());
             stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -126,4 +125,4 @@ public class ProfileManagerImpl implements ProfileManager {
         return result;
     }
 }
-}
+
