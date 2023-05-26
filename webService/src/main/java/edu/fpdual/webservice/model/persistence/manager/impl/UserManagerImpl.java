@@ -109,12 +109,13 @@ public class UserManagerImpl implements UserManager {
     @Override
     public boolean update(Connection con, User entity) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? WHERE userId = ?";
+        String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? , admn = ? WHERE userId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, entity.getUserName());
             stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.getUserId());
+            stm.setInt(3, entity.isAdmn() ? 1 : 0);
+            stm.setInt(4, entity.getUserId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

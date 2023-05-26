@@ -74,7 +74,7 @@ public class ProfileController {
             if (profileToUpdate != null && profileToUpdate.getUserId() > 0) {
                 return Response.status(201).entity(profileService.updateProfile(profile)).build();
             } else {
-                return Response.status(400).entity("Profile Not Found").build();
+                return Response.status(404).entity(false).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
