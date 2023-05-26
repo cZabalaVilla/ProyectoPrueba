@@ -43,7 +43,7 @@ public class UserClient extends Client<User> {
     public User get(String userName) {
         try {
             return webTarget
-                    .path(clientPath + "get/byName/" + userName)
+                    .path(clientPath + "user/?name=" + userName)
                     .request(MediaType.APPLICATION_JSON)
                     .get(User.class);
         } catch (BadRequestException e) {
