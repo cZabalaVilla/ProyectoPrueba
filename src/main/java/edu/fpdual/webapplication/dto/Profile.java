@@ -15,7 +15,8 @@ public class Profile {
     private String location;
     private int phone;
 
-    public Profile(String description, String email, String link, String location,int phone) {
+    public Profile(int userId,String description, String email, String link, String location,int phone) {
+        this.userId = userId;
         this.description = description;
         this.email = email;
         this.link = link;

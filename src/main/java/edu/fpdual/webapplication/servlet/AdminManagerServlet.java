@@ -12,22 +12,27 @@ import jakarta.ws.rs.NotFoundException;
 
 import java.io.IOException;
 
-@WebServlet(name = "NewAdminServlet", urlPatterns = {"/new-admin-servlet"})
-public class NewAdminServlet extends HttpServlet {
+@WebServlet(name = "AdminManagerServlet", urlPatterns = {"/admin-manager-servlet"})
+public class AdminManagerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        UserService userService = new UserService(new UserClient());
         String notFoundError = "El nombre de usuario no se encuentra en la base de datos.";
+        String URL_Dispatcher = "jsp/admin/adminManager.jsp";
 
         try {
-            User user = userService.getUser(request.getParameter("userName"));
-            user.setAdmn(true);
-            userService.updateUser(user);
+            User user = new UserService(new UserClient()).getUser(request.getParameter("userName"));
+            if(request.getParameter("update") != null){
+                user.setAdmn(true);
+                new UserService(new UserClient()).updateUser(user);
+            } else if(request.getParameter("delete") != null){
+                user.setAdmn(false);
+                new UserService(new UserClient()).updateUser(user);
+            }
         } catch (NotFoundException e) {
             request.setAttribute("error", notFoundError);
-            request.getRequestDispatcher("jsp/admin/adminManager.jsp").forward(request, response);
+            request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
         }
     }
 }

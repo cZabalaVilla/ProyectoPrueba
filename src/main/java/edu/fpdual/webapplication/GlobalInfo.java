@@ -27,6 +27,7 @@ public class GlobalInfo {
      */
     public static final String URL_SERVLET_ = URL_PROYECTO;
     public static final String URL_SERVLET_LOGIN = URL_SERVLET_ + "/login-servlet";
+    public static final String URL_SERVLET_ADMINMANAGER = URL_SERVLET_ + "/admin-manager-servlet";
     public static final String URL_SERVLET_NEWUSER = URL_SERVLET_ + "/new-user-servlet";
     public static final String URL_SERVLET_TEST = URL_SERVLET_ + "/notification-servlet";
     public static final String URL_SERVLET_PROFILE = URL_SERVLET_ + "/profile-servlet";
