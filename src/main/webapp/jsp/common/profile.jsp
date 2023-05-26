@@ -65,7 +65,7 @@
 <body>
   <h1>Formulario de Usuario</h1>
   <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
-  <% User user = new UserService(new UserClient()).getUser(thisSession.getUserName()); %>
+  <% User user = new UserService(new UserClient()).getUserByName(thisSession.getUserName()); %>
   <% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
   <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>">
     <label for="description">Descripción:</label>

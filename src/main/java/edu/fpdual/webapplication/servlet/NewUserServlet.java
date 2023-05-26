@@ -29,7 +29,7 @@ public class NewUserServlet extends HttpServlet {
         if (userNameReceived == null || userPasswordReceived == null) {
             request.setAttribute("error", incompleteError);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_FORMNEWUSER).forward(request, response);
-        } else if (userService.getUser(userNameReceived) != null) {
+        } else if (userService.getUserByName(userNameReceived) != null) {
             request.setAttribute("error", errorExiste);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_FORMNEWUSER).forward(request, response);
         } else if (userNameReceived.contains(" ")) {

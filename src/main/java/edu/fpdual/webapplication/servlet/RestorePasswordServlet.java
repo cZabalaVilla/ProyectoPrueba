@@ -10,7 +10,6 @@ import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.ProfileService;
 import edu.fpdual.webapplication.service.UserService;
-import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -38,7 +37,7 @@ public class RestorePasswordServlet extends HttpServlet {
 
             if(new Sender().send(profile.getEmail(),"Restauración de contraseña","<b>"+bodyMesage+"<b>")){
                 UserService userService = new UserService(new UserClient());
-                User user = userService.getUser(profile.getUserId());
+                User user = userService.getUserById(profile.getUserId());
                 user.setUserPassword(newPassword);
                 userService.updateUser(user);
                 response.sendRedirect(GlobalInfo.URL_JSP_PASSWORDCHANGED);

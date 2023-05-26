@@ -20,11 +20,11 @@ public class UserService {
         return userClient.get();
     }
 
-    public User getUser(int userId) {
+    public User getUserById(int userId) {
         return userClient.get(userId);
     }
 
-    public User getUser(String userName) {
+    public User getUserByName(String userName) {
         return userClient.get(userName);
     }
 
