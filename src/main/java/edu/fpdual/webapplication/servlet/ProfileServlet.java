@@ -29,7 +29,7 @@ public class ProfileServlet extends HttpServlet {
         User user = new UserService(new UserClient()).getUser(session.getUserName());
 
         try {
-            Profile profile = new Profile(request.getParameter("description"),
+            Profile profile = new Profile(user.getUserId(),request.getParameter("description"),
                     request.getParameter("email"),
                     request.getParameter("link"),
                     request.getParameter("location"),

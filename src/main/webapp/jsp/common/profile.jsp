@@ -10,6 +10,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <title>Formulario de Usuario</title>
   <style>
