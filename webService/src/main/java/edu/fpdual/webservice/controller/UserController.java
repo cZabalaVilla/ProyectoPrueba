@@ -38,7 +38,7 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/byId/{userId}")
+    @Path("/{userId}")
     public Response findByUserId(@PathParam("userId") int userId) {
         try {
             if (userId != 0) {
@@ -56,16 +56,16 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/byName/{userName}")
-    public Response findByUserName(@PathParam("userName") String userName) {
+    public Response findByUserName(@QueryParam("user_name") String userName) {
         try {
             if (userName == null) {
-                return Response.status(400).entity("Incorrect Parameters").build();
+                return Response.ok().entity(userService.findAllUsers()).build();
             } else {
-                if (userService.findByUserName(userName).getUserId() <= 0) {
+                User user = userService.findByUserName(userName);
+                if (user == null && user.getUserId() <= 0) {
                     return Response.status(400).entity("User Not Found").build();
                 }
-                return Response.ok().entity(userService.findByUserName(userName)).build();
+                return Response.ok().entity(user).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
