@@ -1,4 +1,39 @@
 package edu.fpdual.webapplication.service;
 
+
+import edu.fpdual.webapplication.client.IncomeClient;
+import edu.fpdual.webapplication.dto.Income;
+
+import java.util.List;
+
 public class IncomeService {
+    private final IncomeClient incomeClient;
+
+    public IncomeService(IncomeClient incomeClient) {
+        this.incomeClient = incomeClient;
+    }
+
+    public String ping() {
+        return incomeClient.ping();
+    }
+    public Income getIncome(String incomeName) {
+        return incomeClient.get(incomeName);
+    }
+
+    public List<Income> getAllIncomes() {
+        return incomeClient.get();
+    }
+
+    public boolean updateIncome(Income income) {
+        return incomeClient.put(income);
+    }
+
+    public boolean createIncome(Income income) {
+        return incomeClient.post(income);
+    }
+
+    public boolean deleteIncome(Income income) {
+        return incomeClient.delete(income);
+    }
+
 }

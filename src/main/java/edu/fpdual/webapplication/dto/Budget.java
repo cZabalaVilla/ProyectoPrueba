@@ -3,7 +3,9 @@ package edu.fpdual.webapplication.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,14 +14,17 @@ public class Budget {
     private int budgetID;
     private String budgetName;
     private String description;
-    private LocalDateTime creationDate;
+    private List<Expense> expenseList;
+    private List<Income> incomeList;
+    private Date creationDate;
     //private Currency currency;
-    //private ArrayList<Expense> expenses;
 
-    public Budget(String budgetName, String description, LocalDateTime creationDate) {
+    public Budget(String budgetName, String description) {
         this.budgetName = budgetName;
         this.description = description;
-        this.creationDate = LocalDateTime.now();
+        this.expenseList = new ArrayList<>();
+        this.incomeList = new ArrayList<>();
+        this.creationDate = new Date();
     }
 
 }

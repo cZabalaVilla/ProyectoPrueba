@@ -3,12 +3,21 @@ package edu.fpdual.webapplication.dto;
 import java.util.Date;
 
 public class Expense {
-    private int userId;
+    private int budgetId;
     private int expenseId;
     private String expenseName;
-    private double amount;
     private String description;
-    private Date fecha;
-    private boolean isRecurring;
     private Category category;
+    private double amount;
+    private boolean isRecurring;
+    private Date date;
+
+    public Expense(String expenseName, String description, Category category, double amount, boolean isRecurring) {
+        this.expenseName = expenseName;
+        this.description = description;
+        this.category = category;
+        this.amount = amount;
+        this.isRecurring = isRecurring;
+        this.date = new Date();
+    }
 }

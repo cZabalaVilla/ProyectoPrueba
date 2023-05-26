@@ -8,13 +8,21 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class Income {
-    private int userId;
+    private int budgetId;
     private int incomeId;
     private String incomeName;
-    private double amount;
     private String description;
-    private Date fecha;
-    private boolean isRecurring;
     private Category category;
+    private double amount;
+    private boolean isRecurring;
+    private Date date;
 
+    public Income(String incomeName, String description, Category category, double amount, boolean isRecurring) {
+        this.incomeName = incomeName;
+        this.description = description;
+        this.category = category;
+        this.amount = amount;
+        this.isRecurring = isRecurring;
+        this.date = new Date();
+    }
 }
