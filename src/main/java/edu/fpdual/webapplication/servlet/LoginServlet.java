@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             String userNameReceived = request.getParameter("userName");
             Password userPasswordReceived = new Password(request.getParameter("userPassword"));
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-            User user = new UserService(new UserClient()).getUser(userNameReceived);
+            User user = new UserService(new UserClient()).getUserByName(userNameReceived);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
