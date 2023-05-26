@@ -28,7 +28,7 @@
         </div>-->
         <br/>
         <form method="post" action="/ProyectoPrueba/restore-password-servlet" >
-            <label for="floatingInput">Correo Electrónico</label>
+            <label for="form">Correo Electrónico</label>
             <br/>
             <br/>
             <input type="text" name="email" id="email" placeholder="nombre@ejemplo.com" required/>

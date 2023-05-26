@@ -30,22 +30,22 @@
         </div>-->
         <br/>
         <form method="post" action="/ProyectoPrueba/new-user-servlet" >
-            <label for="floatingInput">Correo Electrónico</label>
+            <label for="form">Nombre de usuario: </label>
             <br/>
-            <input type="email" id="floatingInput" placeholder="nombre@ejemplo.com" />
-            <br/>
-            <br/>
-            <label for="floatingPassword">Contraseña</label>
-            <br/>
-            <input type="password" id="floatingPassword" placeholder="Password" />
+            <input type="text" name="userName" id="userName" placeholder="Nombre123" required>
             <br/>
             <br/>
-            <label for="floatingPassword">Contraseña</label>
+            <label for="form">Correo Electrónico</label>
             <br/>
-            <input type="password" id="floatingPassword" placeholder="Password" />
+            <input type="email" id="email" name="email" placeholder="nombre@ejemplo.com" required/>
             <br/>
             <br/>
-            <button type="submit" name="submitBtn" value="" class="buttonA">Registrar</button>
+            <label for="form">Contraseña</label>
+            <br/>
+            <input type="password" id="userPassword" name="userPassword" placeholder="Contraseña" required/>
+            <br/>
+            <br/>
+            <button type="submit" name="submitBtn" value="Crear usuario" class="buttonA">Registrar</button>
             <br/>
             <br/>
             <p class="centerTxt"> <a href= <%=GlobalInfo.URL_JSP_LOGIN%> >¿Ya tiene cuenta?</a></p>

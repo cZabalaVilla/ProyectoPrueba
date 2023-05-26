@@ -29,14 +29,14 @@
             <% if (session.getAttribute(GlobalInfo.session) != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
             } %>
-            <label for="floatinInput">Nombre de usuario</label>
+            <label for="form">Nombre de usuario</label>
             <br/>
             <input type="text" id="userName" name="userName" placeholder="Nombre123" required/>
             <br/>
             <br/>
-            <label for="floatingPassword">Contraseña</label>
+            <label for="form">Contraseña</label>
             <br/>
-            <input type="password" id="userPassword" name="userPassword" placeholder="Password" required/>
+            <input type="password" id="userPassword" name="userPassword" placeholder="Contraseña" required/>
             <br/>
             <br/>
             <% if (request.getAttribute("error") != null){
