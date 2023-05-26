@@ -21,7 +21,7 @@ public class GlobalInfo {
     public static final String URL_JSP_RESTOREPASSWORD = URL_JSP + "/login/restorePassword.jsp";
     public static final String URL_JSP_PASSWORDCHANGED = URL_JSP + "/redir/passwordChanged.jsp";
 
-
+    public static final String URL_JSP_REGISTER = URL_JSP + "/login/register.jsp";
 
     /*
      * URL de los servlets
