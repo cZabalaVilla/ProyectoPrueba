@@ -55,7 +55,7 @@ textarea {
 input[type="submit"],
 button[name="action"] {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: rgb(122, 153, 219);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -65,7 +65,7 @@ button[name="action"] {
 
 input[type="submit"]:hover,
 button[name="action"]:hover{
-    background-color: #0056b3;
+    background-color: rgb(122, 218, 188);
 }
 
 .admin-panel-btn {

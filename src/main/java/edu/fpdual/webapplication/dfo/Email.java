@@ -18,13 +18,12 @@ public class Email {
             "yandex.com", "gmx.com"
     );
 
-    public Email(String email) {
+    public Email(String email) throws InvalidEmailException {
         try{
             checkEmail(email);
             this.email = email;
         }catch (InvalidEmailException e){
-            email = e.getMessage();
-            e.printStackTrace();
+            throw new InvalidEmailException(e.getMessage());
         }
     }
 
@@ -44,18 +43,9 @@ public class Email {
         }
     }
 
-    public boolean sendEmail(String newPassword,String userName){
-
-        return false;
-    }
     @Override
     public String toString() {
         return email;
     }
 }
 
-class InvalidEmailException extends Exception {
-    public InvalidEmailException(String message) {
-        super(message);
-    }
-}

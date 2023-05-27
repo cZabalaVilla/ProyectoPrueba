@@ -9,8 +9,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de objetos</title>
-    <link rel="stylesheet" href="./../../../css/style-pre.css" />
     <link rel="icon" href="http://localhost:8080/ProyectoPrueba/favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button[type="submit"],
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,22 +79,22 @@
         <button type="submit">Mostrar Lista</button>
     </form>
     <br/>
-    <button onclick="href='/ProyectoPrueba/index.jsp'">Volver al inicio</button>
+    <button onclick="location.href='/ProyectoPrueba/index.jsp'">Volver al inicio</button>
     <br/>
     <br/>
 
     <% List<String> objectList = (List<String>) request.getAttribute("objectList"); %>
-        <% if (objectList != null && !objectList.isEmpty()) { %>
-            <ul>
-                <% for (String obj : objectList) { %>
-                    <li>
-                        <%= obj %>
-                    </li>
-                    <% } %>
-            </ul>
-            <% } else if(request.getAttribute("error") != null){ %>
-                    <p style="color:red"><%= request.getAttribute("error") %></p>
-              <% } %>
+    <% if (objectList != null && !objectList.isEmpty()) { %>
+    <ul>
+        <% for (String obj : objectList) { %>
+        <li>
+            <%= obj %>
+        </li>
+        <% } %>
+    </ul>
+    <% } else if(request.getAttribute("error") != null){ %>
+    <p><%= request.getAttribute("error") %></p>
+    <% } %>
 </body>
 
 </html>

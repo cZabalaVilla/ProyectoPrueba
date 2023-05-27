@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import= "edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -31,16 +31,25 @@
             <label for="floatingInput">Correo Electrónico</label>
             <br/>
             <br/>
-            <input type="text" name="email" id="email" placeholder="nombre@ejemplo.com" required/>
+            <input type="text" name="email" id="email" placeholder="nombre@ejemplo.com" />
             <br/>
             <br/>
+                  <!-- Mensaje de error en caso de que haya algo incorrecto-->
+                  <% if (request.getAttribute("error") != null){ %>
+                    <p style="color:red"><%= request.getAttribute("error") %></p><br/>
+                  <% } else if(request.getAttribute("ok") != null){ %>
+                    <p><%= request.getAttribute("ok") %></p><br/>
+                  <% } %>
             <br/>
             <br/>
-            <button type="submit" name="submitBtn" value="Restablecer" class="buttonA">Enviar</button>
+                  <%if(request.getAttribute("ok") == null){ %>
+                    <button type="submit" name="submitBtn" value="Restablecer" class="buttonA">Enviar</button>
+                  <% } else { %>
+                    <a href="<%=GlobalInfo.URL_JSP_LOGIN%>">Volver al login</a>
+                  <% } %>
             <br/>
             <br/>
         </form>
-
     </div>
    <!-- Fin Cuerpo -->
 
