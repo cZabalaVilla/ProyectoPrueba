@@ -1,6 +1,5 @@
 package edu.fpdual.webservice.controller;
 
-import edu.fpdual.webservice.model.persistence.dao.Profile;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.UserManagerImpl;
 import edu.fpdual.webservice.service.UserService;
@@ -27,7 +26,7 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/all")
+    @Path("/all")
     public Response findAll() {
         try {
             return Response.ok().entity(userService.findAllUsers()).build();
@@ -38,41 +37,55 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{userId}")
-    public Response findByUserId(@PathParam("userId") int userId) {
+    @Path("/id/{user_id}")
+    public Response findByUserId(@PathParam("user_id") int userId) {
         try {
-            if (userId != 0) {
-                return Response.status(400).entity("Incorrect Parameters").build();
-            } else {
-                if (userService.findByUserId(userId).getUserId() <= 0) {
-                    return Response.status(400).entity("User Not Found").build();
-                }
-                return Response.ok().entity(userService.findByUserId(userId)).build();
+            if (userService.findByUserId(userId).getUserId() <= 0) {
+                return Response.status(400).entity("User Not Found").build();
             }
+            return Response.ok().entity(userService.findByUserId(userId)).build();
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
 
+    /*
+        @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response findByUserName(@QueryParam("user_name") String userName) {
+            try {
+                if (userName == null) {
+                    return Response.ok().entity(userService.findAllUsers()).build();
+                } else {
+                    User user = userService.findByUserName(userName);
+                    if (user == null || user.getUserId() <= 0) {
+                        return Response.status(404).entity("User Not Found").build();
+                    }
+                    return Response.ok().entity(user).build();
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                return Response.status(500).entity("Internal Error During DB Interaction").build();
+            }
+        }
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findByUserName(@QueryParam("user_name") String userName) {
+    @Path("/name/{user_name}")
+    public Response findByUserName(@PathParam("user_name") String userName) {
         try {
-            if (userName == null) {
-                return Response.ok().entity(userService.findAllUsers()).build();
-            } else {
-                User user = userService.findByUserName(userName);
-                if (user == null && user.getUserId() <= 0) {
-                    return Response.status(400).entity("User Not Found").build();
-                }
-                return Response.ok().entity(user).build();
+            User user = userService.findByUserName(userName);
+            if (user == null || user.getUserId() <= 0) {
+                return Response.status(404).entity("User Not Found").build();
             }
+            return Response.ok().entity(user).build();
         } catch (SQLException | ClassNotFoundException e) {
+
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
+
     @PUT
-    @Path("/put")
+    @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
@@ -89,7 +102,7 @@ public class UserController {
     }
 
     @POST
-    @Path("/post")
+    @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(User user) {
