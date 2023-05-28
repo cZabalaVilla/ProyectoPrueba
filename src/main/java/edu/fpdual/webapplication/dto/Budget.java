@@ -10,8 +10,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Budget {
-    private int userID;
-    private int budgetID;
+    private int userId;
+    private int budgetId;
     private String budgetName;
     private String description;
     private List<Expense> expenseList;

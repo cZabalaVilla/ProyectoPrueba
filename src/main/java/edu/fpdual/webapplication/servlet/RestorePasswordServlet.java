@@ -26,9 +26,10 @@ public class RestorePasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String notFoundError = "Email no encontrado";
-        String dispatcherURLRestore = "jsp/login/restorePassword.jsp";
         String generalError = "Ha ocurrido un error.";
         String ok = "Se ha enviado un email con tu nueva contraseña";
+
+        String dispatcherURLRestore = "jsp/login/restorePassword.jsp";
 
         try {
             ProfileService profileService = new ProfileService(new ProfileClient());
@@ -38,7 +39,7 @@ public class RestorePasswordServlet extends HttpServlet {
                 String newPassword = Password.resetPassword();
                 String bodyMesage = "Esta es tu nueva contraseña: " + newPassword;
 
-                if (new Sender().send(profile.getEmail(), "Restauración de contraseña", "<b>" + bodyMesage + "<b>")) {
+                if (new Sender().send(profile.getEmail(), "Restauración de contraseña", "<b>" + bodyMesage + "</b><br/>Link para restaurar contraseña: http://localhost:8080/ProyectoPrueba/jsp/login/updatePassword.jsp")) {
                     UserService userService = new UserService(new UserClient());
                     User user = userService.getUserById(profile.getUserId());
                     user.setUserPassword(new Password(newPassword).toString());
@@ -49,7 +50,7 @@ public class RestorePasswordServlet extends HttpServlet {
                     request.setAttribute("error", generalError);
                     request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);
                 }
-            }catch(InvalidEmailException e){
+            } catch (InvalidEmailException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);
             }

@@ -1,5 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
+import edu.fpdual.webapplication.dfo.InvalidPasswordException;
 import edu.fpdual.webapplication.dfo.Password;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,9 @@ public class User {
     private boolean admn;
 
 
-    public User(String userName, String userPassword, boolean admn) {
+    public User(String userName, String userPassword, boolean admn) throws InvalidPasswordException {
         this.userName = userName;
-        this.userPassword = new Password(userPassword,userName).toString();
+        this.userPassword = new Password(userPassword, userName).toString();
         this.admn = admn;
     }
 

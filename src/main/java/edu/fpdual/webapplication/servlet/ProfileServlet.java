@@ -22,26 +22,27 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String ok = "Campos actualizados.";
-        String error = "Ha ocurrido un error.";
+        String error = "No se ha podido actualizar el perfil.";
         String dispatcherURLProfile = "jsp/common/profile.jsp";
 
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
         User user = new UserService(new UserClient()).getUserByName(session.getUserName());
+        Profile userProfile = new ProfileService(new ProfileClient()).getProfile(user.getUserId());
 
         try {
-            Profile profile = new Profile(user.getUserId(),request.getParameter("description"),
-                    request.getParameter("email"),
-                    request.getParameter("link"),
-                    request.getParameter("location"),
-                    Integer.parseInt(request.getParameter("phone")));
-            if(new ProfileService(new ProfileClient()).updateProfile(profile)){
+            userProfile.setDescription(request.getParameter("description"));
+            userProfile.setEmail(request.getParameter("email"));
+            userProfile.setLink(request.getParameter("link"));
+            userProfile.setLocation(request.getParameter("location"));
+            userProfile.setPhone(Integer.parseInt(request.getParameter("phone")));
+            if (new ProfileService(new ProfileClient()).updateProfile(userProfile)) {
                 request.setAttribute("ok", ok);
                 request.getRequestDispatcher(dispatcherURLProfile).forward(request, response);
             } else {
                 request.setAttribute("error", error);
                 request.getRequestDispatcher(dispatcherURLProfile).forward(request, response);
             }
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             request.setAttribute("error", error);
             request.getRequestDispatcher(dispatcherURLProfile).forward(request, response);
             e.printStackTrace();

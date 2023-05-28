@@ -18,28 +18,37 @@
         <br/>
         <h3>Restaurar Contraseña</h3>
     </div>
+    <!-- Para que salga el error
+        <p>E-Mail o contraseña incorrecto.</p>
+    -->
     <br/>
-    <form method="post" action="/ProyectoPrueba/restore-password-servlet">
-        <label for="email">Correo Electrónico</label>
+    <form method="post" action="/ProyectoPrueba/update-password-servlet">
+        <label for="code">Código de restablecimiento</label>
         <br/>
         <br/>
-        <input type="text" name="email" id="email" placeholder="nombre@ejemplo.com"/>
+        <input type="text" name="code" id="code" required/>
+        <br/>
+        <br/>
+        <label for="newPassword">Nueva contraseña</label>
+        <br/>
+        <br/>
+        <input type="text" name="newPassword" id="newPassword" required/>
         <br/>
         <br/>
         <!-- Mensaje de error en caso de que haya algo incorrecto-->
         <% if (request.getAttribute("error") != null) { %>
         <div class="errorAlert">
-            <p style="color:red"><%=request.getAttribute("error")%>
-            </p>
-        </div>
+            <p style="color:red"><%= request.getAttribute("error") %>
+            </p></div>
+        <br/>
         <% } else if (request.getAttribute("ok") != null) { %>
         <p><%= request.getAttribute("ok") %>
         </p>
-        <% } %>
+        <%}%>
         <br/>
         <br/>
         <%if (request.getAttribute("ok") == null) { %>
-        <button type="submit" name="submitBtn" value="Restablecer" class="buttonA">Enviar</button>
+        <button type="submit" name="submitBtn" value="Aceptar" class="buttonA">Enviar</button>
         <% } else { %>
         <a href="<%=GlobalInfo.URL_JSP_LOGIN%>">Volver al login</a>
         <% } %>
@@ -47,6 +56,6 @@
         <br/>
     </form>
 </div>
-</body>
 
+</body>
 </html>

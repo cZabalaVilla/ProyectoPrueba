@@ -15,6 +15,7 @@ public class BudgetService {
     public String ping() {
         return budgetClient.ping();
     }
+
     public Budget getBudget(String budgetName) {
         return budgetClient.get(budgetName);
     }

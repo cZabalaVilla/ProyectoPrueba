@@ -44,23 +44,30 @@ public class UserClient extends Client<User> {
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
-/*
-    public User get(String userName) {
-        try {
-            URI uri = UriBuilder.fromPath(clientPath)
-                    .queryParam("user_name", userName)
-                    .build();
 
-            return webTarget
-                    .path(uri.toString())
-                    .request(MediaType.APPLICATION_JSON)
-                    .get(User.class);
-        } catch (BadRequestException e) {
-            // Controlar el caso cuando se recibe un status 400
-            return null;
-        }
+    public User getPassword(String userPassword) {
+        return webTarget.path(clientPath + "/password/" + userPassword)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
     }
-*/
+
+    /*
+        public User get(String userName) {
+            try {
+                URI uri = UriBuilder.fromPath(clientPath)
+                        .queryParam("user_name", userName)
+                        .build();
+
+                return webTarget
+                        .path(uri.toString())
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(User.class);
+            } catch (BadRequestException e) {
+                // Controlar el caso cuando se recibe un status 400
+                return null;
+            }
+        }
+    */
     @Override
     public boolean put(User user) {
         return webTarget.path(clientPath + "/update")

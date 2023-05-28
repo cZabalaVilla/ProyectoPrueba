@@ -10,19 +10,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Email {
-    private String email;
-
     private static final List<String> commonDomains = Arrays.asList(
             "gmail.com", "yahoo.com", "outlook.com", "hotmail.com",
             "aol.com", "icloud.com", "mail.com", "protonmail.com",
             "yandex.com", "gmx.com"
     );
+    private String email;
 
     public Email(String email) throws InvalidEmailException {
-        try{
+        try {
             checkEmail(email);
             this.email = email;
-        }catch (InvalidEmailException e){
+        } catch (InvalidEmailException e) {
             throw new InvalidEmailException(e.getMessage());
         }
     }

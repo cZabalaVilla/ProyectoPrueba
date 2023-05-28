@@ -1,7 +1,6 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.Report;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -11,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-public class ReportClient extends Client<Report>{
+public class ReportClient extends Client<Report> {
 
     private final WebTarget webTarget;
     private final String clientPath = "report/";

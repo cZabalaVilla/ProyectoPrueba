@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-public class ExpenseClient extends Client<Expense>{
+public class ExpenseClient extends Client<Expense> {
     private final WebTarget webTarget;
     private final String clientPath = "budget/expense/";
 

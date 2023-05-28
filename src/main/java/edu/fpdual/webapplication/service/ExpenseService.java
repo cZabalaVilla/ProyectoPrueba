@@ -3,7 +3,6 @@ package edu.fpdual.webapplication.service;
 import edu.fpdual.webapplication.client.ExpenseClient;
 import edu.fpdual.webapplication.dto.Expense;
 
-
 import java.util.List;
 
 public class ExpenseService {
@@ -16,6 +15,7 @@ public class ExpenseService {
     public String ping() {
         return expenseClient.ping();
     }
+
     public Expense getExpense(String expenseName) {
         return expenseClient.get(expenseName);
     }

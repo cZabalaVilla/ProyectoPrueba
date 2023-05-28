@@ -16,6 +16,7 @@ public class IncomeService {
     public String ping() {
         return incomeClient.ping();
     }
+
     public Income getIncome(String incomeName) {
         return incomeClient.get(incomeName);
     }

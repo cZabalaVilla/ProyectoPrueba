@@ -32,13 +32,13 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String userNameReceived = request.getParameter("userName");
-            Password userPasswordReceived = new Password(request.getParameter("userPassword"));
+            String userPasswordReceived = new Password(request.getParameter("userPassword")).toString();
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
             User user = new UserService(new UserClient()).getUserByName(userNameReceived);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
-            } else if (!userPasswordReceived.toString().equals(user.getUserPassword())) {
+            } else if (!userPasswordReceived.equals(user.getUserPassword())) {
                 request.setAttribute("error", incorrectError);
                 request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {

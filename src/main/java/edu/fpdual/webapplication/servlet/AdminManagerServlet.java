@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 
 import java.io.IOException;
@@ -23,33 +24,40 @@ public class AdminManagerServlet extends HttpServlet {
         String isAdminError = "El usuario ya era un administrador.";
         String isNotAdminError = "El usuario no es un administrador.";
         String notFoundError = "El nombre de usuario no se encuentra en la base de datos.";
+        String cannotUpdateError = "No se ha podido actualizar el usuario";
+
         String URL_Dispatcher = "jsp/admin/adminManager.jsp";
 
         try {
             User user = new UserService(new UserClient()).getUserByName(request.getParameter("userName"));
-            if(request.getParameter("action").equals("update")){
-                if(!user.isAdmn()) {
+            if (request.getParameter("action").equals("update")) {
+                if (!user.isAdmn()) {
                     user.setAdmn(true);
-                    new UserService(new UserClient()).updateUser(user);
-                    request.setAttribute("ok", updated);
-                    request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    if(new UserService(new UserClient()).updateUser(user)) {
+                        request.setAttribute("ok", updated);
+                        request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    } else {
+                        request.setAttribute("error", cannotUpdateError);
+                        request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    }
                 } else {
                     request.setAttribute("error", isAdminError);
                     request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
                 }
-            } else if(request.getParameter("action").equals("delete")){
-                if(user.isAdmn()) {
+            } else if (request.getParameter("action").equals("delete")) {
+                if (user.isAdmn()) {
                     user.setAdmn(false);
-                    new UserService(new UserClient()).updateUser(user);
-                    request.setAttribute("ok", deleted);
-                    request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    if (new UserService(new UserClient()).updateUser(user)) {
+                        request.setAttribute("ok", deleted);
+                        request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    } else {
+                        request.setAttribute("error", cannotUpdateError);
+                        request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
+                    }
                 } else {
                     request.setAttribute("error", isNotAdminError);
                     request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
                 }
-            }else {
-                request.setAttribute("error", "Ha ocurrido un error inesperado.");
-                request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
             }
         } catch (NotFoundException | NullPointerException e) {
             request.setAttribute("error", notFoundError);

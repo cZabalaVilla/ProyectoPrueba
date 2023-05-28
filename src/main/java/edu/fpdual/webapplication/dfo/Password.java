@@ -17,14 +17,27 @@ public class Password {
         this.password = hashPassword(password);
     }
 
-    public Password(String password, String userName) {
+    public Password(String password, String userName) throws InvalidPasswordException {
         try {
             checkPassword(password, userName);
             this.password = hashPassword(password);
         } catch (InvalidPasswordException e) {
-            e.getMessage();
-            e.printStackTrace();
+            throw new InvalidPasswordException(e.getMessage());
         }
+    }
+
+    public static String resetPassword() {
+        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        final int LENGTH = 8;
+        SecureRandom random = new SecureRandom();
+        StringBuilder newCodePassword = new StringBuilder(LENGTH);
+
+        for (int i = 0; i < LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            newCodePassword.append(randomChar);
+        }
+        return newCodePassword.toString();
     }
 
     private String hashPassword(String password) {
@@ -72,7 +85,7 @@ public class Password {
             throw new InvalidPasswordException("La contraseña debe contener al menos un carácter especial.");
         }
     }
-
+/*
     public boolean comparePassword(String storedHash) {
         boolean passwordMatches;
         try {
@@ -94,31 +107,12 @@ public class Password {
         }
         return passwordMatches;
     }
-
-    public static String resetPassword() {
-        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        final int LENGTH = 8;
-        SecureRandom random = new SecureRandom();
-        StringBuilder newCodePassword = new StringBuilder(LENGTH);
-
-        for (int i = 0; i < LENGTH; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            newCodePassword.append(randomChar);
-        }
-        return newCodePassword.toString();
-    }
-
+*/
     @Override
     public String toString() {
         return password;
     }
-}
 
-class InvalidPasswordException extends Exception {
-    public InvalidPasswordException(String message) {
-        super(message);
-    }
 }
 
 
