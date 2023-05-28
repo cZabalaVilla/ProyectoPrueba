@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.sql.Date;
+
 @Data
 @NoArgsConstructor
 public class Expense implements Comparable<Expense>{
@@ -16,7 +18,7 @@ public class Expense implements Comparable<Expense>{
     private String description;
     private double amount;
     private boolean isRecurrent;
-    private LocalDate creationDate;
+    private Date creationDate;
     //private LocalTime creationTime;
 
     public Expense (String expenseName, String description, double amount, boolean isRecurrent) {
@@ -24,7 +26,6 @@ public class Expense implements Comparable<Expense>{
         this.description = description;
         this.amount = amount;
         this.isRecurrent = isRecurrent;
-        this.creationDate = LocalDate.now();
         //this.creationTime = LocalTime.now();
     }
 
@@ -36,10 +37,7 @@ public class Expense implements Comparable<Expense>{
             this.description = result.getString("description");
             this.amount = result.getDouble("amount");
             this.isRecurrent = result.getBoolean("isRecurrent");
-            this.creationDate = result.getDate("creationDate")
-                    .toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
+
             //this.creationTime = result.getTime("creationTime");
 
         } catch (SQLException e) {

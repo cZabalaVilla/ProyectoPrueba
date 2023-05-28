@@ -49,6 +49,20 @@ public class UserController {
         }
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/password/{user_password}")
+    public Response findByUserPassword(@PathParam("user_password") String userPassword) {
+        try {
+            if (userService.findByUserPassword(userPassword).getUserId() <= 0) {
+                return Response.status(400).entity("User Not Found").build();
+            }
+            return Response.ok().entity(userService.findByUserPassword(userPassword)).build();
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
     /*
         @GET
         @Produces(MediaType.APPLICATION_JSON)
@@ -94,7 +108,7 @@ public class UserController {
             if (userToUpdate != null) {
                 return Response.status(200).entity(userService.updateUser(user)).build();
             } else {
-                return Response.status(400).entity("User Not Found").build();
+                return Response.status(404).entity("User Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();

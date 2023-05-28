@@ -36,6 +36,12 @@ public class UserService {
         }
     }
 
+    public User findByUserPassword(String userPassword) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return userManager.findBy(con, "userPassword", userPassword);
+        }
+    }
+
     public boolean deleteUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.delete(con, user);

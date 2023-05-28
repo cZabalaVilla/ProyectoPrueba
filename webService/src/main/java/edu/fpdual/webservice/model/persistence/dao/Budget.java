@@ -9,9 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -22,7 +20,7 @@ public class Budget implements Comparable<Budget>{
     private String description;
     private List<Income> incomeList;
     private List<Expense> expenseList;
-    private LocalDate creationDate;
+    private Date creationDate;
     //private LocalTime creationTime;
 
     //Atributo de datos
@@ -36,7 +34,6 @@ public class Budget implements Comparable<Budget>{
         this.description = description;
         this.incomeList = new ArrayList<>();
         this.expenseList = new ArrayList<>();
-        this.creationDate = LocalDate.now();
         //this.creationTime = LocalTime.now();
     }
 
@@ -46,14 +43,8 @@ public class Budget implements Comparable<Budget>{
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
-            List inList = Arrays.asList(result.getArray("incomeList"));
-            this.incomeList = inList;
-            List exList = Arrays.asList(result.getArray("expenseList"));
-            this.expenseList = exList;
-            this.creationDate = result.getDate("creationDate")
-                    .toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
+            this.incomeList = Collections.singletonList((Income) result.getArray("incomeList"));
+            this.expenseList = Collections.singletonList((Expense) result.getArray("expenseList"));
             //this.creationTime = result.getTime("creationTime");
         } catch (SQLException e) {
             e.printStackTrace();

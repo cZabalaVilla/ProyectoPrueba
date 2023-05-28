@@ -10,8 +10,8 @@ import java.util.HashSet;
 @Data
 @NoArgsConstructor
 public class Category {
-
     private int categoryId;
+    private int userId;
     private String categoryName;
 
     public Category(String categoryName) {
