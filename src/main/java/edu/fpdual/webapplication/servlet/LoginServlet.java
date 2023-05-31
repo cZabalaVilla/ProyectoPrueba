@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
         String dispatcherURLLogin = "jsp/login/login.jsp";
 
         try {
-            String userNameReceived = request.getParameter("userName");
+            String userNameReceived = request.getParameter("userName").toLowerCase();
             String userPasswordReceived = new Password(request.getParameter("userPassword")).toString();
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
             User user = new UserService(new UserClient()).getUserByName(userNameReceived);

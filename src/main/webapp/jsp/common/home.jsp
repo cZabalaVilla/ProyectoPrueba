@@ -5,7 +5,7 @@
 <html lang="es">
 
 <head>
-    <%@ include file="../headTemplate.jsp" %>
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Home</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_pre.css"/>
 </head>

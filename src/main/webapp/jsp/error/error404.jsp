@@ -5,7 +5,7 @@
 <html lang="es">
 
 <head>
-    <%@ include file="../headTemplate.jsp" %>
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Vaya...</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_error404.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap" rel="stylesheet">

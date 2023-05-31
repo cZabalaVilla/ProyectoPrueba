@@ -19,14 +19,4 @@ public class User {
         this.userPassword = new Password(userPassword, userName).toString();
         this.isAdmin = isAdmin;
     }
-
-    @Override
-    public String toString() {
-        String esAdmin = "NO";
-        if (isAdmin) esAdmin = "SI";
-        return "Usuario: " + userName
-                + " | Id de usuario: " + userId
-                + " | Password: " + userPassword
-                + " | Administrador?: " + esAdmin;
-    }
 }

@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <%@ include file="jsp/headTemplate.jsp" %>
+    <%@ include file="jsp/insert/headTemplate.jsp" %>
     <title>Fit-Pocket</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>

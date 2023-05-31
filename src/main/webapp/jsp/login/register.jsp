@@ -5,15 +5,13 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Register Fit-Pocket</title>
-
-    <link rel="stylesheet" href="/ProyectoPrueba/css/style_v2.css" />
-
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 </head>
+
 <body>
    <!-- Cuerpo -->
    <section class="boxBody">
@@ -29,18 +27,18 @@
             <p>E-Mail o contraseña incorrecto.</p>
         </div>-->
         <br/>
-        <form method="post" action="/ProyectoPrueba/new-user-servlet" >
-            <label for="form">Nombre de usuario: </label>
+        <form method="post" action="<%=GlobalInfo.URL_JSP_REGISTER%>>" >
+            <label for="userName">Nombre de usuario: </label>
             <br/>
             <input type="text" name="userName" id="userName" placeholder="Nombre123" required>
             <br/>
             <br/>
-            <label for="form">Correo Electrónico</label>
+            <label for="email">Correo Electrónico</label>
             <br/>
             <input type="email" id="email" name="email" placeholder="nombre@ejemplo.com" required/>
             <br/>
             <br/>
-            <label for="form">Contraseña</label>
+            <label for="userPassword">Contraseña</label>
             <br/>
             <input type="password" id="userPassword" name="userPassword" placeholder="Contraseña" required/>
             <br/>

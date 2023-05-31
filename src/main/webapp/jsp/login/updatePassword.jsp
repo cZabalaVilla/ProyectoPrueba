@@ -1,10 +1,11 @@
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <%@ include file="../headTemplate.jsp" %>
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Login Fit-Pocket</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>
@@ -22,7 +23,7 @@
         <p>E-Mail o contraseña incorrecto.</p>
     -->
     <br/>
-    <form method="post" action="/ProyectoPrueba/update-password-servlet">
+    <form method="post" action="<%=GlobalInfo.URL_SERVLET_UPDATEPASSWORD%>">
         <label for="code">Código de restablecimiento</label>
         <br/>
         <br/>

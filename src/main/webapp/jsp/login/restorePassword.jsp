@@ -1,5 +1,6 @@
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,11 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Fit-Pocket</title>
 
-    <link rel="stylesheet" href="/ProyectoPrueba/css/style_v2.css" />
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 
 </head>
 <body>
-   <!-- Cuerpo -->
    <div class="boxBody">
         <div>
             <a href="/ProyectoPrueba/" class="logoTxt">
@@ -27,8 +27,8 @@
             <p>E-Mail o contraseña incorrecto.</p>
         </div>-->
         <br/>
-        <form method="post" action="/ProyectoPrueba/restore-password-servlet" >
-            <label for="form">Correo Electrónico</label>
+        <form method="post" action="<%=GlobalInfo.URL_SERVLET_RESTOREPASSWORD%>>" >
+            <label for="email">Correo Electrónico</label>
             <br/>
             <br/>
             <input type="text" name="email" id="email" placeholder="nombre@ejemplo.com" required/>
@@ -42,7 +42,5 @@
         </form>
 
     </div>
-   <!-- Fin Cuerpo -->
-
 </body>
 </html>

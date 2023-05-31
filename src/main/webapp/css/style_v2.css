@@ -152,6 +152,7 @@ textarea {
     padding: 8px;
     margin-top: 0.2rem;
     margin-left: 0.5rem;
+    resize: none;
 }
 
 #incomeAmountInput, #expenseAmountInput {

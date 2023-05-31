@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.utilities.email;
+package edu.fpdual.webapplication.utilities.emailSender;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,6 @@ import java.util.Properties;
 
 public class Sender {
 
-    private final String emailApp = "fitpocketapp@gmail.com";
     @Setter
     @Getter
     Properties mailProp = new Properties();
@@ -28,7 +27,6 @@ public class Sender {
      */
     public Sender() {
         try {
-            // Loads all the properties of file "mail.properties".
             mailProp.load(getClass().getClassLoader().getResourceAsStream("mail.properties"));
             credentialProp.load(getClass().getClassLoader().getResourceAsStream("credentials.properties"));
         } catch (IOException e) {
@@ -45,35 +43,30 @@ public class Sender {
      * @return a {@link boolean} indicating if the email was sent or not.
      */
     public boolean send(String to, String subject, String content) {
-        // Get the Session object.// and pass username and password
+        boolean result;
         Session session = createSession();
 
         try {
-            // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(emailApp));
+            message.setFrom(new InternetAddress(credentialProp.getProperty(CredentialsConstants.USER)));
 
-            // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            // Set Subject: header field
             message.setSubject(subject);
 
-            // Now set the actual message
             message.setContent(content, "text/html");
 
             System.out.println("sending...");
-            // Send message
             Transport.send(message);
             System.out.println("Sent message successfully....");
-            return true;
+            result = true;
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            return false;
+            result = false;
         }
 
+        return result;
     }
 
     /**
@@ -86,27 +79,21 @@ public class Sender {
      * @return a {@link boolean} indicating if the email was sent or not.
      */
     public boolean send(String to, String subject, String text, String content) throws FileNotFoundException, IOException {
-        // Get the Session object.// and pass username and password
+        boolean result = false;
+        boolean finished = false;
         Session session = createSession();
         try {
-            // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(emailApp));
+            message.setFrom(new InternetAddress(credentialProp.getProperty(CredentialsConstants.USER)));
 
-            // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-            // Set Subject: header field
             message.setSubject(subject);
 
-            // Attach a file.
-            //First Part of the body: text
             BodyPart texto = new MimeBodyPart();
             texto.setContent(text, "text/html");
 
-            //Second Part of the body: project properties file.
             File file = new File(content);
 
             InputStream fileData = getClass().getClassLoader().getResourceAsStream("mail.properties");
@@ -119,31 +106,29 @@ public class Sender {
                 }
             } catch (NullPointerException e) {
                 e.printStackTrace();
-                return false;
+                finished = true;
+            }
+            if (!finished) {
+                BodyPart fichero = new MimeBodyPart();
+                fichero.setDataHandler(new DataHandler(new FileDataSource(file)));
+                fichero.setFileName(file.getName());
+
+                Multipart multiPart = new MimeMultipart();
+                multiPart.addBodyPart(texto);
+                multiPart.addBodyPart(fichero);
+
+                message.setContent(multiPart);
+
+                System.out.println("sending...");
+                Transport.send(message);
+                System.out.println("Sent message successfully....");
+                result = true;
             }
 
-            BodyPart fichero = new MimeBodyPart();
-            fichero.setDataHandler(new DataHandler(new FileDataSource(file)));
-            fichero.setFileName(file.getName());
-
-            //Group all part in a object
-            Multipart multiPart = new MimeMultipart();
-            multiPart.addBodyPart(texto);
-            multiPart.addBodyPart(fichero);
-
-            //Set Message Content
-            message.setContent(multiPart);
-
-            System.out.println("sending...");
-            // Send message
-            Transport.send(message);
-            System.out.println("Sent message successfully....");
-            return true;
         } catch (MessagingException | NullPointerException mex) {
             mex.printStackTrace();
-            return false;
         }
-
+        return result;
     }
 
     private Session createSession() {
@@ -153,10 +138,7 @@ public class Sender {
                         credentialProp.getProperty(CredentialsConstants.PASSWD));
             }
         });
-
-        // Used to debug SMTP issues
         session.setDebug(true);
         return session;
     }
-
 }

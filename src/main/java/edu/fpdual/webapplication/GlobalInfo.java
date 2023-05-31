@@ -42,7 +42,9 @@ public class GlobalInfo {
     public static final String URL_SERVLET_LOGOUT = URL_SERVLET_ + "/logout-servlet";
     public static final String URL_SERVLET_REGISTER = URL_SERVLET_ + "/register-servlet";
     public static final String URL_SERVLET_LISTS = URL_SERVLET_ + "/lists-servlet";
-    public static final String URL_SERVLET_PINGLIST = "/ping-list-servlet.jsp";
+    public static final String URL_SERVLET_PINGLIST = URL_SERVLET_ + "/ping-list-servlet";
+    public static final String URL_SERVLET_UPDATEPASSWORD = URL_SERVLET_ + "/update-password-servlet";
+    public static final String URL_SERVLET_RESTOREPASSWORD = URL_SERVLET_ + "/restore-password-servlet";
 
 
     /*

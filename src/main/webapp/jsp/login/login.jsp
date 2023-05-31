@@ -5,13 +5,9 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Login</title>
-    <!-- El css hay que ponerlo como ruta absoluta. -->
-   <link rel="stylesheet" href="/ProyectoPrueba/css/style_v2.css" />
-   <link rel="icon" href="http://localhost:8080/ProyectoPrueba/favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 </head>
 
 <body>
@@ -24,17 +20,16 @@
             <h3>Entrar</h3>
         </div>
         <br/>
-        <form method="POST" action= <%=GlobalInfo.URL_SERVLET_LOGIN%> >
-            <!-- Verificación de la sesión por si estuviera creada -->
+        <form method="POST" action=<%=GlobalInfo.URL_SERVLET_LOGIN%>>
             <% if (session.getAttribute(GlobalInfo.session) != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
             } %>
-            <label for="form">Nombre de usuario</label>
+            <label for="userName">Nombre de usuario</label>
             <br/>
             <input type="text" id="userName" name="userName" placeholder="Nombre123" required/>
             <br/>
             <br/>
-            <label for="form">Contraseña</label>
+            <label for="userPassword">Contraseña</label>
             <br/>
             <input type="password" id="userPassword" name="userPassword" placeholder="Contraseña" required/>
             <br/>

@@ -1,3 +1,5 @@
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
+
 <div class="mainNav">
     <div class="mainLinkNav">
         <ul>

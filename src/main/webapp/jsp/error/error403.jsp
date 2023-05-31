@@ -5,7 +5,7 @@
 <html lang="es">
 
 <head>
-    <%@ include file="../headTemplate.jsp" %>
+    <%@ include file="../insert/headTemplate.jsp" %>
     <meta http-equiv="refresh" content="3; url=<%= GlobalInfo.URL_JSP_HOME %>"/>
     <title>Acceso denegado</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_error403.css"/>

@@ -1,3 +1,5 @@
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
+
 <header>
     <a href="#" class="logoSidebar">
        <p>Fit-Pocket</p>

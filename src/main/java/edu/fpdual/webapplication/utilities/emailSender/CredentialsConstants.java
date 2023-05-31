@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.utilities.email;
+package edu.fpdual.webapplication.utilities.emailSender;
 
 
 public class CredentialsConstants {
@@ -7,4 +7,3 @@ public class CredentialsConstants {
     public static final String USER = "mail.smtp.user";
 
 }
-

@@ -14,7 +14,7 @@
 <head>
     <%@ include file="../insert/headTemplate.jsp" %>
     <title>Perfil</title>
-    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_profile.css" />
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 </head>
 <body>
     <div class="container">
@@ -24,41 +24,41 @@
             <div class="mainBlock">
                 <div class="content">
                      <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
-                    <% User user = new UserService(new UserClient()).getUser(thisSession.getUserName()); %>
+                    <% User user = new UserService(new UserClient()).getUserByName(thisSession.getUserName()); %>
                     <% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
-                    <img src="./img/userImg.png" class="profileImg" />
+                    <img src="<%=GlobalInfo.URL_PROYECTO%>/img/userImg.png" class="profileImg" alt="Tu foto de perfil"/>
                     <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>" >
-                        <label for="form">Nombre</label>
+                        <label for="userName">Nombre</label>
                         <br />
-                        <input type="text" id="userName" name="userName" value="<%= profile.getUserName() %>" />
+                        <input type="text" id="userName" name="userName" value="<%= user.getUserName() %>" />
                         <br />
                         <br />
-                        <label for="form">Correo Electrónico</label>
+                        <label for="email">Correo Electrónico</label>
                         <br />
                         <input type="email" id="email" name="email" value="<%= profile.getEmail() %>" />
                         <br />
                         <br />
-                        <label for="form">Página Web</label>
+                        <label for="link">Página Web</label>
                         <br />
                         <input type="url" id="link" name="link" value="<%= profile.getLink() %>" />
                         <br />
                         <br />
-                        <label for="form">Ubicación</label>
+                        <label for="location">Ubicación</label>
                         <br />
                         <input type="text" id="location" name="location" value="<%= profile.getLocation() %>" />
                         <br />
                         <br />
-                        <label for="form">Teléfono</label>
+                        <label for="phone">Teléfono</label>
                         <br />
                         <input type="number" id="phone" name="phone" value="<%= profile.getPhone() %>" />
                         <br />
                         <br />
-                        <label for="form">Bio</label>
+                        <label for="description">Bio</label>
                         <br />
-                        <textarea id="description" name="description" rows="5" cols="65"></textarea>
+                        <textarea id="description" name="description" rows="5" cols="65" placeholder="<%= profile.getDescription() %>"></textarea>
                         <br />
                         <br />
-                         <-% if (request.getAttribute("error") != null) { %>
+                         <% if (request.getAttribute("error") != null) { %>
                             <p class="errorAlert"><%= request.getAttribute("error") %></p><br/>
                         <% } else if (request.getAttribute("ok") != null) { %>
                             <p><%= request.getAttribute("ok") %></p>
@@ -67,11 +67,7 @@
                     </form>
                 </div>
             </div>
-            <footer>
-                <div>
-                    <p>Trabajo Dual - Accenture</p>
-                </div>
-            </footer>
+            <%@ include file="../insert/footer.jsp" %>
         </main>
     </div>
 </body>
