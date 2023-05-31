@@ -6,45 +6,74 @@
 <%@ page import="edu.fpdual.webapplication.service.ProfileService" %>
 <%@ page import="edu.fpdual.webapplication.client.UserClient" %>
 <%@ page import="edu.fpdual.webapplication.client.ProfileClient" %>
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <%@ include file="../headTemplate.jsp" %>
+    <%@ include file="../insert/headTemplate.jsp" %>
     <title>Perfil</title>
-    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_profile.css"/>
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_profile.css" />
 </head>
-
 <body>
-<h1>Formulario de Usuario</h1>
-<% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
-<% User user = new UserService(new UserClient()).getUserByName(thisSession.getUserName()); %>
-<% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
-<form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>">
-    <label for="description">Descripción:</label>
-    <textarea id="description" name="description"></textarea>
-
-    <label for="email">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" value="<%= profile.getEmail() %>">
-
-    <label for="link">Enlace:</label>
-    <input type="url" id="link" name="link" value="<%= profile.getLink() %>">
-
-    <label for="location">Ubicación:</label>
-    <input type="text" id="location" name="location" value="<%= profile.getLocation() %>">
-
-    <label for="phone">Teléfono:</label>
-    <input type="number" id="phone" name="phone" value="<%= profile.getPhone() %>">
-    <% if (request.getAttribute("error") != null) { %>
-    <p style="color:red"><%= request.getAttribute("error") %>
-    </p><br/>
-    <% } else if (request.getAttribute("ok") != null) { %>
-    <p><%= request.getAttribute("ok") %>
-    </p>
-    <% } %>
-    <input type="submit" value="Guardar">
-</form>
+    <div class="container">
+        <%@ include file="../insert/header.jsp" %>
+        <main>
+            <%@ include file="../insert/mainNav.jsp" %>
+            <div class="mainBlock">
+                <div class="content">
+                     <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
+                    <% User user = new UserService(new UserClient()).getUser(thisSession.getUserName()); %>
+                    <% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
+                    <img src="./img/userImg.png" class="profileImg" />
+                    <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>" >
+                        <label for="form">Nombre</label>
+                        <br />
+                        <input type="text" id="userName" name="userName" value="<%= profile.getUserName() %>" />
+                        <br />
+                        <br />
+                        <label for="form">Correo Electrónico</label>
+                        <br />
+                        <input type="email" id="email" name="email" value="<%= profile.getEmail() %>" />
+                        <br />
+                        <br />
+                        <label for="form">Página Web</label>
+                        <br />
+                        <input type="url" id="link" name="link" value="<%= profile.getLink() %>" />
+                        <br />
+                        <br />
+                        <label for="form">Ubicación</label>
+                        <br />
+                        <input type="text" id="location" name="location" value="<%= profile.getLocation() %>" />
+                        <br />
+                        <br />
+                        <label for="form">Teléfono</label>
+                        <br />
+                        <input type="number" id="phone" name="phone" value="<%= profile.getPhone() %>" />
+                        <br />
+                        <br />
+                        <label for="form">Bio</label>
+                        <br />
+                        <textarea id="description" name="description" rows="5" cols="65"></textarea>
+                        <br />
+                        <br />
+                         <-% if (request.getAttribute("error") != null) { %>
+                            <p class="errorAlert"><%= request.getAttribute("error") %></p><br/>
+                        <% } else if (request.getAttribute("ok") != null) { %>
+                            <p><%= request.getAttribute("ok") %></p>
+                        <% } %>
+                        <button type="submit" name="submitBtn" value="Guardar" class="buttonC">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+            <footer>
+                <div>
+                    <p>Trabajo Dual - Accenture</p>
+                </div>
+            </footer>
+        </main>
+    </div>
 </body>
 
 </html>
