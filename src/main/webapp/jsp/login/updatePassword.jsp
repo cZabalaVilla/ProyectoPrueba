@@ -19,9 +19,6 @@
         <br/>
         <h3>Restaurar Contraseña</h3>
     </div>
-    <!-- Para que salga el error
-        <p>E-Mail o contraseña incorrecto.</p>
-    -->
     <br/>
     <form method="post" action="<%=GlobalInfo.URL_SERVLET_UPDATEPASSWORD%>">
         <label for="code">Código de restablecimiento</label>
