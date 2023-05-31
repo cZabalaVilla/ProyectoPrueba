@@ -24,6 +24,12 @@ public class ExpenseService {
         }
     }
 
+    public List<Expense> findAllExpensesBy(String field, int value) throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findAllBy(con,field,value);
+        }
+    }
+
     public Expense findByExpenseDate(LocalDate expenseDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.findBy(con, "incomeDate", expenseDate);

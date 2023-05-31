@@ -1,6 +1,5 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
-import edu.fpdual.webservice.model.persistence.dao.Expense;
 import edu.fpdual.webservice.model.persistence.dao.Income;
 import edu.fpdual.webservice.model.persistence.manager.IncomeManager;
 
@@ -10,14 +9,15 @@ import java.util.List;
 
 public class IncomeManagerImpl implements IncomeManager {
     final String tableName = "INCOME";
+
     @Override
     public List<Income> findAll(Connection con) {
         List<Income> entities = new ArrayList<>();
-        String query = "SELECT * FROM " +tableName;
+        String query = "SELECT * FROM " + tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 entities.add(new Income(result));
             }
         } catch (SQLException e) {
@@ -30,7 +30,7 @@ public class IncomeManagerImpl implements IncomeManager {
     @Override
     public List<Income> findAllBy(Connection con, String fieldName, Object value) {
         List<Income> entities = new ArrayList<>();
-        String query = "SELECT * FROM " +tableName +" WHERE " +fieldName +" = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -112,8 +112,8 @@ public class IncomeManagerImpl implements IncomeManager {
 
     @Override
     public boolean update(Connection con, Income income) {
-        boolean  result;
-        String query = "UPDATE " +tableName + " SET incomeName = ?, description = ?, amount = ?, isRecurrent = ?, creationDate = ? WHERE incomeId = ?";
+        boolean result;
+        String query = "UPDATE " + tableName + " SET incomeName = ?, description = ?, amount = ?, isRecurrent = ?, creationDate = ? WHERE incomeId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 

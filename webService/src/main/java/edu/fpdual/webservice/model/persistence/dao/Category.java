@@ -14,9 +14,6 @@ public class Category {
     private int userId;
     private String categoryName;
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-    }
 
     public Category(ResultSet result) {
         try {

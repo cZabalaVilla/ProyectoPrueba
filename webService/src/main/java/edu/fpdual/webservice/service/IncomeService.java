@@ -26,6 +26,12 @@ public class IncomeService {
         }
     }
 
+    public List<Income> findAllIncomesBy(String field,int value) throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+            return incomeManager.findAllBy(con,field,value);
+        }
+    }
+
     public Income findByIncomeDate(LocalDate incomeDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return incomeManager.findBy(con, "incomeDate", incomeDate);

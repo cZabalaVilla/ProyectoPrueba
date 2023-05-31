@@ -30,7 +30,8 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public List<Budget> findAllBy(Connection con, String fieldName, Object value) {
         List<Budget> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery(query);
@@ -58,7 +59,6 @@ public class BudgetManagerImpl implements BudgetManager {
             while (result.next()) {
                 entity = new Budget(result);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             entity = null;
@@ -97,7 +97,6 @@ public class BudgetManagerImpl implements BudgetManager {
             //stm.setDate(4, (Date) budget.getCreationDate());
 
             result = stm.executeUpdate() > 0;
-
         } catch (SQLException e) {
             e.printStackTrace();
             result = false;

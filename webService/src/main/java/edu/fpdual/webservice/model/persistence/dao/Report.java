@@ -17,7 +17,7 @@ public class Report {
     private Date reportDate;
     private Category category;
 
-    public Report (ResultSet result) {
+    public Report(ResultSet result) {
         try {
             this.reportId = result.getInt("reportId");
         } catch (SQLException e) {

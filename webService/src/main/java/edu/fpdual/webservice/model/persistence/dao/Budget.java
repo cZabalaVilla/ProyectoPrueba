@@ -1,15 +1,17 @@
 package edu.fpdual.webservice.model.persistence.dao;
 
+import edu.fpdual.webservice.model.persistence.manager.impl.ExpenseManagerImpl;
+import edu.fpdual.webservice.model.persistence.manager.impl.IncomeManagerImpl;
+import edu.fpdual.webservice.service.ExpenseService;
+import edu.fpdual.webservice.service.IncomeService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.*;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class Budget implements Comparable<Budget>{
     private String description;
     private List<Income> incomeList;
     private List<Expense> expenseList;
-    private Date creationDate;
+    private Timestamp creationDate;
     //private LocalTime creationTime;
 
     //Atributo de datos
@@ -29,11 +31,7 @@ public class Budget implements Comparable<Budget>{
     //Habría que crear un enum o una tabla en bbdd con la moneda y el símbolo
     //Moneda moneda;
 
-    public Budget(String budgetName, String description) {
-        this.budgetName = budgetName;
-        this.description = description;
-        //this.creationTime = LocalTime.now();
-    }
+
 
     public Budget (ResultSet result) {
         try {
@@ -41,10 +39,10 @@ public class Budget implements Comparable<Budget>{
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
-            this.incomeList = Collections.singletonList((Income) result.getArray("incomeList"));
-            this.expenseList = Collections.singletonList((Expense) result.getArray("expenseList"));
-            //this.creationTime = result.getTime("creationTime");
-        } catch (SQLException e) {
+            this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId",budgetId);
+            this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId",budgetId);
+            this.creationDate = result.getTimestamp("creationTime");
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

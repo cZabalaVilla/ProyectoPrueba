@@ -61,7 +61,7 @@ public class CategoryController {
     public Response updateCategory(Category category) {
         try {
             if (categoryService.findByCategoryName(category.getCategoryName()) == null) {
-                if (categoryService.updateCategory(new Category (category.getCategoryName().toLowerCase()))) {
+                if (categoryService.updateCategory(category)) {
                     return Response.ok().entity("Category Updated.").build();
                 } else {
                     return Response.status(400).entity("Category Was Not Updated.").build();
@@ -81,7 +81,7 @@ public class CategoryController {
     public Response createCategory(Category category) {
         try {
             if (categoryService.findByCategoryName(category.getCategoryName()) != null) {
-                if (categoryService.createCategory(new Category (category.getCategoryName().toLowerCase()))) {
+                if (categoryService.createCategory(category)) {
                     return Response.status(200).entity("Category Created.").build();
                 } else {
                     return Response.status(400).entity("Category Was Not Created.").build();

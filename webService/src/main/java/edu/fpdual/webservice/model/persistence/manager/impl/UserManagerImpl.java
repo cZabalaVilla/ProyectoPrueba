@@ -4,7 +4,6 @@ package edu.fpdual.webservice.model.persistence.manager.impl;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.UserManager;
 
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

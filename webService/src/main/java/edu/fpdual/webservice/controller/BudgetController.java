@@ -82,7 +82,7 @@ public class BudgetController {
             if (budgetService.findByBudgetName(budget.getBudgetName()) != null) {
                 //AÑADIR ESTO CUANDO DEJE DE DAR PROBLEMA EN EL OTRO SITIO
                 // budget.getIncomeList(), budget.getExpenseList(), budget.getCreationDate())
-                if (budgetService.createBudget(budget.getBudgetName().toLowerCase(), budget.getDescription())) {
+                if (budgetService.createBudget(budget)) {
                     return Response.status(200).entity("Budget created.").build();
                 } else {
                     return Response.status(400).entity("Budget not created.").build();

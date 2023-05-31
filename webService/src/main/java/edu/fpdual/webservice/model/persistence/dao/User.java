@@ -15,11 +15,7 @@ public class User implements Comparable<User> {
     boolean isAdmin;
 
 
-    public User(String userName, String userPassword, boolean isAdmin) {
-        this.userName = userName.toLowerCase();
-        this.userPassword = userPassword;
-        this.isAdmin = isAdmin;
-    }
+
 
     public User(ResultSet resultSet) {
         try {

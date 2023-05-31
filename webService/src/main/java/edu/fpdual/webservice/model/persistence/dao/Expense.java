@@ -21,14 +21,6 @@ public class Expense implements Comparable<Expense>{
     private Date creationDate;
     //private LocalTime creationTime;
 
-    public Expense (String expenseName, String description, double amount, boolean isRecurrent) {
-        this.expenseName = expenseName;
-        this.description = description;
-        this.amount = amount;
-        this.isRecurrent = isRecurrent;
-        //this.creationTime = LocalTime.now();
-    }
-
     public Expense (ResultSet result) {
         try {
             this.budgetId = result.getInt("budgetId");

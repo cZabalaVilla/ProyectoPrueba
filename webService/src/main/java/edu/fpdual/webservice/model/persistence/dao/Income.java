@@ -20,14 +20,6 @@ public class Income implements Comparable<Income>{
     private LocalDate creationDate;
     //private LocalTime creationTime;
 
-    public Income (String incomeName, String description, double amount) {
-        this.incomeName = incomeName;
-        this.description = description;
-        this.amount = amount;
-        this.isRecurrent = isRecurrent;
-        this.creationDate = LocalDate.now();
-        //this.creationTime = LocalTime.now();
-    }
 
     public Income (ResultSet result) {
         try {
