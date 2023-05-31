@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo;
+package edu.fpdual.webapplication.utilities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -85,29 +85,30 @@ public class Password {
             throw new InvalidPasswordException("La contraseña debe contener al menos un carácter especial.");
         }
     }
-/*
-    public boolean comparePassword(String storedHash) {
-        boolean passwordMatches;
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            StringBuilder hexString = new StringBuilder();
 
-            for (byte b : encodedHash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
+    /*
+        public boolean comparePassword(String storedHash) {
+            boolean passwordMatches;
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+                StringBuilder hexString = new StringBuilder();
+
+                for (byte b : encodedHash) {
+                    String hex = Integer.toHexString(0xff & b);
+                    if (hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                }
+
+                String calculatedHash = hexString.toString();
+                passwordMatches = calculatedHash.equals(storedHash);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                passwordMatches = false;
             }
-
-            String calculatedHash = hexString.toString();
-            passwordMatches = calculatedHash.equals(storedHash);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            passwordMatches = false;
+            return passwordMatches;
         }
-        return passwordMatches;
-    }
-*/
+    */
     @Override
     public String toString() {
         return password;

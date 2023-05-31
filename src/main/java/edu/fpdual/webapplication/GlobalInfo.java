@@ -12,7 +12,6 @@ public class GlobalInfo {
     public static final String URL_JSP = URL_PROYECTO + "/jsp";
     public static final String URL_JSP_HOME = URL_JSP + "/common/home.jsp";
     public static final String URL_JSP_LOGIN = URL_JSP + "/login/login.jsp";
-    public static final String URL_JSP_NOTIFICATION = URL_JSP + "/notificationTest.jsp";
     public static final String URL_JSP_CONTROLPANEL = URL_JSP + "/admin/controlPanel.jsp";
     public static final String URL_JSP_NEWADMIN = URL_JSP + "/admin/adminManager.jsp";
     public static final String URL_JSP_PROFILE = URL_JSP + "/common/profile.jsp";
@@ -42,15 +41,15 @@ public class GlobalInfo {
     public static final String URL_SERVLET_PROFILE = URL_SERVLET_ + "/profile-servlet";
     public static final String URL_SERVLET_LOGOUT = URL_SERVLET_ + "/logout-servlet";
     public static final String URL_SERVLET_REGISTER = URL_SERVLET_ + "/register-servlet";
+    public static final String URL_SERVLET_LISTS = URL_SERVLET_ + "/lists-servlet";
+    public static final String URL_SERVLET_PINGLIST = "/ping-list-servlet.jsp";
 
 
     /*
      * Variables globales
      */
-    public static final String URL_FAVICON = URL_PROYECTO + "img/icon/favicon.ico";
+    public static final String URL_FAVICON = URL_PROYECTO + "/img/icon/favicon.ico";
     public static final String URL_WEBTARGET = "http://localhost:8081/webService/webapi/";
-
     public static final String session = "session";
-    public static final String webPath = "http://localhost:8081/webService/webapi/";
 
 }

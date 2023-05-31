@@ -18,6 +18,7 @@ import java.io.IOException;
 
 @WebServlet(name = "ProfileServlet", urlPatterns = {"/profile-servlet"})
 public class ProfileServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {

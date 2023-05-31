@@ -10,7 +10,7 @@ public class Category {
     private int userId;
     private String categoryName;
 
-    public Category(int userId, String categoryName){
+    public Category(int userId, String categoryName) {
         this.userId = userId;
         this.categoryName = categoryName;
     }

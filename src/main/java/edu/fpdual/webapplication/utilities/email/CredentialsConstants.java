@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo.email;
+package edu.fpdual.webapplication.utilities.email;
 
 
 public class CredentialsConstants {

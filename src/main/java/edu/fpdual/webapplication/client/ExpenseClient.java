@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ExpenseClient extends Client<Expense> {
     private final WebTarget webTarget;
-    private final String clientPath = "budget/expense/";
+    private final String clientPath = "expense/";
 
     public ExpenseClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
@@ -27,29 +27,31 @@ public class ExpenseClient extends Client<Expense> {
     }
 
     @Override
-    public Expense get(String expenseName) {
-        return webTarget.path(clientPath + "get" + expenseName)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Expense.class);
-    }
-
     public List<Expense> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     @Override
+    public Expense get(String expenseName) {
+        return webTarget.path(clientPath + "name" + expenseName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Expense.class);
+    }
+
+
+    @Override
     public boolean put(Expense expense) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(expense, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Expense expense) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(expense, MediaType.APPLICATION_JSON), boolean.class);
     }

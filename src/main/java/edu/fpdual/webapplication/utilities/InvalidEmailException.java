@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo;
+package edu.fpdual.webapplication.utilities;
 
 public class InvalidEmailException extends Exception {
     public InvalidEmailException(String message) {

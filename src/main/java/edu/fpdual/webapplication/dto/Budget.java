@@ -26,5 +26,4 @@ public class Budget {
         this.incomeList = new ArrayList<>();
         this.creationDate = new Date();
     }
-
 }

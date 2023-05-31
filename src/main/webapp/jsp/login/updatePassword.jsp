@@ -26,13 +26,13 @@
         <label for="code">Código de restablecimiento</label>
         <br/>
         <br/>
-        <input type="text" name="code" id="code" required/>
+        <input type="text" name="code" id="code" placeholder="XXXXXXXX" required/>
         <br/>
         <br/>
         <label for="newPassword">Nueva contraseña</label>
         <br/>
         <br/>
-        <input type="text" name="newPassword" id="newPassword" required/>
+        <input type="text" name="newPassword" id="newPassword" placeholder="********" required/>
         <br/>
         <br/>
         <!-- Mensaje de error en caso de que haya algo incorrecto-->

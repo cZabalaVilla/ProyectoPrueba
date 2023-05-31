@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserClient extends Client<User> {
     private final WebTarget webTarget;
-    private final String clientPath = "user";
+    private final String clientPath = "user/";
 
     public UserClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
@@ -21,32 +21,34 @@ public class UserClient extends Client<User> {
 
     @Override
     public String ping() {
-        return webTarget.path(clientPath + "/ping")
+        return webTarget.path(clientPath + "ping")
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
     }
 
+    @Override
     public List<User> get() {
-        return webTarget.path(clientPath + "/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     public User get(int userId) {
-        return webTarget.path(clientPath + "/id/" + userId)
+        return webTarget.path(clientPath + "id/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
 
+    @Override
     public User get(String userName) {
-        return webTarget.path(clientPath + "/name/" + userName)
+        return webTarget.path(clientPath + "name/" + userName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
 
     public User getPassword(String userPassword) {
-        return webTarget.path(clientPath + "/password/" + userPassword)
+        return webTarget.path(clientPath + "password/" + userPassword)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
@@ -70,21 +72,21 @@ public class UserClient extends Client<User> {
     */
     @Override
     public boolean put(User user) {
-        return webTarget.path(clientPath + "/update")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(User user) {
-        return webTarget.path(clientPath + "/create")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean delete(User user) {
-        return webTarget.path(clientPath + "/delete")
+        return webTarget.path(clientPath + "delete")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class IncomeClient extends Client<Income> {
     private final WebTarget webTarget;
-    private final String clientPath = "budget/income/";
+    private final String clientPath = "income/";
 
     public IncomeClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
@@ -27,29 +27,30 @@ public class IncomeClient extends Client<Income> {
     }
 
     @Override
-    public Income get(String incomeName) {
-        return webTarget.path(clientPath + "get" + incomeName)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Income.class);
-    }
-
     public List<Income> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     @Override
+    public Income get(String incomeName) {
+        return webTarget.path(clientPath + "name/" + incomeName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Income.class);
+    }
+
+    @Override
     public boolean put(Income income) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(income, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Income income) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(income, MediaType.APPLICATION_JSON), boolean.class);
     }

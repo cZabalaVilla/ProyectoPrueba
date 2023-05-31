@@ -27,29 +27,31 @@ public class ReportClient extends Client<Report> {
                 .get(String.class);
     }
 
+    @Override
     public List<Report> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
+    @Override
     public Report get(String userId) {
-        return webTarget.path(clientPath + "get/" + userId)
+        return webTarget.path(clientPath + "name/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Report.class);
     }
 
     @Override
     public boolean put(Report profile) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Report report) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(report, MediaType.APPLICATION_JSON), boolean.class);
     }

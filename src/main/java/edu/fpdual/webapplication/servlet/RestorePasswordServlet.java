@@ -2,14 +2,14 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.client.ProfileClient;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dfo.Email;
-import edu.fpdual.webapplication.dfo.InvalidEmailException;
-import edu.fpdual.webapplication.dfo.Password;
-import edu.fpdual.webapplication.dfo.email.Sender;
 import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.ProfileService;
 import edu.fpdual.webapplication.service.UserService;
+import edu.fpdual.webapplication.utilities.Email;
+import edu.fpdual.webapplication.utilities.InvalidEmailException;
+import edu.fpdual.webapplication.utilities.Password;
+import edu.fpdual.webapplication.utilities.email.Sender;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

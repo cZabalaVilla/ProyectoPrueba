@@ -8,7 +8,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.NotFoundException;
 
 import java.io.IOException;
@@ -31,9 +30,9 @@ public class AdminManagerServlet extends HttpServlet {
         try {
             User user = new UserService(new UserClient()).getUserByName(request.getParameter("userName"));
             if (request.getParameter("action").equals("update")) {
-                if (!user.isAdmn()) {
-                    user.setAdmn(true);
-                    if(new UserService(new UserClient()).updateUser(user)) {
+                if (!user.isAdmin()) {
+                    user.setAdmin(true);
+                    if (new UserService(new UserClient()).updateUser(user)) {
                         request.setAttribute("ok", updated);
                         request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
                     } else {
@@ -45,8 +44,8 @@ public class AdminManagerServlet extends HttpServlet {
                     request.getRequestDispatcher(URL_Dispatcher).forward(request, response);
                 }
             } else if (request.getParameter("action").equals("delete")) {
-                if (user.isAdmn()) {
-                    user.setAdmn(false);
+                if (user.isAdmin()) {
+                    user.setAdmin(false);
                     if (new UserService(new UserClient()).updateUser(user)) {
                         request.setAttribute("ok", deleted);
                         request.getRequestDispatcher(URL_Dispatcher).forward(request, response);

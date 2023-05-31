@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication;
 
-import edu.fpdual.webapplication.dfo.Password;
+import edu.fpdual.webapplication.utilities.Password;
 
 import java.sql.Date;
 

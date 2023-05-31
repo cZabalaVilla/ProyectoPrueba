@@ -6,6 +6,7 @@
 
 <head>
     <%@ include file="../headTemplate.jsp" %>
+    <meta http-equiv="refresh" content="3; url=<%= GlobalInfo.URL_JSP_HOME %>"/>
     <title>Acceso denegado</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_error403.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">

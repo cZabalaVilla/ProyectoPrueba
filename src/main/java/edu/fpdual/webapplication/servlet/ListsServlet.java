@@ -1,14 +1,8 @@
 package edu.fpdual.webapplication.servlet;
 
-import edu.fpdual.webapplication.client.CategoryClient;
-import edu.fpdual.webapplication.client.ProfileClient;
-import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dto.Category;
-import edu.fpdual.webapplication.dto.Profile;
-import edu.fpdual.webapplication.dto.User;
-import edu.fpdual.webapplication.service.CategoryService;
-import edu.fpdual.webapplication.service.ProfileService;
-import edu.fpdual.webapplication.service.UserService;
+import edu.fpdual.webapplication.client.*;
+import edu.fpdual.webapplication.dto.*;
+import edu.fpdual.webapplication.service.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,73 +12,78 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 @WebServlet(name = "ListsServlet", urlPatterns = {"/lists-servlet"})
 public class ListsServlet extends HttpServlet {
 
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String dispatcherURLLists = "jsp/admin/database/lists.jsp";
+        String emptyError = "No hay nada en esta lista.";
+
         List<String> objectList = switch (request.getParameter("classType")) {
-            case "user" -> getUserList();
+            case "budget" -> getBudgetList();
             case "category" -> getCategoryList();
+            case "expense" -> getExpenseList();
+            case "income" -> getIncomeList();
             case "profile" -> getProfileList();
+            case "report" -> getReportList();
+            case "user" -> getUserList();
             default -> null;
         };
-        request.setAttribute("error", "No hay nada en esta lista.");
+        request.setAttribute("error", emptyError);
         request.setAttribute("objectList", objectList);
-        request.getRequestDispatcher("jsp/admin/database/lists.jsp").forward(request, response);
+        request.getRequestDispatcher(dispatcherURLLists).forward(request, response);
     }
 
-    private List<String> getUserList() {
-        UserService userService = new UserService(new UserClient());
-        List<User> users = userService.getAllUsers();
-        List<String> userList = new ArrayList<>();
-        for (User user : users) {
-            userList.add(user.toString());
+    private <T> List<String> getStringList(List<T> objects, Function<T, String> toStringFunction) {
+        List<String> stringList = new ArrayList<>();
+        for (T object : objects) {
+            stringList.add(toStringFunction.apply(object));
         }
-        return userList;
+        return stringList;
+    }
+
+    private List<String> getBudgetList() {
+        BudgetService budgetService = new BudgetService(new BudgetClient());
+        List<Budget> budgets = budgetService.getAllBudgets();
+        return getStringList(budgets, Budget::toString);
     }
 
     private List<String> getCategoryList() {
         CategoryService categoryService = new CategoryService(new CategoryClient());
         List<Category> categories = categoryService.getAllCategories();
-        List<String> categoryList = new ArrayList<>();
-        for (Category category : categories) {
-            categoryList.add(category.toString());
-        }
-        return categoryList;
+        return getStringList(categories, Category::toString);
+    }
+
+    private List<String> getExpenseList() {
+        ExpenseService expenseService = new ExpenseService(new ExpenseClient());
+        List<Expense> expenses = expenseService.getAllExpenses();
+        return getStringList(expenses, Expense::toString);
+    }
+
+    private List<String> getIncomeList() {
+        IncomeService incomeClient = new IncomeService(new IncomeClient());
+        List<Income> incomes = incomeClient.getAllIncomes();
+        return getStringList(incomes, Income::toString);
     }
 
     private List<String> getProfileList() {
         ProfileService profileService = new ProfileService(new ProfileClient());
         List<Profile> profiles = profileService.getAllProfiles();
-        List<String> profileList = new ArrayList<>();
-        for (Profile profile : profiles) {
-            profileList.add(profile.toString());
-        }
-        return profileList;
+        return getStringList(profiles, Profile::toString);
     }
 
-/*
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        List<User> users = new UserClient().get();
-        PrintWriter writer = response.getWriter();
+    private List<String> getReportList() {
+        ReportService reportService = new ReportService(new ReportClient());
+        List<Report> reports = reportService.getAllReports();
+        return getStringList(reports, Report::toString);
+    }
 
-        writer.println("<html>");
-        writer.println("<body>");
-        writer.println("<table style=\"border: 1px solid black;" +
-                "  border-collapse: collapse;\">");
-        for (User user : users) {
-            writer.println("<tr><td>");
-            writer.println(user.toString());
-            writer.println("</td></tr>");
-        }
-        writer.println("</table>");
-        writer.println("</br></br>");
-        writer.println("<button onclick=\"location.href='\\index.jsp'\">Volver al inicio</button>");
-        writer.println("</body>");
-        writer.println("</html>");
-    }*/
+    private List<String> getUserList() {
+        UserService userService = new UserService(new UserClient());
+        List<User> users = userService.getAllUsers();
+        return getStringList(users, User::toString);
+    }
 }

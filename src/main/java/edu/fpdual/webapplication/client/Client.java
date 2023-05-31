@@ -1,5 +1,7 @@
 package edu.fpdual.webapplication.client;
 
+import java.util.List;
+
 public abstract class Client<T> {
 
     /**
@@ -8,6 +10,14 @@ public abstract class Client<T> {
      * @return a {@link String}
      */
     public abstract String ping();
+
+    /**
+     * Retrieve all representations of a resource.
+     * Obtains information.
+     *
+     * @return a {@link T} entity.
+     */
+    public abstract List<T> get();
 
     /**
      * Retrieve a representation of a resource.

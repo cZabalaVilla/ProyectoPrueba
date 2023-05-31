@@ -11,10 +11,6 @@
 
 <body>
 <h2>Panel de control de administrador</h2>
-<form method="post" action="<%=GlobalInfo.URL_JSP_NOTIFICATION%>">
-    <input type="submit" name="submitBtn" value="Connection Test">
-</form>
-<br/>
 <form method="post" action="<%=GlobalInfo.URL_JSP_HOME%>">
     <input type="submit" name="submitBtn" value="Volver">
 </form>

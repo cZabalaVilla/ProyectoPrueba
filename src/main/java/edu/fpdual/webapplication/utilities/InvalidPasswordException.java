@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo;
+package edu.fpdual.webapplication.utilities;
 
 public class InvalidPasswordException extends Exception {
     public InvalidPasswordException(String message) {

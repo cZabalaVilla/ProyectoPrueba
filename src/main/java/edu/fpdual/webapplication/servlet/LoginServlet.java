@@ -2,10 +2,10 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dfo.Password;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.UserService;
 import edu.fpdual.webapplication.servlet.dto.Session;
+import edu.fpdual.webapplication.utilities.Password;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 session = Session.builder()
                         .userName(userNameReceived)
-                        .admin(user.isAdmn())
+                        .admin(user.isAdmin())
                         .build();
                 request.getSession().setMaxInactiveInterval(500);
                 request.getSession().setAttribute(GlobalInfo.session, session);

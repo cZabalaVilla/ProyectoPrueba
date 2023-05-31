@@ -3,14 +3,14 @@ package edu.fpdual.webapplication.servlet;
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.ProfileClient;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dfo.Email;
-import edu.fpdual.webapplication.dfo.InvalidEmailException;
-import edu.fpdual.webapplication.dfo.InvalidPasswordException;
-import edu.fpdual.webapplication.dfo.Password;
 import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.ProfileService;
 import edu.fpdual.webapplication.service.UserService;
+import edu.fpdual.webapplication.utilities.Email;
+import edu.fpdual.webapplication.utilities.InvalidEmailException;
+import edu.fpdual.webapplication.utilities.InvalidPasswordException;
+import edu.fpdual.webapplication.utilities.Password;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
         String emailReceived = null;
         try {
             emailReceived = new Email(request.getParameter("email")).toString();
-        } catch (InvalidEmailException e){
+        } catch (InvalidEmailException e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher(GlobalInfo.URL_JSP_REGISTER).forward(request, response);
         }
@@ -61,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
                 request.getRequestDispatcher(request.getContextPath()).forward(request, response);
             }
             if (userService.createUser(user)) {
-                Profile profile = new Profile(new UserService(new UserClient()).getUserByName(userNameReceived).getUserId(),emailReceived);
+                Profile profile = new Profile(new UserService(new UserClient()).getUserByName(userNameReceived).getUserId(), emailReceived);
                 new ProfileService(new ProfileClient()).createProfile(profile);
                 request.setAttribute("ok", ok);
                 request.getRequestDispatcher(request.getContextPath()).forward(request, response);
