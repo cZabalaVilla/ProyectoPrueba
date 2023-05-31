@@ -156,10 +156,14 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(User user) {
         try {
-            if (userService.findByUserName(user.getUserName()) != null) {
-                return Response.status(200).entity(userService.createUser(user)).build();
-            } else {
-                return Response.status(400).entity("User already exists.").build();
+            if (user != null && user.getUserName() != null) {
+                if (userService.findByUserName(user.getUserName()) == null) {
+                    return Response.status(200).entity(userService.createUser(user)).build();
+                } else {
+                    return Response.status(400).entity("User already exists.").build();
+                }
+            }else {
+                return Response.status(400).entity("Incorrect Parameters.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();

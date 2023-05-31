@@ -90,7 +90,6 @@ public class UserManagerImpl implements UserManager {
         String query = "INSERT INTO " + tableName + " (userName, userPassword, isAdmin) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-
             stm.setString(1, entity.getUserName().toLowerCase());
             stm.setString(2, entity.getUserPassword());
             stm.setInt(3, entity.isAdmin() ? 1 : 0);
