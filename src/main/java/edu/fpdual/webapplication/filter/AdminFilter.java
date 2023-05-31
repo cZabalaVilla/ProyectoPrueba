@@ -23,14 +23,10 @@ public class AdminFilter implements Filter {
             ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-        try {
-            if (!session.isAdmin()) {
-                ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_DENEGATEACCES);
-            } else {
-                filterChain.doFilter(servletRequest, servletResponse);
-            }
-        } catch (NullPointerException e) {
-            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_DENEGATEACCES);
+        if (session == null || !session.isAdmin()) {
+            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_ERROR403);
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 }

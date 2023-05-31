@@ -2,7 +2,6 @@ package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.dto.User;
-import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -27,41 +26,60 @@ public class UserClient extends Client<User> {
                 .get(String.class);
     }
 
+    @Override
     public List<User> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     public User get(int userId) {
-        return webTarget.path(clientPath + "get/byId/" + userId)
+        return webTarget.path(clientPath + "id/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(User.class);
     }
 
+    @Override
     public User get(String userName) {
-        try {
-            return webTarget
-                    .path(clientPath + "get/byName/" + userName)
-                    .request(MediaType.APPLICATION_JSON)
-                    .get(User.class);
-        } catch (BadRequestException e) {
-            // Controlar el caso cuando se recibe un status 400
-            return null;
-        }
+        return webTarget.path(clientPath + "name/" + userName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
     }
 
+    public User getPassword(String userPassword) {
+        return webTarget.path(clientPath + "password/" + userPassword)
+                .request(MediaType.APPLICATION_JSON)
+                .get(User.class);
+    }
+
+    /*
+        public User get(String userName) {
+            try {
+                URI uri = UriBuilder.fromPath(clientPath)
+                        .queryParam("user_name", userName)
+                        .build();
+
+                return webTarget
+                        .path(uri.toString())
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(User.class);
+            } catch (BadRequestException e) {
+                // Controlar el caso cuando se recibe un status 400
+                return null;
+            }
+        }
+    */
     @Override
     public boolean put(User user) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(User user) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON), boolean.class);
     }

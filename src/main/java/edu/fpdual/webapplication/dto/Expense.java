@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Expense {
     private int budgetId;
@@ -18,6 +18,5 @@ public class Expense {
         this.category = category;
         this.amount = amount;
         this.isRecurring = isRecurring;
-        this.date = new Date();
     }
 }

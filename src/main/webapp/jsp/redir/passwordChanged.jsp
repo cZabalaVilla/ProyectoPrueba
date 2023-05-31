@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import= "edu.fpdual.webapplication.GlobalInfo" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Tu contraseña ha sido cambiada.</h1>
+<h1>Tu contraseña ha sido cambiada.</h1>
 </body>
 
 </html>

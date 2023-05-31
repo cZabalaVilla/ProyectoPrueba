@@ -60,7 +60,7 @@ header nav a {
     padding-bottom: 0.9rem;
     border-bottom: 2px solid white;
     text-align: left;
-    color:rgb(54, 54, 159)
+    color: rgb(54, 54, 159)
 }
 
 header nav a:hover {
@@ -124,7 +124,7 @@ main {
     padding: 30px;
     margin: 2rem;
     border-radius: 10px;
-    display:flex;
+    display: flex;
 }
 
 .content .form {
@@ -134,28 +134,31 @@ main {
 label[for="form"] {
     font-weight: bold;
 }
+
 input[name="formInput"],
 select[name="formInput"] {
     border: 1px solid gray;
     border-radius: 5px;
     width: 32rem;
     height: 2rem;
-    padding:8px;
+    padding: 8px;
     margin-top: 0.2rem;
-    margin-left:0.5rem;
+    margin-left: 0.5rem;
 }
+
 textarea {
     border: 1px solid gray;
     border-radius: 5px;
-    padding:8px;
+    padding: 8px;
     margin-top: 0.2rem;
-    margin-left:0.5rem;
+    margin-left: 0.5rem;
 }
 
 #incomeAmountInput, #expenseAmountInput {
     width: 27.3rem;
 }
-#incomeCurrencyInput,#expenseCurrencyInput {
+
+#incomeCurrencyInput, #expenseCurrencyInput {
     width: 4rem;
 }
 
@@ -166,7 +169,7 @@ textarea {
     padding-left: 3rem;
     padding-right: 1.5rem;
     border-right: 3px solid gray;
-    color:rgb(122, 153, 219);
+    color: rgb(122, 153, 219);
 }
 
 
@@ -176,37 +179,40 @@ textarea {
     padding: 30px;
     width: 19.3rem;
     height: 100%;
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
     border-radius: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+
 .logoTxt {
-    margin-top:0.8rem;
+    margin-top: 0.8rem;
     text-align: center;
     font-size: 2rem;
     color: rgb(122, 153, 219);
     text-decoration: none;
 }
+
 .logoTxt a {
     text-decoration: none;
 }
+
 .centerTxt {
     text-align: center;
     font-size: small;
 }
+
 input[type="text"], input[type="password"], input[type="email"] {
     border: 1px solid gray;
     border-radius: 5px;
     width: 15.5rem;
     height: 2rem;
-    padding:8px;
+    padding: 8px;
     margin-top: 0.2rem;
 }
+
 .boxBody label {
     font-size: small;
-}*/
+}
 
 /*FOOTER*/
 footer {
@@ -244,7 +250,7 @@ footer div {
     position: absolute;
     background-color: white;
     min-width: 140px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 100;
     border-radius: 10px;
 }
@@ -262,18 +268,21 @@ footer div {
 .dropdown:hover .dropdownContent {
     display: block;
 }
+
 .buttonA {
     width: 15.5rem;
     padding: 1rem;
     background-color: rgb(122, 153, 219);
     border: none;
-    border-radius:10px;
-    color:white;
+    border-radius: 10px;
+    color: white;
     font-size: 2rem;
 }
+
 .buttonA:hover {
     background-color: rgb(122, 218, 188);
 }
+
 .buttonB {
     float: right;
     width: 7rem;
@@ -289,25 +298,29 @@ footer div {
 .buttonB:hover {
     background-color: rgb(122, 218, 188);
 }
+
 .buttonC {
     padding: 0.5rem;
     background-color: rgb(122, 153, 219);
     border: none;
-    border-radius:10px;
-    color:white;
+    border-radius: 10px;
+    color: white;
     font-size: 1rem;
 }
+
 .buttonC:hover {
     background-color: rgb(122, 218, 188);
 }
+
 .buttonCancel {
     padding: 0.5rem;
     background-color: rgb(153, 153, 153);
     border: none;
-    border-radius:10px;
-    color:white;
+    border-radius: 10px;
+    color: white;
     font-size: 1rem;
 }
+
 .buttonCancel:hover {
     background-color: rgb(209, 141, 157);
 }
@@ -325,6 +338,7 @@ footer div {
     color: red;
     font-size: small;
 }
+
 /*.leftNavLoggedUser a {
             text-decoration: none;
             font-size: 1.1rem;

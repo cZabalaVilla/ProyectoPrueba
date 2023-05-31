@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo;
+package edu.fpdual.webapplication.utilities;
 
 
 import lombok.Data;
@@ -10,21 +10,19 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Email {
-    private String email;
-
     private static final List<String> commonDomains = Arrays.asList(
             "gmail.com", "yahoo.com", "outlook.com", "hotmail.com",
             "aol.com", "icloud.com", "mail.com", "protonmail.com",
             "yandex.com", "gmx.com"
     );
+    private String email;
 
-    public Email(String email) {
-        try{
+    public Email(String email) throws InvalidEmailException {
+        try {
             checkEmail(email);
             this.email = email;
-        }catch (InvalidEmailException e){
-            email = e.getMessage();
-            e.printStackTrace();
+        } catch (InvalidEmailException e) {
+            throw new InvalidEmailException(e.getMessage());
         }
     }
 
@@ -44,18 +42,9 @@ public class Email {
         }
     }
 
-    public boolean sendEmail(String newPassword,String userName){
-
-        return false;
-    }
     @Override
     public String toString() {
         return email;
     }
 }
 
-class InvalidEmailException extends Exception {
-    public InvalidEmailException(String message) {
-        super(message);
-    }
-}

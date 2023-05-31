@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo;
+package edu.fpdual.webapplication.utilities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,14 +17,27 @@ public class Password {
         this.password = hashPassword(password);
     }
 
-    public Password(String password, String userName) {
+    public Password(String password, String userName) throws InvalidPasswordException {
         try {
             checkPassword(password, userName);
             this.password = hashPassword(password);
         } catch (InvalidPasswordException e) {
-            e.getMessage();
-            e.printStackTrace();
+            throw new InvalidPasswordException(e.getMessage());
         }
+    }
+
+    public static String resetPassword() {
+        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        final int LENGTH = 8;
+        SecureRandom random = new SecureRandom();
+        StringBuilder newCodePassword = new StringBuilder(LENGTH);
+
+        for (int i = 0; i < LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            newCodePassword.append(randomChar);
+        }
+        return newCodePassword.toString();
     }
 
     private String hashPassword(String password) {
@@ -73,52 +86,34 @@ public class Password {
         }
     }
 
-    public boolean comparePassword(String storedHash) {
-        boolean passwordMatches;
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-            StringBuilder hexString = new StringBuilder();
+    /*
+        public boolean comparePassword(String storedHash) {
+            boolean passwordMatches;
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+                StringBuilder hexString = new StringBuilder();
 
-            for (byte b : encodedHash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
+                for (byte b : encodedHash) {
+                    String hex = Integer.toHexString(0xff & b);
+                    if (hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                }
+
+                String calculatedHash = hexString.toString();
+                passwordMatches = calculatedHash.equals(storedHash);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                passwordMatches = false;
             }
-
-            String calculatedHash = hexString.toString();
-            passwordMatches = calculatedHash.equals(storedHash);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            passwordMatches = false;
+            return passwordMatches;
         }
-        return passwordMatches;
-    }
-
-    public static String resetPassword() {
-        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        final int LENGTH = 8;
-        SecureRandom random = new SecureRandom();
-        StringBuilder newCodePassword = new StringBuilder(LENGTH);
-
-        for (int i = 0; i < LENGTH; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            newCodePassword.append(randomChar);
-        }
-        return newCodePassword.toString();
-    }
-
+    */
     @Override
     public String toString() {
         return password;
     }
-}
 
-class InvalidPasswordException extends Exception {
-    public InvalidPasswordException(String message) {
-        super(message);
-    }
 }
 
 

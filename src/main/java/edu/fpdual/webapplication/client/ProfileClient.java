@@ -26,35 +26,37 @@ public class ProfileClient extends Client<Profile> {
                 .get(String.class);
     }
 
+    @Override
     public List<Profile> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     public Profile get(int userId) {
-        return webTarget.path(clientPath + "get/byId/" + userId)
+        return webTarget.path(clientPath + "id/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Profile.class);
     }
 
+    @Override
     public Profile get(String email) {
-        return webTarget.path(clientPath + "get/byEmail/" + email)
+        return webTarget.path(clientPath + "email/" + email)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Profile.class);
     }
 
     @Override
     public boolean put(Profile profile) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Profile profile) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }

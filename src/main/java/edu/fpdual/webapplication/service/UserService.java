@@ -28,6 +28,10 @@ public class UserService {
         return userClient.get(userName);
     }
 
+    public User getUserByPassword(String userPassword) {
+        return userClient.getPassword(userPassword);
+    }
+
     public boolean updateUser(User user) {
         return userClient.put(user);
     }

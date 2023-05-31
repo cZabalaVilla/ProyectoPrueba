@@ -26,29 +26,31 @@ public class CategoryClient extends Client<Category> {
                 .get(String.class);
     }
 
+    @Override
     public List<Category> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
+    @Override
     public Category get(String categoryName) {
-        return webTarget.path(clientPath + "get/" + categoryName)
+        return webTarget.path(clientPath + "name/" + categoryName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Category.class);
     }
 
     @Override
     public boolean put(Category category) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(category, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Category category) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(category, MediaType.APPLICATION_JSON), boolean.class);
     }

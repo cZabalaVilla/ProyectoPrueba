@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Category {
     private int categoryId;
+    private int userId;
     private String categoryName;
 
-    @Override
-    public String toString() {
-        return "Categoria: " + categoryName
-                + " | Id de categoria: " + categoryId;
+    public Category(int userId, String categoryName) {
+        this.userId = userId;
+        this.categoryName = categoryName;
     }
-
 }

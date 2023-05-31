@@ -28,29 +28,31 @@ public class BudgetClient extends Client<Budget> {
     }
 
     @Override
-    public Budget get(String budgetName) {
-        return webTarget.path(clientPath + "get" + budgetName)
-                .request(MediaType.APPLICATION_JSON)
-                .get(Budget.class);
-    }
-
     public List<Budget> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
     @Override
+    public Budget get(String budgetName) {
+        return webTarget.path(clientPath + "get" + budgetName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Budget.class);
+    }
+
+
+    @Override
     public boolean put(Budget budget) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(budget, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Budget budget) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(budget, MediaType.APPLICATION_JSON), boolean.class);
     }

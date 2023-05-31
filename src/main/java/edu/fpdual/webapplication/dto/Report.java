@@ -10,8 +10,8 @@ import java.util.Date;
 public class Report {
     //añadir como pdf?
 
-    private int userId;
     private int reportId;
+    private int userId;
     private String reportName;
     private Date reportDate;
     private Category category;

@@ -1,7 +1,6 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.dto.Report;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -11,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-public class ReportClient extends Client<Report>{
+public class ReportClient extends Client<Report> {
 
     private final WebTarget webTarget;
     private final String clientPath = "report/";
@@ -28,29 +27,31 @@ public class ReportClient extends Client<Report>{
                 .get(String.class);
     }
 
+    @Override
     public List<Report> get() {
-        return webTarget.path(clientPath + "get/all")
+        return webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });
     }
 
+    @Override
     public Report get(String userId) {
-        return webTarget.path(clientPath + "get/" + userId)
+        return webTarget.path(clientPath + "name/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Report.class);
     }
 
     @Override
     public boolean put(Report profile) {
-        return webTarget.path(clientPath + "put")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(profile, MediaType.APPLICATION_JSON), boolean.class);
     }
 
     @Override
     public boolean post(Report report) {
-        return webTarget.path(clientPath + "post")
+        return webTarget.path(clientPath + "create")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(report, MediaType.APPLICATION_JSON), boolean.class);
     }

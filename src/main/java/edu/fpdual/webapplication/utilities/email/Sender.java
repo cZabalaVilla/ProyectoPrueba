@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.dfo.email;
+package edu.fpdual.webapplication.utilities.email;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,15 +15,13 @@ import java.util.Properties;
 
 public class Sender {
 
+    private final String emailApp = "fitpocketapp@gmail.com";
     @Setter
     @Getter
     Properties mailProp = new Properties();
-
     @Setter
     @Getter
     Properties credentialProp = new Properties();
-
-    private final String emailApp = "fitpocketapp@gmail.com";
 
     /**
      * Build the sender class loading the properties from mail and credentials files.
@@ -40,7 +38,8 @@ public class Sender {
 
     /**
      * Send a simple email with from and recipient address, subject and a simple HTML format content.
-     * @param to recipient email address
+     *
+     * @param to      recipient email address
      * @param subject email subject
      * @param content email content in html format
      * @return a {@link boolean} indicating if the email was sent or not.
@@ -63,7 +62,7 @@ public class Sender {
             message.setSubject(subject);
 
             // Now set the actual message
-            message.setContent(content,"text/html" );
+            message.setContent(content, "text/html");
 
             System.out.println("sending...");
             // Send message
@@ -79,9 +78,10 @@ public class Sender {
 
     /**
      * Send an email with from and recipient address, subject, d a simple HTML format content and an attached file.
-     * @param to recipient email address
+     *
+     * @param to      recipient email address
      * @param subject email subject
-     * @param text email content in html format
+     * @param text    email content in html format
      * @param content path where the temp file is located
      * @return a {@link boolean} indicating if the email was sent or not.
      */
@@ -104,7 +104,7 @@ public class Sender {
             // Attach a file.
             //First Part of the body: text
             BodyPart texto = new MimeBodyPart();
-            texto.setContent(text,"text/html");
+            texto.setContent(text, "text/html");
 
             //Second Part of the body: project properties file.
             File file = new File(content);
@@ -117,6 +117,9 @@ public class Sender {
                 while ((read = fileData.read(bytes)) != -1) {
                     outputStream.write(bytes, 0, read);
                 }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                return false;
             }
 
             BodyPart fichero = new MimeBodyPart();
@@ -136,7 +139,7 @@ public class Sender {
             Transport.send(message);
             System.out.println("Sent message successfully....");
             return true;
-        } catch (MessagingException mex) {
+        } catch (MessagingException | NullPointerException mex) {
             mex.printStackTrace();
             return false;
         }
@@ -154,13 +157,6 @@ public class Sender {
         // Used to debug SMTP issues
         session.setDebug(true);
         return session;
-    }
-
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        new Sender().send("carloszabalavilla@gmail.com", "Hola =D",
-                "<b>Asi se envian correos con Java...<b>");
-//        new Sender().send("twlster.mk@gmail.com", "twlster.mk@gmail.com", "Hola =D",
-//                "<b>Asi se envian correos con Java...<b>");
     }
 
 }

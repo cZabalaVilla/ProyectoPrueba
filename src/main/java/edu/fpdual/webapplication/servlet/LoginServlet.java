@@ -2,10 +2,10 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.UserClient;
-import edu.fpdual.webapplication.dfo.Password;
 import edu.fpdual.webapplication.dto.User;
 import edu.fpdual.webapplication.service.UserService;
 import edu.fpdual.webapplication.servlet.dto.Session;
+import edu.fpdual.webapplication.utilities.Password;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -32,19 +32,19 @@ public class LoginServlet extends HttpServlet {
 
         try {
             String userNameReceived = request.getParameter("userName");
-            Password userPasswordReceived = new Password(request.getParameter("userPassword"));
+            String userPasswordReceived = new Password(request.getParameter("userPassword")).toString();
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
             User user = new UserService(new UserClient()).getUserByName(userNameReceived);
 
             if (session != null) {
                 response.sendRedirect(GlobalInfo.URL_JSP_HOME);
-            } else if (!userPasswordReceived.toString().equals(user.getUserPassword())) {
+            } else if (!userPasswordReceived.equals(user.getUserPassword())) {
                 request.setAttribute("error", incorrectError);
                 request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {
                 session = Session.builder()
                         .userName(userNameReceived)
-                        .admin(user.isAdmn())
+                        .admin(user.isAdmin())
                         .build();
                 request.getSession().setMaxInactiveInterval(500);
                 request.getSession().setAttribute(GlobalInfo.session, session);
