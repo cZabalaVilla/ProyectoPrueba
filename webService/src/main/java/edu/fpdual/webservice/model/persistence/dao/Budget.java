@@ -32,8 +32,6 @@ public class Budget implements Comparable<Budget>{
     public Budget(String budgetName, String description) {
         this.budgetName = budgetName;
         this.description = description;
-        this.incomeList = new ArrayList<>();
-        this.expenseList = new ArrayList<>();
         //this.creationTime = LocalTime.now();
     }
 

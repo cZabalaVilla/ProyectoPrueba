@@ -18,7 +18,7 @@ public class ExpenseService {
         this.expenseManager = expenseManager;
     }
 
-    public List<Expense> findAll() throws SQLException, ClassNotFoundException{
+    public List<Expense> findAllExpenses() throws SQLException, ClassNotFoundException{
         try(Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.findAll(con);
         }
@@ -40,7 +40,7 @@ public class ExpenseService {
             return expenseManager.delete(con, expense);
         }
     }
-    public boolean createExpense(String expenseName, String description, double amount, boolean isRecurrent, LocalDate creationDate) throws SQLException, ClassNotFoundException {
+    public boolean createExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.create(con, new Expense());
         }

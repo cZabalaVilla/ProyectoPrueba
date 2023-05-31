@@ -36,7 +36,7 @@ public class Expense implements Comparable<Expense>{
             this.expenseName = result.getString("expenseName");
             this.description = result.getString("description");
             this.amount = result.getDouble("amount");
-            this.isRecurrent = result.getBoolean("isRecurrent");
+            this.isRecurrent = result.getBoolean("isRecurring");
 
             //this.creationTime = result.getTime("creationTime");
 

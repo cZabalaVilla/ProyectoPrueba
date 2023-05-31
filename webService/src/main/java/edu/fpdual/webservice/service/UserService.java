@@ -48,21 +48,15 @@ public class UserService {
         }
     }
 
-    public boolean createUser(String userName, String userPassword) throws SQLException, ClassNotFoundException {
+    public boolean createUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.create(con, new User(userName, userPassword,false));
+            return userManager.create(con,user);
         }
     }
 
     public boolean updateUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return userManager.update(con, user);
-        }
-    }
-
-    public List<User> findAllAdmins() throws SQLException, ClassNotFoundException {
-        try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.findAllBy(con,"ADMN",1);
         }
     }
 }

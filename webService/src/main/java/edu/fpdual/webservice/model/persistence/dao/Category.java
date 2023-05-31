@@ -27,13 +27,3 @@ public class Category {
         }
     }
 }
-
-enum Categories {
-    VIAJE,
-    OCIO,
-    RESTAURANTE,
-    SUPERMERCADO,
-    GASOLINA,
-    COCHE,
-    HOGAR
-}

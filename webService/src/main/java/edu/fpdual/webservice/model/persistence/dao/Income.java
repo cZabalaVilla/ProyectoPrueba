@@ -36,7 +36,7 @@ public class Income implements Comparable<Income>{
             this.incomeName = result.getString("incomeName");
             this.description = result.getString("description");
             this.amount = result.getDouble("amount");
-            this.isRecurrent = result.getBoolean("isRecurrent");
+            this.isRecurrent = result.getBoolean("isRecurring");
             this.creationDate = result.getDate("creationDate")
                     .toInstant()
                     .atZone(ZoneId.systemDefault())

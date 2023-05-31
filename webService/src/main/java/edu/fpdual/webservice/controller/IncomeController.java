@@ -24,22 +24,22 @@ public class IncomeController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/all")
+    @Path("/all")
     public Response findAll() {
         try {
-            return Response.ok().entity(incomeService.findAll()).build();
-        } catch (SQLException| ClassNotFoundException e) {
-            return Response.status(400).entity("Internal Error During DB Interaction").build();
+            return Response.ok().entity(incomeService.findAllIncomes()).build();
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{incomeName}")
+    @Path("/name/{incomeName}")
     public Response findByIncomeName(@PathParam("incomeName") String incomeName) {
         try {
             if (incomeName == null) {
-                return Response.status(400).entity("Incorrect Parameters").build();
+                return Response.ok().entity(incomeService.findAllIncomes()).build();
             } else {
                 if (incomeService.findByIncomeName(incomeName).getIncomeId() <= 0) {
                     return Response.status(400).entity("Income Not Found"). build();
@@ -52,7 +52,7 @@ public class IncomeController {
     }
 
     @PUT
-    @Path("/put")
+    @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateIncome (Income income) {
@@ -71,13 +71,14 @@ public class IncomeController {
             return Response.status(400).entity("Internal Error During DB Interaction").build();
         }
     }
+
     @POST
-    @Path("/post")
+    @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createIncome (Income income) {
         try {
-            if (findByIncomeName(income.getIncomeName()) != null) {
+            if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
                 //FALTARÍA PONER LA HORA SI LA AÑADIMOS
                 if (incomeService.createIncome(income)) {
                     return Response.status(200).entity("Income created.").build();
@@ -98,7 +99,7 @@ public class IncomeController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteIncome(Income income) {
         try {
-            if (findByIncomeName(income.getIncomeName()) != null) {
+            if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
                 if (incomeService.deleteIncome(income)) {
                     return Response.status(200).entity(income).build();
                 } else {

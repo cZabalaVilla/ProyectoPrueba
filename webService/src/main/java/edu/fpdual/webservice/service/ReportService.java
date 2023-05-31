@@ -39,7 +39,7 @@ public class ReportService {
         }
     }
 
-    public boolean createReport(String userName, String userPassword) throws SQLException, ClassNotFoundException {
+    public boolean createReport(Report report) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return reportManager.create(con, new Report());
         }

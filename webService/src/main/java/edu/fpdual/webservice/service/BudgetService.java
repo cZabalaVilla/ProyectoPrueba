@@ -20,7 +20,7 @@ public class BudgetService {
         this.budgetManager = budgetManager;
     }
 
-    public List<Budget> findAll() throws SQLException, ClassNotFoundException{
+    public List<Budget> findAllBudgets() throws SQLException, ClassNotFoundException{
         try(Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.findAll(con);
         }

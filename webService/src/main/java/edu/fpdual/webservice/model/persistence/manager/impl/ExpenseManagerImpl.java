@@ -16,8 +16,6 @@ public class ExpenseManagerImpl implements ExpenseManager {
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
-
             while(result.next()) {
                 entities.add(new Expense(result));
             }

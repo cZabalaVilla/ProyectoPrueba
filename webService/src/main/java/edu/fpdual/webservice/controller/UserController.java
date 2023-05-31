@@ -41,9 +41,28 @@ public class UserController {
     public Response findByUserId(@PathParam("user_id") int userId) {
         try {
             if (userService.findByUserId(userId).getUserId() <= 0) {
-                return Response.status(400).entity("User Not Found").build();
+                return Response.status(404).entity("User Not Found").build();
             }
             return Response.ok().entity(userService.findByUserId(userId)).build();
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/name/{user_name}")
+    public Response findByUserName(@PathParam("user_name") String userName) {
+        try {
+            if (userName == null) {
+                return Response.ok().entity(userService.findAllUsers()).build();
+            } else {
+                User user = userService.findByUserName(userName);
+                if (user == null || user.getUserId() <= 0) {
+                    return Response.status(404).entity("User Not Found").build();
+                }
+                return Response.ok().entity(user).build();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
@@ -64,6 +83,38 @@ public class UserController {
     }
 
     /*
+         @GET
+        @Produces(MediaType.APPLICATION_JSON)
+        @Path("/password/{user_attribute}")
+        public Response findBy(@PathParam("user_attribute") String userAttribute) {
+            try {
+                if (isInteger(userAttribute)) {
+                    int userId = Integer.parseInt(userAttribute);
+                    if (userService.findByUserPassword(userId).getUserId() <= 0) {
+                        return Response.status(400).entity("User Not Found").build();
+                    }
+                    return Response.ok().entity(userService.findByUserPassword(userId)).build();
+                } else {
+                    if (userService.findByUserName(userAttribute).getUserId() <= 0) {
+                        return Response.status(400).entity("User Not Found").build();
+                    }
+                    return Response.ok().entity(userService.findByUserName(userAttribute)).build();
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                return Response.status(500).entity("Internal Error During DB Interaction").build();
+            }
+        }
+
+        private boolean isInteger(String str) {
+            try {
+                Integer.parseInt(str);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    */
+    /*
         @GET
         @Produces(MediaType.APPLICATION_JSON)
         public Response findByUserName(@QueryParam("user_name") String userName) {
@@ -82,22 +133,6 @@ public class UserController {
             }
         }
      */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/name/{user_name}")
-    public Response findByUserName(@PathParam("user_name") String userName) {
-        try {
-            User user = userService.findByUserName(userName);
-            if (user == null || user.getUserId() <= 0) {
-                return Response.status(404).entity("User Not Found").build();
-            }
-            return Response.ok().entity(user).build();
-        } catch (SQLException | ClassNotFoundException e) {
-
-            return Response.status(500).entity("Internal Error During DB Interaction").build();
-        }
-    }
-
     @PUT
     @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
@@ -108,7 +143,7 @@ public class UserController {
             if (userToUpdate != null) {
                 return Response.status(200).entity(userService.updateUser(user)).build();
             } else {
-                return Response.status(404).entity("User Not Found").build();
+                return Response.status(400).entity("User Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
@@ -121,12 +156,8 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(User user) {
         try {
-            if (findByUserName(user.getUserName()) != null) {
-                if (userService.createUser(user.getUserName().toLowerCase(), user.getUserPassword())) {
-                    return Response.status(200).entity("User created.").build();
-                } else {
-                    return Response.status(400).entity("User not created.").build();
-                }
+            if (userService.findByUserName(user.getUserName()) != null) {
+                return Response.status(200).entity(userService.createUser(user)).build();
             } else {
                 return Response.status(400).entity("User already exists.").build();
             }
@@ -141,14 +172,10 @@ public class UserController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUser(User user) {
         try {
-            if (findByUserName(user.getUserName()) != null) {
-                if (userService.deleteUser(user)) {
-                    return Response.status(200).entity(user).build();
-                } else {
-                    return Response.status(400).entity("User Was Not Deleted.").build();
-                }
+            if (userService.findByUserName(user.getUserName()) != null) {
+                return Response.status(200).entity(userService.deleteUser(user)).build();
             } else {
-                return Response.status(404).entity("User Not Found.").build();
+                return Response.status(400).entity("User Not Found.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();

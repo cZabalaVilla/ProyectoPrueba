@@ -27,7 +27,7 @@ public class CategoryController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/all")
+    @Path("/all")
     public Response findAll() {
         try {
             return Response.ok().entity(categoryService.findAllCategories()).build();
@@ -38,11 +38,11 @@ public class CategoryController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/get/{category}")
+    @Path("/name/{category}")
     public Response findByCategoryName(@PathParam("category") String category) {
         try {
             if (category == null) {
-                return Response.status(400).entity("Incorrect Parameters.").build();
+                return Response.ok().entity(categoryService.findAllCategories()).build();
             } else {
                 if (categoryService.findByCategoryName(category).getCategoryId() < 0) {
                     return Response.status(404).entity("Category Not Found.").build();
@@ -60,14 +60,14 @@ public class CategoryController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateCategory(Category category) {
         try {
-            if (findByCategoryName(category.getCategoryName()) == null) {
+            if (categoryService.findByCategoryName(category.getCategoryName()) == null) {
                 if (categoryService.updateCategory(new Category (category.getCategoryName().toLowerCase()))) {
-                    return Response.status(201).entity("Category Updated.").build();
+                    return Response.ok().entity("Category Updated.").build();
                 } else {
-                    return Response.status(409).entity("Category Was Not Updated.").build();
+                    return Response.status(400).entity("Category Was Not Updated.").build();
                 }
             } else {
-                return Response.status(409).entity("Category Not Found.").build();
+                return Response.status(400).entity("Category Not Found.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();
@@ -80,14 +80,14 @@ public class CategoryController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCategory(Category category) {
         try {
-            if (findByCategoryName(category.getCategoryName()) != null) {
+            if (categoryService.findByCategoryName(category.getCategoryName()) != null) {
                 if (categoryService.createCategory(new Category (category.getCategoryName().toLowerCase()))) {
-                    return Response.status(201).entity("Category Created.").build();
+                    return Response.status(200).entity("Category Created.").build();
                 } else {
-                    return Response.status(409).entity("Category Was Not Created.").build();
+                    return Response.status(400).entity("Category Was Not Created.").build();
                 }
             } else {
-                return Response.status(409).entity("Category Already Exists.").build();
+                return Response.status(400).entity("Category Already Exists.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();
@@ -104,10 +104,10 @@ public class CategoryController {
                 if (categoryService.deleteCategory(category)) {
                     return Response.status(200).entity("Category Deleted.").build();
                 } else {
-                    return Response.status(304).entity("Category Was Not Deleted.").build();
+                    return Response.status(400).entity("Category Was Not Deleted.").build();
                 }
             } else {
-                return Response.status(404).entity("Category Not Found.").build();
+                return Response.status(400).entity("Category Not Found.").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();

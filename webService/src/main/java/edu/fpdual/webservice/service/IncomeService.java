@@ -20,7 +20,7 @@ public class IncomeService {
         this.incomeManager = incomeManager;
     }
 
-    public List<Income> findAll() throws SQLException, ClassNotFoundException{
+    public List<Income> findAllIncomes() throws SQLException, ClassNotFoundException{
         try(Connection con = new MySQLConnector().getMySQLConnection()) {
             return incomeManager.findAll(con);
         }

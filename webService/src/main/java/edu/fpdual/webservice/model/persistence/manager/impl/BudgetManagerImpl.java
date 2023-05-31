@@ -17,8 +17,6 @@ public class BudgetManagerImpl implements BudgetManager {
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
-
             while (result.next()) {
                 entities.add(new Budget(result));
             }

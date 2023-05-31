@@ -4,6 +4,7 @@ package edu.fpdual.webservice.model.persistence.manager.impl;
 import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.UserManager;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,13 +88,13 @@ public class UserManagerImpl implements UserManager {
     @Override
     public boolean create(Connection con, User entity) {
         boolean result;
-        String query = "INSERT INTO " + tableName + " (userName, userPassword, admn) values(?,?,?)";
+        String query = "INSERT INTO " + tableName + " (userName, userPassword, isAdmin) values(?,?,?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setString(1, entity.getUserName().toLowerCase());
             stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
+            stm.setInt(3, entity.isAdmin() ? 1 : 0);
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -109,12 +110,11 @@ public class UserManagerImpl implements UserManager {
     @Override
     public boolean update(Connection con, User entity) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? , admn = ? WHERE userId = ?";
-
+        String query = "UPDATE " + tableName + " SET userName = ? , userPassword = ? , isAdmin = ? WHERE userId = ?";
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, entity.getUserName());
             stm.setString(2, entity.getUserPassword());
-            stm.setInt(3, entity.isAdmn() ? 1 : 0);
+            stm.setInt(3, entity.isAdmin() ? 1 : 0);
             stm.setInt(4, entity.getUserId());
 
             result = stm.executeUpdate() > 0;

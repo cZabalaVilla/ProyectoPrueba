@@ -12,13 +12,13 @@ public class User implements Comparable<User> {
     private int userId;
     private String userName;
     private String userPassword;
-    boolean admn;
+    boolean isAdmin;
 
 
-    public User(String userName, String userPassword, boolean admn) {
+    public User(String userName, String userPassword, boolean isAdmin) {
         this.userName = userName.toLowerCase();
         this.userPassword = userPassword;
-        this.admn = admn;
+        this.isAdmin = isAdmin;
     }
 
     public User(ResultSet resultSet) {
@@ -26,7 +26,7 @@ public class User implements Comparable<User> {
             this.userId = resultSet.getInt("userId");
             this.userName = resultSet.getString("userName");
             this.userPassword = resultSet.getString("userPassword");
-            this.admn = resultSet.getBoolean("admn");
+            this.isAdmin = resultSet.getBoolean("isAdmin");
         } catch (SQLException e) {
             e.printStackTrace();
         }
