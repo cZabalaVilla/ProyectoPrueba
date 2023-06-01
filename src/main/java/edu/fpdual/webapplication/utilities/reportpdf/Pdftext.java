@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.utilities.report;
+package edu.fpdual.webapplication.utilities.reportpdf;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;

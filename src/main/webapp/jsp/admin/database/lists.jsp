@@ -67,7 +67,9 @@
     </div>
 </form>
 <br/>
-<button onclick="<%=GlobalInfo.URL_JSP_CONTROLPANEL%>">Volver al panel de control</button>
+<form method="post" action="<%=GlobalInfo.URL_JSP_CONTROLPANEL%>">
+    <input type="submit" name="submitBtn" value="Volver">
+</form>
 <div class="container">
     <% List<String> objectList = (List<String>) request.getAttribute("objectList"); %>
     <% if (objectList != null && !objectList.isEmpty()) { %>

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Session {
+    private int userId;
     private String userName;
     private boolean admin;
 }

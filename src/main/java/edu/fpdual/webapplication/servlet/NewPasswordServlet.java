@@ -15,26 +15,23 @@ import jakarta.ws.rs.NotFoundException;
 
 import java.io.IOException;
 
-@WebServlet(name = "UpdatePasswordServlet", urlPatterns = {"/update-password-servlet"})
-public class UpdatePasswordServlet extends HttpServlet {
+@WebServlet(name = "NewPasswordServlet", urlPatterns = {"/new-password-servlet"})
+public class NewPasswordServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String notFoundError = "Codigo incorrecto";
+        String notFoundError = "Contraseña incorrecta";
         String ok = "Se ha restablecido tu contraseña";
 
-        String dispatcherURLUpdate = "jsp/login/updatePassword.jsp";
+        String dispatcherURLUpdate = "jsp/common/newPassword.jsp";
         String newPassword = request.getParameter("newPassword");
 
         try {
             UserService userService = new UserService(new UserClient());
-            String code = new Password(request.getParameter("code")).toString();
-
-            User user = userService.getUserByPassword(code);
-
+            User user = userService.getUserByName(new Password(request.getParameter("oldPassword")).toString());
             try {
                 user.setUserPassword(new Password(newPassword, user.getUserName()).toString());
-            } catch (InvalidPasswordException e) {
+            } catch (InvalidPasswordException e){
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher(dispatcherURLUpdate).forward(request, response);
             }

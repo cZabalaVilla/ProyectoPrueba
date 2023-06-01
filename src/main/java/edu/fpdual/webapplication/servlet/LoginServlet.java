@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error", incorrectError);
                 request.getRequestDispatcher(dispatcherURLLogin).forward(request, response);
             } else {
-                session = Session.builder()
+                session = Session.builder().userId(user.getUserId())
                         .userName(userNameReceived)
                         .admin(user.isAdmin())
                         .build();

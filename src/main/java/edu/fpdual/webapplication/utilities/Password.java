@@ -86,29 +86,6 @@ public class Password {
         }
     }
 
-    /*
-        public boolean comparePassword(String storedHash) {
-            boolean passwordMatches;
-            try {
-                MessageDigest digest = MessageDigest.getInstance("SHA-256");
-                byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-                StringBuilder hexString = new StringBuilder();
-
-                for (byte b : encodedHash) {
-                    String hex = Integer.toHexString(0xff & b);
-                    if (hex.length() == 1) hexString.append('0');
-                    hexString.append(hex);
-                }
-
-                String calculatedHash = hexString.toString();
-                passwordMatches = calculatedHash.equals(storedHash);
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-                passwordMatches = false;
-            }
-            return passwordMatches;
-        }
-    */
     @Override
     public String toString() {
         return password;

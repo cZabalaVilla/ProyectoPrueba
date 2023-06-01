@@ -27,8 +27,7 @@ public class ProfileServlet extends HttpServlet {
         String dispatcherURLProfile = "jsp/common/profile.jsp";
 
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-        User user = new UserService(new UserClient()).getUserByName(session.getUserName());
-        Profile userProfile = new ProfileService(new ProfileClient()).getProfile(user.getUserId());
+        Profile userProfile = new ProfileService(new ProfileClient()).getProfile(session.getUserId());
 
         try {
             userProfile.setDescription(request.getParameter("description"));
