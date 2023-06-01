@@ -101,7 +101,7 @@ public class BudgetManagerImpl implements BudgetManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 
     @Override
