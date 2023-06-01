@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,18 +19,10 @@ public class Budget implements Comparable<Budget>{
     private int budgetId;
     private String budgetName;
     private String description;
+    private Currency currency;
     private List<Income> incomeList;
     private List<Expense> expenseList;
     private Timestamp creationDate;
-    //private LocalTime creationTime;
-
-    //Atributo de datos
-
-    //Si queremos poner que se pueda elegir el tipo de moneda en la que se hará el presupuesto.
-    //Habría que crear un enum o una tabla en bbdd con la moneda y el símbolo
-    //Moneda moneda;
-
-
 
     public Budget (ResultSet result) {
         try {
@@ -39,6 +30,9 @@ public class Budget implements Comparable<Budget>{
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
+            this.currency.setCurrencyId(result.getInt("currencyId"));
+            this.currency.setCurrencyName(result.getString("currencyName"));
+            this.currency.setCurrencySymbol(result.getString("currencySymbol"));
             this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId",budgetId);
             this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId",budgetId);
             this.creationDate = result.getTimestamp("creationTime");

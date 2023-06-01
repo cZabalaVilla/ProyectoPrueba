@@ -30,7 +30,7 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public List<Budget> findAllBy(Connection con, String fieldName, Object value) {
         List<Budget> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -49,7 +49,7 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public Budget findBy(Connection con, String fieldName, Object value) {
         Budget entity = new Budget();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -69,7 +69,7 @@ public class BudgetManagerImpl implements BudgetManager {
 
     @Override
     public boolean delete(Connection con, Budget budget) {
-        boolean result = false;
+        boolean result;
 
         String query = "DELETE FROM " + tableName + " WHERE budgetName = ?";
 
@@ -86,15 +86,15 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean create(Connection con, Budget budget) {
         boolean result;
-        //Hay que ver los atributos de Budget
-        String query = "INSERT INTO " + tableName + "(userID, budgetName, description, creationDate) values (?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(userID, budgetName, description, currencyId, creationDate) values (?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, budget.getUserId());
-            //stm.setInt(2, budget.getBudgetName());
+            stm.setString(2, budget.getBudgetName());
             stm.setString(3, budget.getDescription());
-            //stm.setDate(4, (Date) budget.getCreationDate());
+            stm.setInt(4, budget.getCurrency().getCurrencyId());
+            stm.setTimestamp(5, budget.getCreationDate());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -107,13 +107,13 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean update(Connection con, Budget budget) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET budgetName = ?, description=?, creationDate = ? WHERE budgetId = ?";
+        String query = "UPDATE " + tableName + " SET budgetName = ?, description=?, currencyId=?, creationDate = ? WHERE budgetId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-//            stm.setInt(1, entity.getUserId());
-//            stm.setInt(2, entity.getBudgetId());
-//            stm.setString(3, entity.getBudgetName());
-//            stm.setDate(4, (Date) entity.getCreationDate());
+            stm.setString(1, budget.getBudgetName());
+            stm.setString(2, budget.getDescription());
+            stm.setInt(3, budget.getCurrency().getCurrencyId());
+            stm.setTimestamp(4, budget.getCreationDate());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
