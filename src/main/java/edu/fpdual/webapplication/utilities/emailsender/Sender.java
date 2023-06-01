@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.utilities.emailSender;
+package edu.fpdual.webapplication.utilities.emailsender;
 
 import lombok.Getter;
 import lombok.Setter;

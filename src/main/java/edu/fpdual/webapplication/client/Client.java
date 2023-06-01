@@ -1,7 +1,10 @@
 package edu.fpdual.webapplication.client;
 
+import edu.fpdual.webapplication.annotations.Model;
+
 import java.util.List;
 
+@Model(type = "Superclient",version = "1.0", date = "01/06/2023")
 public abstract class Client<T> {
 
     /**

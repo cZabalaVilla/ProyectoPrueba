@@ -1,6 +1,7 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.dto.Profile;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -10,6 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
+@Model(type = "Client",version = "1.0", date = "01/06/2023")
 public class ProfileClient extends Client<Profile> {
     private final WebTarget webTarget;
     private final String clientPath = "profile/";

@@ -9,7 +9,7 @@ import edu.fpdual.webapplication.service.UserService;
 import edu.fpdual.webapplication.utilities.Email;
 import edu.fpdual.webapplication.utilities.InvalidEmailException;
 import edu.fpdual.webapplication.utilities.Password;
-import edu.fpdual.webapplication.utilities.emailSender.Sender;
+import edu.fpdual.webapplication.utilities.emailsender.Sender;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

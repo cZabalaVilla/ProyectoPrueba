@@ -1,5 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
+import edu.fpdual.webapplication.annotations.Model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Model(type = "Data",version = "1.0", date = "01/06/2023")
 public class Budget {
     private int userId;
     private int budgetId;

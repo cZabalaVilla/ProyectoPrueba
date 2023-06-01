@@ -2,6 +2,7 @@ package edu.fpdual.webapplication.filter;
 
 
 import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+@Model(type = "Filter",version = "1.0", date = "01/06/2023")
 @WebFilter(filterName = "loginFilter", urlPatterns = {"/jsp/common/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class LoginFilter implements Filter {
     @Override

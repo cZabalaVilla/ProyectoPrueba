@@ -1,6 +1,7 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.dto.Report;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -10,6 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
+@Model(type = "Client",version = "1.0", date = "01/06/2023")
 public class ReportClient extends Client<Report> {
 
     private final WebTarget webTarget;

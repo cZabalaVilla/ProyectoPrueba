@@ -1,10 +1,12 @@
 package edu.fpdual.webapplication.service;
 
+import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.client.ExpenseClient;
 import edu.fpdual.webapplication.dto.Expense;
 
 import java.util.List;
 
+@Model(type = "Service",version = "1.0", date = "01/06/2023")
 public class ExpenseService {
     private final ExpenseClient expenseClient;
 
