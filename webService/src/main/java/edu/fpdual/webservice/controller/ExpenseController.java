@@ -80,7 +80,6 @@ public class ExpenseController {
     public Response createExpense(Expense expense) {
         try {
             if (expenseService.findByExpenseName(expense.getExpenseName()) != null) {
-                //FALTARÍA PONER LA HORA SI LA AÑADIMOS
                 if (expenseService.createExpense(expense)) {
                     return Response.status(200).entity("Expense created.").build();
                 } else {

@@ -19,7 +19,7 @@ public class Budget implements Comparable<Budget>{
     private int budgetId;
     private String budgetName;
     private String description;
-    private Currency currency;
+    private int currencyId;
     private List<Income> incomeList;
     private List<Expense> expenseList;
     private Timestamp creationDate;
@@ -30,9 +30,7 @@ public class Budget implements Comparable<Budget>{
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
-            this.currency.setCurrencyId(result.getInt("currencyId"));
-            this.currency.setCurrencyName(result.getString("currencyName"));
-            this.currency.setCurrencySymbol(result.getString("currencySymbol"));
+            this.currencyId = result.getInt("currencyId");
             this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId",budgetId);
             this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId",budgetId);
             this.creationDate = result.getTimestamp("creationTime");

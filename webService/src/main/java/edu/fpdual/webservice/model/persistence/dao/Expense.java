@@ -5,33 +5,30 @@ import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 public class Expense implements Comparable<Expense>{
-    private int budgetId;
     private int expenseId;
+    private int budgetId;
     private String expenseName;
     private String description;
+    private int categoryId;
     private double amount;
     private boolean isRecurrent;
-    private Date creationDate;
-    //private LocalTime creationTime;
+    private Timestamp creationDate;
 
     public Expense (ResultSet result) {
         try {
-            this.budgetId = result.getInt("budgetId");
             this.expenseId = result.getInt("expenseId");
+            this.budgetId = result.getInt("budgetId");
             this.expenseName = result.getString("expenseName");
             this.description = result.getString("description");
+            this.categoryId = result.getInt("categoryId");
             this.amount = result.getDouble("amount");
-            this.isRecurrent = result.getBoolean("isRecurring");
-
-            //this.creationTime = result.getTime("creationTime");
-
+            this.isRecurrent = result.getBoolean("isRecurrent");
+            this.creationDate = result.getTimestamp("creationDate");
         } catch (SQLException e) {
             e.printStackTrace();
         }

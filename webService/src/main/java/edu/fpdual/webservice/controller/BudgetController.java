@@ -80,8 +80,6 @@ public class BudgetController {
     public Response createBudget(Budget budget) {
         try {
             if (budgetService.findByBudgetName(budget.getBudgetName()) != null) {
-                //AÑADIR ESTO CUANDO DEJE DE DAR PROBLEMA EN EL OTRO SITIO
-                // budget.getIncomeList(), budget.getExpenseList(), budget.getCreationDate())
                 if (budgetService.createBudget(budget)) {
                     return Response.status(200).entity("Budget created.").build();
                 } else {

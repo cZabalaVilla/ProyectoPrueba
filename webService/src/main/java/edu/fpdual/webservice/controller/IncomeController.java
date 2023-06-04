@@ -79,7 +79,6 @@ public class IncomeController {
     public Response createIncome (Income income) {
         try {
             if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
-                //FALTARÍA PONER LA HORA SI LA AÑADIMOS
                 if (incomeService.createIncome(income)) {
                     return Response.status(200).entity("Income created.").build();
                 } else {

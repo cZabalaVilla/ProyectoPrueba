@@ -51,7 +51,7 @@ public class IncomeManagerImpl implements IncomeManager {
     @Override
     public Income findBy(Connection con, String fieldName, Object value) {
         Income entity = new Income();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -90,16 +90,17 @@ public class IncomeManagerImpl implements IncomeManager {
     public boolean create(Connection con, Income income) {
         boolean result;
 
-        String query = "INSERT INTO " + tableName + "(budgetId, incomeName, description, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(budgetId, incomeName, description, categoryId, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, income.getBudgetId());
             stm.setString(2, income.getIncomeName());
-            stm.setString(3, income.getDescription());
-            stm.setDouble(4, income.getAmount());
-            stm.setBoolean(5, income.isRecurrent());
-            //stm.setDate(6, expense.getCreationDate());
+            stm.setInt(3, income.getCategoryId());
+            stm.setString(4, income.getDescription());
+            stm.setDouble(5, income.getAmount());
+            stm.setBoolean(7, income.isRecurrent());
+            stm.setTimestamp(7, income.getCreationDate());
 
             result = stm.executeUpdate() > 0;
 
@@ -113,15 +114,15 @@ public class IncomeManagerImpl implements IncomeManager {
     @Override
     public boolean update(Connection con, Income income) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET incomeName = ?, description = ?, amount = ?, isRecurrent = ?, creationDate = ? WHERE incomeId = ?";
+        String query = "UPDATE " + tableName + " SET incomeName = ?, description = ?, categoryId = ?, amount = ?, isRecurrent = ? WHERE incomeId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setString(1, income.getIncomeName());
             stm.setString(2, income.getDescription());
+            stm.setInt(3, income.getCategoryId());
             stm.setDouble(3, income.getAmount());
             stm.setBoolean(4, income.isRecurrent());
-            //stm.setDate(5, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

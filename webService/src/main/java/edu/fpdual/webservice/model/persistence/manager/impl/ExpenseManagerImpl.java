@@ -50,7 +50,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
     @Override
     public Expense findBy(Connection con, String fieldName, Object value) {
         Expense entity = new Expense();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName.toUpperCase() + " = ?";
+        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
@@ -71,7 +71,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
 
     @Override
     public boolean delete(Connection con, Expense expense) {
-        boolean result = false;
+        boolean result;
 
         String query = "DELETE FROM " + tableName + " WHERE expenseName = ?";
 
@@ -89,16 +89,17 @@ public class ExpenseManagerImpl implements ExpenseManager {
     public boolean create(Connection con, Expense expense) {
         boolean result;
 
-        String query = "INSERT INTO " + tableName + "(budgetId, expenseName, description, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(budgetId, expenseName, description, categoryId, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, expense.getBudgetId());
             stm.setString(2, expense.getExpenseName());
             stm.setString(3, expense.getDescription());
-            stm.setDouble(4, expense.getAmount());
-            stm.setBoolean(5, expense.isRecurrent());
-            //stm.setDate(6, expense.getCreationDate());
+            stm.setInt(4, expense.getCategoryId());
+            stm.setDouble(5, expense.getAmount());
+            stm.setBoolean(6, expense.isRecurrent());
+            stm.setTimestamp(7, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
 
@@ -112,15 +113,15 @@ public class ExpenseManagerImpl implements ExpenseManager {
     @Override
     public boolean update(Connection con, Expense expense) {
         boolean  result;
-        String query = "UPDATE " +tableName + " SET expenseName = ?, description = ?, amount = ?, isRecurrent = ?, creationDate = ? WHERE expenseId = ?";
+        String query = "UPDATE " +tableName + " SET expenseName = ?, description = ?, categoryId = ?, amount = ?, isRecurrent = ? WHERE expenseId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setString(1, expense.getExpenseName());
             stm.setString(2, expense.getDescription());
+            stm.setInt(3, expense.getCategoryId());
             stm.setDouble(3, expense.getAmount());
             stm.setBoolean(4, expense.isRecurrent());
-            //stm.setDate(5, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

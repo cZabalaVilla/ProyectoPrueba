@@ -86,15 +86,14 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean create(Connection con, Budget budget) {
         boolean result;
-        String query = "INSERT INTO " + tableName + "(userID, budgetName, description, currencyId, creationDate) values (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(userId, budgetName, description, currencyId) values (?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, budget.getUserId());
             stm.setString(2, budget.getBudgetName());
             stm.setString(3, budget.getDescription());
-            stm.setInt(4, budget.getCurrency().getCurrencyId());
-            stm.setTimestamp(5, budget.getCreationDate());
+            stm.setInt(4, budget.getCurrencyId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -107,13 +106,12 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean update(Connection con, Budget budget) {
         boolean result;
-        String query = "UPDATE " + tableName + " SET budgetName = ?, description=?, currencyId=?, creationDate = ? WHERE budgetId = ?";
+        String query = "UPDATE " + tableName + " SET budgetName = ?, description = ?, currencyId = ? WHERE budgetId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stm.setString(1, budget.getBudgetName());
             stm.setString(2, budget.getDescription());
-            stm.setInt(3, budget.getCurrency().getCurrencyId());
-            stm.setTimestamp(4, budget.getCreationDate());
+            stm.setInt(3, budget.getCurrencyId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
