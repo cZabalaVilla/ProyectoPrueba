@@ -17,7 +17,7 @@
             <h3 class="logoTxt">Fit-Pocket</h3>
         </a>
         <br/>
-        <h3>Restaurar Contraseña</h3>
+        <h3 class="H3Box">Restaurar Contraseña</h3>
     </div>
     <br/>
     <form method="post" action="<%=GlobalInfo.URL_SERVLET_UPDATEPASSWORD%>">

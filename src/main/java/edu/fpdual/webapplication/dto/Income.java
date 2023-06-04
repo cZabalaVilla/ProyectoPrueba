@@ -14,15 +14,15 @@ public class Income {
     private int incomeId;
     private String incomeName;
     private String description;
-    private Category category;
+    private int categoryId;
     private double amount;
     private boolean isRecurrent;
     private Date date;
 
-    public Income(String incomeName, String description, Category category, double amount, boolean isRecurrent) {
+    public Income(String incomeName, String description, int categoryId, double amount, boolean isRecurrent) {
         this.incomeName = incomeName;
         this.description = description;
-        this.category = category;
+        this.categoryId = categoryId;
         this.amount = amount;
         this.isRecurrent = isRecurrent;
     }

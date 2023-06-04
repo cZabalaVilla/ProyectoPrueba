@@ -1,0 +1,70 @@
+package edu.fpdual.webapplication.client;
+
+import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.dto.Currency;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
+
+import java.util.List;
+
+public class CurrencyClient extends Client<Currency>{
+    private final WebTarget webTarget;
+    private final String clientPath = "currency/";
+    public CurrencyClient() {
+        jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
+        this.webTarget = client.target(GlobalInfo.URL_WEBTARGET);
+    }
+
+    @Override
+    public String ping() {
+        return webTarget.path(clientPath + "ping")
+                .request(MediaType.APPLICATION_JSON)
+                .get(String.class);
+    }
+
+    @Override
+    public List<Currency> get() {
+        //WebTarget web = webTarget.path(clientPath + "all");
+        //web.request(MediaType.APPLICATION_JSON);
+
+//       List<Currency> lista = new ArrayList<>();
+//       lista.add(new Currency(1, "EUR", "€"));
+//       lista.add(new Currency(2, "USD", "$"));
+
+        return webTarget.path(clientPath + "all")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<>() {});
+    }
+
+    @Override
+    public Currency get(String currencyName) {
+        return webTarget.path(clientPath + "get" + currencyName)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Currency.class);
+    }
+
+    @Override
+    public boolean put(Currency currency) {
+        return  webTarget.path(clientPath + "update")
+                .request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(currency, MediaType.APPLICATION_JSON), boolean.class);
+    }
+
+    @Override
+    public boolean post(Currency currency) {
+        return webTarget.path(clientPath + "create")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(currency, MediaType.APPLICATION_JSON), boolean.class);
+    }
+
+    @Override
+    public boolean delete(Currency currency) {
+        return webTarget.path(clientPath + "delete")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.entity(currency, MediaType.APPLICATION_JSON), boolean.class);
+    }
+}

@@ -19,7 +19,7 @@
             <h3 class="logoTxt">Fit-Pocket</h3>
         </a>
         <br/>
-        <h3>Registro</h3>
+        <h3 class="H3Box">Registro</h3>
     </div>
     <!-- Para que salga el error
     <div class="errorAlert">

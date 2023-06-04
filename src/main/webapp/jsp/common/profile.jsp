@@ -15,6 +15,7 @@
     <%@ include file="../insert/headTemplate.jsp" %>
     <title>Perfil</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
+
 </head>
 <body>
     <div class="container">
@@ -23,42 +24,42 @@
             <%@ include file="../insert/mainNav.jsp" %>
             <div class="mainBlock">
                 <div class="content">
-                     <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
+                    <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
                     <% User user = new UserService(new UserClient()).getUserByName(thisSession.getUserName()); %>
                     <% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
-                    <img src="<%=GlobalInfo.URL_PROYECTO%>/img/userImg.png" class="profileImg" alt="Tu foto de perfil"/>
+                    <img src="./img/userImg.png" class="profileImg" />
                     <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>" >
-                        <label for="userName">Nombre</label>
+                        <label for="form">Nombre</label>
                         <br />
                         <input type="text" id="userName" name="userName" value="<%= user.getUserName() %>" />
                         <br />
                         <br />
-                        <label for="email">Correo Electrónico</label>
+                        <label for="form">Correo Electrónico</label>
                         <br />
                         <input type="email" id="email" name="email" value="<%= profile.getEmail() %>" />
                         <br />
                         <br />
-                        <label for="link">Página Web</label>
+                        <label for="form">Página Web</label>
                         <br />
                         <input type="url" id="link" name="link" value="<%= profile.getLink() %>" />
                         <br />
                         <br />
-                        <label for="location">Ubicación</label>
+                        <label for="form">Ubicación</label>
                         <br />
                         <input type="text" id="location" name="location" value="<%= profile.getLocation() %>" />
                         <br />
                         <br />
-                        <label for="phone">Teléfono</label>
+                        <label for="form">Teléfono</label>
                         <br />
                         <input type="number" id="phone" name="phone" value="<%= profile.getPhone() %>" />
                         <br />
                         <br />
-                        <label for="description">Bio</label>
+                        <label for="form">Bio</label>
                         <br />
-                        <textarea id="description" name="description" rows="5" cols="65" placeholder="<%= profile.getDescription() %>"></textarea>
+                        <textarea id="description" name="description" rows="5" cols="65"><%= profile.getDescription() %></textarea>
                         <br />
                         <br />
-                         <% if (request.getAttribute("error") != null) { %>
+                        <% if (request.getAttribute("error") != null) { %>
                             <p class="errorAlert"><%= request.getAttribute("error") %></p><br/>
                         <% } else if (request.getAttribute("ok") != null) { %>
                             <p><%= request.getAttribute("ok") %></p>

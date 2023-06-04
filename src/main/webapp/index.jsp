@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
-<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,22 +12,6 @@
 
 <body>
 <div class="container">
-    <% Session sesionActual = (Session) session.getAttribute("session");%>
-    <% if (sesionActual != null) { %>
-    <header>
-        <a href="<%=GlobalInfo.URL_INDEX%>" class="logoSidebar">
-            <p>Fit-Pocket</p>
-        </a>
-        <nav>
-            <a href="#">Menú 1</a>
-            <a href="#">Menú 1</a>
-            <a href="#">Menú 1</a>
-            <a href="#">Menú 1</a>
-            <a href="#">Menú 1</a>
-            <a href="#">Menú 1</a>
-        </nav>
-    </header>
-    <%} else {%>
     <main>
         <div class="mainNav">
             <div class="mainLinkNav">
@@ -49,19 +32,7 @@
                     </li>
                 </ul>
             </div>
-            <%}%>
-            <%if (sesionActual != null) {%>
-            <div class="dropdown">
-                <!--img src="./img/userImg.png"/-->
-                <a href="#" class="username">Username</a>
-                <button class="dropBtn">Username</button>
-                <div class="dropdownContent">
-                    <a href="#">Perfil</a>
-                    <a href="#">Ajustes</a>
-                    <a href="#">Cerrar sesión</a>
-                </div>
-            </div>
-            <%} else {%>
+
             <div class="leftNav">
                 <form method="get" action="<%=GlobalInfo.URL_JSP_LOGIN%>">
                     <button type="submit" name="submitBtn" class="buttonB">Login</button>
@@ -70,7 +41,7 @@
                     <button type="submit" name="submitBtn" class="buttonB">Registro</button>
                 </form>
             </div>
-            <%}%>
+
         </div>
         <div class="mainBlock">
             <div class="content">

@@ -21,7 +21,7 @@ public class GlobalInfo {
     public static final String URL_JSP_REDIRECCION = URL_JSP + "/redir/redireccion.jsp";
     public static final String URL_JSP_ABOUTUS = URL_JSP + "/aboutUs.jsp";
     public static final String URL_JSP_CONTACTUS = URL_JSP + "/contactUs.jsp";
-
+    public static final String URL_JSP_ADDBUDGET = URL_JSP + "/common/addBudget.jsp";
 
     /*
      * Páginas de error
@@ -45,8 +45,8 @@ public class GlobalInfo {
     public static final String URL_SERVLET_PINGLIST = URL_SERVLET_ + "/ping-list-servlet";
     public static final String URL_SERVLET_UPDATEPASSWORD = URL_SERVLET_ + "/update-password-servlet";
     public static final String URL_SERVLET_RESTOREPASSWORD = URL_SERVLET_ + "/restore-password-servlet";
-
-
+    public static final String URL_SERVLET_ADDBUDGET = URL_SERVLET_ +"/create-budget-servlet";
+    public static final String URL_SERVLET_LISTBUDGETS = URL_SERVLET_ +"/list-budget-servlet";
     /*
      * Variables globales
      */

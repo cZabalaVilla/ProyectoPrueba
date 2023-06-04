@@ -7,9 +7,9 @@ import edu.fpdual.webapplication.dto.Budget;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Model(type = "Client",version = "1.0", date = "01/06/2023")
@@ -31,10 +31,16 @@ public class BudgetClient extends Client<Budget> {
 
     @Override
     public List<Budget> get() {
-        return webTarget.path(clientPath + "all")
-                .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {
-                });
+
+        List<Budget> lista = new ArrayList<>();
+        lista.add(new Budget(3, "PresupuestoP", "Prueba descripcion", 2));
+        lista.add(new Budget(5, "Aaaaah", "Noping to the infinity", 1));
+
+        return lista;
+//                webTarget.path(clientPath + "all")
+//                .request(MediaType.APPLICATION_JSON)
+//                .get(new GenericType<>() {
+//                });
     }
 
     @Override

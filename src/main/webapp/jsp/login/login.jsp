@@ -17,7 +17,7 @@
                 <h3 class="logoTxt">Fit-Pocket</h3>
             </a>
             <br/>
-            <h3>Entrar</h3>
+            <h3 class="H3Box">Entrar</h3>
         </div>
         <br/>
         <form method="POST" action=<%=GlobalInfo.URL_SERVLET_LOGIN%>>

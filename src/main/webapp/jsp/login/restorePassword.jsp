@@ -20,7 +20,7 @@
             <h3 class="logoTxt">Fit-Pocket</h3>
         </a>
         <br/>
-        <h3>Restaurar Contraseña</h3>
+        <h3 class="H3Box">Restaurar Contraseña</h3>
     </div>
     <!-- Para que salga el error
     <div class="errorAlert">
