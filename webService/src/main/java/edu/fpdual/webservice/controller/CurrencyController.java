@@ -1,5 +1,6 @@
 package edu.fpdual.webservice.controller;
 
+
 import edu.fpdual.webservice.model.persistence.dao.Currency;
 import edu.fpdual.webservice.model.persistence.manager.impl.CurrencyManagerImpl;
 import edu.fpdual.webservice.service.CurrencyService;
@@ -56,17 +57,18 @@ public class CurrencyController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateCurrency(Currency currency) {
         try {
-            if (currencyService.findByCurrencyName(currency.getCurrencyName()) == null) {
+            Currency currencyToUpdate = currencyService.findByCurrencyName(currency.getCurrencyName());
+            if (currencyToUpdate != null) {
                 if (currencyService.updateCurrency(currency)) {
-                    return Response.ok().entity("Currency Updated.").build();
+                    return Response.status(200).entity(currencyService.findByCurrencyName(currency.getCurrencyName())).build();
                 } else {
-                    return Response.status(400).entity("Currency Was Not Updated.").build();
+                    return Response.status(400).entity("Internal Error During Budget Update").build();
                 }
             } else {
-                return Response.status(400).entity("Currency Not Found.").build();
+                return Response.status(400).entity("Budget Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            return Response.status(500).entity("Internal Error During DB Interaction.").build();
+            return Response.status(400).entity("Internal Error During DB Interaction").build();
         }
     }
 

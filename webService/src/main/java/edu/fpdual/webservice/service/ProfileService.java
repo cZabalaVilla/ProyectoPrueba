@@ -2,11 +2,8 @@ package edu.fpdual.webservice.service;
 
 import edu.fpdual.webservice.model.persistence.connector.MySQLConnector;
 import edu.fpdual.webservice.model.persistence.dao.Profile;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.ProfileManager;
-import edu.fpdual.webservice.model.persistence.manager.UserManager;
 import edu.fpdual.webservice.model.persistence.manager.impl.ProfileManagerImpl;
-import edu.fpdual.webservice.model.persistence.manager.impl.UserManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;

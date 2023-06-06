@@ -52,9 +52,12 @@ public class BudgetManagerImpl implements BudgetManager {
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
+            if (value.getClass().equals(String.class)) {
+                value = ((String) value).toLowerCase();
+            }
+
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             while (result.next()) {
                 entity = new Budget(result);
@@ -86,7 +89,7 @@ public class BudgetManagerImpl implements BudgetManager {
     @Override
     public boolean create(Connection con, Budget budget) {
         boolean result;
-        String query = "INSERT INTO " + tableName + "(userId, budgetName, description, currencyId) values (?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + " (userId, budgetName, description, currencyId) values (?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 

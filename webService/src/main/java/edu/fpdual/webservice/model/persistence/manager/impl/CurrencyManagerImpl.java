@@ -86,15 +86,40 @@ public class CurrencyManagerImpl implements CurrencyManager {
         return result;
     }
 
-    //Si no se pueden crear ni updatear las divisas no hace falta hacer esto?
     @Override
-    public boolean create(Connection con, Currency entity) {
+    public boolean create(Connection con, Currency currency) {
+        boolean result;
+        String query = "INSERT INTO " + tableName + " (currencyName, currencySymbol) values (?, ?)";
 
-        return false;
+        try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stm.setString(1, currency.getCurrencyName());
+            stm.setString(2, currency.getCurrencySymbol());
+
+            result = stm.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result = false;
+        }
+        return result;
     }
 
     @Override
-    public boolean update(Connection con, Currency entity) {
-        return false;
+    public boolean update(Connection con, Currency currency) {
+        boolean result;
+        String query = "UPDATE " + tableName + " SET currencyName = ?, currencySymbol = ? WHERE currencyId = ?";
+
+        try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stm.setString(1, currency.getCurrencyName());
+            stm.setString(2, currency.getCurrencySymbol());
+
+            result = stm.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result = false;
+        }
+
+        return result;
     }
 }
