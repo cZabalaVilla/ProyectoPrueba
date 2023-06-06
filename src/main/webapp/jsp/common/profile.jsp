@@ -27,7 +27,7 @@
                     <% Session thisSession = (Session) request.getSession().getAttribute(GlobalInfo.session); %>
                     <% User user = new UserService(new UserClient()).getUserByName(thisSession.getUserName()); %>
                     <% Profile profile = new ProfileService(new ProfileClient()).getProfile(user.getUserId()); %>
-                    <img src="./img/userImg.png" class="profileImg" />
+                    <img src="../../img/userImg.png" class="profileImg" />
                     <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>" >
                         <label for="form">Nombre</label>
                         <br />

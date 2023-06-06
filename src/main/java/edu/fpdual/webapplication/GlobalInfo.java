@@ -47,6 +47,7 @@ public class GlobalInfo {
     public static final String URL_SERVLET_RESTOREPASSWORD = URL_SERVLET_ + "/restore-password-servlet";
     public static final String URL_SERVLET_ADDBUDGET = URL_SERVLET_ +"/create-budget-servlet";
     public static final String URL_SERVLET_LISTBUDGETS = URL_SERVLET_ +"/list-budget-servlet";
+    public static final String RL_SERVLET_DELETEBUDGET = URL_SERVLET_ +"/delete-budget-servlet";
     /*
      * Variables globales
      */

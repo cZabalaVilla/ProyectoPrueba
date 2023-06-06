@@ -2,6 +2,7 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.client.BudgetClient;
 import edu.fpdual.webapplication.dto.Budget;
+import edu.fpdual.webapplication.dto.Currency;
 import edu.fpdual.webapplication.service.BudgetService;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -13,33 +14,23 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListBudgetServlet", urlPatterns = {"/list-budget-servlet"})
-public class ListBudgetServlet extends HttpServlet {
+@WebServlet(name = "BudgetDataServlet", urlPatterns = {"/see-budget"})
+public class BudgetDataServlet extends HttpServlet {
     private BudgetService budgetService;
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         budgetService = new BudgetService(new BudgetClient());
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        List<Budget> budgetList = budgetService.getAllBudgets();
-//        Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-//        for (Budget budget : budgetList) {
-//            if (budget.getUserId() != session.getUserId()) {
-//                budgetList.remove(budget);
-//            }
-//        }
-        request.getSession().setAttribute("budgetList", budgetList);
-        response.sendRedirect("/ProyectoPrueba/jsp/common/listBudget.jsp");
+        String budgetName = request.getParameter("budgetName");
+        Budget budget = budgetService.getBudget(budgetName);
+        request.getSession().setAttribute("budget", budget);
+        response.sendRedirect("/ProyectoPrueba/jsp/common/budgetData.jsp");
     }
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
+            throws ServletException, IOException {}
 }

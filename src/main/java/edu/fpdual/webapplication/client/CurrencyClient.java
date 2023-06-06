@@ -1,6 +1,7 @@
 package edu.fpdual.webapplication.client;
 
 import edu.fpdual.webapplication.GlobalInfo;
+import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.dto.Currency;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -8,9 +9,8 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
-
 import java.util.List;
-
+@Model(type = "Client",version = "1.0", date = "01/06/2023")
 public class CurrencyClient extends Client<Currency>{
     private final WebTarget webTarget;
     private final String clientPath = "currency/";
@@ -28,14 +28,13 @@ public class CurrencyClient extends Client<Currency>{
 
     @Override
     public List<Currency> get() {
-        //WebTarget web = webTarget.path(clientPath + "all");
-        //web.request(MediaType.APPLICATION_JSON);
 
 //       List<Currency> lista = new ArrayList<>();
 //       lista.add(new Currency(1, "EUR", "€"));
 //       lista.add(new Currency(2, "USD", "$"));
 
-        return webTarget.path(clientPath + "all")
+        return
+                webTarget.path(clientPath + "all")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {});
     }

@@ -33,8 +33,6 @@ public class CreateBudgetServlet extends HttpServlet {
         List<Currency> currencyList = currencyService.getAllCurrency();
         request.getSession().setAttribute("currencyList", currencyList);
         response.sendRedirect("/ProyectoPrueba/jsp/common/addBudget.jsp");
-
-
     }
 
     @Override
@@ -58,7 +56,7 @@ public class CreateBudgetServlet extends HttpServlet {
                         .budgetName(request.getParameter("budgetNameInput"))
                         .description(request.getParameter("budgetDescInput"))
                         .currencyId(Integer.parseInt(request.getParameter("currencyInput"))).build();
-                System.out.println(budget);
+                //System.out.println(budget);
 
                 if (new BudgetService(new BudgetClient()).createBudget(budget)) {
                     System.out.println("Se ha insertado en la bbdd");

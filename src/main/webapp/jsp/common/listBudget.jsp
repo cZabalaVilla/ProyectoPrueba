@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
-<%@ page import="edu.fpdual.webapplication.dto.Category" %>
+<%@ page import="edu.fpdual.webapplication.dto.Budget" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -31,9 +31,10 @@
                         for (Budget budget : budgetList) { %>
                             <div class="listElement">
                                 <h4><%= budget.getBudgetName() %> </h4>
-                                <p>Revisar</p>
-                                <p>Editar</p>
-                                <p>Borrar</p>
+                                <form method="get" action="<%=GlobalInfo.URL_SERVLET_BUDGETDATA%>">
+                                    <input type="hidden" name="budgetName" value="<%= budget.getBudgetName() %>">
+                                    <button type="submit" name="submitBtn" class="buttonB">Revisar</button>
+                                </form>
                             </div>
                         <%}
                     }%>

@@ -1,5 +1,5 @@
 <footer>
   <div>
-    <p>Trabajo Dual - Accenture</p>
+    <p>Proyecto Dual - Accenture</p>
   </div>
 </footer>

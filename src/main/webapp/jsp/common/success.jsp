@@ -1,15 +1,25 @@
-
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import= "edu.fpdual.webapplication.GlobalInfo" %>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
-    <meta http-equiv="refresh" content="3; url=<%= GlobalInfo.URL_JSP_HOME %>"/>
-
+    <%@ include file="../insert/headTemplate.jsp" %>
+    <title>Acción Realizada con Éxito</title>
+   <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 </head>
 
 <body>
-<h1>Operación realizada con éxito</h1>
+    <section class="boxBody">
+        <div>
+            <h3 class="H3Box">Operación realizada <br/>con éxito</h3>
+        </div>
+        <br/>
+        <form method="POST" action="<%=GlobalInfo.URL_JSP_HOME%>">
+            <input type="submit" value="Volver" class="buttonA"/>
+        </form>
+    </section>
 </body>
+
+</html>
