@@ -1,9 +1,13 @@
 package edu.fpdual.webapplication.servlet;
 
+import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.BudgetClient;
+import edu.fpdual.webapplication.client.ProfileClient;
 import edu.fpdual.webapplication.dto.Budget;
-import edu.fpdual.webapplication.dto.Currency;
+import edu.fpdual.webapplication.dto.Profile;
 import edu.fpdual.webapplication.service.BudgetService;
+import edu.fpdual.webapplication.service.ProfileService;
+import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +16,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "BudgetDataServlet", urlPatterns = {"/see-budget"})
 public class BudgetDataServlet extends HttpServlet {
@@ -25,6 +28,7 @@ public class BudgetDataServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String budgetName = request.getParameter("budgetName");
         Budget budget = budgetService.getBudget(budgetName);
         request.getSession().setAttribute("budget", budget);
@@ -32,5 +36,7 @@ public class BudgetDataServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {}
+            throws ServletException, IOException {
+
+    }
 }

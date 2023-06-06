@@ -41,7 +41,6 @@ public class CreateBudgetServlet extends HttpServlet {
 
         String ok = "Presupuesto Creado.";
         String error = "No se ha podido crear el presupuesto.";
-        String dispatcherURLBudget = "jsp/common/success.jsp";
 
         Budget budget = (Budget) request.getSession().getAttribute("newBudget");
         try {
@@ -56,22 +55,16 @@ public class CreateBudgetServlet extends HttpServlet {
                         .budgetName(request.getParameter("budgetNameInput"))
                         .description(request.getParameter("budgetDescInput"))
                         .currencyId(Integer.parseInt(request.getParameter("currencyInput"))).build();
-                //System.out.println(budget);
 
                 if (new BudgetService(new BudgetClient()).createBudget(budget)) {
-                    System.out.println("Se ha insertado en la bbdd");
                     request.setAttribute("ok", ok);
-                    response.sendRedirect("/ProyectoPrueba/common/success.jsp");
+                    response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
                 } else {
                     System.out.println("Else error");
                     request.setAttribute("error",error);
                     request.getRequestDispatcher("/ProyectoPrueba/common/addBudget.jsp").forward(request, response);
-                    //request.setAttribute("error", error);
-                    //request.getRequestDispatcher(dispatcherURLBudget).forward(request, response);
-                }
 
-                //request.getSession().setAttribute("newBudget", budget);
-                //request.getRequestDispatcher(dispatcherURLBudget).forward(request, response);
+                }
             }
 
         } catch (ServletException e) {

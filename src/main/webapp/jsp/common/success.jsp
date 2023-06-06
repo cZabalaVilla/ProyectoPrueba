@@ -13,7 +13,7 @@
 <body>
     <section class="boxBody">
         <div>
-            <h3 class="H3Box">Operación realizada <br/>con éxito</h3>
+            <h3 class="H3Box2">Operación realizada <br/>con éxito</h3>
         </div>
         <br/>
         <form method="POST" action="<%=GlobalInfo.URL_JSP_HOME%>">

@@ -33,10 +33,10 @@
                     </ul>
                 </div>
                 <div class="leftNav">
-                    <form method="get" action="url">
+                    <form method="get" action="<%=GlobalInfo.URL_JSP_LOGIN%>">
                         <button type="submit" name="submitBtn" value="" class="buttonB">Login</button>
                     </form>
-                    <form method="get" asction="url">
+                    <form method="get" action="<%=GlobalInfo.URL_JSP_REGISTER%>">
                         <button type="submit" name="submitBtn" value="" class="buttonB">Registro</button>
                     </form>
                 </div>

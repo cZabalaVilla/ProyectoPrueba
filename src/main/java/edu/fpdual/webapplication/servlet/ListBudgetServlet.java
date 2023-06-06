@@ -1,8 +1,10 @@
 package edu.fpdual.webapplication.servlet;
 
+import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.BudgetClient;
 import edu.fpdual.webapplication.dto.Budget;
 import edu.fpdual.webapplication.service.BudgetService;
+import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,14 +28,16 @@ public class ListBudgetServlet extends HttpServlet {
             throws ServletException, IOException {
 
         List<Budget> budgetList = budgetService.getAllBudgets();
+
 //        Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 //        for (Budget budget : budgetList) {
 //            if (budget.getUserId() != session.getUserId()) {
 //                budgetList.remove(budget);
 //            }
 //        }
+
         request.getSession().setAttribute("budgetList", budgetList);
-        response.sendRedirect("/ProyectoPrueba/jsp/common/listBudget.jsp");
+        response.sendRedirect(GlobalInfo.URL_JSP_LISTBUDGET);
     }
 
 

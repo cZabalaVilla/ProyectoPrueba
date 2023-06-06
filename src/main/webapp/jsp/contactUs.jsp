@@ -1,3 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,26 +18,26 @@
                 <div class="mainLinkNav">
                     <ul>
                         <li>
-                            <a href="#" class="logoSidebarNoLog">
+                            <a href="<%=GlobalInfo.URL_INDEX%>" class="logoSidebarNoLog">
                                 <p>Fit-Pocket</p>
                             </a>
                         </li>
                         <li>
-                            <a class="active" href="#home">Home</a>
+                            <a class="active" href="<%=GlobalInfo.URL_INDEX%>">Home</a>
                         </li>
                         <li>
-                            <a class="active" href="#AboutUs">About Us</a>
+                            <a class="active" href="<%=GlobalInfo.URL_JSP_ABOUTUS%>">About Us</a>
                         </li>
                         <li>
-                            <a class="active" href="#Contact">Contact</a>
+                            <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Contact</a>
                         </li>
                     </ul>
                 </div>
                 <div class="leftNav">
-                    <form method="get" action="url">
+                    <form method="get" action="<%=GlobalInfo.URL_JSP_LOGIN%>">
                         <button type="submit" name="submitBtn" value="" class="buttonB">Login</button>
                     </form>
-                    <form method="get" asction="url">
+                    <form method="get" action="<%=GlobalInfo.URL_JSP_REGISTER%>">
                         <button type="submit" name="submitBtn" value="" class="buttonB">Registro</button>
                     </form>
                 </div>
@@ -64,7 +67,7 @@
                     </form>
                 </div>
             </div>
-            <%@ include file="../insert/footer.jsp" %>
+            <%@ include file="insert/footer.jsp" %>
         </main>
     </div>
 </body>

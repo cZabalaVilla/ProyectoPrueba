@@ -10,51 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos Presupuesto</title>
 
-    <link rel="stylesheet" href="./css/style_v2.css" />
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css" />
 
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <a href="#" class="logoSidebar">
-                <p>Fit-Pocket</p>
-            </a>
-            <div class="userSettings">
-                <nav>
-                    <a href="#">Crear Presupuesto</a>
-                    <a href="#">Listar Presupuestos</a>
-                    <a href="#">Informes</a>
-                    <a href="#">Categorías</a>
-                </nav>
-            </div>
-
-
-        </header>
+       <%@ include file="../insert/header.jsp" %>
         <main>
-            <div class="mainNav">
-                <div class="mainLinkNav">
-                    <ul>
-                        <li>
-                            <a class="active" href="#home">Home</a>
-                        </li>
-                        <li>
-                            <a class="active" href="#AboutUs">Nosotros</a>
-                        </li>
-                        <li>
-                            <a class="active" href="#Contact">Contacto</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="dropBtn">Username</button>
-                    <div class="dropdownContent">
-                        <a href="#">Perfil</a>
-                        <a href="#">Ajustes</a>
-                        <a href="#">Cerrar sesión</a>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="../insert/mainNav.jsp" %>
 
             <div class="mainBlock">
                 <div class="contentList">
@@ -77,12 +41,7 @@
                     </div>
                 </div>
             </div>
-
-            <footer>
-                <div>
-                    <p>Aquí va el footer</p>
-                </div>
-            </footer>
+            <%@ include file="../insert/footer.jsp" %>
         </main>
     </div>
 </body>

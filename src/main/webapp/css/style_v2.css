@@ -147,6 +147,10 @@ main {
 .H3Box {
     color:#EB455F;
 }
+H3Box2 {
+    color:#EB455F;
+    text-align: center;
+}
 input[type="email"], input[type="password"],
 input[type="text"]{
     border: 1px solid #2B3467;
