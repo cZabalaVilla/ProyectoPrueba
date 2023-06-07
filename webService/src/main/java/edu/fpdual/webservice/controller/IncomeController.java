@@ -80,7 +80,7 @@ public class IncomeController {
         try {
             if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
                 if (incomeService.createIncome(income)) {
-                    return Response.status(200).entity("Income created.").build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Income not created.").build();
                 }

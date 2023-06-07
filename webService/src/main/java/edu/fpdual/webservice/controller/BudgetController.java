@@ -66,23 +66,24 @@ public class BudgetController {
             return Response.status(400).entity("Internal Error During DB Interaction").build();
         }
     }
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/id/{budgetId}")
-//    public Response findByBudgetId(@PathParam("budgetId") int budgetId) {
-//        try {
-//            if (budgetId <= 0) {
-//                return Response.ok().entity(budgetService.findAllBudgets()).build();
-//            } else {
-//                if (budgetService.findByBudgetName(budgetName).getBudgetId() <= 0) {
-//                    return Response.status(404).entity("Budget Not Found").build();
-//                }
-//                return Response.ok().entity(budgetService.findByBudgetName(budgetName)).build();
-//            }
-//        } catch (SQLException | ClassNotFoundException e) {
-//            return Response.status(400).entity("Internal Error During DB Interaction").build();
-//        }
-//    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/id/{budgetId}")
+    public Response findByBudgetId(@PathParam("budgetId") int budgetId) {
+        try {
+            if (budgetId <= 0) {
+                return Response.ok().entity(budgetService.findAllBudgets()).build();
+            } else {
+                if (budgetService.findByBudgetId(budgetId).getBudgetId() <= 0) {
+                    return Response.status(404).entity("Budget Not Found").build();
+                }
+                return Response.ok().entity(budgetService.findByBudgetId(budgetId)).build();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(400).entity("Internal Error During DB Interaction").build();
+        }
+    }
 
     @PUT
     @Path("/update")

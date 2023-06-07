@@ -41,6 +41,11 @@ public class BudgetService {
             return budgetManager.findBy(con, "budgetName", budgetName);
         }
     }
+    public Budget findByBudgetId(int budgetId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return budgetManager.findBy(con, "budgetId", budgetId);
+        }
+    }
     public boolean deleteBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.delete(con, budget);
