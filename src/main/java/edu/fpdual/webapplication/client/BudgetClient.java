@@ -38,13 +38,26 @@ public class BudgetClient extends Client<Budget> {
                 });
     }
 
+    public List<Budget> get(int userId) {
+        return
+                webTarget.path(clientPath + "allbyuserid/" + userId)
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(new GenericType<>() {
+                        });
+    }
+
     @Override
     public Budget get(String budgetName) {
-        return webTarget.path(clientPath + "get" + budgetName)
+        return webTarget.path(clientPath + "name/" + budgetName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Budget.class);
     }
 
+//    public Budget get(int budgetId) {
+//        return webTarget.path(clientPath + "id/" + budgetId)
+//                .request(MediaType.APPLICATION_JSON)
+//                .get(Budget.class);
+//    }
 
     @Override
     public boolean put(Budget budget) {

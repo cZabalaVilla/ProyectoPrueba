@@ -33,7 +33,7 @@
                                 <h4><%= budget.getBudgetName() %> </h4>
                                 <form method="get" action="<%=GlobalInfo.URL_SERVLET_BUDGETDATA%>">
                                     <input type="hidden" name="budgetName" value="<%= budget.getBudgetName() %>">
-                                    <button type="submit" name="submitBtn" class="buttonB">Revisar</button>
+                                    <button type="submit" name="submitBtn" value="<%= budget.getBudgetId() %>" class="buttonB">Revisar</button>
                                 </form>
                             </div>
                         <%}

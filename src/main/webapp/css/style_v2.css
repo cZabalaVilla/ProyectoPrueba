@@ -148,10 +148,6 @@ main {
 .H3Box {
     color:#EB455F;
 }
-H3Box2 {
-    color:#EB455F;
-    text-align: center;
-}
 input[type="email"], input[type="password"],
 input[type="text"]{
     border: 1px solid #2B3467;
@@ -200,6 +196,14 @@ input[type="text"]{
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
+}
+.listElement2 {
+    background-color:#e6eef3;
+    margin: 1rem 0.2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 label[for="form"] {
@@ -264,6 +268,15 @@ input[type="checkbox"] {
     margin-left: 5rem;
 }
 
+.descriptionTextBudget {
+    line-height: 1.5rem;
+    margin: 1rem 2rem;
+}
+span {
+    font-weight: bold;
+    text-decoration: underline #EB455F;
+}
+
 /*FOOTER*/
 footer {
     background-color: white;
@@ -295,6 +308,7 @@ footer div p {
     padding: 0.5rem 1rem;
     margin-right: 5rem;
     margin-top: 0.3rem;
+
 }
 
 .dropBtn {
@@ -317,7 +331,7 @@ footer div p {
 }
 
 .dropdownContent form input {
-    margin: 5px;
+    margin: 5px;;
     text-decoration: none;
     display: block;
     color:#2B3467;
@@ -386,6 +400,12 @@ footer div p {
 }
 .buttonCancel:hover {
     background-color: #2B3467;
+}
+
+.budgetButtons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .buttonD {

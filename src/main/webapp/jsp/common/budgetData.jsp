@@ -21,26 +21,40 @@
             <%@ include file="../insert/mainNav.jsp" %>
 
             <div class="mainBlock">
-                <div class="contentList">
-                    <h3 class="pageTitle1">Nombre del Presupuesto</h3>
-                    <div>
-                        <p>Descripcion: </p>
-                        <p>Fecha: </p>
-                        <p>Balance: //moneda//</p>
-                    </div>
-                    <div>
-                        <input type="button" name="incomeBtn" value="Añadir Ingreso" class="buttonD"/>
-                        <input type="button" name="expenseBtn" value="Añadir Gasto" class="buttonD"/>
-                    </div>
+                            <div class="contentList">
+                                <h3 class="pageTitle1">Nombre del Presupuesto</h3>
+                                <div class="descriptionTextBudget">
+                                    <p><span>Descripcion:</span> </p>
+                                    <p><span>Fecha:</span> </p>
+                                    <p><span>Balance:</span> //moneda//</p>
+                                </div>
+                                <div class="budgetButtons">
+                                    <form method="" action="">
+                                        <input type="button" name="incomeBtn" value="Añadir Ingreso" class="buttonD" />
+                                    </form>
+                                    <form method="" action="">
+                                       <input type="button" name="expenseBtn" value="Añadir Gasto" class="buttonD" />
+                                    </form>
+                                    <form method="" action="">
+                                        <input type="button" name="expenseBtn" value="Borrar" class="buttonD" />
+                                    </form>
+                                </div>
 
-                    <div class="listElement">
-                        <h4>Nombre del Gasto/Ingreso </h4>
-                        <p>Revisar</p>
-                        <p>Editar</p>
-                        <p>Borrar</p>
-                    </div>
-                </div>
-            </div>
+                                <div class="listElement2">
+                                    <h4>Nombre del Gasto/Ingreso </h4>
+                                    <div class="descriptionTextBudget">
+                                        <p>Descripcion:</p>
+                                        <p>Categoría: </p>
+                                        <p>Cantidad: </p>
+                                        <p>Recurrente: </p>
+                                        <p>Fecha: </p>
+                                    </div>
+                                    <form method="" action="">
+                                        <input type="button" name="expenseBtn" value="Borrar" class="buttonD" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
             <%@ include file="../insert/footer.jsp" %>
         </main>
     </div>
