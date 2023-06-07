@@ -1,6 +1,7 @@
 package edu.fpdual.webapplication.servlet;
 
 
+import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.CategoryClient;
 import edu.fpdual.webapplication.dto.Category;
 import edu.fpdual.webapplication.dto.Expense;
@@ -28,14 +29,14 @@ public class CreateExpenseServlet extends HttpServlet {
         throws ServletException, IOException {
         List<Category> categoryList = categoryService.getAllCategories();
         request.getSession().setAttribute("categoryList", categoryList);
-        response.sendRedirect("/ProyectoPrueba/jsp/common/addExpense.jsp");
+        response.sendRedirect(GlobalInfo.URL_JSP_ADDEXPENSE);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws  ServletException, IOException {
 
         Expense expense = (Expense) request.getSession().getAttribute("newExpense");
-        //Cómo cojo el budgetId??
+
 
 
 

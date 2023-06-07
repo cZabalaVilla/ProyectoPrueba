@@ -29,14 +29,11 @@ public class BudgetDataServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        int budgetId = Integer.parseInt(request.getParameter("submitBtn"));
-//        Budget budget = budgetService.getBudgetById(budgetId);
-//        request.getSession().setAttribute("budget", budget);
-//        response.sendRedirect("/ProyectoPrueba/jsp/common/budgetData.jsp");
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        int budgetId = Integer.parseInt(request.getParameter("submitBtn"));
+        Budget budget = budgetService.getBudgetById(budgetId);
+        request.getSession().setAttribute("budget", budget);
 
+        response.sendRedirect(GlobalInfo.URL_JSP_BUDGETDATA);
     }
+
 }

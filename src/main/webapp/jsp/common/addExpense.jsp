@@ -28,7 +28,7 @@
                 <div class="content">
                     <h3 class="pageTitle">Nuevo <br /> Gasto</h3>
                     <br />
-                    <form method="post" action="/ProyectoPrueba/servlet/create-expense" class="form">
+                    <form method="post" action="<%=GlobalInfo.URL_SERVLET_ADDEXPENSE%>" class="form">
                         <label for="form">Nombre</label>
                         <br />
                         <input type="text" id="expenseNameInput" name="formInput" />

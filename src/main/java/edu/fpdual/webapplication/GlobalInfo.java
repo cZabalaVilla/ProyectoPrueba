@@ -23,6 +23,11 @@ public class GlobalInfo {
     public static final String URL_JSP_CONTACTUS = URL_JSP + "/contactUs.jsp";
     public static final String URL_JSP_LISTBUDGET = URL_JSP +"/common/listBudget.jsp";
     public static final String URL_JSP_SUCCESS = URL_JSP +"/common/success.jsp";
+    public static final String URL_JSP_ADDBUDGET = URL_JSP +"/common/addBudget.jsp";
+    public static final String URL_JSP_ADDEXPENSE = URL_JSP +"/common/addExpense.jsp";
+    public static final String URL_JSP_ADDINCOME = URL_JSP +"/common/addIncome.jsp";
+    public static final String URL_JSP_BUDGETDATA = URL_JSP +"/common/budgetData.jsp";
+
     /*
      * Páginas de error
      */
@@ -49,6 +54,9 @@ public class GlobalInfo {
     public static final String URL_SERVLET_LISTBUDGETS = URL_SERVLET_ +"/list-budget-servlet";
     public static final String URL_SERVLET_DELETEBUDGET = URL_SERVLET_ +"/delete-budget-servlet";
     public static final String URL_SERVLET_BUDGETDATA = URL_SERVLET_ +"/see-budget";
+    public static final String URL_SERVLET_ADDINCOME = URL_SERVLET_ +"/create-income-servlet";
+    public static final String URL_SERVLET_ADDEXPENSE = URL_SERVLET_ +"/create-expense-servlet";
+
     /*
      * Variables globales
      */

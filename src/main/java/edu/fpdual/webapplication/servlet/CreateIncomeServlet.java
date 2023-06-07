@@ -1,8 +1,14 @@
 package edu.fpdual.webapplication.servlet;
 
+import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.CategoryClient;
+import edu.fpdual.webapplication.client.IncomeClient;
+import edu.fpdual.webapplication.dto.Budget;
 import edu.fpdual.webapplication.dto.Category;
+import edu.fpdual.webapplication.dto.Income;
 import edu.fpdual.webapplication.service.CategoryService;
+import edu.fpdual.webapplication.service.IncomeService;
+import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,11 +32,45 @@ public class CreateIncomeServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Category> categoryList = categoryService.getAllCategories();
         request.getSession().setAttribute("categoryList", categoryList);
-        response.sendRedirect("/ProyectoPrueba/jsp/common/addIncome.jsp");
+
+        response.sendRedirect(GlobalInfo.URL_JSP_ADDINCOME);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        String ok = "Ingreso Creado.";
+        String error = "No se ha podido crear el presupuesto.";
+
+        Income income = (Income) request.getSession().getAttribute("newIncome");
+
+        try{
+            Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
+            int budgetId = Integer.parseInt(request.getParameter("incomeBtn"));
+            //request.getSession().setAttribute("budgetId", budgetId);
+
+            if (session != null && budgetId > 0) {
+                income = income.builder()
+                        .budgetId(budgetId)
+                        .incomeName(request.getParameter("incomeNameInput"))
+                        .description(request.getParameter("incomeDescInput"))
+                        .categoryId(Integer.parseInt(request.getParameter("categoryInput")))
+                        .amount(Double.parseDouble(request.getParameter("incomeAmountInput")))
+                        .isRecurrent(Boolean.parseBoolean(request.getParameter("recurrentIncome")))
+                        .build();
+
+                if (new IncomeService(new IncomeClient()).createIncome(income)) {
+                    request.setAttribute("ok", ok);
+                    response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
+                } else {
+                    System.out.println("Else error");
+                    request.setAttribute("error",error);
+                    request.getRequestDispatcher(GlobalInfo.URL_JSP_ADDINCOME).forward(request, response);
+                }
+            }
+         } catch (ServletException e) {
+            request.setAttribute("error", error);
+            e.printStackTrace();
+        }
     }
 }

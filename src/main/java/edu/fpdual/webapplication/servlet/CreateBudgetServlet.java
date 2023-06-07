@@ -43,6 +43,7 @@ public class CreateBudgetServlet extends HttpServlet {
         String error = "No se ha podido crear el presupuesto.";
 
         Budget budget = (Budget) request.getSession().getAttribute("newBudget");
+
         try {
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
             int userIdSession = session.getUserId();
@@ -62,7 +63,7 @@ public class CreateBudgetServlet extends HttpServlet {
                 } else {
                     System.out.println("Else error");
                     request.setAttribute("error",error);
-                    request.getRequestDispatcher("/ProyectoPrueba/common/addBudget.jsp").forward(request, response);
+                    request.getRequestDispatcher(GlobalInfo.URL_JSP_ADDBUDGET).forward(request, response);
 
                 }
             }

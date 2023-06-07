@@ -26,21 +26,21 @@
                 <div class="content">
                     <h3 class="pageTitle">Nuevo <br /> Ingreso</h3>
                     <br />
-                    <form method="post" action="/ProyectoPrueba/servlet/create-income" class="form">
+                    <form method="post" action="<%=GlobalInfo.URL_SERVLET_ADDINCOME%>" class="form">
                         <label for="form">Nombre</label>
                         <br />
-                        <input type="text" id="incomeNameInput" name="formInput" />
+                        <input type="text" id="incomeNameInput" name="incomeNameInput" />
                         <br />
                         <br />
                         <label for="form">Descripción</label>
                         <br />
-                        <textarea id="incomeDescInput" name="formInput" rows="5"
+                        <textarea id="incomeDescInput" name="incomeDescInput" rows="5"
                             cols="65"></textarea>
                         <br />
                         <br />
                         <label for="form">Cantidad</label>
                         <br />
-                        <input type="number" id="incomeAmountInput" name="formInput" />
+                        <input type="number" id="incomeAmountInput" name="incomeAmountInput" />
                         <br />
                         <br />
                         <label for="form">Categoría</label>
@@ -56,7 +56,7 @@
                         </select>
                         <br />
                         <br />
-                        <input type="checkbox" id="recurrentIncome" name="formCheck" value="">
+                        <input type="checkbox" id="recurrentIncome" name="recurrentIncome" >
                         <label for="form"> Hacer ingreso mensual</label>
                         <br />
                         <br />

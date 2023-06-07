@@ -26,7 +26,7 @@
                 <div class="content">
                     <h3 class="pageTitle">Nuevo <br/> Presupuesto</h3>
                     <br/>
-                    <form method="POST" action="/ProyectoPrueba/create-budget-servlet" class="form">
+                    <form method="POST" action="<%=GlobalInfo.URL_SERVLET_ADDBUDGET%>" class="form">
                         <label for="form">Nombre</label>
                         <br />
                         <input type="text" id="budgetNameInput" name="budgetNameInput" />
