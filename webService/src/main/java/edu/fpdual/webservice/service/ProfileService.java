@@ -38,13 +38,13 @@ public class ProfileService {
 
     public boolean deleteProfile(Profile profile) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return profileManager.delete(con,profile );
+            return profileManager.delete(con, profile);
         }
     }
 
-    public boolean createProfile() throws SQLException, ClassNotFoundException {
+    public boolean createProfile(Profile profile) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return profileManager.create(con, new Profile());
+            return profileManager.create(con, profile);
         }
     }
 

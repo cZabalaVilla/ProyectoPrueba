@@ -44,7 +44,7 @@ public class ProfileController {
                 return Response.ok().entity(profileService.findAllProfiles()).build();
             } else {
                 if (profileService.findByUserId(userId).getUserId() <= 0) {
-                    return Response.ok().entity(profileService.findAllProfiles()).build();
+                    return Response.ok().entity(null).build();
                 } else {
                     return Response.ok().entity(profileService.findByUserId(userId)).build();
                 }
@@ -63,7 +63,7 @@ public class ProfileController {
                 return Response.ok().entity(profileService.findAllProfiles()).build();
             } else {
                 if (profileService.findByEmail(email).getUserId() <= 0) {
-                    return Response.status(400).entity("Profile Not Found").build();
+                    return Response.ok().entity(null).build();
                 } else {
                     return Response.ok().entity(profileService.findByEmail(email)).build();
                 }
@@ -97,13 +97,9 @@ public class ProfileController {
     public Response createProfile(Profile profile) {
         try {
             if (profileService.findByUserId(profile.getUserId()) != null) {
-                if (profileService.createProfile()) {
-                    return Response.status(200).entity("Profile created.").build();
-                } else {
-                    return Response.status(400).entity("Profile not created.").build();
-                }
+                    return Response.ok().entity(profileService.createProfile(profile)).build();
             } else {
-                return Response.status(400).entity("Profile already exists.").build();
+                return Response.status(400).entity(false).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction.").build();

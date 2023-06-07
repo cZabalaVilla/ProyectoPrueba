@@ -33,7 +33,7 @@ public class Budget implements Comparable<Budget>{
             this.currencyId = result.getInt("currencyId");
             this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId",budgetId);
             this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId",budgetId);
-            this.creationDate = result.getTimestamp("creationTime");
+            this.creationDate = result.getTimestamp("creationDate");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
