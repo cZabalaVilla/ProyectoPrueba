@@ -18,25 +18,27 @@ import java.util.List;
 @WebServlet(name = "CreateExpenseServlet", urlPatterns = {"/create-expense-servlet"})
 public class CreateExpenseServlet extends HttpServlet {
     private CategoryService categoryService;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         categoryService = new CategoryService(new CategoryClient());
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         List<Category> categoryList = categoryService.getAllCategories();
         request.getSession().setAttribute("categoryList", categoryList);
         response.sendRedirect("/ProyectoPrueba/jsp/common/addExpense.jsp");
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws  ServletException, IOException {
+            throws ServletException, IOException {
 
         Expense expense = (Expense) request.getSession().getAttribute("newExpense");
         //Cómo cojo el budgetId??
-
 
 
     }

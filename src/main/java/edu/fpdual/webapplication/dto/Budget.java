@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Model(type = "Data",version = "1.0", date = "01/06/2023")
+@Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class Budget {
     private int userId;
     private int budgetId;
@@ -24,6 +23,7 @@ public class Budget {
     private List<Expense> expenseList;
     private List<Income> incomeList;
     private Timestamp creationDate;
+
     @Builder
     public Budget(int userId, String budgetName, String description, int currencyId) {
         this.userId = userId;

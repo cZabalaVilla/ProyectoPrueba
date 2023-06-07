@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@Model(type = "Filter",version = "1.0", date = "01/06/2023")
+@Model(type = "Filter", version = "1.0", date = "01/06/2023")
 @WebFilter(filterName = "loginFilter", urlPatterns = {"/jsp/common/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class LoginFilter implements Filter {
     @Override
@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
         if (session == null) {
-            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_LOGIN);
+            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_HOME);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

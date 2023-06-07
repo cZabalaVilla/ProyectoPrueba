@@ -8,7 +8,7 @@ import java.sql.Date;
 
 @Data
 @NoArgsConstructor
-@Model(type = "Data",version = "1.0", date = "01/06/2023")
+@Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class Income {
     private int budgetId;
     private int incomeId;

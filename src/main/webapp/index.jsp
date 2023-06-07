@@ -45,26 +45,26 @@
         </div>
         <div class="mainBlock">
             <div class="content">
-                 <div class="textAbout">
-                     <h3 class="pageTitle2">¡Bienvenido a Fit-Pocket!</h3>
-                     <p>
+                <div class="textAbout">
+                    <h3 class="pageTitle2">¡Bienvenido a Fit-Pocket!</h3>
+                    <p>
                         Fit-Pocket es la app que se preocupa porque tu bolsillo se encuentre en forma.
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                         Si quieres aprender a ahorrar usando una aplicación intuitiva puedes crear
                         una cuenta ahora y empezar a usar Fit-Pocket ahora.
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                         Con fitpocket podrás crear tus presupuesto personalizados
                         y llevar una contabilidad usando sus informes de gastos.
-                     </p>
-                     </div>
-                     <div>
-                        <img src="./img/indexImg.jpg" class="aboutImg"/>
-                     </div>
+                    </p>
+                </div>
+                <div>
+                    <img src="./img/indexImg.jpg" class="aboutImg"/>
+                </div>
             </div>
         </div>
-       <%@ include file="./jsp/insert/footer.jsp" %>
+        <%@ include file="./jsp/insert/footer.jsp" %>
     </main>
 </div>
 </body>

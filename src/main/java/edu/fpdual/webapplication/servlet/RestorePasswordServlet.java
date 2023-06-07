@@ -39,16 +39,16 @@ public class RestorePasswordServlet extends HttpServlet {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);
             }
-                String code = Password.resetPassword();
-                String bodyMesage = "Esta es tu nueva contraseña: " + code;
+            String code = Password.resetPassword();
+            String bodyMesage = "Esta es tu nueva contraseña: " + code;
 
-                new Sender().send(profile.getEmail(), "Restauración de contraseña", "<b>" + bodyMesage + "</b><br/>Link para restaurar contraseña: http://localhost:8080/ProyectoPrueba/jsp/login/updatePassword.jsp");
-                    UserService userService = new UserService(new UserClient());
-                    User user = userService.getUserById(profile.getUserId());
-                    user.setUserPassword(new Password(code).toString());
-                    userService.updateUser(user);
-                    request.setAttribute("ok", ok);
-                    request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);
+            new Sender().send(profile.getEmail(), "Restauración de contraseña", "<b>" + bodyMesage + "</b><br/>Link para restaurar contraseña: http://localhost:8080/ProyectoPrueba/jsp/login/updatePassword.jsp");
+            UserService userService = new UserService(new UserClient());
+            User user = userService.getUserById(profile.getUserId());
+            user.setUserPassword(new Password(code).toString());
+            userService.updateUser(user);
+            request.setAttribute("ok", ok);
+            request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);
 
         } catch (NotFoundException | NullPointerException | BadRequestException e) {
             request.setAttribute("error", notFoundError);

@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public class Pdftext {
 
-    public void createPDF(String fileName, String text,ArrayList<String> list) throws IOException, DocumentException, URISyntaxException {
+    public void createPDF(String fileName, String text, ArrayList<String> list) throws IOException, DocumentException, URISyntaxException {
         Document document = new Document();
         document.open();
         PdfWriter.getInstance(document, new FileOutputStream(fileName + ".pdf"));
@@ -27,7 +27,7 @@ public class Pdftext {
         */
         Paragraph paragraph = createParagraph(text);
         addTableHeaders(pdfPTable);
-        addTableCustomRows(pdfPTable,list);
+        addTableCustomRows(pdfPTable, list);
 
         document.add(paragraph);
         document.add(Chunk.NEWLINE);
@@ -143,7 +143,7 @@ public class Pdftext {
         lista.add("Gasto");
         lista.add("12 €");
         lista.add("Supermercado");
-        new Pdftext().createPDF("Reporte" + LocalDate.now(), "Reporte sobre...",lista);
+        new Pdftext().createPDF("Reporte" + LocalDate.now(), "Reporte sobre...", lista);
     }
 
 }

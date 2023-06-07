@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Model(type = "Data",version = "1.0", date = "01/06/2023")
+@Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class User {
     private int userId;
     private String userName;

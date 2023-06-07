@@ -1,6 +1,5 @@
 package edu.fpdual.webapplication.servlet;
 
-import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.ProfileClient;
 import edu.fpdual.webapplication.client.UserClient;
 import edu.fpdual.webapplication.dto.Profile;
@@ -10,14 +9,12 @@ import edu.fpdual.webapplication.service.UserService;
 import edu.fpdual.webapplication.utilities.Email;
 import edu.fpdual.webapplication.utilities.InvalidEmailException;
 import edu.fpdual.webapplication.utilities.InvalidPasswordException;
-import edu.fpdual.webapplication.utilities.Password;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.NotFoundException;
 
 import java.io.IOException;
 

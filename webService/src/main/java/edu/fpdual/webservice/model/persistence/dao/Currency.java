@@ -8,13 +8,13 @@ public class Currency {
     private String currencyName;
     private char currencySymbol;
 
-    public Currency (ResultSet result) {
+    public Currency(ResultSet result) {
         try {
             this.currencyId = result.getInt("currencyId");
             this.currencyName = result.getString("currencyName");
             this.currencySymbol = result.getString("currencySymbol").charAt(0);
         } catch (SQLException e) {
-          e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

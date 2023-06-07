@@ -7,6 +7,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface Model {
     String date() default "";
+
     String version() default "";
+
     String type() default "";
 }

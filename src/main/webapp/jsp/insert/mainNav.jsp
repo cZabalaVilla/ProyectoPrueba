@@ -2,7 +2,7 @@
 <%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 <%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
 
-<% Session thisSession = (Session) session.getAttribute("session"); %>
+<% Session thisSession = (Session) session.getAttribute(GlobalInfo.session); %>
 
 <div class="mainNav">
     <div class="mainLinkNav">
@@ -16,15 +16,29 @@
             <li>
                 <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Contacto</a>
             </li>
-            <% if (thisSession.isAdmin()){ %>
+            <% if (thisSession != null && thisSession.isAdmin()) { %>
             <li>
                 <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Panel de administrador</a>
             </li>
             <% } %>
         </ul>
     </div>
+
+    <% if (session.getAttribute(GlobalInfo.session) == null) { %>
+
+    <div class="leftNav">
+        <form method="get" action="<%=GlobalInfo.URL_JSP_LOGIN%>">
+            <button type="submit" name="submitBtn" class="buttonB">Login</button>
+        </form>
+        <form method="get" action="<%=GlobalInfo.URL_JSP_REGISTER%>">
+            <button type="submit" name="submitBtn" class="buttonB">Registro</button>
+        </form>
+    </div>
+
+    <% } else { %>
     <div class="dropdown">
-        <button class="dropBtn"><%= thisSession.getUserName() %></button>
+        <button class="dropBtn"><%= thisSession.getUserName() %>
+        </button>
         <div class="dropdownContent">
             <form method="Get" action="<%= GlobalInfo.URL_JSP_PROFILE %>">
                 <input type="submit" value="Perfil">
@@ -34,4 +48,5 @@
             </form>
         </div>
     </div>
+    <% } %>
 </div>

@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@Model(type = "Filter",version = "1.0", date = "01/06/2023")
+@Model(type = "Filter", version = "1.0", date = "01/06/2023")
 @WebFilter(filterName = "adminFilter", urlPatterns = {"/jsp/admin/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class AdminFilter implements Filter {
 

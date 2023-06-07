@@ -21,7 +21,9 @@ public class CurrencyService {
         return currencyClient.get(currencyName);
     }
 
-    public List<Currency> getAllCurrency() { return currencyClient.get(); }
+    public List<Currency> getAllCurrency() {
+        return currencyClient.get();
+    }
 
     public boolean updateCurrency(Currency currency) {
         return currencyClient.put(currency);

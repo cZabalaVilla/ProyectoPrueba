@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="CreateIncomeServlet", urlPatterns = {"/create-income-servlet"})
+@WebServlet(name = "CreateIncomeServlet", urlPatterns = {"/create-income-servlet"})
 public class CreateIncomeServlet extends HttpServlet {
     private CategoryService categoryService;
 
@@ -22,6 +22,7 @@ public class CreateIncomeServlet extends HttpServlet {
         super.init(config);
         categoryService = new CategoryService(new CategoryClient());
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Category> categoryList = categoryService.getAllCategories();

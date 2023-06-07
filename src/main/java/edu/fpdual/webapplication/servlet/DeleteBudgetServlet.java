@@ -20,6 +20,7 @@ public class DeleteBudgetServlet extends HttpServlet {
         super.init(config);
         budgetService = new BudgetService(new BudgetClient());
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

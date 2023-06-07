@@ -31,7 +31,7 @@ public class NewPasswordServlet extends HttpServlet {
             User user = userService.getUserByName(new Password(request.getParameter("oldPassword")).toString());
             try {
                 user.setUserPassword(new Password(newPassword, user.getUserName()).toString());
-            } catch (InvalidPasswordException e){
+            } catch (InvalidPasswordException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher(dispatcherURLUpdate).forward(request, response);
             }

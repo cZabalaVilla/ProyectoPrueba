@@ -11,7 +11,7 @@ import java.sql.Date;
 
 @Data
 @NoArgsConstructor
-public class Expense implements Comparable<Expense>{
+public class Expense implements Comparable<Expense> {
     private int budgetId;
     private int expenseId;
     private String expenseName;
@@ -21,7 +21,7 @@ public class Expense implements Comparable<Expense>{
     private Date creationDate;
     //private LocalTime creationTime;
 
-    public Expense (String expenseName, String description, double amount, boolean isRecurrent) {
+    public Expense(String expenseName, String description, double amount, boolean isRecurrent) {
         this.expenseName = expenseName;
         this.description = description;
         this.amount = amount;
@@ -29,7 +29,7 @@ public class Expense implements Comparable<Expense>{
         //this.creationTime = LocalTime.now();
     }
 
-    public Expense (ResultSet result) {
+    public Expense(ResultSet result) {
         try {
             this.budgetId = result.getInt("budgetId");
             this.expenseId = result.getInt("expenseId");

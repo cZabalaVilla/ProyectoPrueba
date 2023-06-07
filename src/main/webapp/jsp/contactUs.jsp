@@ -12,64 +12,45 @@
 </head>
 
 <body>
-    <div class="container">
-        <main>
-            <div class="mainNav">
-                <div class="mainLinkNav">
-                    <ul>
-                        <li>
-                            <a href="<%=GlobalInfo.URL_INDEX%>" class="logoSidebarNoLog">
-                                <p>Fit-Pocket</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="active" href="<%=GlobalInfo.URL_INDEX%>">Home</a>
-                        </li>
-                        <li>
-                            <a class="active" href="<%=GlobalInfo.URL_JSP_ABOUTUS%>">About Us</a>
-                        </li>
-                        <li>
-                            <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="leftNav">
-                    <form method="get" action="<%=GlobalInfo.URL_JSP_LOGIN%>">
-                        <button type="submit" name="submitBtn" value="" class="buttonB">Login</button>
-                    </form>
-                    <form method="get" action="<%=GlobalInfo.URL_JSP_REGISTER%>">
-                        <button type="submit" name="submitBtn" value="" class="buttonB">Registro</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="mainBlock">
-                <div class="content">
-                    <h3 class="pageTitle">Contáctanos</h3>
+<%@ include file="insert/mainNav.jsp" %>
+<div class="container">
+    <main>
+        <div class="mainBlock">
+            <div class="content">
+                <h3 class="pageTitle">Contáctanos</h3>
+                <br/>
+                <form class="form" method="POST" action=<%=GlobalInfo.URL_SERVLET_CONTACTUS%>>
+                    <label for="nameContact">Nombre</label>
                     <br/>
-                    <form method="" action="" class="form">
-                        <label for="form">Nombre</label>
-                        <br />
-                        <input type="text" id="nameContact" name="nameContact"/>
-                        <br />
-                        <br />
-                        <label for="form">Correo Electrónico</label>
-                        <br />
-                        <input type="email" id="emailContact" name="emailContact"/>
-                        <br />
-                        <br />
-                        <label for="form">Mensaje</label>
-                        <br />
-                        <textarea id="contactMessage" name="contactMessage" rows="5" cols="65"></textarea>
-                        <br />
-                        <br />
-                        <button type="submit" name="submitBtn" value="" class="buttonC">Enviar</button>
-                    </form>
-                </div>
+                    <input type="text" id="nameContact" name="nameContact"/>
+                    <br/>
+                    <br/>
+                    <label for="emailContact">Correo Electrónico</label>
+                    <br/>
+                    <input type="email" id="emailContact" name="emailContact"/>
+                    <br/>
+                    <br/>
+                    <label for="contactMessage">Mensaje</label>
+                    <br/>
+                    <textarea id="contactMessage" name="contactMessage" rows="5" cols="65"></textarea>
+                    <br/>
+                    <br/>
+                    <% if (request.getAttribute("error") != null) {
+                    %>
+                    <p class="errorAlert"><%= request.getAttribute("error") %>
+                    </p><br/>
+                    <br/>
+                    <% } else if (request.getAttribute("ok") != null) { %>
+                    <p><%= request.getAttribute("ok") %>
+                    </p>
+                    <% } %>
+                    <button type="submit" name="submitBtn" value="" class="buttonC">Enviar</button>
+                </form>
             </div>
-            <%@ include file="insert/footer.jsp" %>
-        </main>
-    </div>
+        </div>
+        <%@ include file="insert/footer.jsp" %>
+    </main>
+</div>
 </body>
 
 </html>

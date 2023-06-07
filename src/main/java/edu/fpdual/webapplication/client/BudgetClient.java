@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-@Model(type = "Client",version = "1.0", date = "01/06/2023")
+@Model(type = "Client", version = "1.0", date = "01/06/2023")
 public class BudgetClient extends Client<Budget> {
     private final WebTarget webTarget;
     private final String clientPath = "budget/";
@@ -33,9 +33,9 @@ public class BudgetClient extends Client<Budget> {
     public List<Budget> get() {
         return
                 webTarget.path(clientPath + "all")
-                .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {
-                });
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(new GenericType<>() {
+                        });
     }
 
     @Override

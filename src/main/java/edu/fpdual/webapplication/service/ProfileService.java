@@ -6,7 +6,7 @@ import edu.fpdual.webapplication.dto.Profile;
 
 import java.util.List;
 
-@Model(type = "Service",version = "1.0", date = "01/06/2023")
+@Model(type = "Service", version = "1.0", date = "01/06/2023")
 public class ProfileService {
     private final ProfileClient profileClient;
 

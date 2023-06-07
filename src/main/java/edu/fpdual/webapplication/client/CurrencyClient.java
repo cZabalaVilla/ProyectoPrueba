@@ -10,10 +10,12 @@ import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
-@Model(type = "Client",version = "1.0", date = "01/06/2023")
-public class CurrencyClient extends Client<Currency>{
+
+@Model(type = "Client", version = "1.0", date = "01/06/2023")
+public class CurrencyClient extends Client<Currency> {
     private final WebTarget webTarget;
     private final String clientPath = "currency/";
+
     public CurrencyClient() {
         jakarta.ws.rs.client.Client client = ClientBuilder.newClient();
         this.webTarget = client.target(GlobalInfo.URL_WEBTARGET);
@@ -35,8 +37,9 @@ public class CurrencyClient extends Client<Currency>{
 
         return
                 webTarget.path(clientPath + "all")
-                .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<>() {});
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(new GenericType<>() {
+                        });
     }
 
     @Override
@@ -48,7 +51,7 @@ public class CurrencyClient extends Client<Currency>{
 
     @Override
     public boolean put(Currency currency) {
-        return  webTarget.path(clientPath + "update")
+        return webTarget.path(clientPath + "update")
                 .request(MediaType.APPLICATION_JSON)
                 .put(Entity.entity(currency, MediaType.APPLICATION_JSON), boolean.class);
     }

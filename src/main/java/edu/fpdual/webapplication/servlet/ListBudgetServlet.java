@@ -4,7 +4,6 @@ import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.BudgetClient;
 import edu.fpdual.webapplication.dto.Budget;
 import edu.fpdual.webapplication.service.BudgetService;
-import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +23,7 @@ public class ListBudgetServlet extends HttpServlet {
         super.init(config);
         budgetService = new BudgetService(new BudgetClient());
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

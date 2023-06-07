@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Model(type = "Data",version = "1.0", date = "01/06/2023")
+@Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class Profile {
     //que se pueda cambiar todo aqui
     private int userId;
