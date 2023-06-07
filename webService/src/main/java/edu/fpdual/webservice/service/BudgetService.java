@@ -24,6 +24,12 @@ public class BudgetService {
         }
     }
 
+    public List<Budget> findAllBudgetsByUserId(int userId) throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+            return budgetManager.findAllBy(con, "userId", userId);
+        }
+    }
+
     public Budget findByBudgetDate(LocalDate budgetDate) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.findBy(con, "budgetDate", budgetDate);

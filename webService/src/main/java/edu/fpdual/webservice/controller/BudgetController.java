@@ -36,6 +36,21 @@ public class BudgetController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/allbyuserid/{userId}")
+    public Response findAllByUserId(@PathParam("userId") int userId) {
+
+        try {
+            if (budgetService.findAllBudgetsByUserId(userId) == null) {
+                return Response.status(400).entity("Budgets Not Found").build();
+            }
+            return Response.ok().entity(budgetService.findAllBudgetsByUserId(userId)).build();
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/name/{budgetName}")
     public Response findByBudgetName(@PathParam("budgetName") String budgetName) {
         try {
@@ -51,6 +66,23 @@ public class BudgetController {
             return Response.status(400).entity("Internal Error During DB Interaction").build();
         }
     }
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("/id/{budgetId}")
+//    public Response findByBudgetId(@PathParam("budgetId") int budgetId) {
+//        try {
+//            if (budgetId <= 0) {
+//                return Response.ok().entity(budgetService.findAllBudgets()).build();
+//            } else {
+//                if (budgetService.findByBudgetName(budgetName).getBudgetId() <= 0) {
+//                    return Response.status(404).entity("Budget Not Found").build();
+//                }
+//                return Response.ok().entity(budgetService.findByBudgetName(budgetName)).build();
+//            }
+//        } catch (SQLException | ClassNotFoundException e) {
+//            return Response.status(400).entity("Internal Error During DB Interaction").build();
+//        }
+//    }
 
     @PUT
     @Path("/update")
@@ -81,7 +113,7 @@ public class BudgetController {
         try {
             if (budgetService.findByBudgetName(budget.getBudgetName()) != null) {
                 if (budgetService.createBudget(budget)) {
-                    return Response.status(200).entity("Budget created.").build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Budget not created.").build();
                 }
