@@ -34,7 +34,7 @@ public class RestorePasswordServlet extends HttpServlet {
             ProfileService profileService = new ProfileService(new ProfileClient());
             Profile profile = new Profile();
             try {
-                profile = profileService.getProfile(String.valueOf(new Email(request.getParameter("email"))));
+                profile = profileService.getProfileByEmail(String.valueOf(new Email(request.getParameter("email"))));
             } catch (InvalidEmailException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher(dispatcherURLRestore).forward(request, response);

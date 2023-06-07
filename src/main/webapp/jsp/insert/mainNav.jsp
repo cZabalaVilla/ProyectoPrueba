@@ -2,6 +2,8 @@
 <%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 <%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
 
+<% Session thisSession = (Session) session.getAttribute("session"); %>
+
 <div class="mainNav">
     <div class="mainLinkNav">
         <ul>
@@ -14,11 +16,15 @@
             <li>
                 <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Contacto</a>
             </li>
+            <% if (thisSession.isAdmin()){ %>
+            <li>
+                <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Panel de administrador</a>
+            </li>
+            <% } %>
         </ul>
     </div>
-    <% Session sesionActual = (Session) session.getAttribute("session"); %>
     <div class="dropdown">
-        <button class="dropBtn"><%= sesionActual.getUserName() %></button>
+        <button class="dropBtn"><%= thisSession.getUserName() %></button>
         <div class="dropdownContent">
             <form method="Get" action="<%= GlobalInfo.URL_JSP_PROFILE %>">
                 <input type="submit" value="Perfil">

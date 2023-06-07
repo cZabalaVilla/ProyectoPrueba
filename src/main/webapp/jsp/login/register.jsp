@@ -21,10 +21,7 @@
         <br/>
         <h3 class="H3Box">Registro</h3>
     </div>
-    <!-- Para que salga el error
-    <div class="errorAlert">
-        <p>E-Mail o contraseña incorrecto.</p>
-    </div>-->
+
     <br/>
     <form method="post" action="<%=GlobalInfo.URL_SERVLET_REGISTER%>">
         <label for="userName">Nombre de usuario: </label>
@@ -41,23 +38,30 @@
         <br/>
         <input type="password" id="userPassword" name="userPassword" placeholder="Contraseña" required/>
         <br/>
+        <br/>
         <!-- Mensaje de error en caso de que haya algo incorrecto-->
         <% if (request.getAttribute("error") != null) { %>
         <div class="errorAlert">
-            <p style="color:red"><%= request.getAttribute("error") %>
-            </p></div>
+            <p><%= request.getAttribute("error") %>
+            </p>
+        </div>
         <br/>
-        <% } else if (request.getAttribute("ok") != null) { %>
+        <% } %>
+        <% if (request.getAttribute("ok") != null) { %>
         <p><%= request.getAttribute("ok") %>
         </p>
-        <%}%>
         <br/>
+        <br/>
+        <a class="centerTxt" href="<%=GlobalInfo.URL_JSP_LOGIN%>">Volver al login</a>
+        <br/>
+        <%} else { %>
         <button type="submit" name="submitBtn" value="Crear usuario" class="buttonA">Registrar</button>
         <br/>
         <br/>
         <p class="centerTxt"><a href=<%=GlobalInfo.URL_JSP_LOGIN%>>¿Ya tiene cuenta?</a></p>
+        <br/>
+        <% } %>
     </form>
-
 </section>
 </body>
 </html>

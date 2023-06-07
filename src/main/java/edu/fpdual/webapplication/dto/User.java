@@ -15,7 +15,6 @@ public class User {
     private String userPassword;
     private boolean isAdmin;
 
-
     public User(String userName, String userPassword, boolean isAdmin) throws InvalidPasswordException {
         this.userName = userName;
         this.userPassword = new Password(userPassword, userName).toString();

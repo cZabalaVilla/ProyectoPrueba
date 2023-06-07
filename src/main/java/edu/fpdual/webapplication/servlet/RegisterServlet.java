@@ -31,46 +31,51 @@ public class RegisterServlet extends HttpServlet {
         String espaceFoundError = "El nombre de usuaio no puede tener espacios";
         String userAlreadyError = "El nombre de usuario ya está registrado";
         String incorrectUserNameError = "El nombre de usuario tiene que estar entre 5 y 20 caracteres y no contener caracteres especiales";
+        String emailAlreadyError = "El email ya está registrado";
         String ok = "Usuario creado correctamente.";
         String dispatcherURLRegister = "jsp/login/register.jsp";
 
         String userNameReceived = request.getParameter("userName");
         String userPasswordReceived = request.getParameter("userPassword");
-        String emailReceived = request.getParameter("email");
+        String emailReceived = request.getParameter("email").toLowerCase();
+
+        ProfileService profileService = new ProfileService(new ProfileClient());
+
         try {
             emailReceived = new Email(emailReceived).toString();
+            if (profileService.getProfileByEmail(emailReceived) != null) {
+                request.setAttribute("error", emailAlreadyError);
+                request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
+            }
         } catch (InvalidEmailException e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher(GlobalInfo.URL_JSP_REGISTER).forward(request, response);
+            request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
+            return;
         }
 
         UserService userService = new UserService(new UserClient());
 
-        try {
-            if (userService.getUserByName(userNameReceived) != null) {
-                request.setAttribute("error", userAlreadyError);
-                request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
-            }
-        } catch (NotFoundException ignored) {
-        }
-
-        if (userNameReceived == null || userPasswordReceived == null) {
+        if (userService.getUserByName(userNameReceived) != null) {
+            request.setAttribute("error", userAlreadyError);
+            request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
+        } else if (userNameReceived == null || userPasswordReceived == null) {
             request.setAttribute("error", incompleteError);
             request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
         } else if (userNameReceived.contains(" ")) {
             request.setAttribute("error", espaceFoundError);
             request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
-        } else if (userNameReceived.length() > 5 && userNameReceived.length() < 20 && userNameReceived.matches("[a-zA-Z0-9]+")) {
-            User user = null;
+        } else if (userNameReceived.length() >= 5 && userNameReceived.length() <= 20 && userNameReceived.matches("[a-zA-Z0-9]+")) {
+            User user;
             try {
-                user = new User(userNameReceived, new Password(userPasswordReceived, userNameReceived).toString(), false);
+                user = new User(userNameReceived, userPasswordReceived, false);
             } catch (InvalidPasswordException e) {
                 request.setAttribute("error", e.getMessage());
-                request.getRequestDispatcher(GlobalInfo.URL_JSP_REGISTER).forward(request, response);
+                request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
+                return;
             }
             try {
                 userService.createUser(user);
-                new ProfileService(new ProfileClient()).createProfile(new Profile(userService.getUserByName(userNameReceived).getUserId(), emailReceived));
+                profileService.createProfile(new Profile(userService.getUserByName(userNameReceived).getUserId(), emailReceived));
                 request.setAttribute("ok", ok);
                 request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
             } catch (BadRequestException e) {

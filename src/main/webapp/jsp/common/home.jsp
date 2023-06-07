@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
+<%@ page import="edu.fpdual.webapplication.service.ProfileService" %>
+<%@ page import="edu.fpdual.webapplication.dto.Profile" %>
+<%@ page import="edu.fpdual.webapplication.client.ProfileClient" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -7,36 +10,23 @@
 <head>
     <%@ include file="../insert/headTemplate.jsp" %>
     <title>Home</title>
-    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_pre.css"/>
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>
 
 <body>
 <div class="container">
-    <% Session sesionActual = (Session) session.getAttribute("session"); %>
-    <h2>Bienvenido <%= sesionActual.getUserName().toLowerCase() %>
-    </h2>
-
-    <% if (sesionActual.isAdmin()) { %>
-    <div class="admin-panel-btn">
-        <form method="GET" action="<%= GlobalInfo.URL_JSP_CONTROLPANEL %>">
-            <input type="submit" value="Panel de administrador">
-        </form>
-    </div>
-    <% } %>
-
-    <div class="logout-btn">
-        <form method="POST" action="<%= GlobalInfo.URL_SERVLET_LOGOUT %>">
-            <input type="submit" value="Logout">
-        </form>
-    </div>
-
-    <div class="profile-btn">
-        <form method="POST" action="<%= GlobalInfo.URL_JSP_PROFILE %>">
-            <input type="submit" value="Profile">
-        </form>
-    </div>
-
+    <%@ include file="../insert/header.jsp" %>
+    <main>
+        <%@ include file="../insert/mainNav.jsp" %>
+        <div class="mainBlock">
+            <div class="content">
+                <p>Contenido</p>
+            </div>
+        </div>
+        <%@ include file="../insert/footer.jsp" %>
+    </main>
 </div>
 </body>
 
 </html>
+

@@ -138,6 +138,7 @@ main {
     text-align: center;
 }
 .centerTxt a{
+    text-align: center;
     font-size: small;
     color:#2B3467;
 }
@@ -162,7 +163,7 @@ input[type="text"]{
 }
 .boxBody label {
     font-size: small;
-}*/
+}
 
 /*BLOQUE DE CONTENIDO*/
 .mainBlock {

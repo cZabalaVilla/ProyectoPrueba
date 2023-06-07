@@ -22,11 +22,11 @@ public class ProfileService {
         return profileClient.get();
     }
 
-    public Profile getProfile(int userId) {
+    public Profile getProfileById(int userId) {
         return profileClient.get(userId);
     }
 
-    public Profile getProfile(String email) {
+    public Profile getProfileByEmail(String email) {
         return profileClient.get(email);
     }
 
