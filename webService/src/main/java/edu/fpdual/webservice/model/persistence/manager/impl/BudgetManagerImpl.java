@@ -121,6 +121,7 @@ public class BudgetManagerImpl implements BudgetManager {
             stm.setString(1, budget.getBudgetName());
             stm.setString(2, budget.getDescription());
             stm.setInt(3, budget.getCurrencyId());
+            stm.setInt(4, budget.getBudgetId());
 
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {

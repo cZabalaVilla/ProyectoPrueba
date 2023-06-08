@@ -63,7 +63,7 @@ public class BudgetController {
                 return Response.ok().entity(budgetService.findByBudgetName(budgetName)).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            return Response.status(400).entity("Internal Error During DB Interaction").build();
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
 
@@ -81,7 +81,7 @@ public class BudgetController {
                 return Response.ok().entity(budgetService.findByBudgetId(budgetId)).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            return Response.status(400).entity("Internal Error During DB Interaction").build();
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
 
@@ -94,7 +94,7 @@ public class BudgetController {
             Budget budgetToUpdate = budgetService.findByBudgetName(budget.getBudgetName());
             if (budgetToUpdate != null) {
                 if (budgetService.updateBudget(budget)) {
-                    return Response.status(200).entity(budgetService.findByBudgetName(budget.getBudgetName())).build();
+                    return Response.ok().entity(budgetService.findByBudgetName(budget.getBudgetName())).build();
                 } else {
                     return Response.status(400).entity("Internal Error During Budget Update").build();
                 }
@@ -102,7 +102,7 @@ public class BudgetController {
                 return Response.status(400).entity("Budget Not Found").build();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            return Response.status(400).entity("Internal Error During DB Interaction").build();
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
     }
 
