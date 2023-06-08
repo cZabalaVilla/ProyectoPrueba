@@ -1,3 +1,5 @@
-# ProyectoPrueba
+# Fit-Pocket
 
-Conjunto de Servicios del proyecto que conectan a la base de datos y a la aplicación
+Parte del proyecto que forma el back-end. En el se encuentra el Web Service.
+
+Autores: María Garzón y Carlos Zabala.
