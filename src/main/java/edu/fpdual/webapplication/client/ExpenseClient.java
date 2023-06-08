@@ -43,7 +43,7 @@ public class ExpenseClient extends Client<Expense> {
                 .get(Expense.class);
     }
     public Expense getById(int expenseId) {
-        return webTarget.path(clientPath + "name/" + expenseId)
+        return webTarget.path(clientPath + "id/" + expenseId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Expense.class);
     }

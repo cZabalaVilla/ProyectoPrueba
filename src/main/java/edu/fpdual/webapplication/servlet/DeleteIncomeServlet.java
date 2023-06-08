@@ -30,15 +30,15 @@ public class DeleteIncomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String ok = "Presupuesto Borrado.";
-        String error = "No se ha podido borrar el presupuesto.";
+        String ok = "Ingreso Borrado.";
+        String error = "No se ha podido borrar el ingreso.";
 
-        int incomeId = Integer.parseInt(request.getParameter("deleteBtn"));
+        int incomeId = Integer.parseInt(request.getParameter("deleteBtnIncome"));
         Income income = incomeService.getIncomeById(incomeId);
 
         if (new IncomeService(new IncomeClient()).deleteIncome(income)) {
             request.setAttribute("ok", ok);
-            response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS2);
+            response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
         } else {
             System.out.println("Else error");
             request.setAttribute("error",error);

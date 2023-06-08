@@ -47,9 +47,7 @@
                         </form>
                     </div>
 
-
-
-                    <%List<Income> incomeList = budget.getIncomeList();
+                    <%List<Income> incomeList = (List<Income>) budget.getIncomeList();
                     if(incomeList != null && incomeList.size() > 0) {%>
                     <h3>Lista de Ingresos</h3>
                         <%for (Income income : incomeList) {%>
@@ -63,13 +61,13 @@
                                     <p>Fecha: <%= income.getCreationDate() %></p>
                                 </div>
                                 <form method="POST" action="<%=GlobalInfo.URL_SERVLET_DELETEINCOME%>">
-                                    <button type="submit" name="deleteBtn" value="<%= income.getIncomeId() %>" class="buttonD">Borrar Ingreso </button>
+                                    <button type="submit" name="deleteBtnIncome" value="<%= income.getIncomeId() %>" class="buttonD">Borrar Ingreso </button>
                                 </form>
                             </div>
                         <%}
                     }%>
 
-                    <%List<Expense> expenseList = budget.getExpenseList();
+                    <%List<Expense> expenseList = (List<Expense>) budget.getExpenseList();
                     if(incomeList != null && incomeList.size() > 0) {%>
                         <h3>Lista de Gastos</h3>
                         <%for (Expense expense : expenseList) {%>
@@ -83,7 +81,7 @@
                                     <p>Fecha: <%= expense.getCreationDate() %></p>
                                 </div>
                                 <form method="POST" action="<%=GlobalInfo.URL_SERVLET_DELETEEXPENSE%>">
-                                    <button type="submit" name="deleteBtn" value="<%= expense.getExpenseId() %>" class="buttonD">Borrar Gasto </button>
+                                    <button type="submit" name="deleteBtnExpense" value="<%= expense.getExpenseId() %>" class="buttonD">Borrar Gasto </button>
                                 </form>
                             </div>
                         <%}

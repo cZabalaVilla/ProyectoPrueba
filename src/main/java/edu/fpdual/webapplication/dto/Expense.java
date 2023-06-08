@@ -3,6 +3,7 @@ package edu.fpdual.webapplication.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.fpdual.webapplication.annotations.Model;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,8 +24,9 @@ public class Expense {
     private boolean isRecurrent;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Timestamp creationDate;
-
-    public Expense(String expenseName, String description, int categoryId, double amount, boolean isRecurrent) {
+    @Builder
+    public Expense(int budgetId, String expenseName, String description, int categoryId, double amount, boolean isRecurrent) {
+        this.budgetId = budgetId;
         this.expenseName = expenseName;
         this.description = description;
         this.categoryId = categoryId;

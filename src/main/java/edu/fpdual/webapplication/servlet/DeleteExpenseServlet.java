@@ -28,15 +28,15 @@ public class DeleteExpenseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String ok = "Presupuesto Borrado.";
-        String error = "No se ha podido borrar el presupuesto.";
+        String ok = "Gasto Borrado.";
+        String error = "No se ha podido borrar el gasto.";
 
-        int expenseId = Integer.parseInt(request.getParameter("deleteBtn"));
+        int expenseId = Integer.parseInt(request.getParameter("deleteBtnExpense"));
         Expense expense = expenseService.getExpenseById(expenseId);
 
         if (new ExpenseService(new ExpenseClient()).deleteExpense(expense)) {
             request.setAttribute("ok", ok);
-            response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS2);
+            response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
         } else {
             System.out.println("Else error");
             request.setAttribute("error",error);
