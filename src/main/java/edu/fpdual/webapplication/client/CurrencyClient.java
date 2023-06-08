@@ -30,11 +30,6 @@ public class CurrencyClient extends Client<Currency> {
 
     @Override
     public List<Currency> get() {
-
-//       List<Currency> lista = new ArrayList<>();
-//       lista.add(new Currency(1, "EUR", "€"));
-//       lista.add(new Currency(2, "USD", "$"));
-
         return
                 webTarget.path(clientPath + "all")
                         .request(MediaType.APPLICATION_JSON)
@@ -44,7 +39,7 @@ public class CurrencyClient extends Client<Currency> {
 
     @Override
     public Currency get(String currencyName) {
-        return webTarget.path(clientPath + "get" + currencyName)
+        return webTarget.path(clientPath + "name/" + currencyName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Currency.class);
     }

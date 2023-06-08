@@ -18,13 +18,15 @@ public class BudgetService {
         return budgetClient.ping();
     }
 
-    public Budget getBudget(String budgetName) {
+    public Budget getBudgetByName(String budgetName) {
         return budgetClient.get(budgetName);
     }
-
+//    public Budget getBudgetById(int budgetId) {return budgetClient.get(budgetId);
+//    }
     public List<Budget> getAllBudgets() {
         return budgetClient.get();
     }
+    public List<Budget> getAllBudgetsByUserId(int userId) {return budgetClient.get(userId);}
 
     public boolean updateBudget(Budget budget) {
         return budgetClient.put(budget);

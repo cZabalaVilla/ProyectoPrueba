@@ -38,7 +38,7 @@ public class ExpenseClient extends Client<Expense> {
 
     @Override
     public Expense get(String expenseName) {
-        return webTarget.path(clientPath + "name" + expenseName)
+        return webTarget.path(clientPath + "name/" + expenseName)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Expense.class);
     }

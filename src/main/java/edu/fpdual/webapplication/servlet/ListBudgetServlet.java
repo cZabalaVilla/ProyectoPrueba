@@ -27,19 +27,11 @@ public class ListBudgetServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Budget> budgetList = budgetService.getAllBudgets();
-
-//        Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
-//        for (Budget budget : budgetList) {
-//            if (budget.getUserId() != session.getUserId()) {
-//                budgetList.remove(budget);
-//            }
-//        }
-
+        Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
+        List<Budget> budgetList = budgetService.getAllBudgetsByUserId(session.getUserId());
         request.getSession().setAttribute("budgetList", budgetList);
         response.sendRedirect(GlobalInfo.URL_JSP_LISTBUDGET);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

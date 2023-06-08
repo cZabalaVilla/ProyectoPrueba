@@ -1,5 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.fpdual.webapplication.annotations.Model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ public class Budget {
     private int currencyId;
     private List<Expense> expenseList;
     private List<Income> incomeList;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Timestamp creationDate;
 
     @Builder

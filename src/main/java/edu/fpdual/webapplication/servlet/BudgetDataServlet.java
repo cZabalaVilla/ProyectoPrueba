@@ -25,10 +25,10 @@ public class BudgetDataServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String budgetName = request.getParameter("budgetName");
-        Budget budget = budgetService.getBudget(budgetName);
-        request.getSession().setAttribute("budget", budget);
-        response.sendRedirect("/ProyectoPrueba/jsp/common/budgetData.jsp");
+//        int budgetId = Integer.parseInt(request.getParameter("submitBtn"));
+//        Budget budget = budgetService.getBudgetById(budgetId);
+//        request.getSession().setAttribute("budget", budget);
+//        response.sendRedirect("/ProyectoPrueba/jsp/common/budgetData.jsp");
     }
 
     @Override
