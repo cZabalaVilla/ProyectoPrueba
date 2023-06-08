@@ -23,6 +23,10 @@ public class IncomeService {
         return incomeClient.get(incomeName);
     }
 
+    public Income getIncomeById(int incomeId) {
+        return incomeClient.getById(incomeId);
+    }
+
     public List<Income> getAllIncomes() {
         return incomeClient.get();
     }

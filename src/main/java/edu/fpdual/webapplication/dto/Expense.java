@@ -1,14 +1,18 @@
 package edu.fpdual.webapplication.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import edu.fpdual.webapplication.annotations.Model;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-@Model(type = "Data", version = "1.0", date = "01/06/2023")
+@AllArgsConstructor
+@Model(type = "Data",version = "1.0", date = "01/06/2023")
 public class Expense {
     private int budgetId;
     private int expenseId;
@@ -17,7 +21,8 @@ public class Expense {
     private int categoryId;
     private double amount;
     private boolean isRecurrent;
-    private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    private Timestamp creationDate;
 
     public Expense(String expenseName, String description, int categoryId, double amount, boolean isRecurrent) {
         this.expenseName = expenseName;

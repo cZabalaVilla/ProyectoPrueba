@@ -38,7 +38,7 @@ public class BudgetClient extends Client<Budget> {
                         });
     }
 
-    public List<Budget> get(int userId) {
+    public List<Budget> getAllBy(int userId) {
         return
                 webTarget.path(clientPath + "allbyuserid/" + userId)
                         .request(MediaType.APPLICATION_JSON)
@@ -53,11 +53,11 @@ public class BudgetClient extends Client<Budget> {
                 .get(Budget.class);
     }
 
-//    public Budget get(int budgetId) {
-//        return webTarget.path(clientPath + "id/" + budgetId)
-//                .request(MediaType.APPLICATION_JSON)
-//                .get(Budget.class);
-//    }
+    public Budget get(int budgetId) {
+        return webTarget.path(clientPath + "id/" + budgetId)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Budget.class);
+    }
 
     @Override
     public boolean put(Budget budget) {

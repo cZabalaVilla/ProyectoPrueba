@@ -43,6 +43,12 @@ public class IncomeClient extends Client<Income> {
                 .get(Income.class);
     }
 
+    public Income getById(int incomeId) {
+        return webTarget.path(clientPath + "id/" + incomeId)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Income.class);
+    }
+
     @Override
     public boolean put(Income income) {
         return webTarget.path(clientPath + "update")

@@ -42,7 +42,11 @@ public class ExpenseClient extends Client<Expense> {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Expense.class);
     }
-
+    public Expense getById(int expenseId) {
+        return webTarget.path(clientPath + "name/" + expenseId)
+                .request(MediaType.APPLICATION_JSON)
+                .get(Expense.class);
+    }
 
     @Override
     public boolean put(Expense expense) {

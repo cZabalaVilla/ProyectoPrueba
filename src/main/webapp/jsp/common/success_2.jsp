@@ -16,7 +16,7 @@
             <h3 class="H3Box2">Operación realizada <br/>con éxito</h3>
         </div>
         <br/>
-        <form method="POST" action="<%=GlobalInfo.URL_SERVLET_LISTBUDGETS%>">
+        <form method="POST" action="<%=GlobalInfo.URL_SERVLET_BUDGETDATA%>">
             <input type="submit" value="Volver" class="buttonA"/>
         </form>
     </section>
