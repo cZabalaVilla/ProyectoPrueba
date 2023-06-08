@@ -1,4 +1,5 @@
 # Fit-Pocket
 
-Parte del proyecto del front-end. En el se encuentra el Web Application.
+Parte del proyecto que forma el back-end, en el que se encuentra el Web Service.
 
+Autores: María Garzón y Carlos Zabala.
