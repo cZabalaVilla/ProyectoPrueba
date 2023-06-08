@@ -1,0 +1,6 @@
+1. Para conectarte a la base de datos de docker accede a mysql workbench
+2. En la carpeta doc, el archivo credenciales.txt contiene los datos de la conexion.
+3. Nombra la nueva conexion como Docker fitpocket mysql.
+4. Puedes probar a ejecutar:
+	SELECT * FROM USER;
+Deberán salirte los usuarios.

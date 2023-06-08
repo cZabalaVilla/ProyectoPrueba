@@ -1,0 +1,7 @@
+FitPocketDatabase
+---ROOT---
+nombre de conexion = root
+nombre de usuario = root
+contraseña = admin
+hostname = 127.0.0.1
+port = 3306

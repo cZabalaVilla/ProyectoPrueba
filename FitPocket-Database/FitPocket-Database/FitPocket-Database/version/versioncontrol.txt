@@ -1,0 +1,43 @@
+-------------------------------------
+Archivo para el control de versiones
+-------------------------------------
+copypaste del template para anadir informacion de la version.
+--version 0.0.0---
+autor = 
+fecha = 
+version anterior =
+nueva version =
+--
+notas de la nueva version
+
+------------------
+{----------------------------------------------------------------}
+--version 0.0.1 PRE---
+autor = Carlos Zabala
+fecha = 11/05/2023
+version anterior = -
+nueva version = 0.0.1 PRE
+--
+notas de la nueva version
+Se ha creado todo el sistema de gestion de la base de datos mediante scripts
+------------------
+--version 0.0.2 PRE---
+autor = Carlos Zabala
+fecha = 15/05/2023
+version anterior = 0.0.1 PRE
+nueva version = 0.0.2 PRE
+--
+notas de la nueva version
+Se ha cambiado los nombres de los scripts de sql y modificado algunos. 
+Añadida guia de conexion.
+------------------
+--version 0.0.3 PRE---
+autor = Carlos Zabala
+fecha = 29/05/2023
+version anterior = 0.0.2 PRE
+nueva version = 0.0.3 PRE
+--
+notas de la nueva version
+Se ha creado el script completo de la base de datos.
+Se queda en standby el uso de docker porque no se guardan los datos.
+------------------

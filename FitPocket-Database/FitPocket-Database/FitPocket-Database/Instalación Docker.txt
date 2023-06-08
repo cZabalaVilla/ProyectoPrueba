@@ -1,0 +1,14 @@
+1. Descargar e instalar Docker windows.
+2. Para descargar la base de datos del proyecto ejecutar 'fitpocketdatabase.jar' de la carpeta 'ex' o el script 'DockerRun.ps1' en la carpeta Data si no hubiere este archivo.
+
+- Si tienes ya una base de datos instalada mysql, debes tener en cuenta el puerto en el que inicializas el contenedor, para eso usa la 3307 o para el servidor de tu sistema.
+
+Para cambiarlo:
+1. Busca el script 'DockerRun.ps1' en /Data/DockerScripts
+2. Copia la linea de codigo y cierra el script
+3. Pega la linea de codigo en la consola de comandos de windows y cambia los numeros '3306' por '3307'.
+4. A la hora de conectarte en el WorkBench ten en cuenta de usar el nuevo puerto.
+
+Para para el servidor:
+1. Busca el acceso directo 'Stop MYSQL80.bat' en la carpeta 'MySQL servidor' y ejecutalo.
+2. Puedes usar directamente los scripts pero ten en cuenta que seguramente tu servidor MYSQL se inicie solo cada vez que inicies Windows y tendras que pararlo.
