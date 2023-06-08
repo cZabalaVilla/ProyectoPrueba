@@ -23,7 +23,7 @@ public class Income {
     private double amount;
     private boolean isRecurrent;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private Timestamp date;
+    private Timestamp creationDate;
     @Builder
     public Income(int budgetId, String incomeName, String description, int categoryId, double amount, boolean isRecurrent) {
         this.budgetId = budgetId;

@@ -22,6 +22,8 @@ public class CategoryService {
         return categoryClient.get();
     }
 
+    public List<Category> getAllCategoriesByUserId(int userId) {return categoryClient.getAllBy(userId);}
+
     public Category getCategory(String categoryName) {
         return categoryClient.get(categoryName);
     }

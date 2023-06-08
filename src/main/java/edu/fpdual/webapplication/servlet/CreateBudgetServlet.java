@@ -55,7 +55,8 @@ public class CreateBudgetServlet extends HttpServlet {
                         .userId(userIdSession)
                         .budgetName(request.getParameter("budgetNameInput"))
                         .description(request.getParameter("budgetDescInput"))
-                        .currencyId(Integer.parseInt(request.getParameter("currencyInput"))).build();
+                        .currencyId(Integer.parseInt(request.getParameter("currencyInput")))
+                        .build();
 
                 if (new BudgetService(new BudgetClient()).createBudget(budget)) {
                     request.setAttribute("ok", ok);

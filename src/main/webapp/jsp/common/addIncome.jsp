@@ -50,7 +50,7 @@
                             session.removeAttribute("categoryList");
                         if(categoryList!=null && categoryList.size() > 0){
                             for(Category category: categoryList){%>
-                                <option value="<%=category.getCategoryId()%>"><%=category.getCategoryName()%></option>
+                                <option value="<%=category.getCategoryId()%>"> <%=category.getCategoryName()%> </option>
                             <%}
                         }%>
                         </select>

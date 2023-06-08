@@ -22,6 +22,10 @@ public class ExpenseService {
         return expenseClient.get(expenseName);
     }
 
+    public Expense getExpenseById(int expenseId) {
+        return expenseClient.getById(expenseId);
+    }
+
     public List<Expense> getAllExpenses() {
         return expenseClient.get();
     }

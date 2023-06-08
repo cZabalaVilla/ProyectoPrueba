@@ -30,7 +30,9 @@ public class CreateIncomeServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Category> categoryList = categoryService.getAllCategories();
+        Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
+        List<Category> categoryList = categoryService.getAllCategoriesByUserId(0);
+        categoryList.addAll(categoryService.getAllCategoriesByUserId(session.getUserId()));
         request.getSession().setAttribute("categoryList", categoryList);
 
         response.sendRedirect(GlobalInfo.URL_JSP_ADDINCOME);

@@ -42,16 +42,17 @@
                         <form method="GET" action="<%=GlobalInfo.URL_SERVLET_ADDEXPENSE%>">
                             <button type="submit" name="expenseBtn" value="<%= budget.getBudgetId() %>" class="buttonD">Añadir Gasto</button>
                         </form>
-                        <form method="GET" action="<%=GlobalInfo.URL_SERVLET_DELETEBUDGET%>">
+                        <form method="POST" action="<%=GlobalInfo.URL_SERVLET_DELETEBUDGET%>">
                             <button type="submit" name="deleteBtn" value="<%= budget.getBudgetId() %>" class="buttonD">Borrar Presupuesto</button>
                         </form>
                     </div>
 
-                    <h3>Lista de Ingresos</h3>
+
 
                     <%List<Income> incomeList = (List<Income>) budget.getIncomeList();
-                    if(incomeList != null && incomeList.size() > 0) {
-                        for (Income income : incomeList) {%>
+                    if(incomeList != null && incomeList.size() > 0) {%>
+                    <h3>Lista de Ingresos</h3>
+                        <%for (Income income : incomeList) {%>
                             <div class="listElement2">
                                 <h4><%= income.getIncomeName() %></h4>
                                 <div class="descriptionTextBudget">
@@ -59,17 +60,34 @@
                                     <p>Categoría: <%= income.getCategoryId() %></p>
                                     <p>Cantidad: <%= income.getAmount() %></p>
                                     <p>Recurrente: <%= income.isRecurrent() %></p>
-                                    <p>Fecha: <%= income.getDate() %></p>
+                                    <p>Fecha: <%= income.getCreationDate() %></p>
                                 </div>
-                                <form method="" action="">
-                                    <input type="button" name="expenseBtn" value="Borrar" class="buttonD" />
+                                <form method="POST" action="<%=GlobalInfo.URL_SERVLET_DELETEINCOME%>">
+                                    <button type="submit" name="deleteBtn" value="<%= income.getIncomeId() %>" class="buttonD">Borrar Ingreso </button>
                                 </form>
                             </div>
                         <%}
-                    } else {%>
-                    <p>No hay ingresos que mostar</p>
-                    <%}%>
-                    <h3>Lista de Gastos</h3>
+                    }%>
+
+                    <%List<Expense> expenseList = (List<Expense>) budget.getExpenseList();
+                    if(incomeList != null && incomeList.size() > 0) {%>
+                        <h3>Lista de Gastos</h3>
+                        <%for (Expense expense : expenseList) {%>
+                            <div class="listElement2">
+                                <h4><%= expense.getExpenseName() %></h4>
+                                <div class="descriptionTextBudget">
+                                    <p>Descripcion: <%= expense.getDescription() %></p>
+                                    <p>Categoría: <%= expense.getCategoryId() %></p>
+                                    <p>Cantidad: <%= expense.getAmount() %></p>
+                                    <p>Recurrente: <%= expense.isRecurrent() %></p>
+                                    <p>Fecha: <%= expense.getCreationDate() %></p>
+                                </div>
+                                <form method="POST" action="<%=GlobalInfo.URL_SERVLET_DELETEEXPENSE%>">
+                                    <button type="submit" name="deleteBtn" value="<%= expense.getExpenseId() %>" class="buttonD">Borrar Gasto </button>
+                                </form>
+                            </div>
+                        <%}
+                    }%>
                 </div>
             </div>
             <%@ include file="../insert/footer.jsp" %>

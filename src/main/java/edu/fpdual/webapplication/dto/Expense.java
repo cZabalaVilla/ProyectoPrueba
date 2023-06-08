@@ -22,7 +22,7 @@ public class Expense {
     private double amount;
     private boolean isRecurrent;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private Timestamp date;
+    private Timestamp creationDate;
 
     public Expense(String expenseName, String description, int categoryId, double amount, boolean isRecurrent) {
         this.expenseName = expenseName;
