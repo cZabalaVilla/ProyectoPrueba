@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.dto;
 
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

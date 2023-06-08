@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.filter;
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import edu.fpdual.webapplication.servlet.dto.Session;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

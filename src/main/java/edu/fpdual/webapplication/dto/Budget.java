@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

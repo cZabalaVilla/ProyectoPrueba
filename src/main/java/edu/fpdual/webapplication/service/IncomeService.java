@@ -1,7 +1,7 @@
 package edu.fpdual.webapplication.service;
 
 
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import edu.fpdual.webapplication.client.IncomeClient;
 import edu.fpdual.webapplication.dto.Income;
 

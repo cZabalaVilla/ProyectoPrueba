@@ -1,55 +1,48 @@
 package edu.fpdual.webapplication.utilities.reportpdf;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Pdftext {
 
-    public void createPDF(String fileName, String text, ArrayList<String> list) throws IOException, DocumentException, URISyntaxException {
-        Document document = new Document();
-        document.open();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName + ".pdf"));
-        PdfPTable pdfPTable = new PdfPTable(4);
+    public void createPDF(String fileName, String text) throws IOException, DocumentException, URISyntaxException {
 
-        /* Bloque para añadir una foto
-            Path path = Paths.get(ClassLoader.getSystemResource("Check.png").toURI());
-            Image image = createImage(path, 50);
-        */
+        Document document = new Document();
+        //PdfWriter pdfWriter =
+        PdfWriter.getInstance(document, new FileOutputStream(fileName + ".pdf"));
+        //Forma de encriptacion de fichero previo a su creacion
+        // pdfWriter.setEncryption("user".getBytes(), "1234".getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_256);
+
+        document.open();
+
         Paragraph paragraph = createParagraph(text);
+
+        PdfPTable pdfPTable = new PdfPTable(4);
+        pdfPTable.setSpacingBefore(10f);
         addTableHeaders(pdfPTable);
-        addTableCustomRows(pdfPTable, list);
+        addTableCustomRows(pdfPTable);
 
         document.add(paragraph);
         document.add(Chunk.NEWLINE);
-        //document.add(image);
         document.add(pdfPTable);
         document.close();
 
-        /* Para encriptar
+        //Forma de encriptacion de fichero posterior a su creacion
         PdfReader pdfReader = new PdfReader(fileName + ".pdf");
         PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileOutputStream(fileName + "_encrypted.pdf"));
         pdfStamper.setEncryption("user".getBytes(), "1234".getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_256);
         pdfStamper.close();
-        */
 
     }
-
-    private Image createImage(Path path, float scale) throws BadElementException, IOException {
-        Image image = Image.getInstance(path.toAbsolutePath().toString());
-        image.scalePercent(scale);
-        return image;
-    }
-
     private Paragraph createParagraph(String text) {
         Font font = FontFactory.getFont(FontFactory.COURIER_BOLD, 16, BaseColor.BLACK);
         Paragraph paragraph = new Paragraph(text, font);
@@ -59,7 +52,7 @@ public class Pdftext {
     }
 
     private void addTableHeaders(PdfPTable pdfPTable) {
-        Stream.of("Fecha", "Gasto o Ahorro", "Cantidad", "Categoria").forEach(nombreColumna -> {
+        Stream.of("Fecha", "Gasto o Ingreso", "Cantidad", "Categoria").forEach(nombreColumna -> {
             PdfPCell header = new PdfPCell();
             header.setBackgroundColor(BaseColor.GRAY);
             header.setBorderWidth(2);
@@ -70,61 +63,42 @@ public class Pdftext {
         });
     }
 
+    private void addTableCustomRows(PdfPTable pdfPTable) throws URISyntaxException, BadElementException, IOException {
 
-    private void addTableSimpleRows(PdfPTable pdfPTable) throws URISyntaxException, BadElementException, IOException {
-        /*Path path = Paths.get(ClassLoader.getSystemResource("default-avatar.png").toURI());
-        pdfPTable.addCell(createImage(path, 20));
-        */
-        pdfPTable.addCell("Ismael");
-        pdfPTable.addCell("Orellana");
-        pdfPTable.addCell("19");
-    }
+        PdfPCell columnNombre = new PdfPCell(new Phrase("Natalia"));
+        columnNombre.setBackgroundColor(BaseColor.MAGENTA);
+        columnNombre.setBorderWidth(1);
+        columnNombre.setHorizontalAlignment(Element.ALIGN_CENTER);
+        columnNombre.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pdfPTable.addCell(columnNombre);
 
-    private void addTableCustomRows(PdfPTable pdfPTable, ArrayList<String> list) throws URISyntaxException, BadElementException, IOException {
+        PdfPCell columnApellido = new PdfPCell(new Phrase("Castillo"));
+        columnApellido.setBackgroundColor(BaseColor.MAGENTA);
+        columnApellido.setBorderWidth(1);
+        columnApellido.setHorizontalAlignment(Element.ALIGN_CENTER);
+        columnApellido.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pdfPTable.addCell(columnApellido);
 
-        /*
-        Path path = Paths.get(ClassLoader.getSystemResource("default-avatar.png").toURI());
-        PdfPCell columnFoto = new PdfPCell(createImage(path, 20));
-        columnFoto.setBackgroundColor(BaseColor.MAGENTA);
-        columnFoto.setBorderWidth(1);
-        columnFoto.setHorizontalAlignment(Element.ALIGN_CENTER);
-        columnFoto.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        pdfPTable.addCell(columnFoto);
-        */
-        /*
-         * Lista de gastos simula un array bidimensional que se le pasa por parametro con la fecha, si es ingreso o gasto,
-         * la cantidad y la categoría. Se pueden pasar directamente los gastos/ingresos en dos Arraylist también.
-         * */
-        String[][] listaDeGastos = new String[4][10];
+        PdfPCell columnEdad = new PdfPCell(new Phrase("45"));
+        columnEdad.setBackgroundColor(BaseColor.MAGENTA);
+        columnEdad.setBorderWidth(1);
+        columnEdad.setHorizontalAlignment(Element.ALIGN_CENTER);
+        columnEdad.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pdfPTable.addCell(columnEdad);
 
-        /*
-        listaDeGastos[0][0] = "01-06-2023";
-        listaDeGastos[1][0] = "Gasto";
-        listaDeGastos[2][0] = "20 €";
-        listaDeGastos[3][0] = "Restaurante";
+        PdfPCell columnE = new PdfPCell(new Phrase("45"));
+        columnEdad.setBackgroundColor(BaseColor.MAGENTA);
+        columnEdad.setBorderWidth(1);
+        columnEdad.setHorizontalAlignment(Element.ALIGN_CENTER);
+        columnEdad.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pdfPTable.addCell(columnE);
 
-        listaDeGastos[0][1] = "02-06-2023";
-        listaDeGastos[1][1] = "Ingreso";
-        listaDeGastos[2][1] = "120 €";
-        listaDeGastos[3][1] = "Trabajo";
-
-        listaDeGastos[0][2] = "05-06-2023";
-        listaDeGastos[1][2] = "Gasto";
-        listaDeGastos[2][2] = "12 €";
-        listaDeGastos[3][2] = "Supermercado";
-        */
-
-        /*for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {*/
-        for (String str : list) {
-            PdfPCell column = new PdfPCell(new Phrase(str));
-            column.setBackgroundColor(BaseColor.WHITE);
-            column.setBorderWidth(1);
-            column.setHorizontalAlignment(Element.ALIGN_CENTER);
-            column.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            pdfPTable.addCell(column);
-        }
-        pdfPTable.completeRow();
+        PdfPCell columnEs = new PdfPCell(new Phrase("45"));
+        columnEdad.setBackgroundColor(BaseColor.MAGENTA);
+        columnEdad.setBorderWidth(1);
+        columnEdad.setHorizontalAlignment(Element.ALIGN_CENTER);
+        columnEdad.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pdfPTable.addCell(columnEs);
     }
 
     public static void main(String[] args) throws DocumentException, IOException, URISyntaxException {
@@ -143,7 +117,7 @@ public class Pdftext {
         lista.add("Gasto");
         lista.add("12 €");
         lista.add("Supermercado");
-        new Pdftext().createPDF("Reporte" + LocalDate.now(), "Reporte sobre...", lista);
+        new Pdftext().createPDF("Reporte" + LocalDate.now(), "Reporte sobre...");
     }
 
 }

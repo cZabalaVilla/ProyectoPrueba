@@ -1,4 +1,4 @@
-package edu.fpdual.webapplication.annotations;
+package edu.fpdual.webapplication.annotation;
 
 import java.lang.annotation.*;
 

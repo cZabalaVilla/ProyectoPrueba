@@ -2,7 +2,7 @@ package edu.fpdual.webapplication.client;
 
 
 import edu.fpdual.webapplication.GlobalInfo;
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import edu.fpdual.webapplication.dto.Budget;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;

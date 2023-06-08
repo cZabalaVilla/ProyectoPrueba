@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.client;
 
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 
 import java.util.List;
 

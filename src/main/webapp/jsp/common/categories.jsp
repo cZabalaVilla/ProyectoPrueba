@@ -21,10 +21,19 @@
         <%@ include file="../insert/mainNav.jsp" %>
         <div class="mainBlock">
             <div class="content">
-                <%List<Category> basicCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(thisSession.getUserId());%>
+                <%List<Category> basicCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(0);%>
                 <% for (Category category : basicCategories) {
                 %><p><%=category.getCategoryName()%>
                 </p>
+                <br/>
+                <br/>
+                <% } %>
+                <%List<Category> userCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(thisSession.getUserId());%>
+                <% for (Category category : userCategories) {
+                %><p><%=category.getCategoryName()%>
+                </p>
+                <br/>
+                <br/>
                 <% } %>
             </div>
         </div>

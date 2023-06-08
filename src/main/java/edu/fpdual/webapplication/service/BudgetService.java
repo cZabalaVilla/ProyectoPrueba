@@ -1,6 +1,6 @@
 package edu.fpdual.webapplication.service;
 
-import edu.fpdual.webapplication.annotations.Model;
+import edu.fpdual.webapplication.annotation.Model;
 import edu.fpdual.webapplication.client.BudgetClient;
 import edu.fpdual.webapplication.dto.Budget;
 
