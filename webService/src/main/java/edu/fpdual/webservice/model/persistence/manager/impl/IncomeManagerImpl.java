@@ -34,8 +34,7 @@ public class IncomeManagerImpl implements IncomeManager {
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             while (result.next()) {
                 entities.add(new Income(result));
@@ -55,8 +54,7 @@ public class IncomeManagerImpl implements IncomeManager {
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             while (result.next()) {
                 entity = new Income(result);
@@ -72,7 +70,7 @@ public class IncomeManagerImpl implements IncomeManager {
 
     @Override
     public boolean delete(Connection con, Income income) {
-        boolean result = false;
+        boolean result;
 
         String query = "DELETE FROM " + tableName + " WHERE incomeName = ?";
 
@@ -108,7 +106,7 @@ public class IncomeManagerImpl implements IncomeManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 
     @Override
@@ -129,6 +127,6 @@ public class IncomeManagerImpl implements IncomeManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 }

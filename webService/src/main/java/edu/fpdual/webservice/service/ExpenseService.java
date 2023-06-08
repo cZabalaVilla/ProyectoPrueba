@@ -41,6 +41,13 @@ public class ExpenseService {
             return expenseManager.findBy(con, "expenseName", expenseName);
         }
     }
+
+    public Expense findByExpenseId(int expenseId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findBy(con, "expenseId", expenseId);
+        }
+    }
+
     public boolean deleteExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.delete(con, expense);

@@ -1,7 +1,6 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
 import edu.fpdual.webservice.model.persistence.dao.Category;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.CategoryManager;
 
 import java.sql.*;
@@ -30,13 +29,18 @@ public class CategoryManagerImpl implements CategoryManager {
 
     @Override
     public List<Category> findAllBy(Connection con, String fieldName, Object value) {
+        return null;
+    }
+
+    @Override
+    public List<Category> findAllById(Connection con, String fieldName, int value) {
         List<Category> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            stm.setInt(1, value);
+            ResultSet result = stm.executeQuery();
+
             while (result.next()) {
                 entities.add(new Category(result));
             }

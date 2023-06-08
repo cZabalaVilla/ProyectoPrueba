@@ -132,9 +132,9 @@ public class BudgetController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteBudget(Budget budget) {
         try {
-            if (budgetService.findByBudgetName(budget.getBudgetName()) != null) {
+            if (budgetService.findByBudgetId(budget.getBudgetId()) != null) {
                 if (budgetService.deleteBudget(budget)) {
-                    return Response.status(200).entity(budget).build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Budget Was Not Deleted").build();
                 }

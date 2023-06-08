@@ -80,10 +80,10 @@ public class BudgetManagerImpl implements BudgetManager {
     public boolean delete(Connection con, Budget budget) {
         boolean result;
 
-        String query = "DELETE FROM " + tableName + " WHERE budgetName = ?";
+        String query = "DELETE FROM " + tableName + " WHERE budgetId = ? ";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, budget.getBudgetName());
+            stm.setObject(1, budget.getBudgetId());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

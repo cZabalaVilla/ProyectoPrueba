@@ -43,6 +43,12 @@ public class IncomeService {
             return incomeManager.findBy(con, "incomeName", incomeName);
         }
     }
+
+    public Income findByIncomeId(int incomeId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return incomeManager.findBy(con, "incomeId", incomeId);
+        }
+    }
     public boolean deleteIncome(Income income) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return incomeManager.delete(con, income);

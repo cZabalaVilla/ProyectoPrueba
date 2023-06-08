@@ -33,8 +33,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             while (result.next()) {
                 entities.add(new Expense(result));
@@ -107,7 +106,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 
     @Override
@@ -128,6 +127,6 @@ public class ExpenseManagerImpl implements ExpenseManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 }

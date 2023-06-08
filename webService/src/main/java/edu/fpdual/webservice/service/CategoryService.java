@@ -20,31 +20,36 @@ public class CategoryService {
 
     public List<Category> findAllCategories() throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return categoryManager.findAll(new MySQLConnector().getMySQLConnection());
+            return categoryManager.findAll(con);
+        }
+    }
+    public List<Category> findAllCategoriesByUserId(int userId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return categoryManager.findAllById(con, "userId", userId);
         }
     }
 
     public Category findByCategoryName(String categoryName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return categoryManager.findBy(new MySQLConnector().getMySQLConnection(), "categoryName", categoryName);
+            return categoryManager.findBy(con, "categoryName", categoryName);
         }
     }
 
     public boolean createCategory(Category category) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return categoryManager.create(new MySQLConnector().getMySQLConnection(), category);
+            return categoryManager.create(con, category);
         }
     }
 
     public boolean updateCategory(Category category) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return categoryManager.update(new MySQLConnector().getMySQLConnection(), category);
+            return categoryManager.update(con, category);
         }
     }
 
     public boolean deleteCategory(Category category) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return categoryManager.delete(new MySQLConnector().getMySQLConnection(), category);
+            return categoryManager.delete(con, category);
         }
     }
 }

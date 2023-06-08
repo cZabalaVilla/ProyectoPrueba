@@ -50,6 +50,23 @@ public class IncomeController {
             return Response.status(400).entity("Internal Error During DB Interaction").build();
         }
     }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/id/{incomeId}")
+    public Response findByIncomeById(@PathParam("incomeId") int incomeId) {
+        try {
+            if (incomeId <= 0) {
+                return Response.ok().entity(incomeService.findAllIncomes()).build();
+            } else {
+                if (incomeService.findByIncomeId(incomeId) == null) {
+                    return Response.status(400).entity("Income Not Found"). build();
+                }
+                return Response.ok().entity(incomeService.findByIncomeId(incomeId)).build();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(400).entity("Internal Error During DB Interaction").build();
+        }
+    }
 
     @PUT
     @Path("/update")
@@ -92,15 +109,15 @@ public class IncomeController {
         }
     }
 
-    @DELETE
+    @POST
     @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteIncome(Income income) {
         try {
-            if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
+            if (incomeService.findByIncomeId(income.getIncomeId()) != null) {
                 if (incomeService.deleteIncome(income)) {
-                    return Response.status(200).entity(income).build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Income Was Not Deleted").build();
                 }
