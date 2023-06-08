@@ -29,17 +29,11 @@ public class BudgetManagerImpl implements BudgetManager {
 
     @Override
     public List<Budget> findAllBy(Connection con, String fieldName, Object value) {
-        return null;
-    }
-
-
-    @Override
-    public List<Budget> findAllBy(Connection con, String fieldName, int value) {
         List<Budget> entities = new ArrayList<>();
         String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ? ";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setInt(1, value);
+            stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
@@ -65,14 +59,13 @@ public class BudgetManagerImpl implements BudgetManager {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
 
-            while (result.next()) {
+            while (result.first()) {
                 entity = new Budget(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             entity = null;
         }
-
         return entity;
     }
 

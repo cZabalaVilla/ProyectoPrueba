@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface BudgetManager extends Manager<Budget>{
 
-    List<Budget> findAllBy(Connection con, String fieldName, int value);
 }
