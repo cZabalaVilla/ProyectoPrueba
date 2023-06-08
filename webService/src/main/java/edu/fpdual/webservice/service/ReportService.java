@@ -2,11 +2,8 @@ package edu.fpdual.webservice.service;
 
 import edu.fpdual.webservice.model.persistence.connector.MySQLConnector;
 import edu.fpdual.webservice.model.persistence.dao.Report;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.ReportManager;
-import edu.fpdual.webservice.model.persistence.manager.UserManager;
 import edu.fpdual.webservice.model.persistence.manager.impl.ReportManagerImpl;
-import edu.fpdual.webservice.model.persistence.manager.impl.UserManagerImpl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +13,7 @@ public class ReportService {
     private final ReportManager reportManager;
 
     //@TODO Añadir javadoc
-    public ReportService(ReportManagerImpl reportManager){
+    public ReportService(ReportManagerImpl reportManager) {
 
         this.reportManager = reportManager;
     }
@@ -29,7 +26,7 @@ public class ReportService {
 
     public Report findByReportName(String reportName) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return reportManager.findBy(con,"reportName", reportName);
+            return reportManager.findBy(con, "reportName", reportName);
         }
     }
 

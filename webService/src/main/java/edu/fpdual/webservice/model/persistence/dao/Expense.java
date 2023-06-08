@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-public class Expense implements Comparable<Expense>{
+public class Expense implements Comparable<Expense> {
     private int expenseId;
     private int budgetId;
     private String expenseName;
@@ -19,7 +19,7 @@ public class Expense implements Comparable<Expense>{
     private boolean isRecurrent;
     private Timestamp creationDate;
 
-    public Expense (ResultSet result) {
+    public Expense(ResultSet result) {
         try {
             this.expenseId = result.getInt("expenseId");
             this.budgetId = result.getInt("budgetId");

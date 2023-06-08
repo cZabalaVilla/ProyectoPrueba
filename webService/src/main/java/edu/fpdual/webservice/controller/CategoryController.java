@@ -1,7 +1,6 @@
 package edu.fpdual.webservice.controller;
 
 import edu.fpdual.webservice.model.persistence.dao.Category;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.impl.CategoryManagerImpl;
 import edu.fpdual.webservice.service.CategoryService;
 import jakarta.ws.rs.*;

@@ -1,7 +1,6 @@
 package edu.fpdual.webservice.model.persistence.manager.impl;
 
 import edu.fpdual.webservice.model.persistence.dao.Report;
-import edu.fpdual.webservice.model.persistence.dao.User;
 import edu.fpdual.webservice.model.persistence.manager.ReportManager;
 
 import java.sql.*;
@@ -36,7 +35,7 @@ public class ReportManagerImpl implements ReportManager {
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
+            ResultSet result = stm.executeQuery();
             result.beforeFirst();
             while (result.next()) {
                 entities.add(new Report(result));

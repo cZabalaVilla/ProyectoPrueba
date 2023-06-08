@@ -14,7 +14,9 @@ import java.sql.SQLException;
 public class CurrencyController {
     private final CurrencyService currencyService;
 
-    public CurrencyController() {this.currencyService = new CurrencyService(new CurrencyManagerImpl());}
+    public CurrencyController() {
+        this.currencyService = new CurrencyService(new CurrencyManagerImpl());
+    }
 
     @GET
     @Path("/ping")

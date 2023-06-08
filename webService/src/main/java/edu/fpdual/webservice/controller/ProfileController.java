@@ -97,7 +97,7 @@ public class ProfileController {
     public Response createProfile(Profile profile) {
         try {
             if (profileService.findByUserId(profile.getUserId()) != null) {
-                    return Response.ok().entity(profileService.createProfile(profile)).build();
+                return Response.ok().entity(profileService.createProfile(profile)).build();
             } else {
                 return Response.status(400).entity(false).build();
             }

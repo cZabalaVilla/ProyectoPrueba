@@ -1,6 +1,5 @@
 package edu.fpdual.webservice.model.persistence.dao;
 
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +17,7 @@ public class Profile {
     private String location;
     private int phone;
 
-    public Profile (ResultSet result) {
+    public Profile(ResultSet result) {
         try {
             this.userId = result.getInt("userId");
             this.description = result.getString("description");

@@ -18,8 +18,8 @@ public class BudgetService {
         this.budgetManager = budgetManager;
     }
 
-    public List<Budget> findAllBudgets() throws SQLException, ClassNotFoundException{
-        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+    public List<Budget> findAllBudgets() throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.findAll(con);
         }
     }
@@ -35,16 +35,19 @@ public class BudgetService {
             return budgetManager.findBy(con, "budgetName", budgetName);
         }
     }
+
     public boolean deleteBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.delete(con, budget);
         }
     }
+
     public boolean createBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.create(con, budget);
         }
     }
+
     public boolean updateBudget(Budget budget) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return budgetManager.update(con, budget);

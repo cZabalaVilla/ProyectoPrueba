@@ -13,7 +13,7 @@ public class UserService {
     private final UserManager userManager;
 
     //@TODO Añadir javadoc
-    public UserService(UserManagerImpl userManager){
+    public UserService(UserManagerImpl userManager) {
 
         this.userManager = userManager;
     }
@@ -50,7 +50,7 @@ public class UserService {
 
     public boolean createUser(User user) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return userManager.create(con,user);
+            return userManager.create(con, user);
         }
     }
 

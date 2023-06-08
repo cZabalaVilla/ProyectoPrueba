@@ -1,10 +1,7 @@
 package edu.fpdual.webservice.controller;
 
-import edu.fpdual.webservice.model.persistence.dao.Profile;
 import edu.fpdual.webservice.model.persistence.dao.Report;
-import edu.fpdual.webservice.model.persistence.manager.impl.ProfileManagerImpl;
 import edu.fpdual.webservice.model.persistence.manager.impl.ReportManagerImpl;
-import edu.fpdual.webservice.service.ProfileService;
 import edu.fpdual.webservice.service.ReportService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

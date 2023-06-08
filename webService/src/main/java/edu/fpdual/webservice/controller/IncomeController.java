@@ -16,6 +16,7 @@ public class IncomeController {
     public IncomeController() {
         this.incomeService = new IncomeService(new IncomeManagerImpl());
     }
+
     @GET
     @Path("/ping")
     public Response ping() {
@@ -42,7 +43,7 @@ public class IncomeController {
                 return Response.ok().entity(incomeService.findAllIncomes()).build();
             } else {
                 if (incomeService.findByIncomeName(incomeName).getIncomeId() <= 0) {
-                    return Response.status(400).entity("Income Not Found"). build();
+                    return Response.status(400).entity("Income Not Found").build();
                 }
                 return Response.ok().entity(incomeService.findByIncomeName(incomeName)).build();
             }
@@ -55,7 +56,7 @@ public class IncomeController {
     @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateIncome (Income income) {
+    public Response updateIncome(Income income) {
         try {
             Income incomeToUpdate = incomeService.findByIncomeName(income.getIncomeName());
             if (incomeToUpdate != null) {
@@ -76,7 +77,7 @@ public class IncomeController {
     @Path("/create")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createIncome (Income income) {
+    public Response createIncome(Income income) {
         try {
             if (incomeService.findByIncomeName(income.getIncomeName()) != null) {
                 if (incomeService.createIncome(income)) {

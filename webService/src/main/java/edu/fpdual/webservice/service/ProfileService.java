@@ -13,7 +13,7 @@ public class ProfileService {
     private final ProfileManager profileManager;
 
     //@TODO Añadir javadoc
-    public ProfileService(ProfileManagerImpl profileManager){
+    public ProfileService(ProfileManagerImpl profileManager) {
 
         this.profileManager = profileManager;
     }

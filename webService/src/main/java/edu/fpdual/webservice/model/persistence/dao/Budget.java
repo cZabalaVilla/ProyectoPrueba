@@ -14,7 +14,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Budget implements Comparable<Budget>{
+public class Budget implements Comparable<Budget> {
     private int userId;
     private int budgetId;
     private String budgetName;
@@ -24,15 +24,15 @@ public class Budget implements Comparable<Budget>{
     private List<Expense> expenseList;
     private Timestamp creationDate;
 
-    public Budget (ResultSet result) {
+    public Budget(ResultSet result) {
         try {
             this.userId = result.getInt("userId");
             this.budgetId = result.getInt("budgetId");
             this.budgetName = result.getString("budgetName");
             this.description = result.getString("description");
             this.currencyId = result.getInt("currencyId");
-            this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId",budgetId);
-            this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId",budgetId);
+            this.incomeList = new IncomeService(new IncomeManagerImpl()).findAllIncomesBy("budgetId", budgetId);
+            this.expenseList = new ExpenseService(new ExpenseManagerImpl()).findAllExpensesBy("budgetId", budgetId);
             this.creationDate = result.getTimestamp("creationDate");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

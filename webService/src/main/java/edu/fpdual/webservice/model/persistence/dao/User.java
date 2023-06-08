@@ -15,8 +15,6 @@ public class User implements Comparable<User> {
     boolean isAdmin;
 
 
-
-
     public User(ResultSet resultSet) {
         try {
             this.userId = resultSet.getInt("userId");
