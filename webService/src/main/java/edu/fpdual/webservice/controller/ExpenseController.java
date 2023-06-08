@@ -93,15 +93,15 @@ public class ExpenseController {
         }
     }
 
-    @DELETE
+    @POST
     @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteExpense(Expense expense) {
         try {
-            if (expenseService.findByExpenseName(expense.getExpenseName()) != null) {
+            if (expenseService.findByExpenseId(expense.getExpenseId()) != null) {
                 if (expenseService.deleteExpense(expense)) {
-                    return Response.status(200).entity(expense).build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Expense Was Not Deleted").build();
                 }

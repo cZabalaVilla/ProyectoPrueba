@@ -3,22 +3,20 @@ package edu.fpdual.webservice.model.persistence.manager.impl;
 
 import edu.fpdual.webservice.model.persistence.dao.Expense;
 import edu.fpdual.webservice.model.persistence.manager.ExpenseManager;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExpenseManagerImpl implements ExpenseManager {
     final String tableName = "EXPENSE";
-
     @Override
     public List<Expense> findAll(Connection con) {
         List<Expense> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName;
+        String query = "SELECT * FROM " +tableName;
 
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery(query);
-            while (result.next()) {
+            while(result.next()) {
                 entities.add(new Expense(result));
             }
         } catch (SQLException e) {
@@ -31,12 +29,11 @@ public class ExpenseManagerImpl implements ExpenseManager {
     @Override
     public List<Expense> findAllBy(Connection con, String fieldName, Object value) {
         List<Expense> entities = new ArrayList<>();
-        String query = "SELECT * FROM " + tableName + " WHERE " + fieldName + " = ?";
+        String query = "SELECT * FROM " +tableName +" WHERE " +fieldName +" = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
-            result.beforeFirst();
 
             while (result.next()) {
                 entities.add(new Expense(result));
@@ -109,13 +106,13 @@ public class ExpenseManagerImpl implements ExpenseManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 
     @Override
     public boolean update(Connection con, Expense expense) {
-        boolean result;
-        String query = "UPDATE " + tableName + " SET expenseName = ?, description = ?, categoryId = ?, amount = ?, isRecurrent = ? WHERE expenseId = ?";
+        boolean  result;
+        String query = "UPDATE " +tableName + " SET expenseName = ?, description = ?, categoryId = ?, amount = ?, isRecurrent = ? WHERE expenseId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -130,6 +127,6 @@ public class ExpenseManagerImpl implements ExpenseManager {
             e.printStackTrace();
             result = false;
         }
-        return false;
+        return result;
     }
 }

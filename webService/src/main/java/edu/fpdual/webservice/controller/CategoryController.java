@@ -37,6 +37,18 @@ public class CategoryController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/allbyid/{userId}")
+    public Response findAllByUserId(@PathParam("userId") int userId) {
+        try {
+            return Response.ok().entity(categoryService.findAllCategoriesByUserId(userId)).build();
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(500).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/name/{category}")
     public Response findByCategoryName(@PathParam("category") String category) {
         try {

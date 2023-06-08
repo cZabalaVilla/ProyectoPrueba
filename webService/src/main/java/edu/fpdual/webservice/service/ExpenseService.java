@@ -18,15 +18,15 @@ public class ExpenseService {
         this.expenseManager = expenseManager;
     }
 
-    public List<Expense> findAllExpenses() throws SQLException, ClassNotFoundException {
-        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+    public List<Expense> findAllExpenses() throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.findAll(con);
         }
     }
 
-    public List<Expense> findAllExpensesBy(String field, int value) throws SQLException, ClassNotFoundException {
-        try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return expenseManager.findAllBy(con, field, value);
+    public List<Expense> findAllExpensesBy(String field, int value) throws SQLException, ClassNotFoundException{
+        try(Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findAllBy(con,field,value);
         }
     }
 
@@ -42,18 +42,22 @@ public class ExpenseService {
         }
     }
 
+    public Expense findByExpenseId(int expenseId) throws SQLException, ClassNotFoundException {
+        try (Connection con = new MySQLConnector().getMySQLConnection()) {
+            return expenseManager.findBy(con, "expenseId", expenseId);
+        }
+    }
+
     public boolean deleteExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.delete(con, expense);
         }
     }
-
     public boolean createExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.create(con, new Expense());
         }
     }
-
     public boolean updateExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             return expenseManager.update(con, expense);
