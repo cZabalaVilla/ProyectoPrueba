@@ -126,7 +126,7 @@ public class BudgetController {
         }
     }
 
-    @DELETE
+    @POST
     @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

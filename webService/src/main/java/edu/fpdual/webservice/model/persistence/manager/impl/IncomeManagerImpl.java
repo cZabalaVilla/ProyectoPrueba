@@ -72,10 +72,10 @@ public class IncomeManagerImpl implements IncomeManager {
     public boolean delete(Connection con, Income income) {
         boolean result;
 
-        String query = "DELETE FROM " + tableName + " WHERE incomeName = ?";
+        String query = "DELETE FROM " + tableName + " WHERE incomeId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, income.getIncomeName());
+            stm.setObject(1, income.getIncomeId());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,17 +88,16 @@ public class IncomeManagerImpl implements IncomeManager {
     public boolean create(Connection con, Income income) {
         boolean result;
 
-        String query = "INSERT INTO " + tableName + "(budgetId, incomeName, description, categoryId, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(budgetId, incomeName, description, categoryId, amount, isRecurrent) values (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stm.setInt(1, income.getBudgetId());
             stm.setString(2, income.getIncomeName());
-            stm.setInt(3, income.getCategoryId());
-            stm.setString(4, income.getDescription());
+            stm.setString(3, income.getDescription());
+            stm.setInt(4, income.getCategoryId());
             stm.setDouble(5, income.getAmount());
-            stm.setBoolean(7, income.isRecurrent());
-            stm.setTimestamp(7, income.getCreationDate());
+            stm.setBoolean(6, income.isRecurrent());
 
             result = stm.executeUpdate() > 0;
 

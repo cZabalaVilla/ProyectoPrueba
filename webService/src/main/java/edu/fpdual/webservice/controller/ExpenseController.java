@@ -52,6 +52,24 @@ public class ExpenseController {
         }
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/id/{expenseId}")
+    public Response findByExpenseName(@PathParam("expenseId") int expenseId) {
+        try {
+            if (expenseId <= 0) {
+                return Response.ok().entity(expenseService.findAllExpenses()).build();
+            } else {
+                if (expenseService.findByExpenseId(expenseId) == null ) {
+                    return Response.status(400).entity("Expense Not Found").build();
+                }
+                return Response.ok().entity(expenseService.findByExpenseId(expenseId)).build();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            return Response.status(400).entity("Internal Error During DB Interaction").build();
+        }
+    }
+
     @PUT
     @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
@@ -81,7 +99,7 @@ public class ExpenseController {
         try {
             if (expenseService.findByExpenseName(expense.getExpenseName()) != null) {
                 if (expenseService.createExpense(expense)) {
-                    return Response.status(200).entity("Expense created.").build();
+                    return Response.status(200).entity(true).build();
                 } else {
                     return Response.status(400).entity("Expense not created.").build();
                 }

@@ -53,8 +53,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
             stm.setObject(1, value);
-            ResultSet result = stm.executeQuery(query);
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             while (result.next()) {
                 entity = new Expense(result);
@@ -72,10 +71,10 @@ public class ExpenseManagerImpl implements ExpenseManager {
     public boolean delete(Connection con, Expense expense) {
         boolean result;
 
-        String query = "DELETE FROM " + tableName + " WHERE expenseName = ?";
+        String query = "DELETE FROM " + tableName + " WHERE expenseId = ?";
 
         try (PreparedStatement stm = con.prepareStatement(query)) {
-            stm.setObject(1, expense.getExpenseName());
+            stm.setObject(1, expense.getExpenseId());
             result = stm.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +87,7 @@ public class ExpenseManagerImpl implements ExpenseManager {
     public boolean create(Connection con, Expense expense) {
         boolean result;
 
-        String query = "INSERT INTO " + tableName + "(budgetId, expenseName, description, categoryId, amount, isRecurrent, creationDate) values (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO " + tableName + "(budgetId, expenseName, description, categoryId, amount, isRecurrent) values (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -98,7 +97,6 @@ public class ExpenseManagerImpl implements ExpenseManager {
             stm.setInt(4, expense.getCategoryId());
             stm.setDouble(5, expense.getAmount());
             stm.setBoolean(6, expense.isRecurrent());
-            stm.setTimestamp(7, expense.getCreationDate());
 
             result = stm.executeUpdate() > 0;
 

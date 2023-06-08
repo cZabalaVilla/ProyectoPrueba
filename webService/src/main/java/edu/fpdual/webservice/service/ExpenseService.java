@@ -55,7 +55,7 @@ public class ExpenseService {
     }
     public boolean createExpense(Expense expense) throws SQLException, ClassNotFoundException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
-            return expenseManager.create(con, new Expense());
+            return expenseManager.create(con, expense);
         }
     }
     public boolean updateExpense(Expense expense) throws SQLException, ClassNotFoundException {
