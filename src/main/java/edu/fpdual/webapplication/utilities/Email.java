@@ -19,7 +19,7 @@ public class Email {
 
     public Email(String email) throws InvalidEmailException {
         try {
-            checkEmail(email);
+            checkEmail(email.trim());
             this.email = email;
         } catch (InvalidEmailException e) {
             throw new InvalidEmailException(e.getMessage());
@@ -27,7 +27,7 @@ public class Email {
     }
 
     public void checkEmail(String email) throws InvalidEmailException {
-        if (email == null || !email.contains("@")) {
+        if (email == null || !email.contains("@") || !email.contains(".") || email.contains(" ")) {
             throw new InvalidEmailException("El correo electrónico no es válido.");
         }
 
@@ -36,8 +36,15 @@ public class Email {
             throw new InvalidEmailException("El correo electrónico no es válido.");
         }
 
-        String dominio = parts[1].toLowerCase();
-        if (!commonDomains.contains(dominio)) {
+        String[] domain = parts[1].toLowerCase().split("\\.");
+
+        boolean isProvider = Arrays.stream(CommonProviders.values())
+                .anyMatch(provider -> provider.name().equalsIgnoreCase(domain[0]));
+
+        boolean isExtension = Arrays.stream(CommonExtensions.values())
+                .anyMatch(extension -> extension.name().equalsIgnoreCase(domain[1]));
+
+        if (!isProvider || !isExtension) {
             throw new InvalidEmailException("El dominio del correo electrónico no es válido.");
         }
     }

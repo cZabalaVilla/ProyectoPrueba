@@ -14,23 +14,31 @@ public class BudgetService {
     public BudgetService(BudgetClient budgetClient) {
         this.budgetClient = budgetClient;
     }
+
     public String ping() {
         return budgetClient.ping();
     }
+
     public Budget getBudgetByName(String budgetName) {
         return budgetClient.get(budgetName);
     }
+
     public Budget getBudgetById(int budgetId) {return budgetClient.get(budgetId); }
+
     public List<Budget> getAllBudgets() {
         return budgetClient.get();
     }
+
     public List<Budget> getAllBudgetsByUserId(int userId) {return budgetClient.getAllBy(userId);}
+
     public boolean updateBudget(Budget budget) {
         return budgetClient.put(budget);
     }
+
     public boolean createBudget(Budget budget) {
         return budgetClient.post(budget);
     }
+
     public boolean deleteBudget(Budget budget) {
         return budgetClient.delete(budget);
     }

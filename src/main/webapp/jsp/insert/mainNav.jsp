@@ -18,7 +18,7 @@
             </li>
             <% if (thisSession != null && thisSession.isAdmin()) { %>
             <li>
-                <a class="active" href="<%=GlobalInfo.URL_JSP_CONTACTUS%>">Panel de administrador</a>
+                <a class="active" href="<%=GlobalInfo.URL_JSP_CONTROLPANEL%>">Panel de administrador</a>
             </li>
             <% } %>
         </ul>

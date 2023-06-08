@@ -1,6 +1,5 @@
 package edu.fpdual.webapplication.filter;
 
-
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.annotations.Model;
 import edu.fpdual.webapplication.servlet.dto.Session;
@@ -26,7 +25,11 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
         if (session == null) {
-            ((HttpServletResponse) servletResponse).sendRedirect(GlobalInfo.URL_JSP_HOME);
+            String alertScript = "<script>alert('Su sesion ha expirado.');</script>";
+            servletResponse.getWriter().write(alertScript);
+
+            String redirectScript = "<script>window.location.href = '" + GlobalInfo.URL_JSP_LOGIN + "';</script>";
+            servletResponse.getWriter().write(redirectScript);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Model(type = "Service", version = "1.0", date = "01/06/2023")
 public class IncomeService {
+
     private final IncomeClient incomeClient;
 
     public IncomeService(IncomeClient incomeClient) {

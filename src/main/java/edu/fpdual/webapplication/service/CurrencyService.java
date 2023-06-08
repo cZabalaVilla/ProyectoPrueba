@@ -7,6 +7,7 @@ import edu.fpdual.webapplication.dto.Currency;
 import java.util.List;
 
 public class CurrencyService {
+
     private final CurrencyClient currencyClient;
 
     public CurrencyService(CurrencyClient currencyClient) {

@@ -27,14 +27,14 @@
                     <h3 class="pageTitle">Nuevo <br/> Presupuesto</h3>
                     <br/>
                     <form method="POST" action="<%=GlobalInfo.URL_SERVLET_ADDBUDGET%>" class="form">
-                        <label for="form">Nombre</label>
+                        <label for="budgetNameInput">Nombre</label>
                         <br />
                         <input type="text" id="budgetNameInput" name="budgetNameInput" />
                         <br />
                         <br />
-                        <label for="form">Moneda</label>
+                        <label for="currencyInput">Moneda</label>
                         <br />
-                        <select id="currencyInput" name="currencyInput"/>
+                        <select id="currencyInput" name="currencyInput">
                         <%List<Currency> currencyList = (List<Currency>)session.getAttribute("currencyList");
                             session.removeAttribute("currencyList");
                         if(currencyList!=null && currencyList.size() > 0){
@@ -45,7 +45,7 @@
                         </select>
                         <br />
                         <br />
-                        <label for="form">Descripción</label>
+                        <label for="budgetDescInput">Descripción</label>
                         <br />
                         <textarea id="budgetDescInput" name="budgetDescInput" rows="5" cols="65"></textarea>
                         <br />

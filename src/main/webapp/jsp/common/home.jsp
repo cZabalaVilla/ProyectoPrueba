@@ -1,8 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="edu.fpdual.webapplication.servlet.dto.Session" %>
-<%@ page import="edu.fpdual.webapplication.service.ProfileService" %>
-<%@ page import="edu.fpdual.webapplication.dto.Profile" %>
-<%@ page import="edu.fpdual.webapplication.client.ProfileClient" %>
 
 <!DOCTYPE html>
 <html lang="es">

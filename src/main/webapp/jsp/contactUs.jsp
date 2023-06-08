@@ -43,6 +43,7 @@
                     <% } else if (request.getAttribute("ok") != null) { %>
                     <p><%= request.getAttribute("ok") %>
                     </p>
+                    <br/>
                     <% } %>
                     <button type="submit" name="submitBtn" value="" class="buttonC">Enviar</button>
                 </form>

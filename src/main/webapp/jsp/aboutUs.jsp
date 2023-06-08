@@ -40,8 +40,8 @@
             </div>
         </div>
         <%@ include file="insert/footer.jsp" %>
-    </main>
-</div>
+        </main>
+    </div>
 </body>
 
 </html>

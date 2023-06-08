@@ -8,6 +8,7 @@ import java.util.List;
 
 @Model(type = "Service", version = "1.0", date = "01/06/2023")
 public class ReportService {
+
     private final ReportClient reportClient;
 
     public ReportService(ReportClient reportClient) {

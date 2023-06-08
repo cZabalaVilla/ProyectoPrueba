@@ -9,8 +9,8 @@
         <nav>
             <a href="<%=GlobalInfo.URL_SERVLET_ADDBUDGET%> ">Crear Presupuesto</a>
             <a href="<%=GlobalInfo.URL_SERVLET_LISTBUDGETS%>">Listar Presupuestos</a>
-            <a href="#">Informes</a>
-            <a href="#">Categorías</a>
+            <a href="<%=GlobalInfo.URL_JSP_REPORTS%>">Informes</a>
+            <a href="<%=GlobalInfo.URL_JSP_CATEGORIES%>">Categorías</a>
         </nav>
     </div>
 </header>

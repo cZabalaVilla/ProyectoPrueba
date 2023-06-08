@@ -27,25 +27,25 @@
                     <h3 class="pageTitle">Nuevo <br /> Ingreso</h3>
                     <br />
                     <form method="post" action="<%=GlobalInfo.URL_SERVLET_ADDINCOME%>" class="form">
-                        <label for="form">Nombre</label>
+                        <label for="incomeNameInput">Nombre</label>
                         <br />
                         <input type="text" id="incomeNameInput" name="incomeNameInput" />
                         <br />
                         <br />
-                        <label for="form">Descripción</label>
+                        <label for="incomeDescInput">Descripción</label>
                         <br />
                         <textarea id="incomeDescInput" name="incomeDescInput" rows="5"
                             cols="65"></textarea>
                         <br />
                         <br />
-                        <label for="form">Cantidad</label>
+                        <label for="incomeAmountInput">Cantidad</label>
                         <br />
                         <input type="number" id="incomeAmountInput" name="incomeAmountInput" />
                         <br />
                         <br />
-                        <label for="form">Categoría</label>
+                        <label for="categoryInput">Categoría</label>
                         <br />
-                        <select id="categoryInput" name="categoryInput"/>
+                        <select id="categoryInput" name="categoryInput">
                         <%List<Category> categoryList = (List<Category>)session.getAttribute("categoryList");
                             session.removeAttribute("categoryList");
                         if(categoryList!=null && categoryList.size() > 0){
@@ -57,7 +57,7 @@
                         <br />
                         <br />
                         <input type="checkbox" id="recurrentIncome" name="recurrentIncome" >
-                        <label for="form"> Hacer ingreso mensual</label>
+                        <label for="recurrentIncome"> Hacer ingreso mensual</label>
                         <br />
                         <br />
                         <button type="submit" name="submitBtn" value="Guardar" class="buttonC">Crear</button>

@@ -8,6 +8,7 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -63,5 +64,16 @@ public class CurrencyClient extends Client<Currency> {
         return webTarget.path(clientPath + "delete")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(currency, MediaType.APPLICATION_JSON), boolean.class);
+    }
+
+    public boolean ok(Currency currency) {
+        Response response = webTarget.path(clientPath + "delete")
+                .request(MediaType.APPLICATION_JSON)
+                .delete();
+
+        int statusCode = response.getStatus();
+        response.close();
+
+        return statusCode == 204; // Código 204 significa "No Content" y se interpreta como éxito en una operación de borrado.
     }
 }

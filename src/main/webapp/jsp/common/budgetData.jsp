@@ -49,7 +49,7 @@
 
 
 
-                    <%List<Income> incomeList = (List<Income>) budget.getIncomeList();
+                    <%List<Income> incomeList = budget.getIncomeList();
                     if(incomeList != null && incomeList.size() > 0) {%>
                     <h3>Lista de Ingresos</h3>
                         <%for (Income income : incomeList) {%>
@@ -69,7 +69,7 @@
                         <%}
                     }%>
 
-                    <%List<Expense> expenseList = (List<Expense>) budget.getExpenseList();
+                    <%List<Expense> expenseList = budget.getExpenseList();
                     if(incomeList != null && incomeList.size() > 0) {%>
                         <h3>Lista de Gastos</h3>
                         <%for (Expense expense : expenseList) {%>

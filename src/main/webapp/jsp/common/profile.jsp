@@ -20,7 +20,7 @@
         <div class="mainBlock">
             <div class="content">
                 <% Profile profile = new ProfileService(new ProfileClient()).getProfileById(thisSession.getUserId()); %>
-                <img src="../../img/userImg.png" class="profileImg" alt="Imagen de perfil"/>
+                <img src="<%= GlobalInfo.URL_PROYECTO%>/img/userImg.png" class="profileImg" alt="Imagen de perfil"/>
                 <form method="post" action="<%= GlobalInfo.URL_SERVLET_PROFILE %>">
                     <label for="userName">Nombre</label>
                     <br/>

@@ -16,7 +16,6 @@
         <label for="userName">Nombre de usuario:</label>
         <input type="text" name="userName" id="userName" required>
         <br/>
-        <!-- Mensaje de error en caso de que haya algo incorrecto-->
         <% if (request.getAttribute("error") != null) { %>
         <p style="color:red"><%= request.getAttribute("error") %>
         </p><br/>
