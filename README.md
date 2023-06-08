@@ -1,3 +1,5 @@
-# ProyectoPrueba
+# Fit-Pocket
 
-Aplicativo web que se usa para el cliente y conecta con los servicios
+Parte del proyecto que forma el front-end. En el se encuentra el Web Application.
+
+Autores: María Garzón y Carlos Zabala.
