@@ -15,6 +15,11 @@ public class ExpenseService {
         this.expenseClient = expenseClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return expenseClient.ping();
     }

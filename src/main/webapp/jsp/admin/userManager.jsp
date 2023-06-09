@@ -1,15 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Carlos
-  Date: 08/06/2023
-  Time: 12:10
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-    <title>Title</title>
+    <%@ include file="../insert/headTemplate.jsp" %>
+    <title>Manejo de administrador</title>
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>
+
 <body>
 
 </body>

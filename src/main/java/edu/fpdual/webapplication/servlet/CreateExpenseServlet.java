@@ -29,9 +29,10 @@ public class CreateExpenseServlet extends HttpServlet {
         super.init(config);
         categoryService = new CategoryService(new CategoryClient());
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
         List<Category> categoryList = categoryService.getAllCategoriesByUserId(0);
         categoryList.addAll(categoryService.getAllCategoriesByUserId(session.getUserId()));
@@ -41,9 +42,10 @@ public class CreateExpenseServlet extends HttpServlet {
 
         response.sendRedirect(GlobalInfo.URL_JSP_ADDEXPENSE);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws  ServletException, IOException {
+            throws ServletException, IOException {
 
         String ok = "Gasto Creado.";
         String error = "No se ha podido crear el gasto.";
@@ -55,7 +57,7 @@ public class CreateExpenseServlet extends HttpServlet {
 
             if (session != null && budgetId > 0) {
 
-                expense = expense.builder()
+                expense = Expense.builder()
                         .budgetId(budgetId)
                         .expenseName(request.getParameter("expenseNameInput"))
                         .description(request.getParameter("expenseDescInput"))
@@ -68,7 +70,7 @@ public class CreateExpenseServlet extends HttpServlet {
                     request.setAttribute("ok", ok);
                     response.sendRedirect((GlobalInfo.URL_JSP_SUCCESS));
                 } else {
-                    request.setAttribute("error",error);
+                    request.setAttribute("error", error);
                     request.getRequestDispatcher(GlobalInfo.URL_JSP_ADDINCOME).forward(request, response);
                 }
             }

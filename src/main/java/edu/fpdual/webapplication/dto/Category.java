@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Model(type = "Data",version = "1.0", date = "01/06/2023")
+@Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class Category {
     private int categoryId;
     private int userId;

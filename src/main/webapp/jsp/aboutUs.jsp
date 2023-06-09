@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<%@ include file="insert/mainNav.jsp"%>
+<%@ include file="insert/mainNav.jsp" %>
 <div class="container">
     <main>
         <div class="mainBlock">
@@ -35,13 +35,13 @@
                     </p>
                 </div>
                 <div>
-                    <img src="../img/aboutUs.jpg" class="aboutImg"/>
+                    <img src="../img/aboutUs.jpg" class="aboutImg" alt="Example image"/>
                 </div>
             </div>
         </div>
         <%@ include file="insert/footer.jsp" %>
-        </main>
-    </div>
+    </main>
+</div>
 </body>
 
 </html>

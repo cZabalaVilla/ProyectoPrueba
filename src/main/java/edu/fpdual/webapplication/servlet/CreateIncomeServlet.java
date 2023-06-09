@@ -49,11 +49,11 @@ public class CreateIncomeServlet extends HttpServlet {
 
         Income income = (Income) request.getSession().getAttribute("newIncome");
 
-        try{
+        try {
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
 
             if (session != null && budgetId > 0) {
-                income = income.builder()
+                income = Income.builder()
                         .budgetId(budgetId)
                         .incomeName(request.getParameter("incomeNameInput"))
                         .description(request.getParameter("incomeDescInput"))
@@ -66,7 +66,7 @@ public class CreateIncomeServlet extends HttpServlet {
                     request.setAttribute("ok", ok);
                     response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
                 } else {
-                    request.setAttribute("error",error);
+                    request.setAttribute("error", error);
                     request.getRequestDispatcher(GlobalInfo.URL_JSP_ADDINCOME).forward(request, response);
                 }
             }

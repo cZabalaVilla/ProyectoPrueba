@@ -15,6 +15,11 @@ public class ProfileService {
         this.profileClient = profileClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return profileClient.ping();
     }

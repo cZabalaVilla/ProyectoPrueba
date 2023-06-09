@@ -37,7 +37,7 @@ public class DeleteBudgetServlet extends HttpServlet {
             response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
         } else {
             System.out.println("Else error");
-            request.setAttribute("error",error);
+            request.setAttribute("error", error);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_LISTBUDGET).forward(request, response);
         }
     }

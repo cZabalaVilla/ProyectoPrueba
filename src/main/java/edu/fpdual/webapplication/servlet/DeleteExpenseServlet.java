@@ -2,11 +2,8 @@ package edu.fpdual.webapplication.servlet;
 
 import edu.fpdual.webapplication.GlobalInfo;
 import edu.fpdual.webapplication.client.ExpenseClient;
-import edu.fpdual.webapplication.client.IncomeClient;
 import edu.fpdual.webapplication.dto.Expense;
-import edu.fpdual.webapplication.dto.Income;
 import edu.fpdual.webapplication.service.ExpenseService;
-import edu.fpdual.webapplication.service.IncomeService;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,9 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name="DeleteExpenseServlet", urlPatterns = {"/delete-expense-servlet"})
+@WebServlet(name = "DeleteExpenseServlet", urlPatterns = {"/delete-expense-servlet"})
 public class DeleteExpenseServlet extends HttpServlet {
     private ExpenseService expenseService;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -39,7 +37,7 @@ public class DeleteExpenseServlet extends HttpServlet {
             response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
         } else {
             System.out.println("Else error");
-            request.setAttribute("error",error);
+            request.setAttribute("error", error);
             request.getRequestDispatcher(GlobalInfo.URL_JSP_BUDGETDATA).forward(request, response);
         }
     }

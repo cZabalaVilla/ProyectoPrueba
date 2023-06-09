@@ -11,10 +11,16 @@ public class ReportService {
 
     private final ReportClient reportClient;
 
+
     public ReportService(ReportClient reportClient) {
         this.reportClient = reportClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return reportClient.ping();
     }

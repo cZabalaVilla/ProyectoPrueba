@@ -15,19 +15,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.List;
-
 
 
 @WebServlet(name = "CreateBudgetServlet", urlPatterns = {"/create-budget-servlet"})
 public class CreateBudgetServlet extends HttpServlet {
     private CurrencyService currencyService;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         currencyService = new CurrencyService(new CurrencyClient());
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Currency> currencyList = currencyService.getAllCurrency();
@@ -49,9 +51,9 @@ public class CreateBudgetServlet extends HttpServlet {
             int userIdSession = session.getUserId();
             String nombreIntroducido = request.getParameter("budgetNameInput");
 
-            if (session != null && nombreIntroducido != null) {
+            if (nombreIntroducido != null) {
 
-                budget = budget.builder()
+                budget = Budget.builder()
                         .userId(userIdSession)
                         .budgetName(request.getParameter("budgetNameInput"))
                         .description(request.getParameter("budgetDescInput"))
@@ -63,7 +65,7 @@ public class CreateBudgetServlet extends HttpServlet {
                     response.sendRedirect(GlobalInfo.URL_JSP_SUCCESS);
                 } else {
                     System.out.println("Else error");
-                    request.setAttribute("error",error);
+                    request.setAttribute("error", error);
                     request.getRequestDispatcher(GlobalInfo.URL_JSP_ADDBUDGET).forward(request, response);
 
                 }

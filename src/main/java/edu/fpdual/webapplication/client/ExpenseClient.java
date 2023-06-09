@@ -42,6 +42,7 @@ public class ExpenseClient extends Client<Expense> {
                 .request(MediaType.APPLICATION_JSON)
                 .get(Expense.class);
     }
+
     public Expense getById(int expenseId) {
         return webTarget.path(clientPath + "id/" + expenseId)
                 .request(MediaType.APPLICATION_JSON)

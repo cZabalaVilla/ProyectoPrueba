@@ -1,5 +1,4 @@
 <%@ page import="edu.fpdual.webapplication.dto.Category" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="edu.fpdual.webapplication.service.CategoryService" %>
 <%@ page import="edu.fpdual.webapplication.client.CategoryClient" %>
 <%@ page import="java.util.List" %>
@@ -24,14 +23,14 @@
                 <%List<Category> basicCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(0);%>
                 <% for (Category category : basicCategories) {
                 %><p><%=category.getCategoryName()%>
-                </p>
+            </p>
                 <br/>
                 <br/>
                 <% } %>
                 <%List<Category> userCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(thisSession.getUserId());%>
                 <% for (Category category : userCategories) {
                 %><p><%=category.getCategoryName()%>
-                </p>
+            </p>
                 <br/>
                 <br/>
                 <% } %>

@@ -14,6 +14,11 @@ public class CurrencyService {
         this.currencyClient = currencyClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return currencyClient.ping();
     }

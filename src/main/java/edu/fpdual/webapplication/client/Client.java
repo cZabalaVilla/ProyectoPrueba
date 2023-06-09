@@ -18,7 +18,7 @@ public abstract class Client<T> {
      * Retrieve all representations of a resource.
      * Obtains information.
      *
-     * @return a {@link T} entity.
+     * @return a {@link List} of {@link T} entity.
      */
     public abstract List<T> get();
 

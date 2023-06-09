@@ -15,6 +15,11 @@ public class UserService {
         this.userClient = userClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return userClient.ping();
     }

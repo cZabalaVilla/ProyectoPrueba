@@ -35,8 +35,9 @@ public class CategoryClient extends Client<Category> {
                 .get(new GenericType<>() {
                 });
     }
+
     public List<Category> getAllBy(int userId) {
-        return webTarget.path(clientPath + "allbyid/" +userId)
+        return webTarget.path(clientPath + "allbyid/" + userId)
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<>() {
                 });

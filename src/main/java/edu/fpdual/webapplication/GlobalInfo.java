@@ -20,15 +20,15 @@ public class GlobalInfo {
     public static final String URL_JSP_LISTS = URL_JSP + "/admin/database/lists.jsp";
     public static final String URL_JSP_ABOUTUS = URL_JSP + "/aboutUs.jsp";
     public static final String URL_JSP_CONTACTUS = URL_JSP + "/contactUs.jsp";
-    public static final String URL_JSP_LISTBUDGET = URL_JSP +"/common/listBudget.jsp";
-    public static final String URL_JSP_SUCCESS = URL_JSP +"/common/success.jsp";
-    public static final String URL_JSP_SUCCESS2 = URL_JSP +"/common/success_2.jsp";
-    public static final String URL_JSP_ADDBUDGET = URL_JSP +"/common/addBudget.jsp";
-    public static final String URL_JSP_ADDEXPENSE = URL_JSP +"/common/addExpense.jsp";
-    public static final String URL_JSP_ADDINCOME = URL_JSP +"/common/addIncome.jsp";
-    public static final String URL_JSP_BUDGETDATA = URL_JSP +"/common/budgetData.jsp";
-    public static final String URL_JSP_CATEGORIES = URL_JSP +"/common/categories.jsp";
-    public static final String URL_JSP_REPORTS = URL_JSP +"/common/reports.jsp";
+    public static final String URL_JSP_LISTBUDGET = URL_JSP + "/common/listBudget.jsp";
+    public static final String URL_JSP_SUCCESS = URL_JSP + "/common/success.jsp";
+    public static final String URL_JSP_SUCCESS2 = URL_JSP + "/common/success_2.jsp";
+    public static final String URL_JSP_ADDBUDGET = URL_JSP + "/common/addBudget.jsp";
+    public static final String URL_JSP_ADDEXPENSE = URL_JSP + "/common/addExpense.jsp";
+    public static final String URL_JSP_ADDINCOME = URL_JSP + "/common/addIncome.jsp";
+    public static final String URL_JSP_BUDGETDATA = URL_JSP + "/common/budgetData.jsp";
+    public static final String URL_JSP_CATEGORIES = URL_JSP + "/common/categories.jsp";
+    public static final String URL_JSP_REPORTS = URL_JSP + "/common/reports.jsp";
 
     /*
      * Páginas de error
@@ -51,15 +51,15 @@ public class GlobalInfo {
     public static final String URL_SERVLET_PINGLIST = URL_SERVLET_ + "/ping-list-servlet";
     public static final String URL_SERVLET_UPDATEPASSWORD = URL_SERVLET_ + "/update-password-servlet";
     public static final String URL_SERVLET_RESTOREPASSWORD = URL_SERVLET_ + "/restore-password-servlet";
-    public static final String URL_SERVLET_ADDBUDGET = URL_SERVLET_ +"/create-budget-servlet";
-    public static final String URL_SERVLET_LISTBUDGETS = URL_SERVLET_ +"/list-budget-servlet";
-    public static final String URL_SERVLET_DELETEBUDGET = URL_SERVLET_ +"/delete-budget-servlet";
-    public static final String URL_SERVLET_DELETEINCOME = URL_SERVLET_ +"/delete-income-servlet";
-    public static final String URL_SERVLET_DELETEEXPENSE = URL_SERVLET_ +"/delete-expense-servlet";
-    public static final String URL_SERVLET_BUDGETDATA = URL_SERVLET_ +"/see-budget";
-    public static final String URL_SERVLET_ADDINCOME = URL_SERVLET_ +"/create-income-servlet";
-    public static final String URL_SERVLET_ADDEXPENSE = URL_SERVLET_ +"/create-expense-servlet";
-    public static final String URL_SERVLET_CONTACTUS = URL_SERVLET_ +"/contact-servlet";
+    public static final String URL_SERVLET_ADDBUDGET = URL_SERVLET_ + "/create-budget-servlet";
+    public static final String URL_SERVLET_LISTBUDGETS = URL_SERVLET_ + "/list-budget-servlet";
+    public static final String URL_SERVLET_DELETEBUDGET = URL_SERVLET_ + "/delete-budget-servlet";
+    public static final String URL_SERVLET_DELETEINCOME = URL_SERVLET_ + "/delete-income-servlet";
+    public static final String URL_SERVLET_DELETEEXPENSE = URL_SERVLET_ + "/delete-expense-servlet";
+    public static final String URL_SERVLET_BUDGETDATA = URL_SERVLET_ + "/see-budget";
+    public static final String URL_SERVLET_ADDINCOME = URL_SERVLET_ + "/create-income-servlet";
+    public static final String URL_SERVLET_ADDEXPENSE = URL_SERVLET_ + "/create-expense-servlet";
+    public static final String URL_SERVLET_CONTACTUS = URL_SERVLET_ + "/contact-servlet";
     /*
      * Variables globales
      */

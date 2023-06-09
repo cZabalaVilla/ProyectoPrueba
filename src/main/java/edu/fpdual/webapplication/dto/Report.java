@@ -10,8 +10,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Model(type = "Data", version = "1.0", date = "01/06/2023")
 public class Report {
-    //añadir como pdf?
-
     private int reportId;
     private int userId;
     private String reportName;

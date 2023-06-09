@@ -15,15 +15,34 @@ public class CategoryService {
         this.categoryClient = categoryClient;
     }
 
+    /**
+     * Proves if the service is available.
+     *
+     * @return the following string : "Service online"
+     */
     public String ping() {
         return categoryClient.ping();
     }
 
+    /**
+     * Find all categories existing.
+     *
+     * @return a {@link List} of {@link Category}.
+     */
     public List<Category> getAllCategories() {
         return categoryClient.get();
     }
 
-    public List<Category> getAllCategoriesByUserId(int userId) {return categoryClient.getAllBy(userId);}
+    /**
+     * Find all categories existing by the user id.
+     *
+     * @param userId the id.
+     * @return a {@link List} of {@link Category}.
+     */
+    public List<Category> getAllCategoriesByUserId(int userId) {
+        return categoryClient.getAllBy(userId);
+    }
+
 
     public Category getCategory(String categoryName) {
         return categoryClient.get(categoryName);

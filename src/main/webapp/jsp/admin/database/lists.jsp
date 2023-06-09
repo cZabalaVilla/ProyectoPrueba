@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="edu.fpdual.webapplication.GlobalInfo" %>
 
@@ -8,7 +8,7 @@
 <head>
     <%@ include file="../../insert/headTemplate.jsp" %>
     <title>Lista de objetos</title>
-    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_lists.css"/>
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>
 
 <body>

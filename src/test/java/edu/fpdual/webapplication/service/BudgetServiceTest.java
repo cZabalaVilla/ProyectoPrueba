@@ -19,16 +19,16 @@ class BudgetServiceTest {
         budgetService = new BudgetService(new BudgetClient());
     }
 
+    @AfterAll
+    static void afterAll() {
+    }
+
     @BeforeEach
     void setUp() {
     }
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void afterAll() {
     }
 
     @Test
