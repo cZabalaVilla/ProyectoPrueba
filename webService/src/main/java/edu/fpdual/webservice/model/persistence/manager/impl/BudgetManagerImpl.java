@@ -58,13 +58,11 @@ public class BudgetManagerImpl implements BudgetManager {
 
             stm.setObject(1, value);
             ResultSet result = stm.executeQuery();
-
             while (result.next()) {
                 entity = new Budget(result);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            entity = null;
         }
         return entity;
     }

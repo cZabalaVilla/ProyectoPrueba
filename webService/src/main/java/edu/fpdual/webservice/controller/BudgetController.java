@@ -72,14 +72,11 @@ public class BudgetController {
     @Path("/id/{budgetId}")
     public Response findByBudgetId(@PathParam("budgetId") int budgetId) {
         try {
-            if (budgetId <= 0) {
-                return Response.ok().entity(budgetService.findAllBudgets()).build();
-            } else {
-                if (budgetService.findByBudgetId(budgetId).getBudgetId() <= 0) {
-                    return Response.status(404).entity("Budget Not Found").build();
+                Budget budget = budgetService.findByBudgetId(budgetId);
+                if (budget.getBudgetId() <= 0) {
+                    return Response.ok().entity(null).build();
                 }
-                return Response.ok().entity(budgetService.findByBudgetId(budgetId)).build();
-            }
+                return Response.ok().entity(budget).build();
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
         }
@@ -94,12 +91,12 @@ public class BudgetController {
             Budget budgetToUpdate = budgetService.findByBudgetName(budget.getBudgetName());
             if (budgetToUpdate != null) {
                 if (budgetService.updateBudget(budget)) {
-                    return Response.ok().entity(budgetService.findByBudgetName(budget.getBudgetName())).build();
+                    return Response.ok().entity(true).build();
                 } else {
-                    return Response.status(400).entity("Internal Error During Budget Update").build();
+                    return Response.ok().entity(false).build();
                 }
             } else {
-                return Response.status(400).entity("Budget Not Found").build();
+                return Response.ok().entity(false).build();
             }
         } catch (SQLException | ClassNotFoundException e) {
             return Response.status(500).entity("Internal Error During DB Interaction").build();
@@ -114,9 +111,9 @@ public class BudgetController {
         try {
             if (budgetService.findByBudgetName(budget.getBudgetName()) != null) {
                 if (budgetService.createBudget(budget)) {
-                    return Response.status(200).entity(true).build();
+                    return Response.ok().entity(true).build();
                 } else {
-                    return Response.status(400).entity("Budget not created.").build();
+                    return Response.ok().entity(false).build();
                 }
             } else {
                 return Response.status(400).entity("Budget already exist.").build();
@@ -134,9 +131,9 @@ public class BudgetController {
         try {
             if (budgetService.findByBudgetId(budget.getBudgetId()) != null) {
                 if (budgetService.deleteBudget(budget)) {
-                    return Response.status(200).entity(true).build();
+                    return Response.ok().entity(true).build();
                 } else {
-                    return Response.status(400).entity("Budget Was Not Deleted").build();
+                    return Response.ok().entity(false).build();
                 }
             } else {
                 return Response.status(400).entity("Budget Not Found").build();
