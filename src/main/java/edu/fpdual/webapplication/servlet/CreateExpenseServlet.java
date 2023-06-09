@@ -50,7 +50,7 @@ public class CreateExpenseServlet extends HttpServlet {
         String ok = "Gasto Creado.";
         String error = "No se ha podido crear el gasto.";
 
-        Expense expense = (Expense) request.getSession().getAttribute("newExpense");
+        Expense expense;
 
         try {
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);

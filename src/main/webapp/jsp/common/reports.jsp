@@ -32,6 +32,7 @@
                         <th>Fecha</th>
                         <th>Descripción</th>
                         <th>Monto</th>
+                        <th>Categoria</th>
                     </tr>
                     </thead>
                     <tbody id="expensesBody">
@@ -46,12 +47,24 @@
                         <th>Fecha</th>
                         <th>Descripción</th>
                         <th>Monto</th>
+                        <th>Categoria</th>
                     </tr>
                     </thead>
                     <tbody id="incomeBody">
                     <!-- Aquí se mostrarán los ingresos filtrados por fecha -->
                     </tbody>
                 </table>
+                <% if (request.getAttribute("error") != null) { %>
+                <p class="errorAlert"><%= request.getAttribute("error") %>
+                </p><br/>
+                <% } else if (request.getAttribute("ok") != null) { %>
+                <p><%= request.getAttribute("ok") %>
+                </p><br/>
+                <% } %>
+                <br/>
+                <form id="generatePdf" action="<%=GlobalInfo.URL_SERVLET_GENERATEREPORTPDF%>" method="GET">
+                    <button type="submit">Generar reporte</button>
+                </form>
             </div>
         </div>
         <%@ include file="../insert/footer.jsp" %>
@@ -74,9 +87,9 @@
 
         // Ejemplo de cómo añadir datos a la tabla de gastos
         const expenseData = [
-            { fecha: '2023-06-01', descripcion: 'Gasto 1', monto: 100 },
-            { fecha: '2023-06-02', descripcion: 'Gasto 2', monto: 150 },
-            { fecha: '2023-06-03', descripcion: 'Gasto 3', monto: 200 }
+            { fecha: '2023-06-01', descripcion: 'Compra del hogar', monto: 100, categoria: 'Hogar' },
+            { fecha: '2023-06-02', descripcion: 'Vuelos', monto: 150, categoria: 'Viaje' },
+            { fecha: '2023-06-03', descripcion: 'Casa rural', monto: 200, categoria: 'Ocio' }
         ];
 
         expensesBody.innerHTML = '';
@@ -86,15 +99,16 @@
                 <td>${expense.fecha}</td>
                 <td>${expense.descripcion}</td>
                 <td>${expense.monto}</td>
+                <td>${expense.categoria}</td>
             `;
             expensesBody.appendChild(row);
         });
 
         // Ejemplo de cómo añadir datos a la tabla de ingresos
         const incomeData = [
-            { fecha: '2023-06-01', descripcion: 'Ingreso 1', monto: 500 },
-            { fecha: '2023-06-02', descripcion: 'Ingreso 2', monto: 300 },
-            { fecha: '2023-06-03', descripcion: 'Ingreso 3', monto: 200 }
+            { fecha: '2023-06-01', descripcion: 'Ahorro Dubai', monto: 500, categoria: 'Viaje'},
+            { fecha: '2023-06-02', descripcion: 'Casa rural', monto: 300, categoria: 'Ocio'},
+            { fecha: '2023-06-03', descripcion: 'Verano', monto: 200, categoria: 'Viaje'}
         ];
 
         incomeBody.innerHTML = '';
@@ -104,6 +118,8 @@
                 <td>${income.fecha}</td>
                 <td>${income.descripcion}</td>
                 <td>${income.monto}</td>
+                <td>${income.categoria}</td>
+
             `;
             incomeBody.appendChild(row);
         });

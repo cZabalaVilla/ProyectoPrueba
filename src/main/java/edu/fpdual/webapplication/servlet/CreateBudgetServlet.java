@@ -44,7 +44,7 @@ public class CreateBudgetServlet extends HttpServlet {
         String ok = "Presupuesto Creado.";
         String error = "No se ha podido crear el presupuesto.";
 
-        Budget budget = (Budget) request.getSession().getAttribute("newBudget");
+        Budget budget;
 
         try {
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);

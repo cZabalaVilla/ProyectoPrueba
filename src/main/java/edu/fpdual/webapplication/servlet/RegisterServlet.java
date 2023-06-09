@@ -43,6 +43,7 @@ public class RegisterServlet extends HttpServlet {
             if (profileService.getProfileByEmail(emailReceived) != null) {
                 request.setAttribute("error", emailAlreadyError);
                 request.getRequestDispatcher(dispatcherURLRegister).forward(request, response);
+                return;
             }
         } catch (InvalidEmailException e) {
             request.setAttribute("error", e.getMessage());

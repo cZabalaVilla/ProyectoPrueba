@@ -60,6 +60,8 @@ public class GlobalInfo {
     public static final String URL_SERVLET_ADDINCOME = URL_SERVLET_ + "/create-income-servlet";
     public static final String URL_SERVLET_ADDEXPENSE = URL_SERVLET_ + "/create-expense-servlet";
     public static final String URL_SERVLET_CONTACTUS = URL_SERVLET_ + "/contact-servlet";
+    public static final String URL_SERVLET_GENERATEREPORTPDF = URL_SERVLET_ + "/generate-report-servlet";
+
     /*
      * Variables globales
      */

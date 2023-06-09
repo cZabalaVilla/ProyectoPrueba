@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import edu.fpdual.webapplication.servlet.dto.ExpenseIncome;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,33 +15,13 @@ import java.util.stream.Stream;
 
 public class ReportToPdf {
 
-    public static void main(String[] args) throws DocumentException, IOException {
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("01-06-2023");
-        lista.add("Gasto");
-        lista.add("20 €");
-        lista.add("Restaurante");
-
-        lista.add("02-06-2023");
-        lista.add("Ingreso");
-        lista.add("120 €");
-        lista.add("Trabajo");
-
-        lista.add("05-06-2023");
-        lista.add("Gasto");
-        lista.add("12 €");
-        lista.add("Supermercado");
-
-        new ReportToPdf().createPDF(lista);
-    }
-
     /**
      * Create a new pdf file based on the report selected
      *
      * @param list the list of all incomes and expenses.
      * @return a {@link String}
      */
-    public String createPDF(ArrayList<String> list) throws IOException, DocumentException {
+    public String createPDF(ArrayList<ExpenseIncome> list) throws IOException, DocumentException {
         String desktopPath = System.getProperty("user.home") + "/Desktop/";
         String filePath = desktopPath + pdfName() + ".pdf";
 
@@ -58,7 +39,7 @@ public class ReportToPdf {
         document.add(pdfPTable);
         document.close();
 
-        return "Se ha creado un reporte en un escritorio.";
+        return "Se ha creado un reporte en el escritorio.";
     }
 
     private String pdfName() {
@@ -96,14 +77,35 @@ public class ReportToPdf {
         });
     }
 
-    private void addTableCustomRows(PdfPTable pdfPTable, ArrayList<String> list) {
-        for (String str : list) {
-            PdfPCell column = new PdfPCell(new Phrase(str));
-            column.setBackgroundColor(BaseColor.WHITE);
-            column.setBorderWidth(1);
-            column.setHorizontalAlignment(Element.ALIGN_CENTER);
-            column.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            pdfPTable.addCell(column);
+    private void addTableCustomRows(PdfPTable pdfPTable, ArrayList<ExpenseIncome> list) {
+        for (ExpenseIncome exin : list) {
+            PdfPCell colum1 = new PdfPCell(new Phrase(exin.getFecha()));
+            colum1.setBackgroundColor(BaseColor.WHITE);
+            colum1.setBorderWidth(1);
+            colum1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            colum1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPTable.addCell(colum1);
+
+            PdfPCell column2 = new PdfPCell(new Phrase(exin.getTipo()));
+            column2.setBackgroundColor(BaseColor.WHITE);
+            column2.setBorderWidth(1);
+            column2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            column2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPTable.addCell(column2);
+
+            PdfPCell column3 = new PdfPCell(new Phrase(exin.getCantidad()));
+            column3.setBackgroundColor(BaseColor.WHITE);
+            column3.setBorderWidth(1);
+            column3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            column3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPTable.addCell(column3);
+
+            PdfPCell column4 = new PdfPCell(new Phrase(exin.getCategoria()));
+            column4.setBackgroundColor(BaseColor.WHITE);
+            column4.setBorderWidth(1);
+            column4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            column4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPTable.addCell(column4);
         }
     }
 }

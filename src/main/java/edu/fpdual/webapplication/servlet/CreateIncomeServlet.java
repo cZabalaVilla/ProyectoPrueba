@@ -47,7 +47,7 @@ public class CreateIncomeServlet extends HttpServlet {
         String ok = "Ingreso Creado.";
         String error = "No se ha podido crear el presupuesto.";
 
-        Income income = (Income) request.getSession().getAttribute("newIncome");
+        Income income;
 
         try {
             Session session = (Session) request.getSession().getAttribute(GlobalInfo.session);
