@@ -31,7 +31,7 @@
         <label for="newPassword">Nueva contraseña</label>
         <br/>
         <br/>
-        <input type="text" name="newPassword" id="newPassword" placeholder="********" required/>
+        <input type="password" name="newPassword" id="newPassword" placeholder="********" required/>
         <br/>
         <br/>
         <!-- Mensaje de error en caso de que haya algo incorrecto-->
