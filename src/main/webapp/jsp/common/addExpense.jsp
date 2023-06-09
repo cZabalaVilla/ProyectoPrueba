@@ -65,7 +65,6 @@
                     <br/>
                     <br/>
                     <button type="submit" name="submitBtn" value="Guardar" class="buttonC">Crear</button>
-                    <button type="reset" name="resetBtn" value="Cancelar" class="buttonCancel">Cancelar</button>
                 </form>
             </div>
         </div>
