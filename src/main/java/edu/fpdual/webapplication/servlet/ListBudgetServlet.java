@@ -34,9 +34,4 @@ public class ListBudgetServlet extends HttpServlet {
         response.sendRedirect(GlobalInfo.URL_JSP_LISTBUDGET);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
 }

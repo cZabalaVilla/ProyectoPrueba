@@ -5,7 +5,7 @@
 
 <head>
     <%@ include file="../insert/headTemplate.jsp" %>
-    <title>Panel de control</title>
+    <title>Panel de Control</title>
     <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
 </head>
 
@@ -15,20 +15,18 @@
     <main>
         <%@ include file="../insert/mainNav.jsp" %>
         <div class="mainBlock">
-            <h2>Panel de control de administrador</h2>
+
             <div class="content">
-                <form method="post" action="<%=GlobalInfo.URL_JSP_NEWADMIN%>">
-                    <input type="submit" name="submitBtn" value="Create admin">
-                </form>
-                <br/>
-                <form method="post" action="<%=GlobalInfo.URL_JSP_LISTS%>">
-                    <input type="submit" name="submitBtn" value="Database">
-                </form>
-                <br/>
-                <form action="">
-                    <input type="submit" name="submitBtn" value="empty">
-                </form>
-                <br/>
+                <h3 class="pageTitle">Panel de control<br/> de administrador</h3>
+                <div>
+                    <form method="post" action="<%=GlobalInfo.URL_JSP_NEWADMIN%>">
+                       <input type="submit" name="submitBtn" value="Create admin" class="buttonC">
+                    </form>
+                    <br/>
+                    <form method="post" action="<%=GlobalInfo.URL_JSP_LISTS%>">
+                       <input type="submit" name="submitBtn" value="Database" class="buttonC">
+                    </form>
+                </div>
             </div>
         </div>
         <%@ include file="../insert/footer.jsp" %>

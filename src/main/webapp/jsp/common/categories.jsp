@@ -19,20 +19,17 @@
     <main>
         <%@ include file="../insert/mainNav.jsp" %>
         <div class="mainBlock">
-            <div class="content">
+            <div class="contentList">
+                <h3 class="pageTitle1">Categorías Generales</h3>
                 <%List<Category> basicCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(0);%>
                 <% for (Category category : basicCategories) {
-                %><p><%=category.getCategoryName()%>
-            </p>
-                <br/>
-                <br/>
+                %><p><%=category.getCategoryName()%></p>
                 <% } %>
+                <br/>
+                <h3 class="pageTitle1">Categorías Personales</h3>
                 <%List<Category> userCategories = new CategoryService(new CategoryClient()).getAllCategoriesByUserId(thisSession.getUserId());%>
                 <% for (Category category : userCategories) {
-                %><p><%=category.getCategoryName()%>
-            </p>
-                <br/>
-                <br/>
+                %><p><%=category.getCategoryName()%></p>
                 <% } %>
             </div>
         </div>

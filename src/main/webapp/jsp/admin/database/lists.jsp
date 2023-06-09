@@ -7,11 +7,13 @@
 
 <head>
     <%@ include file="../../insert/headTemplate.jsp" %>
-    <title>Lista de objetos</title>
-    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_v2.css"/>
+    <title>Lista de Objetos</title>
+    <link rel="stylesheet" href="<%=GlobalInfo.URL_PROYECTO%>/css/style_lists"/>
 </head>
 
 <body>
+
+
 <h1>Listas de Objetos</h1>
 <form method="post" action="<%=GlobalInfo.URL_SERVLET_LISTS%>">
     <div class="radio-container">

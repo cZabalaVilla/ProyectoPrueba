@@ -288,6 +288,16 @@ span {
     font-weight: bold;
     text-decoration: underline #EB455F;
 }
+table, tr, th, td {
+    border: 2px solid #2B3467;
+    border-collapse: collapse;
+}
+th {
+    color:#EB455F;
+}
+td {
+    text-align:center;
+}
 
 /*FOOTER*/
 footer {

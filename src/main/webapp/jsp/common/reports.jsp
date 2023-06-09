@@ -15,17 +15,26 @@
     <main>
         <%@ include file="../insert/mainNav.jsp" %>
         <div class="mainBlock">
-            <div class="content">
-                <h2>Filtro de fechas</h2>
-                <form id="filterForm">
+            <div class="contentList">
+                <h3 class="pageTitle1">Filtro de Fechas</h3>
+                <br/>
+                <form id="filterForm" class="form">
                     <label for="startDate">Fecha de inicio:</label>
+                    <br/>
                     <input type="date" id="startDate" name="startDate">
+                    <br/>
+                    <br/>
                     <label for="endDate">Fecha de fin:</label>
+                    <br/>
                     <input type="date" id="endDate" name="endDate">
-                    <button type="submit">Filtrar</button>
+                    <br/>
+                    <br/>
+                    <button type="submit" class="buttonC">Filtrar</button>
                 </form>
-
-                <h2>Gastos</h2>
+                <br/>
+                <br/>
+                <h3 class="pageTitle1">Gastos</h3>
+                <br/>
                 <table id="expensesTable">
                     <thead>
                     <tr>
@@ -39,8 +48,10 @@
                     <!-- Aquí se mostrarán los gastos filtrados por fecha -->
                     </tbody>
                 </table>
-
-                <h2>Ingresos</h2>
+                <br/>
+                <br/>
+                <h3 class="pageTitle1">Ingresos</h3>
+                <br/>
                 <table id="incomeTable">
                     <thead>
                     <tr>
