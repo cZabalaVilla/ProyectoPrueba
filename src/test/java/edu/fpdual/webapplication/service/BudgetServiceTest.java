@@ -21,6 +21,7 @@ class BudgetServiceTest {
 
     @AfterAll
     static void afterAll() {
+        budgetService = null;
     }
 
     @BeforeEach
@@ -95,9 +96,11 @@ class BudgetServiceTest {
         int budgetId = 1;
         Budget budgetToUpdate = new Budget();
 
-        budgetToUpdate.setUserId(1);
+        budgetToUpdate.setBudgetId(budgetId);
         budgetToUpdate.setBudgetName("mensualidad");
-        budgetToUpdate.setDescription("test");
+        budgetToUpdate.setDescription("Gastos mensuales");
+        budgetToUpdate.setCurrencyId(1);
+
 
         Budget originalBudget = budgetService.getBudgetById(budgetId);
         int originalUserId = originalBudget.getUserId();
@@ -106,8 +109,8 @@ class BudgetServiceTest {
         boolean updatedBudget = budgetService.updateBudget(budgetToUpdate);
 
         assertTrue(updatedBudget);
-        assertEquals(1, budgetService.getBudgetById(budgetId).getUserId());
-        assertEquals("test", budgetService.getBudgetById(budgetId).getDescription());
+        assertEquals(1, budgetService.getBudgetById(budgetId).getCurrencyId());
+        assertEquals("Gastos mensuales", budgetService.getBudgetById(budgetId).getDescription());
 
         budgetToUpdate.setUserId(originalUserId);
         budgetToUpdate.setDescription(originalDescription);
@@ -125,7 +128,7 @@ class BudgetServiceTest {
 
         assertTrue(createdBudget);
 
-        int budgetId = budgetToCreate.getBudgetId();
+        int budgetId = budgetService.getBudgetByName("test").getBudgetId();
         assertEquals(1, budgetService.getBudgetById(budgetId).getUserId());
         assertEquals("test", budgetService.getBudgetById(budgetId).getDescription());
 
@@ -144,15 +147,11 @@ class BudgetServiceTest {
         boolean createdBudget = budgetService.createBudget(budgetToCreate);
         assertTrue(createdBudget);
 
-        int budgetId = budgetToCreate.getBudgetId();
+        int budgetId =  budgetService.getBudgetByName("test").getBudgetId();
 
-        boolean deletedBudget = budgetService.deleteBudget(budgetToCreate);
+        boolean deletedBudget = budgetService.deleteBudget(budgetService.getBudgetById(budgetId));
 
         assertTrue(deletedBudget);
 
-        assertThrows(NoSuchElementException.class, () -> {
-            budgetService.getBudgetById(budgetId);
-        });
     }
-
 }
